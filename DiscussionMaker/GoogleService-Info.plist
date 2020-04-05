@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>264606055840-ai9nf5kmcp201t8ojj8av98kojp95pri.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.264606055840-ai9nf5kmcp201t8ojj8av98kojp95pri</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDP46bCQwf_25pL0EVRgv6_C9kBpM6pMUg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>264606055840</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.almaz5200.DiscussionMaker</string>
+	<key>PROJECT_ID</key>
+	<string>debates-rest-api-29faa</string>
+	<key>STORAGE_BUCKET</key>
+	<string>debates-rest-api-29faa.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:264606055840:ios:d0ca02968e7886d75678c5</string>
+	<key>DATABASE_URL</key>
+	<string>https://debates-rest-api-29faa.firebaseio.com</string>
+</dict>
+</plist>
