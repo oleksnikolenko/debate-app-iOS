@@ -25,6 +25,7 @@
 		398086F12438E01500CDA1D2 /* SUHelpers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 398086ED2438DBF800CDA1D2 /* SUHelpers.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		398086F32439D44B00CDA1D2 /* DiscussionSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086F22439D44B00CDA1D2 /* DiscussionSide.swift */; };
 		398086F52439D51F00CDA1D2 /* DebatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086F42439D51F00CDA1D2 /* DebatesResponse.swift */; };
+		398086FE243C6FEB00CDA1D2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086FD243C6FEB00CDA1D2 /* NetworkService.swift */; };
 		39D1036623D0ED1000A0C3F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D1036523D0ED1000A0C3F7 /* AppDelegate.swift */; };
 		39D1036F23D0ED1400A0C3F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39D1036E23D0ED1400A0C3F7 /* Assets.xcassets */; };
 		39D1037223D0ED1400A0C3F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D1037023D0ED1400A0C3F7 /* LaunchScreen.storyboard */; };
@@ -101,6 +102,7 @@
 		398086E72438DBF700CDA1D2 /* SUHelpers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SUHelpers.xcodeproj; path = SUHelpers/SUHelpers.xcodeproj; sourceTree = SOURCE_ROOT; };
 		398086F22439D44B00CDA1D2 /* DiscussionSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionSide.swift; sourceTree = "<group>"; };
 		398086F42439D51F00CDA1D2 /* DebatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebatesResponse.swift; sourceTree = "<group>"; };
+		398086FD243C6FEB00CDA1D2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		39D1036223D0ED1000A0C3F7 /* DiscussionMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscussionMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39D1036523D0ED1000A0C3F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39D1036E23D0ED1400A0C3F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -198,6 +200,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		398086FA243C6FDD00CDA1D2 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				398086FD243C6FEB00CDA1D2 /* NetworkService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
 		39D1035923D0ED1000A0C3F7 = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +282,7 @@
 		39EFACD723DDADA900E1E8BA /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				398086FA243C6FDD00CDA1D2 /* NetworkService */,
 				39EFACDE23DDB0FD00E1E8BA /* Views */,
 				39EFACDD23DDB0F900E1E8BA /* Models */,
 			);
@@ -641,6 +652,7 @@
 				398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */,
 				39215B8423D35390000B5AA1 /* DiscussionListInteractor.swift in Sources */,
 				39215B8223D35390000B5AA1 /* DiscussionListModels.swift in Sources */,
+				398086FE243C6FEB00CDA1D2 /* NetworkService.swift in Sources */,
 				39215B7F23D35390000B5AA1 /* DiscussionListPresenter.swift in Sources */,
 				39215B8023D35390000B5AA1 /* DiscussionListWorker.swift in Sources */,
 				398086D32438CED000CDA1D2 /* AuthorizationScreenModels.swift in Sources */,

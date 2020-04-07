@@ -16,30 +16,8 @@ import RxSwift
 
 class DiscussionListWorker {
 
-    let baseUrl = "https://debates-rest-api7.herokuapp.com"
+    let networkService = NetworkServiceImplementation.shared
 
-    func getDiscussions() -> Observable<DebatesResponse> {
-        let response = PublishSubject<DebatesResponse>()
-        AF.request(
-            "\(baseUrl)/debates",
-            method: .get
-        ).responseData {
-            guard let data = $0.data else {
-                response.onError(AFError.explicitlyCancelled)
-                return
-            }
-
-            let debates = try? JSONDecoder().decode(DebatesResponse.self, from: data)
-
-            guard let unwrappedDebates = debates else {
-                response.onError(AFError.explicitlyCancelled)
-                return
-            }
-
-            response.onNext(unwrappedDebates)
-        }
-
-        return response
-    }
+    func getDiscussions() -> Observable<DebatesResponse> { networkService.getData(endpoint: "debates") }
 
 }
