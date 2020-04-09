@@ -23,7 +23,7 @@ class NetworkServiceImplementation: NetworkService {
 
     static let shared = NetworkServiceImplementation()
 
-    let baseUrl = "http://178.62.239.141/"
+    let baseUrl = "https://whocooler.com/"
 
     private init () {}
 
@@ -36,7 +36,8 @@ class NetworkServiceImplementation: NetworkService {
 
         AF.request(
             baseUrl + endpoint,
-            method: method
+            method: method,
+            parameters: parameters
         ).responseData {
             guard let data = $0.data else {
                 response.onError(AFError.explicitlyCancelled)

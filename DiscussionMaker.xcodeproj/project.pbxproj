@@ -13,6 +13,12 @@
 		39215B8223D35390000B5AA1 /* DiscussionListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7C23D35390000B5AA1 /* DiscussionListModels.swift */; };
 		39215B8323D35390000B5AA1 /* DiscussionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7D23D35390000B5AA1 /* DiscussionListViewController.swift */; };
 		39215B8423D35390000B5AA1 /* DiscussionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7E23D35390000B5AA1 /* DiscussionListInteractor.swift */; };
+		3943F1AB243F0FB000BC11D0 /* DiscussionDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A5243F0FB000BC11D0 /* DiscussionDetailPresenter.swift */; };
+		3943F1AC243F0FB000BC11D0 /* DiscussionDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A6243F0FB000BC11D0 /* DiscussionDetailWorker.swift */; };
+		3943F1AD243F0FB000BC11D0 /* DiscussionDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A7243F0FB000BC11D0 /* DiscussionDetailRouter.swift */; };
+		3943F1AE243F0FB000BC11D0 /* DiscussionDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A8243F0FB000BC11D0 /* DiscussionDetailModels.swift */; };
+		3943F1AF243F0FB000BC11D0 /* DiscussionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A9243F0FB000BC11D0 /* DiscussionDetailViewController.swift */; };
+		3943F1B0243F0FB000BC11D0 /* DiscussionDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1AA243F0FB000BC11D0 /* DiscussionDetailInteractor.swift */; };
 		398086D02438CED000CDA1D2 /* AuthorizationScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CA2438CED000CDA1D2 /* AuthorizationScreenPresenter.swift */; };
 		398086D12438CED000CDA1D2 /* AuthorizationScreenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CB2438CED000CDA1D2 /* AuthorizationScreenWorker.swift */; };
 		398086D22438CED000CDA1D2 /* AuthorizationScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CC2438CED000CDA1D2 /* AuthorizationScreenRouter.swift */; };
@@ -92,6 +98,12 @@
 		39215B7C23D35390000B5AA1 /* DiscussionListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionListModels.swift; sourceTree = "<group>"; };
 		39215B7D23D35390000B5AA1 /* DiscussionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionListViewController.swift; sourceTree = "<group>"; };
 		39215B7E23D35390000B5AA1 /* DiscussionListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionListInteractor.swift; sourceTree = "<group>"; };
+		3943F1A5243F0FB000BC11D0 /* DiscussionDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailPresenter.swift; sourceTree = "<group>"; };
+		3943F1A6243F0FB000BC11D0 /* DiscussionDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailWorker.swift; sourceTree = "<group>"; };
+		3943F1A7243F0FB000BC11D0 /* DiscussionDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailRouter.swift; sourceTree = "<group>"; };
+		3943F1A8243F0FB000BC11D0 /* DiscussionDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailModels.swift; sourceTree = "<group>"; };
+		3943F1A9243F0FB000BC11D0 /* DiscussionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailViewController.swift; sourceTree = "<group>"; };
+		3943F1AA243F0FB000BC11D0 /* DiscussionDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailInteractor.swift; sourceTree = "<group>"; };
 		398086CA2438CED000CDA1D2 /* AuthorizationScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationScreenPresenter.swift; sourceTree = "<group>"; };
 		398086CB2438CED000CDA1D2 /* AuthorizationScreenWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationScreenWorker.swift; sourceTree = "<group>"; };
 		398086CC2438CED000CDA1D2 /* AuthorizationScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationScreenRouter.swift; sourceTree = "<group>"; };
@@ -160,6 +172,7 @@
 			children = (
 				398086D82438CED400CDA1D2 /* AuthorizationScreen */,
 				39EFACD123DDACE300E1E8BA /* DiscussionShortCell */,
+				3943F1A2243F0F1300BC11D0 /* DiscussionDetail */,
 				39215B8523D3539D000B5AA1 /* DiscussionList */,
 			);
 			path = Modules;
@@ -176,6 +189,19 @@
 				39215B7E23D35390000B5AA1 /* DiscussionListInteractor.swift */,
 			);
 			path = DiscussionList;
+			sourceTree = "<group>";
+		};
+		3943F1A2243F0F1300BC11D0 /* DiscussionDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3943F1A5243F0FB000BC11D0 /* DiscussionDetailPresenter.swift */,
+				3943F1A6243F0FB000BC11D0 /* DiscussionDetailWorker.swift */,
+				3943F1A7243F0FB000BC11D0 /* DiscussionDetailRouter.swift */,
+				3943F1A8243F0FB000BC11D0 /* DiscussionDetailModels.swift */,
+				3943F1A9243F0FB000BC11D0 /* DiscussionDetailViewController.swift */,
+				3943F1AA243F0FB000BC11D0 /* DiscussionDetailInteractor.swift */,
+			);
+			path = DiscussionDetail;
 			sourceTree = "<group>";
 		};
 		398086D82438CED400CDA1D2 /* AuthorizationScreen */ = {
@@ -638,15 +664,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				398086D22438CED000CDA1D2 /* AuthorizationScreenRouter.swift in Sources */,
+				3943F1AC243F0FB000BC11D0 /* DiscussionDetailWorker.swift in Sources */,
 				398086D02438CED000CDA1D2 /* AuthorizationScreenPresenter.swift in Sources */,
 				398086D12438CED000CDA1D2 /* AuthorizationScreenWorker.swift in Sources */,
 				39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */,
+				3943F1AF243F0FB000BC11D0 /* DiscussionDetailViewController.swift in Sources */,
 				39EFACD323DDAD2500E1E8BA /* DiscussionShortCell.swift in Sources */,
 				398086F52439D51F00CDA1D2 /* DebatesResponse.swift in Sources */,
 				39215B8123D35390000B5AA1 /* DiscussionListRouter.swift in Sources */,
 				39215B8323D35390000B5AA1 /* DiscussionListViewController.swift in Sources */,
 				398086F32439D44B00CDA1D2 /* DiscussionSide.swift in Sources */,
+				3943F1AB243F0FB000BC11D0 /* DiscussionDetailPresenter.swift in Sources */,
+				3943F1AD243F0FB000BC11D0 /* DiscussionDetailRouter.swift in Sources */,
 				39EFACD923DDADB700E1E8BA /* TableViewCell.swift in Sources */,
+				3943F1AE243F0FB000BC11D0 /* DiscussionDetailModels.swift in Sources */,
 				398086D42438CED000CDA1D2 /* AuthorizationScreenViewController.swift in Sources */,
 				39D1036623D0ED1000A0C3F7 /* AppDelegate.swift in Sources */,
 				398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */,
@@ -656,6 +687,7 @@
 				39215B7F23D35390000B5AA1 /* DiscussionListPresenter.swift in Sources */,
 				39215B8023D35390000B5AA1 /* DiscussionListWorker.swift in Sources */,
 				398086D32438CED000CDA1D2 /* AuthorizationScreenModels.swift in Sources */,
+				3943F1B0243F0FB000BC11D0 /* DiscussionDetailInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

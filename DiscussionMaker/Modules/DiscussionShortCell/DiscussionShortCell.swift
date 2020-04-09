@@ -8,27 +8,32 @@
 
 import UIKit
 import SUHelpers
+import Kingfisher
 
 class DiscussionShortCell: TableViewCell {
 
     // MARK: - Subviews
     override var addableSubviews: [UIView] { [
         title,
+        leftImage,
         leftName,
-        rightName,
         leftRating,
+        rightImage,
+        rightName,
         rightRating
     ] }
     let title = UILabel().with {
         $0.font = .boldSystemFont(ofSize: 14)
         $0.textAlignment = .center
     }
+    let leftImage = UIImageView()
     let leftName = UILabel().with {
         $0.textAlignment = .left
     }
     let leftRating = UILabel().with {
         $0.textAlignment = .left
     }
+    let rightImage = UIImageView()
     let rightName = UILabel().with {
         $0.textAlignment = .left
     }
@@ -58,19 +63,29 @@ class DiscussionShortCell: TableViewCell {
             .sizeToFit(.width)
             .top(8)
 
+        leftImage.pin
+            .size(48)
+            .topStart(8)
+
         leftName.pin
             .sizeToFit()
             .start(8)
-            .top(24)
+            .below(of: leftImage)
+            .marginTop(24)
 
         leftRating.pin
             .sizeToFit()
             .below(of: leftName, aligned: .start)
 
+        rightImage.pin
+            .size(48)
+            .topEnd(8)
+
         rightName.pin
             .sizeToFit()
             .end(8)
-            .top(24)
+            .below(of: rightImage)
+            .marginTop(24)
 
         rightRating.pin
             .sizeToFit()
@@ -81,9 +96,11 @@ class DiscussionShortCell: TableViewCell {
     func setup(_ discussion: Discussion) {
         title.text = discussion.name
 
+        leftImage.kf.setImage(with: try? discussion.leftSide.image.asURL())
         leftName.text = discussion.leftSide.name
         leftRating.text = discussion.leftSide.ratingCount.description
 
+        rightImage.kf.setImage(with: try? discussion.rightSide.image.asURL())
         rightName.text = discussion.rightSide.name
         rightRating.text = discussion.rightSide.ratingCount.description
 
