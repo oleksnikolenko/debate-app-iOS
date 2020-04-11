@@ -57,7 +57,6 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
-        router.dataStore = interactor
     }
 
     // MARK: - Routing
@@ -93,10 +92,6 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     // MARK: - Do something
     func displaySomething(viewModel: DiscussionList.Something.ViewModel) {
         self.cells = viewModel.cells
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            GIDSignIn.sharedInstance()?.presentingViewController = self
-            GIDSignIn.sharedInstance().signIn()
-        }
     }
 
 }
@@ -113,5 +108,12 @@ extension DiscussionListViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { cells.count }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch cells[indexPath.row] {
+        case .discussionLink(let discussion):
+            router?.navigateToDebate(discussion)
+        }
+    }
 
 }

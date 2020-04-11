@@ -13,7 +13,7 @@
 import UIKit
 
 protocol DiscussionDetailPresentationLogic {
-    func presentSomething(response: DiscussionDetail.Something.Response)
+    func presentDebate(response: DiscussionDetail.Initializing.Response)
 }
 
 class DiscussionDetailPresenter: DiscussionDetailPresentationLogic {
@@ -21,9 +21,18 @@ class DiscussionDetailPresenter: DiscussionDetailPresentationLogic {
     weak var viewController: DiscussionDetailDisplayLogic?
 
     // MARK: Do something
-    func presentSomething(response: DiscussionDetail.Something.Response) {
-        let viewModel = DiscussionDetail.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func presentDebate(response: DiscussionDetail.Initializing.Response) {
+        let viewModel = DiscussionDetail.Initializing.ViewModel(
+            debate: response.debate,
+            sections: makeSections(with: response.debate)
+        )
+        viewController?.displayDebate(viewModel: viewModel)
+    }
+
+    func makeSections(with debate: Discussion) -> [DiscussionDetailSection] {
+        debate.messages.map {
+            (.message($0), rows: [.message($0)])
+        }
     }
 
 }

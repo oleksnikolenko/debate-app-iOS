@@ -12,49 +12,24 @@
 
 import UIKit
 
-@objc protocol DiscussionListRoutingLogic
-{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+protocol DiscussionListRoutingLogic {
+    func navigateToDebate(_ debate: Discussion)
 }
 
 protocol DiscussionListDataPassing
 {
-  var dataStore: DiscussionListDataStore? { get }
 }
 
-class DiscussionListRouter: NSObject, DiscussionListRoutingLogic, DiscussionListDataPassing
-{
-  weak var viewController: DiscussionListViewController?
-  var dataStore: DiscussionListDataStore?
-  
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+class DiscussionListRouter: NSObject, DiscussionListRoutingLogic, DiscussionListDataPassing {
 
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: DiscussionListViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: DiscussionListDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+    weak var viewController: DiscussionListViewController?
+
+    // MARK: Navigation
+    func navigateToDebate(_ debate: Discussion) {
+        viewController?.show(
+            DiscussionDetailViewController(debate: debate),
+            sender: viewController
+        )
+    }
+
 }

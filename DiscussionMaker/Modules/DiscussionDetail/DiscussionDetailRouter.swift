@@ -15,7 +15,7 @@ import UIKit
 @objc protocol DiscussionDetailRoutingLogic {}
 
 protocol DiscussionDetailDataPassing {
-  var dataStore: DiscussionDetailDataStore? { get }
+    var dataStore: DiscussionDetailDataStore? { get }
 }
 
 class DiscussionDetailRouter: NSObject, DiscussionDetailRoutingLogic, DiscussionDetailDataPassing {

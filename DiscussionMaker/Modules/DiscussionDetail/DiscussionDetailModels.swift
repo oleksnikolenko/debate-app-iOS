@@ -13,13 +13,27 @@
 import UIKit
 
 enum DiscussionDetail {
-  // MARK: Use cases
-  enum Something {
-    struct Request {
+    // MARK: Use cases
+    enum Initializing {
+        struct Request {
+            let debate: Discussion
+        }
+        struct Response {
+            let debate: Discussion
+        }
+        struct ViewModel {
+            let debate: Discussion
+            let sections: [DiscussionDetailSection]
+        }
     }
-    struct Response {
-    }
-    struct ViewModel {
-    }
-  }
 }
+
+enum DiscussionDetailCellType {
+    case message(Message)
+}
+
+enum DiscussionDetailSectionType {
+    case message(Message)
+}
+
+typealias DiscussionDetailSection = (section: DiscussionDetailSectionType, rows: [DiscussionDetailCellType])

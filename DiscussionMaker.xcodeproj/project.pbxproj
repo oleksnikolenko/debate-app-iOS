@@ -32,6 +32,10 @@
 		398086F32439D44B00CDA1D2 /* DiscussionSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086F22439D44B00CDA1D2 /* DiscussionSide.swift */; };
 		398086F52439D51F00CDA1D2 /* DebatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086F42439D51F00CDA1D2 /* DebatesResponse.swift */; };
 		398086FE243C6FEB00CDA1D2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086FD243C6FEB00CDA1D2 /* NetworkService.swift */; };
+		39C8AB8B2441C4A300D299CE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8AB8A2441C4A300D299CE /* Message.swift */; };
+		39C8AB8D2441C4FF00D299CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8AB8C2441C4FF00D299CE /* User.swift */; };
+		39C8AB8F2441D00800D299CE /* DiscussionDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8AB8E2441D00800D299CE /* DiscussionDetailHeader.swift */; };
+		39C8AB942441DEBC00D299CE /* DiscussionChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8AB932441DEBC00D299CE /* DiscussionChatCell.swift */; };
 		39D1036623D0ED1000A0C3F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D1036523D0ED1000A0C3F7 /* AppDelegate.swift */; };
 		39D1036F23D0ED1400A0C3F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39D1036E23D0ED1400A0C3F7 /* Assets.xcassets */; };
 		39D1037223D0ED1400A0C3F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D1037023D0ED1400A0C3F7 /* LaunchScreen.storyboard */; };
@@ -115,6 +119,10 @@
 		398086F22439D44B00CDA1D2 /* DiscussionSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionSide.swift; sourceTree = "<group>"; };
 		398086F42439D51F00CDA1D2 /* DebatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebatesResponse.swift; sourceTree = "<group>"; };
 		398086FD243C6FEB00CDA1D2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		39C8AB8A2441C4A300D299CE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		39C8AB8C2441C4FF00D299CE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		39C8AB8E2441D00800D299CE /* DiscussionDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailHeader.swift; sourceTree = "<group>"; };
+		39C8AB932441DEBC00D299CE /* DiscussionChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionChatCell.swift; sourceTree = "<group>"; };
 		39D1036223D0ED1000A0C3F7 /* DiscussionMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscussionMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39D1036523D0ED1000A0C3F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39D1036E23D0ED1400A0C3F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -194,11 +202,11 @@
 		3943F1A2243F0F1300BC11D0 /* DiscussionDetail */ = {
 			isa = PBXGroup;
 			children = (
+				39C8AB902441D00A00D299CE /* View */,
 				3943F1A5243F0FB000BC11D0 /* DiscussionDetailPresenter.swift */,
 				3943F1A6243F0FB000BC11D0 /* DiscussionDetailWorker.swift */,
 				3943F1A7243F0FB000BC11D0 /* DiscussionDetailRouter.swift */,
 				3943F1A8243F0FB000BC11D0 /* DiscussionDetailModels.swift */,
-				3943F1A9243F0FB000BC11D0 /* DiscussionDetailViewController.swift */,
 				3943F1AA243F0FB000BC11D0 /* DiscussionDetailInteractor.swift */,
 			);
 			path = DiscussionDetail;
@@ -232,6 +240,16 @@
 				398086FD243C6FEB00CDA1D2 /* NetworkService.swift */,
 			);
 			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		39C8AB902441D00A00D299CE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3943F1A9243F0FB000BC11D0 /* DiscussionDetailViewController.swift */,
+				39C8AB8E2441D00800D299CE /* DiscussionDetailHeader.swift */,
+				39C8AB932441DEBC00D299CE /* DiscussionChatCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		39D1035923D0ED1000A0C3F7 = {
@@ -329,6 +347,8 @@
 				39EFACDF23DDB11000E1E8BA /* Discussion.swift */,
 				398086F22439D44B00CDA1D2 /* DiscussionSide.swift */,
 				398086F42439D51F00CDA1D2 /* DebatesResponse.swift */,
+				39C8AB8A2441C4A300D299CE /* Message.swift */,
+				39C8AB8C2441C4FF00D299CE /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -668,10 +688,12 @@
 				398086D02438CED000CDA1D2 /* AuthorizationScreenPresenter.swift in Sources */,
 				398086D12438CED000CDA1D2 /* AuthorizationScreenWorker.swift in Sources */,
 				39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */,
+				39C8AB8D2441C4FF00D299CE /* User.swift in Sources */,
 				3943F1AF243F0FB000BC11D0 /* DiscussionDetailViewController.swift in Sources */,
 				39EFACD323DDAD2500E1E8BA /* DiscussionShortCell.swift in Sources */,
 				398086F52439D51F00CDA1D2 /* DebatesResponse.swift in Sources */,
 				39215B8123D35390000B5AA1 /* DiscussionListRouter.swift in Sources */,
+				39C8AB8B2441C4A300D299CE /* Message.swift in Sources */,
 				39215B8323D35390000B5AA1 /* DiscussionListViewController.swift in Sources */,
 				398086F32439D44B00CDA1D2 /* DiscussionSide.swift in Sources */,
 				3943F1AB243F0FB000BC11D0 /* DiscussionDetailPresenter.swift in Sources */,
@@ -680,10 +702,12 @@
 				3943F1AE243F0FB000BC11D0 /* DiscussionDetailModels.swift in Sources */,
 				398086D42438CED000CDA1D2 /* AuthorizationScreenViewController.swift in Sources */,
 				39D1036623D0ED1000A0C3F7 /* AppDelegate.swift in Sources */,
+				39C8AB8F2441D00800D299CE /* DiscussionDetailHeader.swift in Sources */,
 				398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */,
 				39215B8423D35390000B5AA1 /* DiscussionListInteractor.swift in Sources */,
 				39215B8223D35390000B5AA1 /* DiscussionListModels.swift in Sources */,
 				398086FE243C6FEB00CDA1D2 /* NetworkService.swift in Sources */,
+				39C8AB942441DEBC00D299CE /* DiscussionChatCell.swift in Sources */,
 				39215B7F23D35390000B5AA1 /* DiscussionListPresenter.swift in Sources */,
 				39215B8023D35390000B5AA1 /* DiscussionListWorker.swift in Sources */,
 				398086D32438CED000CDA1D2 /* AuthorizationScreenModels.swift in Sources */,

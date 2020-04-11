@@ -23,7 +23,7 @@ class NetworkServiceImplementation: NetworkService {
 
     static let shared = NetworkServiceImplementation()
 
-    let baseUrl = "https://whocooler.com/"
+    let baseUrl = "https://api.whocooler.com/"
 
     private init () {}
 
@@ -40,7 +40,7 @@ class NetworkServiceImplementation: NetworkService {
             parameters: parameters
         ).responseData {
             guard let data = $0.data else {
-                response.onError(AFError.explicitlyCancelled)
+                response.onError($0.error ?? AFError.explicitlyCancelled)
                 return
             }
 

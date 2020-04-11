@@ -11,10 +11,17 @@
 //
 
 import UIKit
+import RxSwift
 
 class DiscussionDetailWorker {
 
-    func doSomeWork() {
+    let networkService = NetworkServiceImplementation.shared
+
+    func getDebate(id: String) -> Observable<Discussion> {
+        networkService.getData(
+            endpoint: "debate",
+            parameters: ["debate_id": id]
+        )
     }
     
 }

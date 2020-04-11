@@ -11,9 +11,10 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol DiscussionDetailBusinessLogic {
-    func doSomething(request: DiscussionDetail.Something.Request)
+    func initDebate(request: DiscussionDetail.Initializing.Request)
 }
 
 protocol DiscussionDetailDataStore {}
@@ -21,15 +22,27 @@ protocol DiscussionDetailDataStore {}
 class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetailDataStore {
 
     var presenter: DiscussionDetailPresentationLogic?
-    var worker: DiscussionDetailWorker?
+    var worker: DiscussionDetailWorker
+    let disposeBag = DisposeBag()
+
+    init() {
+        worker = DiscussionDetailWorker()
+    }
+
+    var debate: Discussion?
 
     // MARK: Do something
-    func doSomething(request: DiscussionDetail.Something.Request) {
-        worker = DiscussionDetailWorker()
-        worker?.doSomeWork()
+    func initDebate(request: DiscussionDetail.Initializing.Request) {
+        debate = request.debate
+        let response = DiscussionDetail.Initializing.Response(
+            debate: request.debate
+        )
+        presenter?.presentDebate(response: response)
 
-        let response = DiscussionDetail.Something.Response()
-        presenter?.presentSomething(response: response)
+        worker.getDebate(id: request.debate.id)
+            .subscribe(onNext: { [weak self] in
+                self?.presenter?.presentDebate(response: .init(debate: $0))
+            }).disposed(by: disposeBag)
     }
 
 }
