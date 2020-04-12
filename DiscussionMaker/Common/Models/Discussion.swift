@@ -11,14 +11,14 @@ struct Discussion: Decodable {
     let name: String
     let leftSide: DiscussionSide
     let rightSide: DiscussionSide
-    let messages: [Message]
+    let messagesList: MessagesList
 
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case leftSide = "leftside"
         case rightSide = "rightside"
-        case messages
+        case messagesList = "message_list"
     }
 }
 

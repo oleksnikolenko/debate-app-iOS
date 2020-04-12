@@ -12,6 +12,7 @@
 //
 
 import UIKit
+import RxSwift
 import PinLayout
 
 protocol DiscussionDetailDisplayLogic: class {
@@ -23,6 +24,7 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
     var interactor: DiscussionDetailBusinessLogic?
     var router: (NSObjectProtocol & DiscussionDetailRoutingLogic & DiscussionDetailDataPassing)?
     var debate: Discussion
+    let disposeBag = DisposeBag()
 
     var sections = [DiscussionDetailSection]() {
         didSet {
@@ -84,6 +86,18 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
         view.addSubviews(
             tableView
         )
+
+        header.leftSidePhoto.didClick
+            .subscribe(onNext: { [unowned self] _ in
+                self.interactor?.vote(request: .init(sideId: self.debate.leftSide.id))
+            })
+            .disposed(by: disposeBag)
+
+        header.rightSidePhoto.didClick
+            .subscribe(onNext: { [unowned self] _ in
+                self.interactor?.vote(request: .init(sideId: self.debate.rightSide.id))
+            })
+            .disposed(by: disposeBag)
     }
 
     override func viewWillLayoutSubviews() {
@@ -93,6 +107,8 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
     }
 
     private func layout() {
+        header.sizeToFit()
+        
         tableView.pin.all()
     }
 

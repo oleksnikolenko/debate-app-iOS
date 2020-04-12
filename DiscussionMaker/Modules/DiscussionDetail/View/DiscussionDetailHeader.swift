@@ -15,11 +15,13 @@ class DiscussionDetailHeader: UIView {
     let shade = UIView().with {
         $0.backgroundColor = .black
         $0.alpha = 0.15
+        $0.isUserInteractionEnabled = false
     }
 
     let leftSidePhoto = UIImageView().with {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
+        $0.isUserInteractionEnabled = true
     }
     let leftName = UILabel().with {
         $0.textColor = .white
@@ -33,6 +35,7 @@ class DiscussionDetailHeader: UIView {
     let rightSidePhoto = UIImageView().with {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
+        $0.isUserInteractionEnabled = true
     }
     let rightName = UILabel().with {
         $0.textColor = .white
@@ -69,7 +72,7 @@ class DiscussionDetailHeader: UIView {
 
         return .init(
             width: size.width,
-            height: rightName.frame.maxY + 8
+            height: rightSidePhoto.frame.maxY
         )
     }
 

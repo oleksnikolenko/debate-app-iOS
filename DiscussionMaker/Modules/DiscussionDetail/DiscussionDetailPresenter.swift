@@ -30,7 +30,7 @@ class DiscussionDetailPresenter: DiscussionDetailPresentationLogic {
     }
 
     func makeSections(with debate: Discussion) -> [DiscussionDetailSection] {
-        debate.messages.map {
+        debate.messagesList.messages.map {
             (.message($0), rows: [.message($0)])
         }
     }

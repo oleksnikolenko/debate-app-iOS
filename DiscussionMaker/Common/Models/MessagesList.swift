@@ -1,19 +1,19 @@
 //
-//  DebatesResponse.swift
+//  MessagesList.swift
 //  DiscussionMaker
 //
-//  Created by Artem Trubacheev on 05.04.2020.
+//  Created by Artem Trubacheev on 12.04.2020.
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-struct DebatesResponse: Decodable {
+struct MessagesList: Decodable {
 
-    var debates: [Discussion]
     var hasNextPage: Bool
+    var messages: [Message]
 
     enum CodingKeys: String, CodingKey {
-        case debates
         case hasNextPage = "has_next_page"
+        case messages
     }
 
 }

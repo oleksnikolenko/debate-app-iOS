@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-struct User: Decodable {
+struct User: Codable {
     let id: String
     let name: String
 

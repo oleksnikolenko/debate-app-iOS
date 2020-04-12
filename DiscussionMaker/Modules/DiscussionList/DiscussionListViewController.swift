@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import RxSwift
 import GoogleSignIn
 
 protocol DiscussionListDisplayLogic: class {
@@ -25,12 +26,20 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         $0.delegate = self
     }
 
+    private lazy var profileButton = UIBarButtonItem(
+        barButtonSystemItem: .trash,
+        target: self,
+        action: #selector(navigateToAuthorization)
+    )
+
     // MARK: - Properties
     var cells: [DiscussionList.CellType] = [] {
         didSet {
             tableView.reloadData()
         }
     }
+
+    let disposeBag = DisposeBag()
 
     var interactor: DiscussionListBusinessLogic?
     var router: (NSObjectProtocol & DiscussionListRoutingLogic & DiscussionListDataPassing)?
@@ -57,6 +66,8 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
+
+        UserDefaultsService.shared.session?.accessToken = "asds"
     }
 
     // MARK: - Routing
@@ -73,7 +84,10 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Debates"
         view.addSubviews(tableView)
+
+        navigationItem.rightBarButtonItem = profileButton
 
         let request = DiscussionList.Something.Request()
         interactor?.getData(request: request)
@@ -94,6 +108,10 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         self.cells = viewModel.cells
     }
 
+    @objc private func navigateToAuthorization() {
+        router?.navigateToAuthorization()
+    }
+
 }
 
 extension DiscussionListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -110,6 +128,8 @@ extension DiscussionListViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { cells.count }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
         switch cells[indexPath.row] {
         case .discussionLink(let discussion):
             router?.navigateToDebate(discussion)

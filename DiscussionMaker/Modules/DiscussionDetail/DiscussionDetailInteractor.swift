@@ -15,6 +15,7 @@ import RxSwift
 
 protocol DiscussionDetailBusinessLogic {
     func initDebate(request: DiscussionDetail.Initializing.Request)
+    func vote(request: DiscussionDetail.Vote.Request)
 }
 
 protocol DiscussionDetailDataStore {}
@@ -43,6 +44,12 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
             .subscribe(onNext: { [weak self] in
                 self?.presenter?.presentDebate(response: .init(debate: $0))
             }).disposed(by: disposeBag)
+    }
+
+    func vote(request: DiscussionDetail.Vote.Request) {
+        worker.vote(debateId: debate?.id ?? "", sideId: request.sideId)
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 
 }

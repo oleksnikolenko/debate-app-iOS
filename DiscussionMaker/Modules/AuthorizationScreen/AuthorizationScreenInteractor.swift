@@ -11,31 +11,44 @@
 //
 
 import UIKit
+import RxSwift
 
-protocol AuthorizationScreenBusinessLogic
-{
-  func doSomething(request: AuthorizationScreen.Something.Request)
+protocol AuthorizationScreenBusinessLogic {
+    func getProviders(request: AuthorizationScreen.Providers.Request)
+    func didSelectProvider(request: AuthorizationScreen.Authorization.Request)
 }
 
-protocol AuthorizationScreenDataStore
-{
-  //var name: String { get set }
-}
+protocol AuthorizationScreenDataStore {}
 
-class AuthorizationScreenInteractor: AuthorizationScreenBusinessLogic, AuthorizationScreenDataStore
-{
-  var presenter: AuthorizationScreenPresentationLogic?
-  var worker: AuthorizationScreenWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: AuthorizationScreen.Something.Request)
-  {
-    worker = AuthorizationScreenWorker()
-    worker?.doSomeWork()
-    
-    let response = AuthorizationScreen.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+class AuthorizationScreenInteractor: AuthorizationScreenBusinessLogic, AuthorizationScreenDataStore {
+
+    var presenter: AuthorizationScreenPresentationLogic?
+    var worker = AuthorizationScreenWorker()
+    let disposeBag = DisposeBag()
+
+    // MARK: Do something
+    func getProviders(request: AuthorizationScreen.Providers.Request) {
+        presenter?.presentProviders(
+            response: .init(
+                providers: [
+                    GoogleAuthenticationProvider.shared,
+                    GoogleAuthenticationProvider.shared,
+                    GoogleAuthenticationProvider.shared,
+                    GoogleAuthenticationProvider.shared,
+                ]
+            )
+        )
+    }
+
+    func didSelectProvider(request: AuthorizationScreen.Authorization.Request) {
+        request.provider.authResult
+            .flatMap { [weak self] in self?.worker.authorize(with: $0) ?? .never() }
+            .subscribe(onNext: { [weak self] _ in
+                self?.presenter?.didFinishAuth(response: .init())
+            })
+            .disposed(by: disposeBag)
+
+        request.provider.login()
+    }
+
 }

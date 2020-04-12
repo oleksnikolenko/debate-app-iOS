@@ -14,11 +14,10 @@ import UIKit
 
 protocol DiscussionListRoutingLogic {
     func navigateToDebate(_ debate: Discussion)
+    func navigateToAuthorization()
 }
 
-protocol DiscussionListDataPassing
-{
-}
+protocol DiscussionListDataPassing {}
 
 class DiscussionListRouter: NSObject, DiscussionListRoutingLogic, DiscussionListDataPassing {
 
@@ -26,9 +25,17 @@ class DiscussionListRouter: NSObject, DiscussionListRoutingLogic, DiscussionList
 
     // MARK: Navigation
     func navigateToDebate(_ debate: Discussion) {
-        viewController?.show(
+        viewController?.navigationController?.pushViewController(
             DiscussionDetailViewController(debate: debate),
-            sender: viewController
+            animated: true
+        )
+    }
+
+    func navigateToAuthorization() {
+        viewController?.present(
+            AuthorizationScreenViewController(),
+            animated: true,
+            completion: nil
         )
     }
 

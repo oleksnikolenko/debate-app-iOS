@@ -12,20 +12,24 @@
 
 import UIKit
 
-protocol AuthorizationScreenPresentationLogic
-{
-  func presentSomething(response: AuthorizationScreen.Something.Response)
+protocol AuthorizationScreenPresentationLogic {
+    func presentProviders(response: AuthorizationScreen.Providers.Response)
+    func didFinishAuth(response: AuthorizationScreen.Authorization.Response)
 }
 
-class AuthorizationScreenPresenter: AuthorizationScreenPresentationLogic
-{
-  weak var viewController: AuthorizationScreenDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: AuthorizationScreen.Something.Response)
-  {
-    let viewModel = AuthorizationScreen.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+class AuthorizationScreenPresenter: AuthorizationScreenPresentationLogic {
+
+    weak var viewController: AuthorizationScreenDisplayLogic?
+
+    // MARK: Do something
+    func presentProviders(response: AuthorizationScreen.Providers.Response) {
+        viewController?.displayProviders(
+            viewModel: .init(providers: response.providers)
+        )
+    }
+
+    func didFinishAuth(response: AuthorizationScreen.Authorization.Response) {
+        viewController?.didEndAuth(viewModel: .init())
+    }
+
 }

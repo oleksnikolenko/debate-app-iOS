@@ -10,11 +10,19 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
+import RxSwift
 
-class AuthorizationScreenWorker
-{
-  func doSomeWork()
-  {
-  }
+class AuthorizationScreenWorker {
+
+    let networkService = NetworkServiceImplementation.shared
+    let userDefaults = UserDefaultsService.shared
+
+    func authorize(with token: String) -> Observable<Session> {
+        networkService
+            .getData(endpoint: "register", parameters: ["token": token], method: .post)
+            .do(onNext: { [weak self] in
+                self?.userDefaults.session = $0
+            })
+    }
+
 }

@@ -26,6 +26,13 @@ enum DiscussionDetail {
             let sections: [DiscussionDetailSection]
         }
     }
+
+    enum Vote {
+        struct Request {
+            let sideId: String
+        }
+    }
+
 }
 
 enum DiscussionDetailCellType {

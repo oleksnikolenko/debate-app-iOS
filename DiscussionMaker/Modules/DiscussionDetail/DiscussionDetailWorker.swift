@@ -23,5 +23,13 @@ class DiscussionDetailWorker {
             parameters: ["debate_id": id]
         )
     }
+
+    func vote(debateId: String, sideId: String) -> Observable<Empty> {
+        networkService.getData(
+            endpoint: "vote",
+            parameters: ["debate_id": debateId, "side_id": sideId],
+            method: .post
+        )
+    }
     
 }

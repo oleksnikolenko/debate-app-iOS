@@ -5,6 +5,7 @@ PODS:
     - AppAuth/ExternalUserAgent (= 1.3.0)
   - AppAuth/Core (1.3.0)
   - AppAuth/ExternalUserAgent (1.3.0)
+  - Differentiator (4.0.1)
   - Firebase/Analytics (6.21.0):
     - Firebase/Core
   - Firebase/Auth (6.21.0):
@@ -97,6 +98,15 @@ PODS:
   - nanopb/encode (0.3.9011)
   - PinLayout (1.8.13)
   - PromisesObjC (1.2.8)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
   - RxSwift (5.1.1)
 
 DEPENDENCIES:
@@ -106,12 +116,15 @@ DEPENDENCIES:
   - GoogleSignIn
   - Kingfisher
   - PinLayout
+  - RxCocoa
+  - RxDataSources
   - RxSwift
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - AppAuth
+    - Differentiator
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -131,11 +144,15 @@ SPEC REPOS:
     - nanopb
     - PinLayout
     - PromisesObjC
+    - RxCocoa
+    - RxDataSources
+    - RxRelay
     - RxSwift
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Firebase: f378c80340dd41c0ad0914af740c021eb282a04b
   FirebaseAnalytics: a1a0b3327ceb5cd5b4bacffdb293f6c909aa087d
   FirebaseAuth: a6da11d78dfd956b7f7af3222a0f0b1c93ef8fc9
@@ -155,8 +172,11 @@ SPEC CHECKSUMS:
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PinLayout: e41a50260a76508b7a7fcee8955c76639adc69bc
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
 
-PODFILE CHECKSUM: fb006d9ab97b28a72574cb4a156bec09d1652ec6
+PODFILE CHECKSUM: b0d7177c0cc7fc94ed79a4a2de3dc7a891273bc1
 
 COCOAPODS: 1.8.4

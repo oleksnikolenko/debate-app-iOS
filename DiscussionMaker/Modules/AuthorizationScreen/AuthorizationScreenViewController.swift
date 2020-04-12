@@ -11,18 +11,36 @@
 //
 
 import UIKit
-import Firebase
+import RxSwift
 
 protocol AuthorizationScreenDisplayLogic: class {
-    func displaySomething(viewModel: AuthorizationScreen.Something.ViewModel)
+    func displayProviders(viewModel: AuthorizationScreen.Providers.ViewModel)
+    func didEndAuth(viewModel: AuthorizationScreen.Authorization.ViewModel)
 }
 
 class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDisplayLogic {
+    
     var interactor: AuthorizationScreenBusinessLogic?
     var router: (NSObjectProtocol & AuthorizationScreenRoutingLogic & AuthorizationScreenDataPassing)?
 
-    // MARK: Object lifecycle
+    let disposeBag = DisposeBag()
 
+    var authProviders: [AuthProvider] = [] {
+        didSet {
+            authProviderButtons = authProviders.map {
+                .init(provider: $0)
+            }
+        }
+    }
+    var authProviderButtons: [AuthButton] = [] {
+        didSet {
+            oldValue.forEach { $0.removeFromSuperview() }
+            view.addSubviews(authProviderButtons)
+            view.setNeedsLayout()
+        }
+    }
+
+    // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
@@ -34,7 +52,6 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
     }
 
     // MARK: Setup
-
     private func setup() {
         let viewController = self
         let interactor = AuthorizationScreenInteractor()
@@ -48,28 +65,49 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
         router.dataStore = interactor
     }
 
-    // MARK: Routing
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+
+        view.backgroundColor = .white
+        interactor?.getProviders(request: .init())
     }
 
-    // MARK: Do something
-    func doSomething() {
-        let request = AuthorizationScreen.Something.Request()
-        interactor?.doSomething(request: request)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        layout()
     }
 
-    func displaySomething(viewModel: AuthorizationScreen.Something.ViewModel) {
+    func layout() {
+        let buttonSize = CGSize(width: 220, height: 40)
+        var lastEdge = view.edge.vCenter
+
+        authProviderButtons.forEach {
+            $0.pin
+                .size(buttonSize)
+                .top(to: lastEdge)
+                .hCenter()
+                .marginTop(8)
+
+            lastEdge = $0.edge.bottom
+        }
     }
+
+    func displayProviders(viewModel: AuthorizationScreen.Providers.ViewModel) {
+        authProviders = viewModel.providers
+
+        Observable.merge(
+            authProviderButtons.map {
+                $0.authProviderSelected
+            }
+        ).subscribe(onNext: { [unowned self] in
+            self.interactor?.didSelectProvider(request: .init(provider: $0))
+        }).disposed(by: disposeBag)
+    }
+
+    func didEndAuth(viewModel: AuthorizationScreen.Authorization.ViewModel) {
+        dismiss(animated: true, completion: nil)
+    }
+
 }

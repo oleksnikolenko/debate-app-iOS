@@ -10,6 +10,8 @@ target 'DiscussionMaker' do
   pod 'Firebase/Analytics'
   pod 'GoogleSignIn'
   pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
   pod 'Alamofire'
   pod 'Kingfisher'
   # Pods for DiscussionMaker

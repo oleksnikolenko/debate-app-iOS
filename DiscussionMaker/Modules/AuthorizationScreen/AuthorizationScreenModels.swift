@@ -12,20 +12,25 @@
 
 import UIKit
 
-enum AuthorizationScreen
-{
-  // MARK: Use cases
-  
-  enum Something
-  {
-    struct Request
-    {
+enum AuthorizationScreen {
+
+    // MARK: Use cases
+    enum Providers {
+        struct Request {}
+        struct Response {
+            var providers: [AuthProvider]
+        }
+        struct ViewModel {
+            var providers: [AuthProvider]
+        }
     }
-    struct Response
-    {
+
+    enum Authorization {
+        struct Request {
+            var provider: AuthProvider
+        }
+        struct Response {}
+        struct ViewModel {}
     }
-    struct ViewModel
-    {
-    }
-  }
+
 }
