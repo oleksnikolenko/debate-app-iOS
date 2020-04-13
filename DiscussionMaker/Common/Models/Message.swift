@@ -6,7 +6,8 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-struct Message: Decodable {
+struct Message: Decodable, Equatable {
+
     let id: String
     let createdTime: Double
     let user: User
@@ -18,4 +19,5 @@ struct Message: Decodable {
         case user
         case text
     }
+
 }

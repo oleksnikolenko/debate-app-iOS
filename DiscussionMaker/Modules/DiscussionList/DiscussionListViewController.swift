@@ -12,6 +12,7 @@
 
 import UIKit
 import RxSwift
+import ESPullToRefresh
 import GoogleSignIn
 
 protocol DiscussionListDisplayLogic: class {
@@ -24,6 +25,9 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     private lazy var tableView = UITableView().with {
         $0.dataSource = self
         $0.delegate = self
+        $0.es.addPullToRefresh { [weak self] in
+            self?.interactor?.getData(request: .init())
+        }
     }
 
     private lazy var profileButton = UIBarButtonItem(
@@ -66,8 +70,6 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         interactor.presenter = presenter
         presenter.viewController = viewController
         router.viewController = viewController
-
-        UserDefaultsService.shared.session?.accessToken = "asds"
     }
 
     // MARK: - Routing
@@ -83,6 +85,9 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationController?.navigationBar.isTranslucent = false
+        edgesForExtendedLayout = []
 
         title = "Debates"
         view.addSubviews(tableView)
@@ -106,6 +111,7 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     // MARK: - Do something
     func displaySomething(viewModel: DiscussionList.Something.ViewModel) {
         self.cells = viewModel.cells
+        tableView.es.stopPullToRefresh()
     }
 
     @objc private func navigateToAuthorization() {

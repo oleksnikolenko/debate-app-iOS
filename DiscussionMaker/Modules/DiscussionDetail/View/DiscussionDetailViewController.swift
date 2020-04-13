@@ -17,6 +17,7 @@ import PinLayout
 
 protocol DiscussionDetailDisplayLogic: class {
     func displayDebate(viewModel: DiscussionDetail.Initializing.ViewModel)
+    func setReachEnd(_ didReach: Bool)
 }
 
 class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayLogic {
@@ -28,7 +29,29 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
 
     var sections = [DiscussionDetailSection]() {
         didSet {
-            tableView.reloadData()
+            if oldValue.isEmpty {
+                tableView.reloadData()
+            } else {
+                let diff = sections.difference(from: oldValue, by: {
+                    $0.section == $1.section &&
+                        $0.rows == $1.rows
+                })
+                var insertSections = [Int]()
+                var removeSections = [Int]()
+
+                diff.forEach {
+                    switch $0 {
+                    case .insert(let offset, _, _):
+                        insertSections.append(offset)
+                    case .remove(let offset, _, _):
+                        removeSections.append(offset)
+                    }
+                }
+                tableView.beginUpdates()
+                tableView.deleteSections(IndexSet(removeSections), with: .automatic)
+                tableView.insertSections(IndexSet(insertSections), with: .automatic)
+                tableView.endUpdates()
+            }
         }
     }
 
@@ -38,6 +61,12 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
         $0.dataSource = self
         $0.delegate = self
         $0.tableHeaderView = header
+        $0.es.addPullToRefresh { [weak self] in
+            self?.interactor?.reloadDebate()
+        }
+        $0.es.addInfiniteScrolling {
+            self.interactor?.getNextMessagesPage()
+        }
     }
 
     // MARK: Object lifecycle
@@ -89,15 +118,15 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
 
         header.leftSidePhoto.didClick
             .subscribe(onNext: { [unowned self] _ in
+                self.tableView.es.resetNoMoreData()
                 self.interactor?.vote(request: .init(sideId: self.debate.leftSide.id))
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
 
         header.rightSidePhoto.didClick
             .subscribe(onNext: { [unowned self] _ in
+                self.tableView.es.resetNoMoreData()
                 self.interactor?.vote(request: .init(sideId: self.debate.rightSide.id))
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
 
     override func viewWillLayoutSubviews() {
@@ -108,7 +137,7 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
 
     private func layout() {
         header.sizeToFit()
-        
+
         tableView.pin.all()
     }
 
@@ -118,11 +147,27 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
     }
 
     func displayDebate(viewModel: DiscussionDetail.Initializing.ViewModel) {
+        debate = viewModel.debate
         header.setup(debate: viewModel.debate)
         sections = viewModel.sections
 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.tableView.es.stopPullToRefresh()
+            self?.tableView.es.stopLoadingMore()
+        }
+
         view.setNeedsLayout()
     }
+
+    func setReachEnd(_ didReach: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            didReach
+                ? self?.tableView.es.noticeNoMoreData()
+                : self?.tableView.es.resetNoMoreData()
+        }
+
+    }
+
 }
 
 extension DiscussionDetailViewController: UITableViewDelegate, UITableViewDataSource {

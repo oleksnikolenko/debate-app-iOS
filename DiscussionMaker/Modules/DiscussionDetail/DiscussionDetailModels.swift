@@ -38,9 +38,11 @@ enum DiscussionDetail {
 enum DiscussionDetailCellType {
     case message(Message)
 }
+extension DiscussionDetailCellType: Equatable {}
 
 enum DiscussionDetailSectionType {
     case message(Message)
 }
+extension DiscussionDetailSectionType: Equatable {}
 
 typealias DiscussionDetailSection = (section: DiscussionDetailSectionType, rows: [DiscussionDetailCellType])

@@ -27,6 +27,7 @@ class DiscussionDetailPresenter: DiscussionDetailPresentationLogic {
             sections: makeSections(with: response.debate)
         )
         viewController?.displayDebate(viewModel: viewModel)
+        viewController?.setReachEnd(!response.debate.messagesList.hasNextPage)
     }
 
     func makeSections(with debate: Discussion) -> [DiscussionDetailSection] {

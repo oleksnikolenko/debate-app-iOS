@@ -53,6 +53,12 @@ class NetworkServiceImplementation: NetworkService {
             parameters: parameters,
             headers: headers
         ).responseData { [unowned self] in
+            #if DEBUG
+            if let data = $0.data {
+                print(String(data: data, encoding: .utf8))
+            }
+            #endif
+
             if ($0.response?.statusCode.distance(to: 450) ?? 0) <= 50 {
                 self.refreshToken()
                     .flatMap { [unowned self] _ -> Observable<T> in

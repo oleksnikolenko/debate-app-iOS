@@ -11,7 +11,7 @@ struct Discussion: Decodable {
     let name: String
     let leftSide: DiscussionSide
     let rightSide: DiscussionSide
-    let messagesList: MessagesList
+    var messagesList: MessagesList
 
     enum CodingKeys: String, CodingKey {
         case id

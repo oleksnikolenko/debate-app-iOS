@@ -6,7 +6,8 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-struct User: Codable {
+struct User: Codable, Equatable {
+
     let id: String
     let name: String
 
@@ -14,4 +15,5 @@ struct User: Codable {
         case id
         case name = "username"
     }
+
 }

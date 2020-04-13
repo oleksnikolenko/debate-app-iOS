@@ -24,6 +24,13 @@ class DiscussionDetailWorker {
         )
     }
 
+    func getNextMessages(id: String, ctime: Double) -> Observable<MessagesList> {
+        networkService.getData(
+            endpoint: "messages",
+            parameters: ["debate_id": id, "after_time": ctime]
+        )
+    }
+
     func vote(debateId: String, sideId: String) -> Observable<Empty> {
         networkService.getData(
             endpoint: "vote",

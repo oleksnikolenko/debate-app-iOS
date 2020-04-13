@@ -15,6 +15,8 @@ import RxSwift
 
 protocol DiscussionDetailBusinessLogic {
     func initDebate(request: DiscussionDetail.Initializing.Request)
+    func reloadDebate()
+    func getNextMessagesPage()
     func vote(request: DiscussionDetail.Vote.Request)
 }
 
@@ -30,9 +32,9 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
         worker = DiscussionDetailWorker()
     }
 
-    var debate: Discussion?
+    var debate: Discussion!
 
-    // MARK: Do something
+    // MARK: Protocol Methods
     func initDebate(request: DiscussionDetail.Initializing.Request) {
         debate = request.debate
         let response = DiscussionDetail.Initializing.Response(
@@ -42,14 +44,47 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
 
         worker.getDebate(id: request.debate.id)
             .subscribe(onNext: { [weak self] in
-                self?.presenter?.presentDebate(response: .init(debate: $0))
+                self?.didFetchDebate($0)
+            }).disposed(by: disposeBag)
+    }
+
+    func reloadDebate() {
+        guard let id = debate?.id else { return }
+
+        worker.getDebate(id: id)
+            .subscribe(onNext: { [weak self] in
+                self?.didFetchDebate($0)
+            }).disposed(by: disposeBag)
+    }
+
+    func getNextMessagesPage() {
+        guard
+            debate?.messagesList.hasNextPage == true,
+            let lastTime = debate?.messagesList.messages.last?.createdTime
+        else { return }
+
+        worker.getNextMessages(id: debate.id, ctime: lastTime)
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                self.debate.messagesList.messages += $0.messages
+                self.debate.messagesList.hasNextPage = $0.hasNextPage
+
+                self.didFetchDebate(self.debate)
             }).disposed(by: disposeBag)
     }
 
     func vote(request: DiscussionDetail.Vote.Request) {
-        worker.vote(debateId: debate?.id ?? "", sideId: request.sideId)
+        worker.vote(debateId: debate.id ?? "", sideId: request.sideId)
+            .map { [weak self] _ in self?.reloadDebate() }
             .subscribe()
             .disposed(by: disposeBag)
+    }
+
+    // MARK: - Private Methods
+    private func didFetchDebate(_ debate: Discussion) {
+        self.debate = debate
+        presenter?.presentDebate(response: .init(debate: debate))
     }
 
 }
