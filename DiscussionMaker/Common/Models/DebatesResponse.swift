@@ -8,8 +8,8 @@
 
 struct DebatesResponse: Decodable {
 
-    var debates: [Discussion]
-    var hasNextPage: Bool
+    var debates: [Discussion] = []
+    var hasNextPage: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case debates

@@ -75,7 +75,7 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
     }
 
     func vote(request: DiscussionDetail.Vote.Request) {
-        worker.vote(debateId: debate.id ?? "", sideId: request.sideId)
+        worker.vote(debateId: debate.id, sideId: request.sideId)
             .map { [weak self] _ in self?.reloadDebate() }
             .subscribe()
             .disposed(by: disposeBag)

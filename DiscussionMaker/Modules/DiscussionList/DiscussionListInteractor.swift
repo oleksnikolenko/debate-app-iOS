@@ -15,6 +15,7 @@ import RxSwift
 
 protocol DiscussionListBusinessLogic {
     func getData(request: DiscussionList.Something.Request)
+    func getNextPage()
 }
 
 protocol DiscussionListDataStore {}
@@ -26,11 +27,38 @@ class DiscussionListInteractor: DiscussionListBusinessLogic, DiscussionListDataS
 
     let disposeBag = DisposeBag()
 
+    private var response = DebatesResponse()
+    private var page = 1
+
     // MARK: - Do something
     func getData(request: DiscussionList.Something.Request) {
         worker.getDiscussions().subscribe(onNext: { [weak self] in
-            let response = DiscussionList.Something.Response(data: $0.debates)
-            self?.presenter?.presentSomething(response: response)
+            self?.presenter?.presentSomething(response:
+                .init(
+                    data: $0.debates,
+                    hasNextPage: $0.hasNextPage
+                )
+            )
+            self?.response = $0
+            self?.page = 1
         }).disposed(by: disposeBag)
     }
+
+    func getNextPage() {
+        worker.getDiscussions(page: page + 1).subscribe(onNext: { [weak self] in
+            guard let `self` = self else { return }
+
+            self.response.debates += $0.debates
+            self.response.hasNextPage = $0.hasNextPage
+
+            self.presenter?.presentSomething(response:
+                .init(
+                    data: self.response.debates,
+                    hasNextPage: self.response.hasNextPage
+                )
+            )
+            self.page += 1
+        }).disposed(by: disposeBag)
+    }
+    
 }

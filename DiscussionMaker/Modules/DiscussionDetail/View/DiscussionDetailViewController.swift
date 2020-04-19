@@ -64,9 +64,12 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
         $0.es.addPullToRefresh { [weak self] in
             self?.interactor?.reloadDebate()
         }
-        $0.es.addInfiniteScrolling {
-            self.interactor?.getNextMessagesPage()
+        $0.es.addInfiniteScrolling { [weak self] in
+            self?.interactor?.getNextMessagesPage()
         }
+    }
+    let inputView = UIView().with {
+        $0.backgroundColor = .red
     }
 
     // MARK: Object lifecycle

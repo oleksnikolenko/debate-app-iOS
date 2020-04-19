@@ -28,6 +28,9 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         $0.es.addPullToRefresh { [weak self] in
             self?.interactor?.getData(request: .init())
         }
+        $0.es.addInfiniteScrolling { [weak self] in
+            self?.interactor?.getNextPage()
+        }
     }
 
     private lazy var profileButton = UIBarButtonItem(
@@ -111,7 +114,15 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     // MARK: - Do something
     func displaySomething(viewModel: DiscussionList.Something.ViewModel) {
         self.cells = viewModel.cells
+
+        tableView.es.stopLoadingMore()
         tableView.es.stopPullToRefresh()
+
+        if viewModel.hasNextPage {
+            tableView.es.resetNoMoreData()
+        } else {
+            tableView.es.noticeNoMoreData()
+        }
     }
 
     @objc private func navigateToAuthorization() {

@@ -15,7 +15,7 @@ protocol NetworkService {
         endpoint: String,
         parameters: [String: Any],
         method: HTTPMethod,
-        shouldUseRefreshToken: Bool
+        shouldLocalize: Bool
     ) -> Observable<T>
 
 }
@@ -34,7 +34,7 @@ class NetworkServiceImplementation: NetworkService {
         endpoint: String,
         parameters: [String: Any] = [:],
         method: HTTPMethod = .get,
-        shouldUseRefreshToken: Bool = false
+        shouldLocalize: Bool = false
     ) -> Observable<T> {
         let response = PublishSubject<T>()
 
@@ -43,12 +43,19 @@ class NetworkServiceImplementation: NetworkService {
         if let session = userDefaults.session {
             headers.add(
                 name: "Authorization",
-                value: "Bearer \(shouldUseRefreshToken ? session.refreshToken : session.accessToken)"
+                value: "Bearer \(session.accessToken)"
             )
         }
 
+        let url: String
+        if shouldLocalize {
+            url = baseUrl + "en/" + endpoint
+        } else {
+            url = baseUrl + endpoint
+        }
+
         AF.request(
-            baseUrl + endpoint,
+            url,
             method: method,
             parameters: parameters,
             headers: headers
@@ -59,45 +66,71 @@ class NetworkServiceImplementation: NetworkService {
             }
             #endif
 
-            if ($0.response?.statusCode.distance(to: 450) ?? 0) <= 50 {
+            if ($0.response?.statusCode == 422 || $0.response?.statusCode == 401) {
                 self.refreshToken()
-                    .flatMap { [unowned self] _ -> Observable<T> in
+                    .flatMap { [unowned self] event -> Observable<T> in
                         self.getData(
                             endpoint: endpoint,
                             parameters: parameters,
-                            method: method,
-                            shouldUseRefreshToken: shouldUseRefreshToken
+                            method: method
                         )
                     }
-                .bind(to: response)
-                .disposed(by: self.disposeBag)
+                    .bind(to: response)
+                    .disposed(by: self.disposeBag)
             }
             guard let data = $0.data else {
                 response.onError($0.error ?? AFError.explicitlyCancelled)
                 return
             }
 
-            let debates = try? JSONDecoder().decode(T.self, from: data)
-
-            guard let unwrappedDebates = debates else {
-                response.onError(AFError.explicitlyCancelled)
-                return
+            do {
+                let debates = try JSONDecoder().decode(T.self, from: data)
+                response.onNext(debates)
+            } catch {
+                response.onError(error)
             }
-
-            response.onNext(unwrappedDebates)
         }
 
         return response
     }
 
     func refreshToken() -> Observable<RefreshTokenResult> {
-        getData(
-            endpoint: "refresh",
-            method: .get,
-            shouldUseRefreshToken: true
-        ).do(onNext: { [weak self] in
-            self?.userDefaults.session?.accessToken = $0.accessToken
-        })
+        let response = PublishSubject<RefreshTokenResult>()
+        var headers = HTTPHeaders()
+
+        if let session = userDefaults.session {
+            headers.add(
+                name: "Authorization",
+                value: "Bearer \(session.refreshToken)"
+            )
+        }
+
+        AF.request(
+            baseUrl + "refresh",
+            headers: headers
+        ).responseData {
+            #if DEBUG
+            if let data = $0.data {
+                print(String(data: data, encoding: .utf8))
+            }
+            #endif
+            guard let data = $0.data else {
+                response.onError($0.error ?? AFError.explicitlyCancelled)
+                return
+            }
+
+            do {
+                let debates = try JSONDecoder().decode(RefreshTokenResult.self, from: data)
+                response.onNext(debates)
+            } catch {
+                response.onError(error)
+            }
+        }
+
+        return response
+            .do(onNext: { [weak self] in
+                self?.userDefaults.session?.accessToken = $0.accessToken
+            })
     }
 
 }

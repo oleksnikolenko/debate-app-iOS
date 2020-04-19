@@ -20,10 +20,12 @@ enum DiscussionList {
 
         struct Response {
             let data: [Discussion]
+            let hasNextPage: Bool
         }
 
         struct ViewModel {
             let cells: [CellType]
+            let hasNextPage: Bool
         }
     }
 

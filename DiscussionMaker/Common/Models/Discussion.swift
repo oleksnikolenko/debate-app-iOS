@@ -8,14 +8,12 @@
 
 struct Discussion: Decodable {
     let id: String
-    let name: String
     let leftSide: DiscussionSide
     let rightSide: DiscussionSide
     var messagesList: MessagesList
 
     enum CodingKeys: String, CodingKey {
         case id
-        case name
         case leftSide = "leftside"
         case rightSide = "rightside"
         case messagesList = "message_list"
@@ -34,6 +32,10 @@ extension Discussion {
 
     var rightSidePercents: Int {
         Int((rightSide.ratingCount / totalVotes) * 100)
+    }
+
+    var name: String {
+        "\(leftSide.name) vs \(rightSide.name)"
     }
 
 }

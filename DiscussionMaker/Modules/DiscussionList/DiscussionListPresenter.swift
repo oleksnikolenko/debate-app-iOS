@@ -23,8 +23,9 @@ class DiscussionListPresenter: DiscussionListPresentationLogic {
     func presentSomething(response: DiscussionList.Something.Response) {
         let cells: [DiscussionList.CellType] = response.data.map { .discussionLink($0) }
 
-        let viewModel = DiscussionList.Something.ViewModel(cells: cells)
-        viewController?.displaySomething(viewModel: viewModel)
+        viewController?.displaySomething(viewModel:
+            .init(cells: cells, hasNextPage: response.hasNextPage)
+        )
     }
 
 }
