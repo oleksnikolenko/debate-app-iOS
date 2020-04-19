@@ -68,7 +68,7 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
             self?.interactor?.getNextMessagesPage()
         }
     }
-    let inputView = UIView().with {
+    let inputTextView = UIView().with {
         $0.backgroundColor = .red
     }
 
