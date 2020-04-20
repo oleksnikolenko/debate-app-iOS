@@ -18,6 +18,7 @@ protocol DiscussionDetailBusinessLogic {
     func reloadDebate()
     func getNextMessagesPage()
     func vote(request: DiscussionDetail.Vote.Request)
+    func sendMessage(request: DiscussionDetail.ChatSend.Request)
 }
 
 protocol DiscussionDetailDataStore {}
@@ -78,6 +79,18 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
         worker.vote(debateId: debate.id, sideId: request.sideId)
             .map { [weak self] _ in self?.reloadDebate() }
             .subscribe()
+            .disposed(by: disposeBag)
+    }
+
+    func sendMessage(request: DiscussionDetail.ChatSend.Request) {
+        worker.send(message: request.message, debateId: debate.id)
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                self.debate.messagesList.messages.insert($0, at: 0)
+                self.didFetchDebate(self.debate)
+                self.presenter?.didFinishSendMessage()
+            })
             .disposed(by: disposeBag)
     }
 

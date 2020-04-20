@@ -38,5 +38,13 @@ class DiscussionDetailWorker {
             method: .post
         )
     }
+
+    func send(message: String, debateId: String) -> Observable<Message> {
+        networkService.getData(
+            endpoint: "message",
+            parameters: ["text": message, "debate_id": debateId],
+            method: .post
+        )
+    }
     
 }

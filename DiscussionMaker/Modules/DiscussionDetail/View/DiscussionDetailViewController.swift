@@ -18,6 +18,7 @@ import PinLayout
 protocol DiscussionDetailDisplayLogic: class {
     func displayDebate(viewModel: DiscussionDetail.Initializing.ViewModel)
     func setReachEnd(_ didReach: Bool)
+    func didFinishSendMessage()
 }
 
 class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayLogic {
@@ -25,6 +26,7 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
     var interactor: DiscussionDetailBusinessLogic?
     var router: (NSObjectProtocol & DiscussionDetailRoutingLogic & DiscussionDetailDataPassing)?
     var debate: Discussion
+    var keyboardHeight: CGFloat = 0
     let disposeBag = DisposeBag()
 
     var sections = [DiscussionDetailSection]() {
@@ -32,25 +34,29 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
             if oldValue.isEmpty {
                 tableView.reloadData()
             } else {
-                let diff = sections.difference(from: oldValue, by: {
-                    $0.section == $1.section &&
-                        $0.rows == $1.rows
-                })
-                var insertSections = [Int]()
-                var removeSections = [Int]()
-
-                diff.forEach {
-                    switch $0 {
-                    case .insert(let offset, _, _):
-                        insertSections.append(offset)
-                    case .remove(let offset, _, _):
-                        removeSections.append(offset)
+                if #available(iOS 13, *) {
+                    let diff = sections.difference(from: oldValue, by: {
+                        $0.section == $1.section &&
+                            $0.rows == $1.rows
+                    })
+                    var insertSections = [Int]()
+                    var removeSections = [Int]()
+                    
+                    diff.forEach {
+                        switch $0 {
+                        case .insert(let offset, _, _):
+                            insertSections.append(offset)
+                        case .remove(let offset, _, _):
+                            removeSections.append(offset)
+                        }
                     }
+                    tableView.beginUpdates()
+                    tableView.deleteSections(IndexSet(removeSections), with: .bottom)
+                    tableView.insertSections(IndexSet(insertSections), with: .top)
+                    tableView.endUpdates()
+                } else {
+                    tableView.reloadData()
                 }
-                tableView.beginUpdates()
-                tableView.deleteSections(IndexSet(removeSections), with: .automatic)
-                tableView.insertSections(IndexSet(insertSections), with: .automatic)
-                tableView.endUpdates()
             }
         }
     }
@@ -68,7 +74,7 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
             self?.interactor?.getNextMessagesPage()
         }
     }
-    let inputTextView = UIView().with {
+    let inputTextView = InputTextView().with {
         $0.backgroundColor = .red
     }
 
@@ -116,8 +122,24 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
         sendDebate()
 
         view.addSubviews(
-            tableView
+            tableView,
+            inputTextView
         )
+
+        NotificationCenter.default.rx.keyboardInfo
+            .subscribe(onNext: { [unowned self] (height, duration, curve) in
+                self.animateKeyboard(height, duration, curve)
+            }).disposed(by: disposeBag)
+
+        inputTextView.textChange
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.setNeedsLayout()
+            }).disposed(by: disposeBag)
+
+        inputTextView.sendTap
+            .subscribe(onNext: { [weak self] in
+                self?.interactor?.sendMessage(request: .init(message: $0))
+            })
 
         header.leftSidePhoto.didClick
             .subscribe(onNext: { [unowned self] _ in
@@ -142,6 +164,23 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
         header.sizeToFit()
 
         tableView.pin.all()
+        inputTextView.pin
+            .horizontally()
+            .sizeToFit(.width)
+            .bottom(self.keyboardHeight)
+    }
+
+    private func animateKeyboard(_ height: CGFloat, _ duration: Double, _ curve: UInt) {
+        keyboardHeight = max(height, view.pin.safeArea.bottom)
+        UIView.animate(
+            withDuration: duration,
+            delay: 0,
+            options: UIView.AnimationOptions(rawValue: curve),
+            animations: { [unowned self] in
+                self.inputTextView.pin.bottom(self.keyboardHeight)
+            },
+            completion: nil
+        )
     }
 
     // MARK: Do something
@@ -168,7 +207,11 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
                 ? self?.tableView.es.noticeNoMoreData()
                 : self?.tableView.es.resetNoMoreData()
         }
+    }
 
+    func didFinishSendMessage() {
+        let _ = inputTextView.resignFirstResponder()
+        inputTextView.emptyInput()
     }
 
 }

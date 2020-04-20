@@ -22,6 +22,7 @@ class DiscussionChatCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        clipsToBounds = true
         addSubviews(
             avatar,
             name,
@@ -73,7 +74,7 @@ class DiscussionChatCell: UITableViewCell {
     func setup(_ message: Message) {
         self.model = message
 
-       // avatar.kf.setImage(with: nil)
+        avatar.kf.setImage(with: try? message.user.avatar.asURL())
         name.text = message.user.name
         messageLabel.text = message.text
     }

@@ -14,6 +14,7 @@ import UIKit
 
 protocol DiscussionDetailPresentationLogic {
     func presentDebate(response: DiscussionDetail.Initializing.Response)
+    func didFinishSendMessage()
 }
 
 class DiscussionDetailPresenter: DiscussionDetailPresentationLogic {
@@ -34,6 +35,10 @@ class DiscussionDetailPresenter: DiscussionDetailPresentationLogic {
         debate.messagesList.messages.map {
             (.message($0), rows: [.message($0)])
         }
+    }
+
+    func didFinishSendMessage() {
+        viewController?.didFinishSendMessage()
     }
 
 }

@@ -8,10 +8,12 @@
 
 struct User: Codable, Equatable {
 
+    let avatar: String
     let id: String
     let name: String
 
     enum CodingKeys: String, CodingKey {
+        case avatar = "avatar_url"
         case id
         case name = "username"
     }

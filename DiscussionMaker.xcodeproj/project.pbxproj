@@ -19,6 +19,8 @@
 		3943F1AE243F0FB000BC11D0 /* DiscussionDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A8243F0FB000BC11D0 /* DiscussionDetailModels.swift */; };
 		3943F1AF243F0FB000BC11D0 /* DiscussionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A9243F0FB000BC11D0 /* DiscussionDetailViewController.swift */; };
 		3943F1B0243F0FB000BC11D0 /* DiscussionDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1AA243F0FB000BC11D0 /* DiscussionDetailInteractor.swift */; };
+		397319ED244C9EA60050325A /* Reactive+NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397319EC244C9EA60050325A /* Reactive+NotificationCenter.swift */; };
+		397319F1244CA5950050325A /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397319F0244CA5950050325A /* InputTextView.swift */; };
 		398086D02438CED000CDA1D2 /* AuthorizationScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CA2438CED000CDA1D2 /* AuthorizationScreenPresenter.swift */; };
 		398086D12438CED000CDA1D2 /* AuthorizationScreenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CB2438CED000CDA1D2 /* AuthorizationScreenWorker.swift */; };
 		398086D22438CED000CDA1D2 /* AuthorizationScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CC2438CED000CDA1D2 /* AuthorizationScreenRouter.swift */; };
@@ -117,6 +119,8 @@
 		3943F1A8243F0FB000BC11D0 /* DiscussionDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailModels.swift; sourceTree = "<group>"; };
 		3943F1A9243F0FB000BC11D0 /* DiscussionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailViewController.swift; sourceTree = "<group>"; };
 		3943F1AA243F0FB000BC11D0 /* DiscussionDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailInteractor.swift; sourceTree = "<group>"; };
+		397319EC244C9EA60050325A /* Reactive+NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+NotificationCenter.swift"; sourceTree = "<group>"; };
+		397319F0244CA5950050325A /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		398086CA2438CED000CDA1D2 /* AuthorizationScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationScreenPresenter.swift; sourceTree = "<group>"; };
 		398086CB2438CED000CDA1D2 /* AuthorizationScreenWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationScreenWorker.swift; sourceTree = "<group>"; };
 		398086CC2438CED000CDA1D2 /* AuthorizationScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationScreenRouter.swift; sourceTree = "<group>"; };
@@ -230,6 +234,14 @@
 			path = DiscussionDetail;
 			sourceTree = "<group>";
 		};
+		397319F2244CA5A10050325A /* InputTextView */ = {
+			isa = PBXGroup;
+			children = (
+				397319F0244CA5950050325A /* InputTextView.swift */,
+			);
+			path = InputTextView;
+			sourceTree = "<group>";
+		};
 		398086D82438CED400CDA1D2 /* AuthorizationScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				399C0EC724436CA800EEEC19 /* Rx+Tap.swift */,
+				397319EC244C9EA60050325A /* Reactive+NotificationCenter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -430,6 +443,7 @@
 		39EFACDE23DDB0FD00E1E8BA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				397319F2244CA5A10050325A /* InputTextView */,
 				39C8AB9E244322F600D299CE /* UIButton */,
 				39EFACDA23DDADBA00E1E8BA /* TableViewCell */,
 			);
@@ -765,6 +779,7 @@
 				39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */,
 				399C0EC524436AAE00EEEC19 /* Empty.swift in Sources */,
 				39C8AB8D2441C4FF00D299CE /* User.swift in Sources */,
+				397319ED244C9EA60050325A /* Reactive+NotificationCenter.swift in Sources */,
 				3943F1AF243F0FB000BC11D0 /* DiscussionDetailViewController.swift in Sources */,
 				39EFACD323DDAD2500E1E8BA /* DiscussionShortCell.swift in Sources */,
 				398086F52439D51F00CDA1D2 /* DebatesResponse.swift in Sources */,
@@ -791,6 +806,7 @@
 				398086FE243C6FEB00CDA1D2 /* NetworkService.swift in Sources */,
 				39C8AB942441DEBC00D299CE /* DiscussionChatCell.swift in Sources */,
 				39C8ABA02443254A00D299CE /* AuthButton.swift in Sources */,
+				397319F1244CA5950050325A /* InputTextView.swift in Sources */,
 				39215B7F23D35390000B5AA1 /* DiscussionListPresenter.swift in Sources */,
 				39215B8023D35390000B5AA1 /* DiscussionListWorker.swift in Sources */,
 				398086D32438CED000CDA1D2 /* AuthorizationScreenModels.swift in Sources */,
@@ -892,7 +908,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -946,7 +962,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

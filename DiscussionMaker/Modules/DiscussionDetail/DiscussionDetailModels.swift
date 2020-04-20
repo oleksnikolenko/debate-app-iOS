@@ -33,6 +33,12 @@ enum DiscussionDetail {
         }
     }
 
+    enum ChatSend {
+        struct Request {
+            let message: String
+        }
+    }
+
 }
 
 enum DiscussionDetailCellType {
