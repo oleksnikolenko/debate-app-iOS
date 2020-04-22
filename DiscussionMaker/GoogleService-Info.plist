@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>264606055840-ai9nf5kmcp201t8ojj8av98kojp95pri.apps.googleusercontent.com</string>
+	<string>264606055840-3i5ka47ftt2jinu01vr4okkb3d4vaur0.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.264606055840-ai9nf5kmcp201t8ojj8av98kojp95pri</string>
+	<string>com.googleusercontent.apps.264606055840-3i5ka47ftt2jinu01vr4okkb3d4vaur0</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDP46bCQwf_25pL0EVRgv6_C9kBpM6pMUg</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.almaz5200.DiscussionMaker</string>
+	<string>com.whoCooler.Main</string>
 	<key>PROJECT_ID</key>
 	<string>debates-rest-api-29faa</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:264606055840:ios:d0ca02968e7886d75678c5</string>
+	<string>1:264606055840:ios:4f0539ee4356be505678c5</string>
 	<key>DATABASE_URL</key>
 	<string>https://debates-rest-api-29faa.firebaseio.com</string>
 </dict>

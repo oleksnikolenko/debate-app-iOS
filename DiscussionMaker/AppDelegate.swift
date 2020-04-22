@@ -8,7 +8,10 @@
 
 import UIKit
 import Firebase
+import FirebaseMessaging
+import FirebaseInstanceID
 import GoogleSignIn
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        UNUserNotificationCenter.current().delegate = self
+        print("TOOOKEN = " + (Messaging.messaging().fcmToken ?? ""))
+        UNUserNotificationCenter.current().requestAuthorization(
+        options: [.alert, .badge, .sound, .carPlay]) { isSuccess, _ in
+            if isSuccess {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
+
         FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
 
         let viewController = DiscussionListViewController()
@@ -31,5 +46,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return GIDSignIn.sharedInstance().handle(url)
     }
 
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print(deviceToken)
+    }
+
 }
 
+extension AppDelegate: MessagingDelegate {
+
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("TOOOKEN: \(fcmToken)")
+    }
+
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+}
