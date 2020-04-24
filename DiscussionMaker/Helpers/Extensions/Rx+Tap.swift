@@ -11,10 +11,11 @@ import RxSwift
 
 public extension UIView {
 
-    var didClick: Observable<UITapGestureRecognizer> {
+    var didClick: Observable<Void> {
         let tapGesture = UITapGestureRecognizer()
         addGestureRecognizer(tapGesture)
         return tapGesture.rx.event
+            .map { _ in }
             .asObservable()
     }
 

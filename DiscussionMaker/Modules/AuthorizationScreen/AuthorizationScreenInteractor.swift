@@ -31,10 +31,7 @@ class AuthorizationScreenInteractor: AuthorizationScreenBusinessLogic, Authoriza
         presenter?.presentProviders(
             response: .init(
                 providers: [
-                    GoogleAuthenticationProvider.shared,
-                    GoogleAuthenticationProvider.shared,
-                    GoogleAuthenticationProvider.shared,
-                    GoogleAuthenticationProvider.shared,
+                    GoogleAuthenticationProvider.shared
                 ]
             )
         )

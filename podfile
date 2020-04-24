@@ -16,6 +16,7 @@ target 'DiscussionMaker' do
   pod 'Alamofire'
   pod 'Kingfisher'
   pod 'ESPullToRefresh'
+  pod 'SwiftMessages'
   # Pods for DiscussionMaker
 
   target 'DiscussionMakerTests' do

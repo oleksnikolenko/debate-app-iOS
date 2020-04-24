@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: MessagingDelegate {
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("TOOOKEN: \(fcmToken)")
+        UserDefaultsService.shared.fcmToken = fcmToken
     }
 
 }

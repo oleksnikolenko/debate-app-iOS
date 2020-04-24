@@ -126,7 +126,7 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     }
 
     @objc private func navigateToAuthorization() {
-        router?.navigateToAuthorization()
+        router?.navigateToProfile()
     }
 
 }

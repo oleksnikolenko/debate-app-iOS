@@ -29,4 +29,9 @@ class UserDefaultsService {
         }
     }
 
+    var fcmToken: String? {
+        get { userDefaults.string(forKey: #function) }
+        set { userDefaults.set(newValue, forKey: #function) }
+    }
+
 }

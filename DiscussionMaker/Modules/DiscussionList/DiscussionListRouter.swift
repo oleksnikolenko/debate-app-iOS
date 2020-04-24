@@ -14,7 +14,7 @@ import UIKit
 
 protocol DiscussionListRoutingLogic {
     func navigateToDebate(_ debate: Discussion)
-    func navigateToAuthorization()
+    func navigateToProfile()
 }
 
 protocol DiscussionListDataPassing {}
@@ -22,6 +22,8 @@ protocol DiscussionListDataPassing {}
 class DiscussionListRouter: NSObject, DiscussionListRoutingLogic, DiscussionListDataPassing {
 
     weak var viewController: DiscussionListViewController?
+
+    let userDefaults = UserDefaultsService.shared
 
     // MARK: Navigation
     func navigateToDebate(_ debate: Discussion) {
@@ -31,12 +33,20 @@ class DiscussionListRouter: NSObject, DiscussionListRoutingLogic, DiscussionList
         )
     }
 
-    func navigateToAuthorization() {
-        viewController?.present(
-            AuthorizationScreenViewController(),
-            animated: true,
-            completion: nil
-        )
+    func navigateToProfile() {
+        if userDefaults.session == nil {
+            viewController?.present(
+                AuthorizationScreenViewController(),
+                animated: true,
+                completion: nil
+            )
+        } else {
+            viewController?.present(
+                UserProfileViewController(),
+                animated: true,
+                completion: nil
+            )
+        }
     }
 
 }
