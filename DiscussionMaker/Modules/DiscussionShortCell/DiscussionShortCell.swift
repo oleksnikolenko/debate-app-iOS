@@ -178,9 +178,9 @@ class DiscussionShortCell: TableViewCell {
         category.text = discussion.category.name
 
         leftImage.kf.setImage(with: try? discussion.leftSide.image.asURL())
-        leftButton.setTitle(discussion.leftSide.name.uppercased(), for: .normal)
+        leftButton.setTitle(discussion.leftSide.name, for: .normal)
 
-        rightButton.setTitle(discussion.rightSide.name.uppercased(), for: .normal)
+        rightButton.setTitle(discussion.rightSide.name, for: .normal)
         rightImage.kf.setImage(with: try? discussion.rightSide.image.asURL())
 
         discussionInfoView.setup(discussion)
