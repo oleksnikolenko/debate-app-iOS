@@ -14,32 +14,95 @@ class DiscussionShortCell: TableViewCell {
 
     // MARK: - Subviews
     override var addableSubviews: [UIView] { [
-        title,
+        category,
         leftImage,
-        leftName,
-        leftRating,
+        leftButton,
         rightImage,
-        rightName,
-        rightRating
+        rightButton,
+        middleSeparator,
+        bottomSeparator,
+        discussionInfoView
     ] }
-    let title = UILabel().with {
+    let category = UILabel().with {
         $0.font = .boldSystemFont(ofSize: 14)
-        $0.textAlignment = .center
-    }
-    let leftImage = UIImageView()
-    let leftName = UILabel().with {
         $0.textAlignment = .left
+        $0.textColor = .gray
     }
-    let leftRating = UILabel().with {
-        $0.textAlignment = .left
+    let leftImage = UIImageView().with {
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.layer.masksToBounds = true
+        if #available(iOS 11.0, *) {
+            $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+            $0.layer.cornerRadius = 10
+        }
     }
-    let rightImage = UIImageView()
-    let rightName = UILabel().with {
-        $0.textAlignment = .left
+    lazy var leftButton = UIButton().with {
+        $0.backgroundColor = .white
+        $0.layer.shadowColor = UIColor.lightGray.cgColor
+        // Offset - 1 to be symmetric with right button which has +1 offset
+        $0.layer.shadowOffset = CGSize(width: -1, height: 1)
+        $0.layer.shadowOpacity = 1
+        $0.layer.shadowRadius = 4
+        $0.layer.masksToBounds = false
+        $0.titleLabel?.numberOfLines = 3
+        $0.titleLabel?.adjustsFontSizeToFitWidth = true
+        $0.titleLabel?.textAlignment = .center
+        $0.setTitleColor(leftSideColor, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        if #available(iOS 11.0, *) {
+            $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+            $0.layer.cornerRadius = 7
+        }
     }
-    let rightRating = UILabel().with {
-        $0.textAlignment = .left
+    let rightImage = UIImageView().with {
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+        $0.layer.masksToBounds = true
+        if #available(iOS 11.0, *) {
+            $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+            $0.layer.cornerRadius = 10
+        }
     }
+    lazy var rightButton = UIButton().with {
+        $0.backgroundColor = .white
+        $0.layer.shadowColor = UIColor.lightGray.cgColor
+        $0.layer.shadowOffset = CGSize(width: 1, height: 1)
+        $0.layer.shadowOpacity = 1
+        $0.layer.shadowRadius = 4
+        $0.layer.masksToBounds = false
+        $0.titleLabel?.numberOfLines = 3
+        $0.titleLabel?.adjustsFontSizeToFitWidth = true
+        $0.titleLabel?.textAlignment = .center
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        $0.setTitleColor(rightSideColor, for: .normal)
+        if #available(iOS 11.0, *) {
+            $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+            $0.layer.cornerRadius = 7
+        }
+    }
+    let middleSeparator = UIView().with {
+        $0.backgroundColor = .lightGray
+    }
+    let bottomSeparator = UIView().with {
+        $0.backgroundColor = .lightGray
+    }
+    let discussionInfoView = DiscussionInfoView()
+
+    // MARK: - Init
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        selectionStyle = .none
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Properties
+    let leftSideColor = UIColor(hex: 0x29AB60)
+    let rightSideColor = UIColor(hex: 0xE74C3C)
 
     // MARK: - Layout
     override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -47,7 +110,7 @@ class DiscussionShortCell: TableViewCell {
 
         return .init(
             width: size.width,
-            height: rightRating.frame.maxY + 8
+            height: bottomSeparator.frame.maxY
         )
     }
 
@@ -58,51 +121,69 @@ class DiscussionShortCell: TableViewCell {
     }
 
     override func layout() {
-        title.pin
-            .horizontally()
+        category.pin
+            .topStart(12)
+            .end(12)
             .sizeToFit(.width)
-            .top(8)
+
+        middleSeparator.pin
+            .height(150)
+            .hCenter()
+            .below(of: category)
+            .marginTop(16)
+            .width(0.5)
 
         leftImage.pin
-            .size(48)
-            .topStart(8)
+            .height(150)
+            .start(10)
+            .top(to: middleSeparator.edge.top)
+            .before(of: middleSeparator)
 
-        leftName.pin
-            .sizeToFit()
-            .start(8)
+        leftButton.pin
             .below(of: leftImage)
+            .start(30)
+            .height(40)
             .marginTop(24)
-
-        leftRating.pin
-            .sizeToFit()
-            .below(of: leftName, aligned: .start)
+            .end(to: middleSeparator.edge.hCenter)
 
         rightImage.pin
-            .size(48)
-            .topEnd(8)
+            .height(150)
+            .top(to: middleSeparator.edge.top)
+            .after(of: middleSeparator)
+            .end(10)
 
-        rightName.pin
-            .sizeToFit()
-            .end(8)
+        rightButton.pin
             .below(of: rightImage)
+            .end(30)
+            .height(40)
             .marginTop(24)
+            .start(to: middleSeparator.edge.hCenter)
 
-        rightRating.pin
+        discussionInfoView.pin
+            .below(of: rightButton)
+            .marginTop(20)
             .sizeToFit()
-            .below(of: rightName, aligned: .end)
+            .hCenter()
+
+        bottomSeparator.pin
+            .horizontally()
+            .height(2)
+            .below(of: discussionInfoView)
+            .marginTop(12)
+
     }
 
     // MARK: - Setup
     func setup(_ discussion: Discussion) {
-        title.text = discussion.name
+        category.text = discussion.category.name
 
         leftImage.kf.setImage(with: try? discussion.leftSide.image.asURL())
-        leftName.text = discussion.leftSide.name
-        leftRating.text = discussion.leftSide.ratingCount.description
+        leftButton.setTitle(discussion.leftSide.name.uppercased(), for: .normal)
 
+        rightButton.setTitle(discussion.rightSide.name.uppercased(), for: .normal)
         rightImage.kf.setImage(with: try? discussion.rightSide.image.asURL())
-        rightName.text = discussion.rightSide.name
-        rightRating.text = discussion.rightSide.ratingCount.description
+
+        discussionInfoView.setup(discussion)
 
         setNeedsLayout()
     }

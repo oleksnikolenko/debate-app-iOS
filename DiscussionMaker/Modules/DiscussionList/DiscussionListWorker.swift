@@ -21,7 +21,7 @@ class DiscussionListWorker {
     func getDiscussions(page: Int = 1) -> Observable<DebatesResponse> {
         networkService.getData(
             endpoint: "debates",
-            parameters: ["page": page],
+            parameters: ["page": page, "sorting": "newest"],
             shouldLocalize: true
         )
     }

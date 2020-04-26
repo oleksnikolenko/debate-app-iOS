@@ -25,6 +25,7 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     private lazy var tableView = UITableView().with {
         $0.dataSource = self
         $0.delegate = self
+        $0.separatorStyle = .none
         $0.es.addPullToRefresh { [weak self] in
             self?.interactor?.getData(request: .init())
         }
@@ -34,7 +35,8 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     }
 
     private lazy var profileButton = UIBarButtonItem(
-        barButtonSystemItem: .trash,
+        image: UIImage(named: "profile"),
+        style: .plain,
         target: self,
         action: #selector(navigateToAuthorization)
     )
@@ -95,7 +97,7 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         title = "Debates"
         view.addSubviews(tableView)
 
-        navigationItem.rightBarButtonItem = profileButton
+        navigationItem.setRightBarButtonItems([profileButton], animated: true)
 
         let request = DiscussionList.Something.Request()
         interactor?.getData(request: request)
