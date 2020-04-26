@@ -8,9 +8,9 @@
 
 struct Session: Codable {
 
-    let user: User
+    var user: User
     var accessToken: String
-    let refreshToken: String
+    var refreshToken: String
 
     enum CodingKeys: String, CodingKey {
         case user

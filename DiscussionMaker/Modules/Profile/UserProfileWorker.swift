@@ -11,10 +11,19 @@
 //
 
 import UIKit
+import RxSwift
 
-class UserProfileWorker
-{
-  func doSomeWork()
-  {
-  }
+class UserProfileWorker {
+
+    let networkService = NetworkServiceImplementation.shared
+
+    func modifyProfile(avatar: UIImage?, name: String?) -> Observable<UserEditResponse> {
+        var params: [String: Any] = [:]
+
+        if let avatar = avatar { params["avatar"] = avatar.jpegData(compressionQuality: 0.7) }
+        if let name = name { params["name"] = name }
+
+        return networkService.updateProfile(name: name, avatar: avatar)
+    }
+
 }

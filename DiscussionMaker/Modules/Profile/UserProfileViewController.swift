@@ -22,7 +22,9 @@ protocol UserProfileDisplayLogic: class {
 class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
 
     // MARK: - Subviews
-    let avatar = UIImageView()
+    let avatar = UIImageView().with {
+        $0.isUserInteractionEnabled = true
+    }
     let userNameLabel = UILabel().with {
         $0.textAlignment = .center
         $0.textColor = .black
@@ -54,6 +56,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
 
     var interactor: UserProfileBusinessLogic?
     var router: (NSObjectProtocol & UserProfileRoutingLogic & UserProfileDataPassing)?
+    var dataPicker = DataPickerImplementation.shared
 
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -114,10 +117,40 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
     }
 
     func bindObservables() {
+        avatar.didClick
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                self.dataPicker.tryToFetchImage(vc: self) { [weak self] in
+                    self?.interactor?.modify(
+                        request: .init(avatar: $0, name: nil)
+                    )
+                }
+            }).disposed(by: disposeBag)
+
         userNameLabel.didClick
-            .compactMap { [weak self] in self?.viewModel?.user.name }
-            .subscribe(onNext: { [weak self] in self?.copy(text: $0) })
-            .disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                // TODO: Add locale
+                var textField: UITextField?
+
+                let alert = UIAlertController(title: "Alert", message: nil, preferredStyle: .alert)
+                alert.title = "Change your nickname"
+                alert.addTextField {
+                    textField = $0
+                    $0.placeholder = "Name"
+                    $0.text = self.userNameLabel.text
+                }
+                alert.addAction(.init(title: "Save", style: .default, handler: { [weak self] _ in
+                    guard let `self` = self else { return }
+
+                    self.interactor?.modify(request: .init(avatar: nil, name: textField?.text))
+                }))
+                alert.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+
+                self.present(alert, animated: true, completion: nil)
+            }).disposed(by: disposeBag)
 
         userIdLabel.didClick
             .compactMap { [weak self] in self?.viewModel?.user.id }

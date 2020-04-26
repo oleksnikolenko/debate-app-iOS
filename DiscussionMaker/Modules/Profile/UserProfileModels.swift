@@ -28,4 +28,11 @@ enum UserProfile {
         }
     }
 
+    enum Modify {
+        struct Request {
+            var avatar: UIImage?
+            var name: String?
+        }
+    }
+
 }

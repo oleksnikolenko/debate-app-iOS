@@ -133,4 +133,58 @@ class NetworkServiceImplementation: NetworkService {
             })
     }
 
+    func updateProfile<T: Decodable>(
+        name: String?,
+        avatar: UIImage?
+    ) -> Observable<T> {
+        let response = PublishSubject<T>()
+        let url = baseUrl + "useredit"
+
+        var headers = HTTPHeaders()
+        if let session = userDefaults.session {
+            headers.add(
+                name: "Authorization",
+                value: "Bearer \(session.accessToken)"
+            )
+        }
+
+        AF.upload(
+            multipartFormData: { multipartFormData in
+                if let imageData = avatar?.jpegData(compressionQuality: 0.1) {
+                    multipartFormData.append(
+                        imageData,
+                        withName: "avatar",
+                        fileName: "avatar.jpeg",
+                        mimeType: "image/jpeg"
+                    )
+                }
+                if let name = name?.data(using: .utf8) {
+                    multipartFormData.append(name, withName: "name")
+                }
+            },
+            to: url,
+            method: .patch,
+            headers: headers
+        ).responseData {
+            #if DEBUG
+            if let data = $0.data {
+                print(String(data: data, encoding: .utf8))
+            }
+            #endif
+            guard let data = $0.data else {
+                response.onError($0.error ?? AFError.explicitlyCancelled)
+                return
+            }
+
+            do {
+                let debates = try JSONDecoder().decode(T.self, from: data)
+                response.onNext(debates)
+            } catch {
+                response.onError(error)
+            }
+        }
+
+        return response
+    }
+
 }

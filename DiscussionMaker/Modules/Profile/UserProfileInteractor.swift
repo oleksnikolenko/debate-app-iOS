@@ -11,9 +11,11 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol UserProfileBusinessLogic {
     func getProfile(request: UserProfile.Profile.Request)
+    func modify(request: UserProfile.Modify.Request)
 }
 
 protocol UserProfileDataStore {}
@@ -21,9 +23,10 @@ protocol UserProfileDataStore {}
 class UserProfileInteractor: UserProfileBusinessLogic, UserProfileDataStore {
 
     let userDefaults = UserDefaultsService.shared
+    let disposeBag = DisposeBag()
 
     var presenter: UserProfilePresentationLogic?
-    var worker: UserProfileWorker?
+    var worker: UserProfileWorker = UserProfileWorker()
 
     // MARK: Do something
     func getProfile(request: UserProfile.Profile.Request) {
@@ -39,6 +42,52 @@ class UserProfileInteractor: UserProfileBusinessLogic, UserProfileDataStore {
                 accessToken: session.accessToken
             )
         )
+    }
+
+    func reloadProfile() {
+        worker
+            .modifyProfile(avatar: nil, name: nil)
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                self.userDefaults.session?.user = $0.user
+
+                guard
+                    let session = self.userDefaults.session,
+                    let pushToken = self.userDefaults.fcmToken
+                else { return }
+
+                self.presenter?.presentProfile(
+                    response: .init(
+                        user: $0.user,
+                        pushToken: pushToken,
+                        accessToken: session.accessToken
+                    )
+                )
+            }).disposed(by: disposeBag)
+    }
+
+    func modify(request: UserProfile.Modify.Request) {
+        worker
+            .modifyProfile(avatar: request.avatar, name: request.name)
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                self.userDefaults.session?.user = $0.user
+
+                guard
+                    let session = self.userDefaults.session,
+                    let pushToken = self.userDefaults.fcmToken
+                else { return }
+
+                self.presenter?.presentProfile(
+                    response: .init(
+                        user: $0.user,
+                        pushToken: pushToken,
+                        accessToken: session.accessToken
+                    )
+                )
+            }).disposed(by: disposeBag)
     }
 
 }

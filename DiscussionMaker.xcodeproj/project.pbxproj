@@ -57,6 +57,9 @@
 		39D1037223D0ED1400A0C3F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39D1037023D0ED1400A0C3F7 /* LaunchScreen.storyboard */; };
 		39D1037D23D0ED1400A0C3F7 /* DiscussionMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D1037C23D0ED1400A0C3F7 /* DiscussionMakerTests.swift */; };
 		39D1038823D0ED1400A0C3F7 /* DiscussionMakerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D1038723D0ED1400A0C3F7 /* DiscussionMakerUITests.swift */; };
+		39D5F9E22454807900BDD7B9 /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D5F9E12454807900BDD7B9 /* DataPicker.swift */; };
+		39D5F9E42454808000BDD7B9 /* DataPickerImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D5F9E32454808000BDD7B9 /* DataPickerImplementation.swift */; };
+		39DAE96E245488CB00AF7B96 /* UserEditResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DAE96D245488CB00AF7B96 /* UserEditResponse.swift */; };
 		39DFA6FB2450605200A1A6B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39DFA6F82450605100A1A6B1 /* GoogleService-Info.plist */; };
 		39EFACD323DDAD2500E1E8BA /* DiscussionShortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD223DDAD2500E1E8BA /* DiscussionShortCell.swift */; };
 		39EFACD923DDADB700E1E8BA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD823DDADB700E1E8BA /* TableViewCell.swift */; };
@@ -168,6 +171,9 @@
 		39D1038723D0ED1400A0C3F7 /* DiscussionMakerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionMakerUITests.swift; sourceTree = "<group>"; };
 		39D1038923D0ED1400A0C3F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39D59EAB244D96A900D0A1E8 /* DiscussionMaker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DiscussionMaker.entitlements; sourceTree = "<group>"; };
+		39D5F9E12454807900BDD7B9 /* DataPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
+		39D5F9E32454808000BDD7B9 /* DataPickerImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPickerImplementation.swift; sourceTree = "<group>"; };
+		39DAE96D245488CB00AF7B96 /* UserEditResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditResponse.swift; sourceTree = "<group>"; };
 		39DFA6F82450605100A1A6B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39EFACD223DDAD2500E1E8BA /* DiscussionShortCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionShortCell.swift; sourceTree = "<group>"; };
 		39EFACD823DDADB700E1E8BA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -329,6 +335,7 @@
 		39C8AB9724431C8D00D299CE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				39D5F9DE24547F5600BDD7B9 /* ImagePicker */,
 				399C0EBF2443582800EEEC19 /* UserDefaults */,
 				39C8AB9824431C9500D299CE /* AuthProviders */,
 				398086FA243C6FDD00CDA1D2 /* NetworkService */,
@@ -417,6 +424,15 @@
 			path = DiscussionMakerUITests;
 			sourceTree = "<group>";
 		};
+		39D5F9DE24547F5600BDD7B9 /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				39D5F9E12454807900BDD7B9 /* DataPicker.swift */,
+				39D5F9E32454808000BDD7B9 /* DataPickerImplementation.swift */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
 		39EFAC9F23DDAC3A00E1E8BA /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +480,7 @@
 				399C0EBD2443568100EEEC19 /* Session.swift */,
 				399C0EC2244368AF00EEEC19 /* RefreshTokenResult.swift */,
 				399C0EC424436AAE00EEEC19 /* Empty.swift */,
+				39DAE96D245488CB00AF7B96 /* UserEditResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -805,6 +822,7 @@
 				398086D02438CED000CDA1D2 /* AuthorizationScreenPresenter.swift in Sources */,
 				398086D12438CED000CDA1D2 /* AuthorizationScreenWorker.swift in Sources */,
 				39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */,
+				39D5F9E22454807900BDD7B9 /* DataPicker.swift in Sources */,
 				399C0EC524436AAE00EEEC19 /* Empty.swift in Sources */,
 				39C8AB8D2441C4FF00D299CE /* User.swift in Sources */,
 				397319ED244C9EA60050325A /* Reactive+NotificationCenter.swift in Sources */,
@@ -835,6 +853,7 @@
 				398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */,
 				39215B8423D35390000B5AA1 /* DiscussionListInteractor.swift in Sources */,
 				39215B8223D35390000B5AA1 /* DiscussionListModels.swift in Sources */,
+				39DAE96E245488CB00AF7B96 /* UserEditResponse.swift in Sources */,
 				39C8AB962442DFD800D299CE /* MessagesList.swift in Sources */,
 				39BD33E924531A4C00741A8F /* UserProfileRouter.swift in Sources */,
 				398086FE243C6FEB00CDA1D2 /* NetworkService.swift in Sources */,
@@ -844,6 +863,7 @@
 				39215B7F23D35390000B5AA1 /* DiscussionListPresenter.swift in Sources */,
 				39215B8023D35390000B5AA1 /* DiscussionListWorker.swift in Sources */,
 				398086D32438CED000CDA1D2 /* AuthorizationScreenModels.swift in Sources */,
+				39D5F9E42454808000BDD7B9 /* DataPickerImplementation.swift in Sources */,
 				3943F1B0243F0FB000BC11D0 /* DiscussionDetailInteractor.swift in Sources */,
 				399C0EBE2443568100EEEC19 /* Session.swift in Sources */,
 			);
