@@ -48,8 +48,8 @@ class DiscussionShortCell: TableViewCell {
         $0.titleLabel?.numberOfLines = 3
         $0.titleLabel?.adjustsFontSizeToFitWidth = true
         $0.titleLabel?.textAlignment = .center
-        $0.setTitleColor(leftSideColor, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        $0.setTitleColor(leftSideColor, for: .normal)
         if #available(iOS 11.0, *) {
             $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
             $0.layer.cornerRadius = 7
