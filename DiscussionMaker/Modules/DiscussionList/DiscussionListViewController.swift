@@ -97,7 +97,7 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         title = "Debates"
         view.addSubviews(tableView)
 
-        navigationItem.setRightBarButtonItems([profileButton], animated: true)
+        navigationItem.rightBarButtonItem = profileButton
 
         let request = DiscussionList.Something.Request()
         interactor?.getData(request: request)

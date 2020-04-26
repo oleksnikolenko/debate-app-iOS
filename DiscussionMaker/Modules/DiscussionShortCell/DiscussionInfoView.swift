@@ -82,8 +82,8 @@ class DiscussionInfoView: UIView {
 
     // MARK: - Public methods
     func setup(_ discussion: Discussion) {
-        userCount.text = String(discussion.votesCount)
-        messageCount.text = String(discussion.messagesList.messages.count)
+        userCount.text = discussion.votesCount.description
+        messageCount.text = discussion.messagesList.messages.count.description
 
         setNeedsLayout()
     }
