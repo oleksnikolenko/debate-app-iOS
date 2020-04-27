@@ -22,14 +22,35 @@ protocol UserProfileDisplayLogic: class {
 class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
 
     // MARK: - Subviews
-    let avatar = UIImageView().with {
-        $0.isUserInteractionEnabled = true
+    lazy var avatar = UIImageView().with {
+        $0.layer.cornerRadius = avatarSize.height / 2
+        $0.layer.masksToBounds = true
+        $0.clipsToBounds = true
+    }
+    let changeAvatarButton = UIButton().with {
+        // TODO: - Localize
+        $0.setTitle("Change avatar", for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
     let userNameLabel = UILabel().with {
-        $0.textAlignment = .center
+        $0.textAlignment = .left
         $0.textColor = .black
+        $0.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         $0.numberOfLines = 0
         $0.isUserInteractionEnabled = true
+    }
+    let namePlaceholder = UILabel().with {
+        $0.textColor = .lightGray
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        // TODO: - Localize
+        $0.text = "Name"
+    }
+    let changeNameButton = UIButton().with {
+        // TODO: - Localize
+        $0.setTitle("Change name", for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
     let userIdLabel = UILabel().with {
         $0.textAlignment = .center
@@ -57,6 +78,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
     var interactor: UserProfileBusinessLogic?
     var router: (NSObjectProtocol & UserProfileRoutingLogic & UserProfileDataPassing)?
     var dataPicker = DataPickerImplementation.shared
+    private let avatarSize = CGSize(width: 72, height: 72)
 
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -87,7 +109,10 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
             userNameLabel,
             userIdLabel,
             pushTokenLabel,
-            accessTokenLabel
+            accessTokenLabel,
+            changeAvatarButton,
+            namePlaceholder,
+            changeNameButton
         )
     }
 
@@ -117,7 +142,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
     }
 
     func bindObservables() {
-        avatar.didClick
+        changeAvatarButton.didClick
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
 
@@ -128,28 +153,11 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
                 }
             }).disposed(by: disposeBag)
 
-        userNameLabel.didClick
+        changeNameButton.didClick
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
 
-                // TODO: Add locale
-                var textField: UITextField?
-
-                let alert = UIAlertController(title: "Alert", message: nil, preferredStyle: .alert)
-                alert.title = "Change your nickname"
-                alert.addTextField {
-                    textField = $0
-                    $0.placeholder = "Name"
-                    $0.text = self.userNameLabel.text
-                }
-                alert.addAction(.init(title: "Save", style: .default, handler: { [weak self] _ in
-                    guard let `self` = self else { return }
-
-                    self.interactor?.modify(request: .init(avatar: nil, name: textField?.text))
-                }))
-                alert.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
-
-                self.present(alert, animated: true, completion: nil)
+                self.presentAlertController()
             }).disposed(by: disposeBag)
 
         userIdLabel.didClick
@@ -170,21 +178,38 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
 
     func layout() {
         avatar.pin
-            .size(52)
-            .top(16)
+            .size(avatarSize)
+            .top(40)
             .hCenter()
 
-        userNameLabel.pin
-            .horizontally(8)
-            .sizeToFit(.width)
+        changeAvatarButton.pin
             .below(of: avatar)
+            .sizeToFit()
+            .hCenter()
+            .marginTop(16)
+
+        namePlaceholder.pin
+            .below(of: changeAvatarButton)
+            .marginTop(16)
+            .horizontally(20)
+            .sizeToFit(.width)
+
+        userNameLabel.pin
+            .horizontally(20)
+            .sizeToFit(.width)
+            .below(of: namePlaceholder)
             .marginTop(8)
+
+        changeNameButton.pin
+            .below(of: userNameLabel)
+            .start(20)
+            .sizeToFit()
 
         userIdLabel.pin
             .horizontally(8)
             .sizeToFit(.width)
-            .below(of: userNameLabel)
-            .marginTop(8)
+            .below(of: changeNameButton)
+            .marginTop(30)
 
         pushTokenLabel.pin
             .horizontally(8)
@@ -230,6 +255,28 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         accessTokenLabel.text = "access token: " + viewModel.accessToken
 
         view.setNeedsLayout()
+    }
+
+    // MARK: - Private methods
+    private func presentAlertController() {
+        var textField: UITextField?
+
+        let alert = UIAlertController(title: "Alert", message: nil, preferredStyle: .alert)
+        // TODO: Localize
+        alert.title = "Change your nickname"
+        alert.addTextField {
+            textField = $0
+            $0.placeholder = "Name"
+            $0.text = self.userNameLabel.text
+        }
+        alert.addAction(.init(title: "Save", style: .default, handler: { [weak self] _ in
+            guard let `self` = self else { return }
+
+            self.interactor?.modify(request: .init(avatar: nil, name: textField?.text))
+        }))
+        alert.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+
+        self.present(alert, animated: true, completion: nil)
     }
 
 }
