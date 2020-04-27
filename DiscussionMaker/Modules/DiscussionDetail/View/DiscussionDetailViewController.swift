@@ -67,6 +67,8 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
         $0.dataSource = self
         $0.delegate = self
         $0.tableHeaderView = header
+        $0.separatorInset = .zero
+        $0.layoutMargins = .zero
         $0.es.addPullToRefresh { [weak self] in
             self?.interactor?.reloadDebate()
         }
@@ -126,6 +128,11 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
             inputTextView
         )
 
+        bindObservables()
+    }
+
+    // MARK: - Binding
+    private func bindObservables() {
         NotificationCenter.default.rx.keyboardInfo
             .subscribe(onNext: { [unowned self] (height, duration, curve) in
                 self.animateKeyboard(height, duration, curve)
@@ -139,21 +146,22 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
         inputTextView.sendTap
             .subscribe(onNext: { [weak self] in
                 self?.interactor?.sendMessage(request: .init(message: $0))
-            })
+            }).disposed(by: disposeBag)
 
-        header.leftSidePhoto.didClick
+        header.leftButton.didClick
             .subscribe(onNext: { [unowned self] _ in
                 self.tableView.es.resetNoMoreData()
                 self.interactor?.vote(request: .init(sideId: self.debate.leftSide.id))
             }).disposed(by: disposeBag)
 
-        header.rightSidePhoto.didClick
+        header.rightButton.didClick
             .subscribe(onNext: { [unowned self] _ in
                 self.tableView.es.resetNoMoreData()
                 self.interactor?.vote(request: .init(sideId: self.debate.rightSide.id))
             }).disposed(by: disposeBag)
     }
 
+    // MARK: - Layout
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 

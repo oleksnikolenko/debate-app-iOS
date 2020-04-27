@@ -32,10 +32,8 @@ class DiscussionShortCell: TableViewCell {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
-        if #available(iOS 11.0, *) {
-            $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-            $0.layer.cornerRadius = 10
-        }
+        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+        $0.layer.cornerRadius = 10
     }
     lazy var leftButton = UIButton().with {
         $0.backgroundColor = .white
@@ -43,33 +41,29 @@ class DiscussionShortCell: TableViewCell {
         // Offset - 1 to be symmetric with right button which has +1 offset
         $0.layer.shadowOffset = CGSize(width: -1, height: 1)
         $0.layer.shadowOpacity = 1
-        $0.layer.shadowRadius = 4
+        $0.layer.shadowRadius = 2
         $0.layer.masksToBounds = false
         $0.titleLabel?.numberOfLines = 3
         $0.titleLabel?.adjustsFontSizeToFitWidth = true
         $0.titleLabel?.textAlignment = .center
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         $0.setTitleColor(leftSideColor, for: .normal)
-        if #available(iOS 11.0, *) {
-            $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-            $0.layer.cornerRadius = 7
-        }
+        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+        $0.layer.cornerRadius = 7
     }
     let rightImage = UIImageView().with {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
-        if #available(iOS 11.0, *) {
-            $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-            $0.layer.cornerRadius = 10
-        }
+        $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        $0.layer.cornerRadius = 10
     }
     lazy var rightButton = UIButton().with {
         $0.backgroundColor = .white
         $0.layer.shadowColor = UIColor.lightGray.cgColor
         $0.layer.shadowOffset = CGSize(width: 1, height: 1)
         $0.layer.shadowOpacity = 1
-        $0.layer.shadowRadius = 4
+        $0.layer.shadowRadius = 2
         $0.layer.masksToBounds = false
         $0.titleLabel?.numberOfLines = 3
         $0.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -144,7 +138,7 @@ class DiscussionShortCell: TableViewCell {
             .start(30)
             .height(40)
             .marginTop(24)
-            .end(to: middleSeparator.edge.hCenter)
+            .end(to: middleSeparator.edge.left)
 
         rightImage.pin
             .height(150)
@@ -157,7 +151,7 @@ class DiscussionShortCell: TableViewCell {
             .end(30)
             .height(40)
             .marginTop(24)
-            .start(to: middleSeparator.edge.hCenter)
+            .start(to: middleSeparator.edge.right)
 
         discussionInfoView.pin
             .below(of: rightButton)
