@@ -11,11 +11,13 @@ struct DiscussionSide: Decodable {
     let name: String
     let image: String
     let ratingCount: Int
+    let isVotedByUser: Bool
 
     enum CodingKeys: String, CodingKey {
         case id
         case name
         case image
         case ratingCount = "rating_count"
+        case isVotedByUser = "is_voted_by_user"
     }
 }

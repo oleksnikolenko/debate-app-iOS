@@ -43,7 +43,7 @@ class DiscussionShortCell: TableViewCell {
         // Offset - 1 to be symmetric with right button which has +1 offset
         $0.layer.shadowOffset = CGSize(width: -1, height: 1)
         $0.layer.shadowOpacity = 1
-        $0.layer.shadowRadius = 4
+        $0.layer.shadowRadius = 2
         $0.layer.masksToBounds = false
         $0.titleLabel?.numberOfLines = 3
         $0.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -69,7 +69,7 @@ class DiscussionShortCell: TableViewCell {
         $0.layer.shadowColor = UIColor.lightGray.cgColor
         $0.layer.shadowOffset = CGSize(width: 1, height: 1)
         $0.layer.shadowOpacity = 1
-        $0.layer.shadowRadius = 4
+        $0.layer.shadowRadius = 2
         $0.layer.masksToBounds = false
         $0.titleLabel?.numberOfLines = 3
         $0.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -144,7 +144,7 @@ class DiscussionShortCell: TableViewCell {
             .start(30)
             .height(40)
             .marginTop(24)
-            .end(to: middleSeparator.edge.hCenter)
+            .end(to: middleSeparator.edge.left)
 
         rightImage.pin
             .height(150)
@@ -157,7 +157,7 @@ class DiscussionShortCell: TableViewCell {
             .end(30)
             .height(40)
             .marginTop(24)
-            .start(to: middleSeparator.edge.hCenter)
+            .start(to: middleSeparator.edge.right)
 
         discussionInfoView.pin
             .below(of: rightButton)

@@ -6,8 +6,14 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-import UIKit
+import Kingfisher
 import PinLayout
+import UIKit
+
+enum VoteSide {
+    case left
+    case right
+}
 
 class DiscussionDetailHeader: UIView {
 
@@ -17,48 +23,95 @@ class DiscussionDetailHeader: UIView {
         $0.alpha = 0.15
         $0.isUserInteractionEnabled = false
     }
-
-    let leftSidePhoto = UIImageView().with {
+    let leftImage = UIImageView().with {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
-        $0.isUserInteractionEnabled = true
+        $0.layer.masksToBounds = true
     }
-    let leftName = UILabel().with {
-        $0.textColor = .white
-        $0.font = .boldSystemFont(ofSize: 24)
-        $0.numberOfLines = 0
+    lazy var leftButton = UIButton().with {
+        $0.backgroundColor = .white
+        $0.layer.shadowColor = UIColor.lightGray.cgColor
+        // Offset - 1 to be symmetric with right button which has +1 offset
+        $0.layer.shadowOffset = CGSize(width: -1, height: 1)
+        $0.layer.shadowOpacity = 1
+        $0.layer.shadowRadius = 2
+        $0.layer.masksToBounds = false
+        $0.titleLabel?.numberOfLines = 3
+        $0.titleLabel?.adjustsFontSizeToFitWidth = true
+        $0.titleLabel?.textAlignment = .center
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        $0.setTitleColor(leftSideColor, for: .normal)
+        if #available(iOS 11.0, *) {
+            $0.layer.maskedCorners = defaultLeftMaskedCorners
+            $0.layer.cornerRadius = 7
+        }
     }
-    let leftVotes = UILabel().with {
-        $0.textColor = .white
-    }
-
-    let rightSidePhoto = UIImageView().with {
+    let rightImage = UIImageView().with {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
-        $0.isUserInteractionEnabled = true
+        $0.layer.masksToBounds = true
     }
-    let rightName = UILabel().with {
-        $0.textColor = .white
-        $0.font = .boldSystemFont(ofSize: 24)
-        $0.textAlignment = .right
-        $0.numberOfLines = 0
+    lazy var rightButton = UIButton().with {
+        $0.backgroundColor = .white
+        $0.layer.shadowColor = UIColor.lightGray.cgColor
+        $0.layer.shadowOffset = CGSize(width: 1, height: 1)
+        $0.layer.shadowOpacity = 1
+        $0.layer.shadowRadius = 2
+        $0.layer.masksToBounds = false
+        $0.titleLabel?.numberOfLines = 3
+        $0.titleLabel?.adjustsFontSizeToFitWidth = true
+        $0.titleLabel?.textAlignment = .center
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        $0.setTitleColor(rightSideColor, for: .normal)
+        if #available(iOS 11.0, *) {
+            $0.layer.maskedCorners = defaultRightMaskedCorners
+            $0.layer.cornerRadius = 7
+        }
     }
-    let rightVotes = UILabel().with {
-        $0.textColor = .white
-        $0.textAlignment = .right
+    let middleSeparator = UIView().with {
+        $0.backgroundColor = .lightGray
     }
+    let messageLabel = UILabel().with {
+        $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        // TODO: - Localize
+        $0.text = "Comments"
+    }
+    let messageCounter = UILabel().with {
+        $0.textColor = .lightGray
+        $0.font =  UIFont.systemFont(ofSize: 16, weight: .semibold)
+    }
+
+    // MARK: - Properties
+    private let leftSideColor = UIColor(hex: 0x29AB60)
+    private let rightSideColor = UIColor(hex: 0xE74C3C)
+    private let buttonHorizontalMargin: CGFloat = 30
+    private var availableSpaceForButtons: CGFloat {
+        frame.width - 2 * buttonHorizontalMargin - middleSeparatorWidth
+    }
+    private let middleSeparatorWidth: CGFloat = 0.5
+    private var leftButtonWidth: CGFloat?
+    private var rightButtonWidth: CGFloat?
+    private let defaultLeftMaskedCorners: CACornerMask = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+    private let defaultRightMaskedCorners: CACornerMask = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+    private let allMaskedCorners: CACornerMask = [
+        .layerMinXMinYCorner,
+        .layerMinXMaxYCorner,
+        .layerMaxXMaxYCorner,
+        .layerMaxXMinYCorner
+    ]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         addSubviews(
-            leftSidePhoto,
-            rightSidePhoto,
+            leftImage,
+            leftButton,
+            middleSeparator,
+            rightImage,
+            rightButton,
             shade,
-            leftName,
-            leftVotes,
-            rightName,
-            rightVotes
+            messageLabel,
+            messageCounter
         )
     }
 
@@ -72,7 +125,7 @@ class DiscussionDetailHeader: UIView {
 
         return .init(
             width: size.width,
-            height: rightSidePhoto.frame.maxY
+            height: messageLabel.frame.maxY + 4
         )
     }
 
@@ -88,57 +141,132 @@ class DiscussionDetailHeader: UIView {
             .height(150)
             .top()
 
-        leftSidePhoto.pin
-            .topStart()
+        middleSeparator.pin
             .height(150)
-            .width(50%)
+            .hCenter()
+            .top()
+            .width(middleSeparatorWidth)
 
-        leftVotes.pin
-            .width(45%)
-            .sizeToFit(.width)
-            .start(8)
-            .bottom(to: leftSidePhoto.edge.bottom)
-            .marginBottom(8)
-
-        leftName.pin
-            .width(45%)
-            .sizeToFit(.width)
-            .start(8)
-            .above(of: leftVotes)
-            .marginBottom(8)
-
-        rightSidePhoto.pin
-            .topEnd()
+        leftImage.pin
             .height(150)
-            .width(50%)
+            .start()
+            .top(to: middleSeparator.edge.top)
+            .before(of: middleSeparator)
 
-        rightVotes.pin
-            .width(45%)
-            .sizeToFit(.width)
-            .end(8)
-            .bottom(to: rightSidePhoto.edge.bottom)
-            .marginBottom(8)
+        leftButton.pin
+            .below(of: leftImage)
+            .start(buttonHorizontalMargin)
+            .height(40)
+            .marginTop(24)
+            .width(leftButtonWidth ?? availableSpaceForButtons / 2)
 
-        rightName.pin
-            .width(45%)
-            .sizeToFit(.width)
-            .end(8)
-            .above(of: rightVotes)
-            .marginBottom(8)
+        rightImage.pin
+            .height(150)
+            .top(to: middleSeparator.edge.top)
+            .after(of: middleSeparator)
+            .end()
+
+        rightButton.pin
+            .below(of: rightImage)
+            .end(buttonHorizontalMargin)
+            .height(40)
+            .marginTop(24)
+            .width(rightButtonWidth ?? availableSpaceForButtons / 2)
+
+        messageLabel.pin
+            .below(of: leftButton)
+            .start(20)
+            .sizeToFit()
+            .marginTop(16)
+
+        messageCounter.pin
+            .after(of: messageLabel, aligned: .center)
+            .marginStart(12)
+            .sizeToFit()
     }
 
+    // MARK: - Public methods
     func setup(debate: Discussion) {
-           let leftSide = debate.leftSide
-           leftSidePhoto.kf.setImage(with: try? leftSide.image.asURL())
-           leftName.text = leftSide.name
-           leftVotes.text = leftSide.ratingCount.description
+        leftImage.kf.setImage(with: try? debate.leftSide.image.asURL())
+        rightImage.kf.setImage(with: try? debate.rightSide.image.asURL())
 
-           let rightSide = debate.rightSide
-           rightSidePhoto.kf.setImage(with: try? rightSide.image.asURL())
-           rightName.text = rightSide.name
-           rightVotes.text = rightSide.ratingCount.description
+        setupButtons(debate)
+        messageCounter.text = debate.messagesList.messages.count.description
 
-           setNeedsLayout()
-       }
-    
+        setNeedsLayout()
+    }
+
+    // MARK: - Private methods
+    private func setupButtons(_ debate: Discussion) {
+        if debate.leftSide.isVotedByUser || debate.rightSide.isVotedByUser  {
+            let leftSidePercent = Int(Double(debate.leftSide.ratingCount) / Double(debate.votesCount) * 100)
+            let leftSideText = debate.leftSide.name + "\n" + leftSidePercent.description + "%"
+
+            let rightSidePercent = 100 - leftSidePercent
+            let rightSideText = debate.rightSide.name + "\n" + rightSidePercent.description + "%"
+
+            leftButton.setTitle(leftSideText, for: .normal)
+            rightButton.setTitle(rightSideText, for: .normal)
+
+            layoutVotedButton(
+                side: debate.leftSide.isVotedByUser ? .left : .right,
+                leftPercent: leftSidePercent,
+                rightPercent: rightSidePercent
+            )
+        } else {
+            leftButtonWidth = availableSpaceForButtons / 2
+            leftButton.backgroundColor = .white
+            leftButton.setTitleColor(leftSideColor, for: .normal)
+            leftButton.setTitle(debate.leftSide.name, for: .normal)
+
+            rightButtonWidth = availableSpaceForButtons / 2
+            rightButton.backgroundColor = .white
+            rightButton.setTitleColor(rightSideColor, for: .normal)
+            rightButton.setTitle(debate.rightSide.name, for: .normal)
+
+            if #available(iOS 11.0, *) {
+                leftButton.layer.maskedCorners = defaultLeftMaskedCorners
+                rightButton.layer.maskedCorners = defaultRightMaskedCorners
+            }
+        }
+    }
+
+    private func layoutVotedButton(side: VoteSide, leftPercent: Int, rightPercent: Int) {
+        leftButtonWidth = availableSpaceForButtons * CGFloat(leftPercent) / 100
+        rightButtonWidth = availableSpaceForButtons * CGFloat(rightPercent) / 100
+
+        if leftPercent == 100 {
+            if #available(iOS 11.0, *) {
+                leftButton.layer.maskedCorners = allMaskedCorners
+            }
+        } else if rightPercent == 100 {
+            if #available(iOS 11.0, *) {
+                rightButton.layer.maskedCorners = allMaskedCorners
+            }
+        }
+
+        switch side {
+        case .left:
+            setupLeftVotedSide()
+        case .right:
+            setupRightVotedSide()
+        }
+    }
+
+    private func setupLeftVotedSide() {
+        leftButton.backgroundColor = .blue
+        leftButton.setTitleColor(.white, for: .normal)
+
+        rightButton.backgroundColor = .white
+        rightButton.setTitleColor(.black, for: .normal)
+    }
+
+    private func setupRightVotedSide() {
+        rightButton.backgroundColor = .blue
+        rightButton.setTitleColor(.white, for: .normal)
+
+        leftButton.backgroundColor = .white
+        leftButton.setTitleColor(.black, for: .normal)
+    }
+
 }
