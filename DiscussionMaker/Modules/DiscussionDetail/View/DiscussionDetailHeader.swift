@@ -41,10 +41,8 @@ class DiscussionDetailHeader: UIView {
         $0.titleLabel?.textAlignment = .center
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         $0.setTitleColor(leftSideColor, for: .normal)
-        if #available(iOS 11.0, *) {
-            $0.layer.maskedCorners = defaultLeftMaskedCorners
-            $0.layer.cornerRadius = 7
-        }
+        $0.layer.maskedCorners = defaultLeftMaskedCorners
+        $0.layer.cornerRadius = 7
     }
     let rightImage = UIImageView().with {
         $0.contentMode = .scaleAspectFill
@@ -63,10 +61,8 @@ class DiscussionDetailHeader: UIView {
         $0.titleLabel?.textAlignment = .center
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         $0.setTitleColor(rightSideColor, for: .normal)
-        if #available(iOS 11.0, *) {
-            $0.layer.maskedCorners = defaultRightMaskedCorners
-            $0.layer.cornerRadius = 7
-        }
+        $0.layer.maskedCorners = defaultRightMaskedCorners
+        $0.layer.cornerRadius = 7
     }
     let middleSeparator = UIView().with {
         $0.backgroundColor = .lightGray
@@ -214,21 +210,25 @@ class DiscussionDetailHeader: UIView {
                 rightPercent: rightSidePercent
             )
         } else {
-            leftButtonWidth = availableSpaceForButtons / 2
-            leftButton.backgroundColor = .white
-            leftButton.setTitleColor(leftSideColor, for: .normal)
-            leftButton.setTitle(debate.leftSide.name, for: .normal)
-
-            rightButtonWidth = availableSpaceForButtons / 2
-            rightButton.backgroundColor = .white
-            rightButton.setTitleColor(rightSideColor, for: .normal)
-            rightButton.setTitle(debate.rightSide.name, for: .normal)
-
-            if #available(iOS 11.0, *) {
-                leftButton.layer.maskedCorners = defaultLeftMaskedCorners
-                rightButton.layer.maskedCorners = defaultRightMaskedCorners
-            }
+            defaultSetupForLeftButton(debate)
+            defaultSetupForRightButton(debate)
         }
+    }
+
+    private func defaultSetupForLeftButton(_ debate: Discussion) {
+        leftButtonWidth = availableSpaceForButtons / 2
+        leftButton.backgroundColor = .white
+        leftButton.setTitleColor(leftSideColor, for: .normal)
+        leftButton.setTitle(debate.leftSide.name, for: .normal)
+        leftButton.layer.maskedCorners = defaultLeftMaskedCorners
+    }
+
+    private func defaultSetupForRightButton(_ debate: Discussion) {
+        rightButtonWidth = availableSpaceForButtons / 2
+        rightButton.backgroundColor = .white
+        rightButton.setTitleColor(rightSideColor, for: .normal)
+        rightButton.setTitle(debate.rightSide.name, for: .normal)
+        rightButton.layer.maskedCorners = defaultRightMaskedCorners
     }
 
     private func layoutVotedButton(side: VoteSide, leftPercent: Int, rightPercent: Int) {
@@ -236,13 +236,9 @@ class DiscussionDetailHeader: UIView {
         rightButtonWidth = availableSpaceForButtons * CGFloat(rightPercent) / 100
 
         if leftPercent == 100 {
-            if #available(iOS 11.0, *) {
-                leftButton.layer.maskedCorners = allMaskedCorners
-            }
+            leftButton.layer.maskedCorners = allMaskedCorners
         } else if rightPercent == 100 {
-            if #available(iOS 11.0, *) {
-                rightButton.layer.maskedCorners = allMaskedCorners
-            }
+            rightButton.layer.maskedCorners = allMaskedCorners
         }
 
         switch side {

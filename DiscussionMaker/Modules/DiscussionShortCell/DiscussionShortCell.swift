@@ -32,10 +32,8 @@ class DiscussionShortCell: TableViewCell {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
-        if #available(iOS 11.0, *) {
-            $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-            $0.layer.cornerRadius = 10
-        }
+        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+        $0.layer.cornerRadius = 10
     }
     lazy var leftButton = UIButton().with {
         $0.backgroundColor = .white
@@ -50,19 +48,15 @@ class DiscussionShortCell: TableViewCell {
         $0.titleLabel?.textAlignment = .center
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
         $0.setTitleColor(leftSideColor, for: .normal)
-        if #available(iOS 11.0, *) {
-            $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-            $0.layer.cornerRadius = 7
-        }
+        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+        $0.layer.cornerRadius = 7
     }
     let rightImage = UIImageView().with {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
-        if #available(iOS 11.0, *) {
-            $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-            $0.layer.cornerRadius = 10
-        }
+        $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        $0.layer.cornerRadius = 10
     }
     lazy var rightButton = UIButton().with {
         $0.backgroundColor = .white
