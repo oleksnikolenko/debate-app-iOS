@@ -48,6 +48,7 @@ class AuthButton: UIButton {
 
     private func layout() {
         let imageSize = CGSize(width: 30, height: 30)
+
         providerImageView.pin
             .size(imageSize)
             .start(10)

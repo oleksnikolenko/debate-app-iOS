@@ -6,17 +6,20 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-import UIKit
 import RxSwift
+import SUHelpers
+import UIKit
 
 class InputTextView: UIView {
 
     // MARK: - Subviews
     var textView = UITextView().with {
+        // TODO: - Localize
         $0.text = "Tell others what you think"
         $0.textColor = UIColor.gray
         $0.backgroundColor = UIColor(hex: 0xF1F1F1)
         $0.textContainerInset = UIEdgeInsets(top: 8, left: 12, bottom: 0, right: 12)
+        $0.layer.cornerRadius = 14
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
     private var avatar = UIImageView().with {
@@ -64,6 +67,7 @@ class InputTextView: UIView {
             sendButton,
             separatorView
         )
+
         setup()
     }
 
@@ -92,10 +96,6 @@ class InputTextView: UIView {
             .top()
             .horizontally()
             .height(0.5)
-//        avatar.pin
-//            .size(32)
-//            .start(20)
-//            .bottom(verticalMargin)
 
         sendButton.pin
             .sizeToFit()
@@ -108,11 +108,9 @@ class InputTextView: UIView {
             .height(textViewHeight)
             .marginHorizontal(10)
             .bottom(verticalMargin)
-//            .vCenter(to: avatar.edge.vCenter)
     }
 
     private func setup() {
-        textView.layer.cornerRadius = 14
         backgroundColor = .white
     }
 
@@ -122,14 +120,6 @@ class InputTextView: UIView {
 
     override func resignFirstResponder() -> Bool {
         return textView.resignFirstResponder() && super.resignFirstResponder()
-    }
-
-}
-
-extension Comparable {
-
-    public func inRange(of range: ClosedRange<Self>) -> Self {
-        return min(max(range.lowerBound, self), range.upperBound)
     }
 
 }

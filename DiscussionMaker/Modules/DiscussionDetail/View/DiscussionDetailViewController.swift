@@ -182,7 +182,6 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
 
     private func layout() {
         header.sizeToFit()
-//        keyboardHeight = max(keyboardHeight, view.pin.safeArea.bottom)
 
         tableView.pin
             .top()

@@ -16,6 +16,7 @@
 		861DE6AB2456157700B864EB /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6AA2456157700B864EB /* Date.swift */; };
 		861DE6AD245615B500B864EB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6AC245615B500B864EB /* DateFormatter.swift */; };
 		861DE6AF245615D200B864EB /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6AE245615D200B864EB /* Double.swift */; };
+		864EBE6C24587777005A207B /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864EBE6B24587777005A207B /* Comparable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		861DE6AA2456157700B864EB /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		861DE6AC245615B500B864EB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		861DE6AE245615D200B864EB /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		864EBE6B24587777005A207B /* Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				861DE6AA2456157700B864EB /* Date.swift */,
 				861DE6AC245615B500B864EB /* DateFormatter.swift */,
 				861DE6AE245615D200B864EB /* Double.swift */,
+				864EBE6B24587777005A207B /* Comparable.swift */,
 			);
 			path = SUHelpers;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				861DE6AD245615B500B864EB /* DateFormatter.swift in Sources */,
+				864EBE6C24587777005A207B /* Comparable.swift in Sources */,
 				39EFACDC23DDAEB700E1E8BA /* AddSubviews.swift in Sources */,
 				861DE6AB2456157700B864EB /* Date.swift in Sources */,
 				861DE6A52455DB3C00B864EB /* UIColor.swift in Sources */,
@@ -368,7 +372,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "59WR7TNTSB";
+				DEVELOPMENT_TEAM = 59WR7TNTSB;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -395,7 +399,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "59WR7TNTSB";
+				DEVELOPMENT_TEAM = 59WR7TNTSB;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
