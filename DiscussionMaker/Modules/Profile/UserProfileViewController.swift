@@ -26,6 +26,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         $0.layer.cornerRadius = avatarSize.height / 2
         $0.layer.masksToBounds = true
         $0.clipsToBounds = true
+        $0.isUserInteractionEnabled = true
     }
     let changeAvatarButton = UIButton().with {
         // TODO: - Localize
@@ -142,23 +143,26 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
     }
 
     func bindObservables() {
-        changeAvatarButton.didClick
-            .subscribe(onNext: { [weak self] in
-                guard let `self` = self else { return }
+        Observable.merge(
+            changeAvatarButton.didClick,
+            avatar.didClick
+        ).subscribe(onNext: { [weak self] in
+            guard let `self` = self else { return }
 
-                self.dataPicker.tryToFetchImage(vc: self) { [weak self] in
-                    self?.interactor?.modify(
-                        request: .init(avatar: $0, name: nil)
-                    )
-                }
-            }).disposed(by: disposeBag)
+            self.dataPicker.tryToFetchImage(vc: self) { [weak self] in
+                self?.interactor?.modify(
+                    request: .init(avatar: $0, name: nil)
+                )
+            }
+        }).disposed(by: disposeBag)
 
-        changeNameButton.didClick
-            .subscribe(onNext: { [weak self] in
-                guard let `self` = self else { return }
-
-                self.presentAlertController()
-            }).disposed(by: disposeBag)
+        Observable.merge(
+            changeNameButton.didClick,
+            userNameLabel.didClick
+        ).subscribe(onNext: { [weak self] in
+            guard let `self` = self else { return }
+            self.presentChangeNameAlertController()
+        }).disposed(by: disposeBag)
 
         userIdLabel.didClick
             .compactMap { [weak self] in self?.viewModel?.user.id }
@@ -258,7 +262,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
     }
 
     // MARK: - Private methods
-    private func presentAlertController() {
+    private func presentChangeNameAlertController() {
         var textField: UITextField?
 
         let alert = UIAlertController(title: "Alert", message: nil, preferredStyle: .alert)
@@ -270,13 +274,11 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
             $0.text = self.userNameLabel.text
         }
         alert.addAction(.init(title: "Save", style: .default, handler: { [weak self] _ in
-            guard let `self` = self else { return }
-
-            self.interactor?.modify(request: .init(avatar: nil, name: textField?.text))
+            self?.interactor?.modify(request: .init(avatar: nil, name: textField?.text))
         }))
         alert.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
 
-        self.present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 
 }
