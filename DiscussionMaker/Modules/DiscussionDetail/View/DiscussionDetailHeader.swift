@@ -132,53 +132,55 @@ class DiscussionDetailHeader: UIView {
     }
 
     private func layout() {
-        shade.pin
-            .horizontally()
-            .height(150)
-            .top()
+        UIView.animate(withDuration: 0.5) {
+            self.shade.pin
+                .horizontally()
+                .height(150)
+                .top()
 
-        middleSeparator.pin
-            .height(150)
-            .hCenter()
-            .top()
-            .width(middleSeparatorWidth)
+            self.middleSeparator.pin
+                .height(150)
+                .hCenter()
+                .top()
+                .width(self.middleSeparatorWidth)
 
-        leftImage.pin
-            .height(150)
-            .start()
-            .top(to: middleSeparator.edge.top)
-            .before(of: middleSeparator)
+            self.leftImage.pin
+                .height(150)
+                .start()
+                .top(to: self.middleSeparator.edge.top)
+                .before(of: self.middleSeparator)
 
-        leftButton.pin
-            .below(of: leftImage)
-            .start(buttonHorizontalMargin)
-            .height(40)
-            .marginTop(24)
-            .width(leftButtonWidth ?? availableSpaceForButtons / 2)
+            self.leftButton.pin
+                .below(of: self.leftImage)
+                .start(self.buttonHorizontalMargin)
+                .height(40)
+                .marginTop(24)
+                .width(self.leftButtonWidth ?? self.availableSpaceForButtons / 2)
 
-        rightImage.pin
-            .height(150)
-            .top(to: middleSeparator.edge.top)
-            .after(of: middleSeparator)
-            .end()
+            self.rightImage.pin
+                .height(150)
+                .top(to: self.middleSeparator.edge.top)
+                .after(of: self.middleSeparator)
+                .end()
 
-        rightButton.pin
-            .below(of: rightImage)
-            .end(buttonHorizontalMargin)
-            .height(40)
-            .marginTop(24)
-            .width(rightButtonWidth ?? availableSpaceForButtons / 2)
+            self.rightButton.pin
+                .below(of: self.rightImage)
+                .end(self.buttonHorizontalMargin)
+                .height(40)
+                .marginTop(24)
+                .width(self.rightButtonWidth ?? self.availableSpaceForButtons / 2)
 
-        messageLabel.pin
-            .below(of: leftButton)
-            .start(20)
-            .sizeToFit()
-            .marginTop(16)
+            self.messageLabel.pin
+                .below(of: self.leftButton)
+                .start(20)
+                .sizeToFit()
+                .marginTop(16)
 
-        messageCounter.pin
-            .after(of: messageLabel, aligned: .center)
-            .marginStart(12)
-            .sizeToFit()
+            self.messageCounter.pin
+                .after(of: self.messageLabel, aligned: .center)
+                .marginStart(12)
+                .sizeToFit()
+        }
     }
 
     // MARK: - Public methods
@@ -186,10 +188,11 @@ class DiscussionDetailHeader: UIView {
         leftImage.kf.setImage(with: try? debate.leftSide.image.asURL())
         rightImage.kf.setImage(with: try? debate.rightSide.image.asURL())
 
-        setupButtons(debate)
-        messageCounter.text = debate.messagesList.messages.count.description
-
-        setNeedsLayout()
+        UIView.animate(withDuration: 0.5) {
+            self.setupButtons(debate)
+            self.messageCounter.text = debate.messagesList.messages.count.description
+            self.layoutIfNeeded()
+        }
     }
 
     // MARK: - Private methods
