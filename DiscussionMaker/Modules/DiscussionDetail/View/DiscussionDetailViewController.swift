@@ -23,11 +23,35 @@ protocol DiscussionDetailDisplayLogic: class {
 
 class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayLogic {
 
+    // MARK: Subviews
+    let header = DiscussionDetailHeader(frame: .zero)
+    lazy var tableView = UITableView().with {
+        $0.dataSource = self
+        $0.delegate = self
+        $0.tableHeaderView = header
+        $0.separatorInset = .zero
+        $0.layoutMargins = .zero
+        $0.es.addPullToRefresh { [weak self] in
+            self?.interactor?.reloadDebate()
+        }
+        $0.es.addInfiniteScrolling { [weak self] in
+            self?.interactor?.getNextMessagesPage()
+        }
+    }
+    lazy var inputTextView = InputTextView().with {
+        $0.textView.delegate = self
+    }
+    let backgroundView = UIButton().with {
+        $0.backgroundColor = .white
+        $0.alpha = 0
+    }
+
+    // MARK: - Properties
     var interactor: DiscussionDetailBusinessLogic?
     var router: (NSObjectProtocol & DiscussionDetailRoutingLogic & DiscussionDetailDataPassing)?
     var debate: Discussion
-    var keyboardHeight: CGFloat = 0
-    let disposeBag = DisposeBag()
+    private lazy var keyboardHeight: CGFloat = view.pin.safeArea.bottom
+    private let disposeBag = DisposeBag()
 
     var sections = [DiscussionDetailSection]() {
         didSet {
@@ -59,25 +83,6 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
                 }
             }
         }
-    }
-
-    // MARK: Subviews
-    let header = DiscussionDetailHeader(frame: .zero)
-    lazy var tableView = UITableView().with {
-        $0.dataSource = self
-        $0.delegate = self
-        $0.tableHeaderView = header
-        $0.separatorInset = .zero
-        $0.layoutMargins = .zero
-        $0.es.addPullToRefresh { [weak self] in
-            self?.interactor?.reloadDebate()
-        }
-        $0.es.addInfiniteScrolling { [weak self] in
-            self?.interactor?.getNextMessagesPage()
-        }
-    }
-    let inputTextView = InputTextView().with {
-        $0.backgroundColor = .red
     }
 
     // MARK: Object lifecycle
@@ -125,7 +130,8 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
 
         view.addSubviews(
             tableView,
-            inputTextView
+            inputTextView,
+            backgroundView
         )
 
         bindObservables()
@@ -159,6 +165,12 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
                 self.tableView.es.resetNoMoreData()
                 self.interactor?.vote(request: .init(sideId: self.debate.rightSide.id))
             }).disposed(by: disposeBag)
+
+        backgroundView.didClick
+            .subscribe(onNext: { [unowned self] in
+                self.inputTextView.textView.resignFirstResponder()
+                self.view.setNeedsLayout()
+            }).disposed(by: disposeBag)
     }
 
     // MARK: - Layout
@@ -170,12 +182,22 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
 
     private func layout() {
         header.sizeToFit()
+//        keyboardHeight = max(keyboardHeight, view.pin.safeArea.bottom)
 
-        tableView.pin.all()
+        tableView.pin
+            .top()
+            .horizontally()
+            .above(of: inputTextView)
+
         inputTextView.pin
             .horizontally()
             .sizeToFit(.width)
             .bottom(self.keyboardHeight)
+
+        backgroundView.pin
+            .above(of: inputTextView)
+            .horizontally()
+            .top()
     }
 
     private func animateKeyboard(_ height: CGFloat, _ duration: Double, _ curve: UInt) {
@@ -242,6 +264,17 @@ extension DiscussionDetailViewController: UITableViewDelegate, UITableViewDataSo
             cell.setup(message)
 
             return cell
+        }
+    }
+
+}
+
+extension DiscussionDetailViewController: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if inputTextView.textView.textColor == UIColor.gray {
+            inputTextView.textView.text = ""
+            inputTextView.textView.textColor = UIColor.black
         }
     }
 
