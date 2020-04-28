@@ -19,7 +19,25 @@ protocol AuthorizationScreenDisplayLogic: class {
 }
 
 class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDisplayLogic {
-    
+
+    // MARK: - Subviews
+    var authProviderButtons: [AuthButton] = [] {
+        didSet {
+            oldValue.forEach { $0.removeFromSuperview() }
+            view.addSubviews(authProviderButtons)
+            view.setNeedsLayout()
+        }
+    }
+    private var informationLabel = UILabel().with {
+        $0.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        $0.textColor = UIColor.black
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+        // TODO: - Localize
+        $0.text = "Please log in to vote and comment on Whocooler"
+    }
+
+    // MARK: - Properties
     var interactor: AuthorizationScreenBusinessLogic?
     var router: (NSObjectProtocol & AuthorizationScreenRoutingLogic & AuthorizationScreenDataPassing)?
 
@@ -32,22 +50,17 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
             }
         }
     }
-    var authProviderButtons: [AuthButton] = [] {
-        didSet {
-            oldValue.forEach { $0.removeFromSuperview() }
-            view.addSubviews(authProviderButtons)
-            view.setNeedsLayout()
-        }
-    }
 
     // MARK: Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
         setup()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         setup()
     }
 
@@ -70,6 +83,7 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
         super.viewDidLoad()
 
         view.backgroundColor = .white
+        addSubviews()
         interactor?.getProviders(request: .init())
     }
 
@@ -80,8 +94,14 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
     }
 
     func layout() {
-        let buttonSize = CGSize(width: 220, height: 40)
+        let buttonSize = CGSize(width: 250, height: 44)
         var lastEdge = view.edge.vCenter
+
+        informationLabel.pin
+            .horizontally(view.frame.width / 6)
+            .bottom(to: view.edge.vCenter)
+            .sizeToFit(.width)
+            .marginBottom(64)
 
         authProviderButtons.forEach {
             $0.pin
@@ -92,6 +112,11 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
 
             lastEdge = $0.edge.bottom
         }
+    }
+
+    // MARK: - Private methods
+    private func addSubviews() {
+        view.addSubviews(informationLabel)
     }
 
     func displayProviders(viewModel: AuthorizationScreen.Providers.ViewModel) {
