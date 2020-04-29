@@ -1043,6 +1043,7 @@
 				CODE_SIGN_ENTITLEMENTS = DiscussionMaker/DiscussionMaker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 146;
 				DEVELOPMENT_TEAM = VZB2Q96A5B;
 				INFOPLIST_FILE = DiscussionMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1065,6 +1066,7 @@
 				CODE_SIGN_ENTITLEMENTS = DiscussionMaker/DiscussionMaker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 146;
 				DEVELOPMENT_TEAM = VZB2Q96A5B;
 				INFOPLIST_FILE = DiscussionMaker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
