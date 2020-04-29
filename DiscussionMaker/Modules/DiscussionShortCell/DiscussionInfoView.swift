@@ -15,13 +15,13 @@ class DiscussionInfoView: UIView {
         $0.image = UIImage(named: "user")
     }
     let userCount = UILabel().with {
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
     }
     let messageImage = UIImageView().with {
         $0.image = UIImage(named: "message")
     }
     let messageCount = UILabel().with {
-        $0.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
     }
 
     // MARK: - Init
@@ -49,25 +49,25 @@ class DiscussionInfoView: UIView {
 
     private func layout() {
         userImage.pin
-            .size(12)
+            .size(18)
             .topStart()
 
         userCount.pin
             .after(of: userImage)
             .vCenter(to: userImage.edge.vCenter)
-            .marginStart(8)
+            .marginStart(10)
             .sizeToFit()
 
         messageImage.pin
-            .size(12)
+            .size(18)
             .after(of: userCount)
-            .marginStart(10)
+            .marginStart(12)
             .top()
 
         messageCount.pin
             .after(of: messageImage)
             .vCenter(to: messageImage.edge.vCenter)
-            .marginStart(8)
+            .marginStart(10)
             .sizeToFit()
     }
 

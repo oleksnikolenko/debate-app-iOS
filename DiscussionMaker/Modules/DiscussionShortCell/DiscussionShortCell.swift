@@ -16,9 +16,8 @@ class DiscussionShortCell: TableViewCell {
     override var addableSubviews: [UIView] { [
         category,
         leftImage,
-        leftButton,
+        voteButton,
         rightImage,
-        rightButton,
         middleSeparator,
         bottomSeparator,
         discussionInfoView
@@ -35,45 +34,13 @@ class DiscussionShortCell: TableViewCell {
         $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         $0.layer.cornerRadius = 10
     }
-    lazy var leftButton = UIButton().with {
-        $0.backgroundColor = .white
-        $0.layer.shadowColor = UIColor.lightGray.cgColor
-        // Offset - 1 to be symmetric with right button which has +1 offset
-        $0.layer.shadowOffset = CGSize(width: -1, height: 1)
-        $0.layer.shadowOpacity = 1
-        $0.layer.shadowRadius = 2
-        $0.layer.masksToBounds = false
-        $0.titleLabel?.numberOfLines = 3
-        $0.titleLabel?.adjustsFontSizeToFitWidth = true
-        $0.titleLabel?.textAlignment = .center
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        $0.setTitleColor(leftSideColor, for: .normal)
-        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-        $0.layer.cornerRadius = 7
-    }
+    let voteButton = SideVoteButton()
     let rightImage = UIImageView().with {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
         $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         $0.layer.cornerRadius = 10
-    }
-    lazy var rightButton = UIButton().with {
-        $0.backgroundColor = .white
-        $0.layer.shadowColor = UIColor.lightGray.cgColor
-        $0.layer.shadowOffset = CGSize(width: 1, height: 1)
-        $0.layer.shadowOpacity = 1
-        $0.layer.shadowRadius = 2
-        $0.layer.masksToBounds = false
-        $0.titleLabel?.numberOfLines = 3
-        $0.titleLabel?.adjustsFontSizeToFitWidth = true
-        $0.titleLabel?.textAlignment = .center
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        $0.setTitleColor(rightSideColor, for: .normal)
-        if #available(iOS 11.0, *) {
-            $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-            $0.layer.cornerRadius = 7
-        }
     }
     let middleSeparator = UIView().with {
         $0.backgroundColor = .lightGray
@@ -133,12 +100,11 @@ class DiscussionShortCell: TableViewCell {
             .top(to: middleSeparator.edge.top)
             .before(of: middleSeparator)
 
-        leftButton.pin
+        voteButton.pin
+            .horizontally(30)
+            .sizeToFit(.width)
             .below(of: leftImage)
-            .start(30)
-            .height(40)
             .marginTop(24)
-            .end(to: middleSeparator.edge.left)
 
         rightImage.pin
             .height(150)
@@ -146,15 +112,8 @@ class DiscussionShortCell: TableViewCell {
             .after(of: middleSeparator)
             .end(10)
 
-        rightButton.pin
-            .below(of: rightImage)
-            .end(30)
-            .height(40)
-            .marginTop(24)
-            .start(to: middleSeparator.edge.right)
-
         discussionInfoView.pin
-            .below(of: rightButton)
+            .below(of: voteButton)
             .marginTop(20)
             .sizeToFit()
             .hCenter()
@@ -172,11 +131,9 @@ class DiscussionShortCell: TableViewCell {
         category.text = discussion.category.name
 
         leftImage.kf.setImage(with: try? discussion.leftSide.image.asURL())
-        leftButton.setTitle(discussion.leftSide.name, for: .normal)
-
-        rightButton.setTitle(discussion.rightSide.name, for: .normal)
         rightImage.kf.setImage(with: try? discussion.rightSide.image.asURL())
 
+        voteButton.setup(discussion)
         discussionInfoView.setup(discussion)
 
         setNeedsLayout()
