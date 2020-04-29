@@ -140,8 +140,7 @@ class SideVoteButton: UIView {
             .start(4)
             .end(to: votedShade.edge.right)
             .sizeToFit(.width)
-            .marginBottom(4)
-            .marginTop(4)
+            .marginVertical(4)
 
         leftName.pin
             .above(of: leftPercentLabel)
@@ -155,8 +154,7 @@ class SideVoteButton: UIView {
             .start(to: votedShade.edge.right)
             .end(4)
             .sizeToFit(.width)
-            .marginTop(4)
-            .marginBottom(4)
+            .marginVertical(4)
 
         rightName.pin
             .above(of: rightPercentLabel)
@@ -180,8 +178,7 @@ class SideVoteButton: UIView {
             .start(4)
             .end(to: votedShade.edge.left)
             .sizeToFit(.width)
-            .marginBottom(4)
-            .marginTop(4)
+            .marginVertical(4)
 
         leftName.pin
             .above(of: leftPercentLabel)
@@ -195,9 +192,7 @@ class SideVoteButton: UIView {
             .start(to: votedShade.edge.left)
             .end(4)
             .sizeToFit(.width)
-            .marginTop(4)
-
-            .marginBottom(4)
+            .marginVertical(4)
 
         rightName.pin
             .above(of: rightPercentLabel)
@@ -219,8 +214,7 @@ class SideVoteButton: UIView {
                 .start(4)
                 .end(4)
                 .sizeToFit(.width)
-                .marginBottom(4)
-                .marginTop(4)
+                .marginVertical(4)
 
             leftName.pin
                 .above(of: leftPercentLabel)
@@ -236,8 +230,7 @@ class SideVoteButton: UIView {
                 .start(4)
                 .end(4)
                 .sizeToFit(.width)
-                .marginBottom(4)
-                .marginTop(4)
+                .marginVertical(4)
 
             rightName.pin
                 .above(of: rightPercentLabel)
