@@ -48,24 +48,9 @@ class DiscussionDetailHeader: UIView {
     }
 
     // MARK: - Properties
-    private let leftSideColor = UIColor(hex: 0x29AB60)
-    private let rightSideColor = UIColor(hex: 0xE74C3C)
-    private let buttonHorizontalMargin: CGFloat = 30
-    private var availableSpaceForButtons: CGFloat {
-        frame.width - 2 * buttonHorizontalMargin - middleSeparatorWidth
-    }
     private let middleSeparatorWidth: CGFloat = 0.5
-    private var leftButtonWidth: CGFloat?
-    private var rightButtonWidth: CGFloat?
-    private let defaultLeftMaskedCorners: CACornerMask = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-    private let defaultRightMaskedCorners: CACornerMask = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
-    private let allMaskedCorners: CACornerMask = [
-        .layerMinXMinYCorner,
-        .layerMinXMaxYCorner,
-        .layerMaxXMaxYCorner,
-        .layerMaxXMinYCorner
-    ]
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
 

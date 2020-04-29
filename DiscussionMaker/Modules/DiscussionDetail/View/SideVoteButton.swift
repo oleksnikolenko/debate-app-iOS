@@ -119,9 +119,10 @@ class SideVoteButton: UIView {
         votedShade.isHidden = false
         middleSeparator.isHidden = true
 
-        if userChosenSide == .left {
+        switch userChosenSide {
+        case .left:
             leftVotedLayout()
-        } else {
+        case .right:
             rightVotedLayout()
         }
     }
