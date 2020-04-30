@@ -17,6 +17,7 @@
 		861DE6AD245615B500B864EB /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6AC245615B500B864EB /* DateFormatter.swift */; };
 		861DE6AF245615D200B864EB /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6AE245615D200B864EB /* Double.swift */; };
 		864EBE6C24587777005A207B /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864EBE6B24587777005A207B /* Comparable.swift */; };
+		86B4A3B92459EDF300EFE7C9 /* GradientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3B82459EDF300EFE7C9 /* GradientLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		861DE6AC245615B500B864EB /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		861DE6AE245615D200B864EB /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		864EBE6B24587777005A207B /* Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
+		86B4A3B82459EDF300EFE7C9 /* GradientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				861DE6AC245615B500B864EB /* DateFormatter.swift */,
 				861DE6AE245615D200B864EB /* Double.swift */,
 				864EBE6B24587777005A207B /* Comparable.swift */,
+				86B4A3B82459EDF300EFE7C9 /* GradientLabel.swift */,
 			);
 			path = SUHelpers;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				861DE6AD245615B500B864EB /* DateFormatter.swift in Sources */,
+				86B4A3B92459EDF300EFE7C9 /* GradientLabel.swift in Sources */,
 				864EBE6C24587777005A207B /* Comparable.swift in Sources */,
 				39EFACDC23DDAEB700E1E8BA /* AddSubviews.swift in Sources */,
 				861DE6AB2456157700B864EB /* Date.swift in Sources */,

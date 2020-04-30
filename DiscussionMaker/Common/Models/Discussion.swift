@@ -31,15 +31,11 @@ extension Discussion {
     }
 
     var leftSidePercents: Int {
-        Int((leftSide.ratingCount / totalVotes) * 100)
+        Int((Double(leftSide.ratingCount) / Double(totalVotes)) * 100)
     }
 
     var rightSidePercents: Int {
-        Int((rightSide.ratingCount / totalVotes) * 100)
-    }
-
-    var name: String {
-        "\(leftSide.name) vs \(rightSide.name)"
+        100 - leftSidePercents
     }
 
 }

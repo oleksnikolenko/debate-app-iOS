@@ -154,13 +154,25 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
                 self?.interactor?.sendMessage(request: .init(message: $0))
             }).disposed(by: disposeBag)
 
-        header.leftButton.didClick
+        header.voteButton.leftName.didClick
             .subscribe(onNext: { [unowned self] _ in
                 self.tableView.es.resetNoMoreData()
                 self.interactor?.vote(request: .init(sideId: self.debate.leftSide.id))
             }).disposed(by: disposeBag)
 
-        header.rightButton.didClick
+        header.voteButton.leftPercentLabel.didClick
+            .subscribe(onNext: { [unowned self] _ in
+                self.tableView.es.resetNoMoreData()
+                self.interactor?.vote(request: .init(sideId: self.debate.leftSide.id))
+            }).disposed(by: disposeBag)
+
+        header.voteButton.rightName.didClick
+            .subscribe(onNext: { [unowned self] _ in
+                self.tableView.es.resetNoMoreData()
+                self.interactor?.vote(request: .init(sideId: self.debate.rightSide.id))
+            }).disposed(by: disposeBag)
+
+        header.voteButton.rightPercentLabel.didClick
             .subscribe(onNext: { [unowned self] _ in
                 self.tableView.es.resetNoMoreData()
                 self.interactor?.vote(request: .init(sideId: self.debate.rightSide.id))
