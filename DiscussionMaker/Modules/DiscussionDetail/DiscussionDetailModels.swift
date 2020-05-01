@@ -45,24 +45,28 @@ enum DiscussionDetailCellType {
     case message(Message)
 }
 extension DiscussionDetailCellType: Equatable {
+
     static func == (lhs: DiscussionDetailCellType, rhs: DiscussionDetailCellType) -> Bool {
         switch (lhs, rhs) {
         case (.message(let lMessage), .message(let rMessage)):
             return lMessage == rMessage
         }
     }
+
 }
 
 enum DiscussionDetailSectionType {
     case message(Message)
 }
 extension DiscussionDetailSectionType: Equatable {
+
     static func == (lhs: DiscussionDetailSectionType, rhs: DiscussionDetailSectionType) -> Bool {
         switch (lhs, rhs) {
         case (.message(let lMessage), .message(let rMessage)):
             return lMessage == rMessage
         }
     }
+
 }
 
 typealias DiscussionDetailSection = (section: DiscussionDetailSectionType, rows: [DiscussionDetailCellType])

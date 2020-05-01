@@ -32,7 +32,6 @@ class VoteMessageButton: UIView {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     var interactor: VoteMessageInteractor?
-    var didClickVote = PublishSubject<Votable>()
 
     var model: Votable? {
         didSet {
