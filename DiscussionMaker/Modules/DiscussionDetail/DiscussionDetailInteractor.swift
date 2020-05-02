@@ -31,6 +31,8 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
     var worker: DiscussionDetailWorker
     let disposeBag = DisposeBag()
 
+    private let oneReplyBatchCount = 5
+
     init() {
         worker = DiscussionDetailWorker()
     }
@@ -89,7 +91,7 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
                 self.debate.messagesList.messages[request.index].replyList =
                     $0.messages + self.debate.messagesList.messages[request.index].replyList
 
-                self.debate.messagesList.messages[request.index].replyCount -= 5
+                self.debate.messagesList.messages[request.index].replyCount -= self.oneReplyBatchCount
 
                 self.presenter?.presentNewRepliesBatch(message: self.debate.messagesList.messages[request.index])
             }).disposed(by: disposeBag)
@@ -109,6 +111,7 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
                     let `self` = self,
                     let index = self.getIndexOfMessage(id: request.threadId)
                 else { return }
+    
                 self.debate.messagesList.messages[index].replyList += [$0]
 
                 self.presenter?.presentNewReply(
