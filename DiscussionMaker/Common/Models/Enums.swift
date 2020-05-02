@@ -35,3 +35,8 @@ public enum VoteType: String, Codable {
         }
     }
 }
+
+public enum MessageStyle {
+    case message
+    case reply
+}

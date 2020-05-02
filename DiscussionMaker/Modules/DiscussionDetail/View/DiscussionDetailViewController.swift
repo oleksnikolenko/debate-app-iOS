@@ -11,14 +11,14 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
-import RxSwift
 import PinLayout
+import RxSwift
 
 protocol DiscussionDetailDisplayLogic: class {
     func displayDebate(viewModel: DiscussionDetail.Initializing.ViewModel)
     func setReachEnd(_ didReach: Bool)
     func didFinishSendMessage()
+    func reloadMessage(_ messageId: String, threadMessageId: String?)
 }
 
 class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayLogic {
@@ -29,8 +29,7 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
         $0.dataSource = self
         $0.delegate = self
         $0.tableHeaderView = header
-        $0.separatorInset = .zero
-        $0.layoutMargins = .zero
+        $0.separatorStyle = .none
         $0.es.addPullToRefresh { [weak self] in
             self?.interactor?.reloadDebate()
         }
@@ -52,6 +51,7 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
     var debate: Discussion
     private lazy var keyboardHeight: CGFloat = view.pin.safeArea.bottom
     private let disposeBag = DisposeBag()
+    private let oneReplyBatchCount = 5
 
     var sections = [DiscussionDetailSection]() {
         didSet {
@@ -65,7 +65,7 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
                     })
                     var insertSections = [Int]()
                     var removeSections = [Int]()
-                    
+
                     diff.forEach {
                         switch $0 {
                         case .insert(let offset, _, _):
@@ -151,7 +151,12 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
 
         inputTextView.sendTap
             .subscribe(onNext: { [weak self] in
-                self?.interactor?.sendMessage(request: .init(message: $0))
+                if let threadId = $1 {
+                    self?.interactor?.sendReply(request: .init(text: $0, threadId: threadId))
+                } else {
+                    self?.interactor?.sendMessage(request: .init(message: $0))
+                }
+                self?.inputTextView.emptyInput()
             }).disposed(by: disposeBag)
 
         header.voteButton.leftName.didClick
@@ -255,6 +260,46 @@ class DiscussionDetailViewController: UIViewController, DiscussionDetailDisplayL
         inputTextView.emptyInput()
     }
 
+    func setupReplyInputTextView(threadId: String, message: Message) {
+        inputTextView.threadId = threadId
+        inputTextView.textView.becomeFirstResponder()
+        inputTextView.textView.text = message.user.name + ", "
+    }
+
+    func reloadMessage(_ messageId: String, threadMessageId: String?) {
+        for (sectionIndex, section) in sections.enumerated() {
+            switch section.section {
+            case .message(let message):
+                if message.id == messageId {
+                    let replies: [DiscussionDetailCellType] = message.replyList.map { .reply($0) }
+                    sections[sectionIndex] = (.message(message), rows: [.message(message)] + replies)
+                    tableView.reloadSections([sectionIndex], with: .automatic)
+
+                    let rowIndex = threadMessageId != nil
+                        ? section.rows.count
+                        : min(oneReplyBatchCount - 1, replies.count - 1)
+
+                    tableView.scrollToRow(
+                        at: IndexPath(row: rowIndex, section: sectionIndex),
+                        at: .bottom,
+                        animated: true
+                    )
+                }
+            }
+        }
+    }
+
+}
+
+extension DiscussionDetailViewController: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.gray {
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }
+    }
+
 }
 
 extension DiscussionDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -272,20 +317,31 @@ extension DiscussionDetailViewController: UITableViewDelegate, UITableViewDataSo
         case .message(let message):
             let cell = tableView.cell(for: DiscussionChatCell.self)
 
+            cell.style = .message
             cell.setup(message)
 
+            cell.replyPressed.subscribe(onNext: { [weak self] in
+                self?.setupReplyInputTextView(threadId: $0, message: message)
+            }).disposed(by: disposeBag)
+
+            cell.showRepliesPressed.subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                self.interactor?.getNextRepliesPage(request: .init(parentMessage: message, index: indexPath.section))
+            }).disposed(by: disposeBag)
+
             return cell
-        }
-    }
 
-}
+        case .reply(let reply):
+            let cell = tableView.cell(for: DiscussionChatCell.self)
 
-extension DiscussionDetailViewController: UITextViewDelegate {
+            cell.style = .reply
+            cell.setup(reply)
 
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if inputTextView.textView.textColor == UIColor.gray {
-            inputTextView.textView.text = ""
-            inputTextView.textView.textColor = UIColor.black
+            cell.replyPressed.subscribe(onNext: { [weak self] in
+                self?.setupReplyInputTextView(threadId: $0, message: reply)
+            }).disposed(by: disposeBag)
+
+            return cell
         }
     }
 

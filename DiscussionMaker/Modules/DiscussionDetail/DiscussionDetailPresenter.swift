@@ -14,6 +14,8 @@ import UIKit
 
 protocol DiscussionDetailPresentationLogic {
     func presentDebate(response: DiscussionDetail.Initializing.Response)
+    func presentNewRepliesBatch(message: Message)
+    func presentNewReply(parentMessage: Message, threadMessage: Message)
     func didFinishSendMessage()
 }
 
@@ -35,6 +37,14 @@ class DiscussionDetailPresenter: DiscussionDetailPresentationLogic {
         debate.messagesList.messages.map {
             (.message($0), rows: [.message($0)])
         }
+    }
+
+    func presentNewRepliesBatch(message: Message) {
+        viewController?.reloadMessage(message.id, threadMessageId: nil)
+    }
+
+    func presentNewReply(parentMessage: Message, threadMessage: Message) {
+        viewController?.reloadMessage(parentMessage.id, threadMessageId: threadMessage.id)
     }
 
     func didFinishSendMessage() {

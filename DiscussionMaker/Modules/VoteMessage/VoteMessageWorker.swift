@@ -13,24 +13,26 @@ class VoteMessageWorker {
 
     let networkService = NetworkServiceImplementation.shared
 
-    func postVote(objectId: String, voteType: VoteType) -> Observable<VoteModel> {
-        networkService.getData(
+    func postVote(objectId: String, voteType: VoteType, style: MessageStyle) -> Observable<VoteModel> {
+        let objectIdParameterName = style == .message ? "message_id" : "thread_id"
+
+        return networkService.getData(
             endpoint: "messagevote",
             parameters: [
                 "is_positive": voteType == .up ? true : false,
-                "message_id": objectId
+                objectIdParameterName: objectId
             ],
             method: .post,
             shouldLocalize: false
         )
     }
 
-    func deleteVote(objectId: String) -> Observable<VoteModel> {
-        networkService.getData(
+    func deleteVote(objectId: String, style: MessageStyle) -> Observable<VoteModel> {
+        let objectIdParameterName = style == .message ? "message_id" : "thread_id"
+
+        return networkService.getData(
             endpoint: "messagevote",
-            parameters: [
-                "message_id": objectId
-            ],
+            parameters: [objectIdParameterName: objectId],
             method: .delete,
             shouldLocalize: false
         )

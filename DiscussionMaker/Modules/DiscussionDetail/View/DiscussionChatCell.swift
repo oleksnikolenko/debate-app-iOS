@@ -6,33 +6,61 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
+import RxSwift
 import SUHelpers
-import UIKit
 
 class DiscussionChatCell: UITableViewCell {
 
     // MARK: - Subviews
-    lazy var avatar = UIImageView().with {
-        $0.layer.cornerRadius = avatarSize.height / 2
+    private lazy var avatar = UIImageView().with {
         $0.layer.masksToBounds = true
         $0.clipsToBounds = true
     }
-    let name = UILabel().with {
+    private let name = UILabel().with {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
     }
-    let messageLabel = UILabel().with {
+    private let messageLabel = UILabel().with {
         $0.numberOfLines = 0
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
-    let dateLabel = UILabel().with {
+    private let dateLabel = UILabel().with {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.textColor = .lightGray
     }
-    let voteButton = VoteMessageButton()
+    private let replyButton = UIButton().with {
+        $0.setTitleColor(.lightGray, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        // TODO: - Localize
+        $0.setTitle("Reply", for: .normal)
+    }
+    private let voteButton = VoteMessageButton()
+    private let showRepliesButton = UIButton().with {
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+    }
 
     // MARK: - Properties
+    var style: MessageStyle = .message {
+        didSet {
+            voteButton.style = style
+        }
+    }
     var model: Message?
-    let avatarSize = CGSize(width: 36, height: 36)
+    var showRepliesPressed: Observable<Void> {
+        showRepliesButton.didClick.asObservable()
+    }
+    var replyPressed: Observable<String> {
+        replyButton.rx.tap
+            .map { [unowned self] in
+                self.style == .message ? self.model?.id : self.model?.threadId
+            }
+            .skipNil()
+    }
+
+    private var hasReplies: Bool {
+        guard let model = model else { return false }
+        return model.replyCount > 0
+    }
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -40,12 +68,15 @@ class DiscussionChatCell: UITableViewCell {
 
         clipsToBounds = true
         selectionStyle = .none
+
         addSubviews(
             avatar,
             name,
             messageLabel,
             dateLabel,
-            voteButton
+            voteButton,
+            replyButton,
+            showRepliesButton
         )
     }
 
@@ -66,15 +97,17 @@ class DiscussionChatCell: UITableViewCell {
 
         return CGSize(
             width: size.width,
-            height: voteButton.frame.maxY + 12
+            height: hasReplies
+                ? showRepliesButton.frame.maxY + style.bottomMargin
+                : voteButton.frame.maxY + style.bottomMargin
         )
     }
 
     private func layout() {
         avatar.pin
-            .size(avatarSize)
-            .start(20)
-            .top(12)
+            .size(style.avatarSize)
+            .start(style.startMargin)
+            .top(style.topMargin)
 
         name.pin
             .after(of: avatar)
@@ -95,22 +128,82 @@ class DiscussionChatCell: UITableViewCell {
             .end(20)
             .sizeToFit(.width)
 
-        voteButton.pin
+        replyButton.pin
             .below(of: messageLabel, aligned: .left)
-            .marginTop(8)
+            .sizeToFit()
+            .marginTop(4)
+
+        voteButton.pin
             .height(18)
             .sizeToFit(.height)
-            .start(to: messageLabel.edge.left)
+            .end(20)
+            .vCenter(to: replyButton.edge.vCenter)
+
+        if hasReplies {
+            showRepliesButton.pin
+                .below(of: voteButton)
+                .left(to: name.edge.left)
+                .marginTop(8)
+                .sizeToFit()
+        }
     }
 
     func setup(_ message: Message) {
         self.model = message
 
         avatar.kf.setImage(with: try? message.user.avatar.asURL())
+        avatar.layer.cornerRadius = style.avatarSize.height / 2
+        showRepliesButton.setTitle("Show " + message.replyCount.description + " more replies", for: .normal)
         name.text = message.user.name
         messageLabel.text = message.text
         dateLabel.text = message.createdTime.toDate.dateSinceNow
         voteButton.model = message
+    }
+
+}
+
+extension ObservableType {
+
+    func skipNil<T>() -> Observable<T> where Element == T? { flatMap { Observable.from(optional: $0) } }
+
+}
+
+private extension MessageStyle {
+
+    var startMargin: CGFloat {
+        switch self {
+        case .message:
+            return 20
+        case.reply:
+            return 40
+        }
+    }
+
+    var avatarSize: CGSize {
+        switch self {
+        case .message:
+            return CGSize(width: 36, height: 36)
+        case .reply:
+            return CGSize(width: 24, height: 24)
+        }
+    }
+
+    var topMargin: CGFloat {
+        switch self {
+        case .message:
+            return 12
+        case .reply:
+            return 8
+        }
+    }
+
+    var bottomMargin: CGFloat {
+        switch self {
+        case .message:
+            return 12
+        case .reply:
+            return 0
+        }
     }
 
 }

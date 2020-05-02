@@ -38,11 +38,23 @@ enum DiscussionDetail {
             let message: String
         }
     }
-
+    enum ReplySend {
+        struct Request {
+            let text: String
+            let threadId: String
+        }
+    }
+    enum RepliesBatch {
+        struct Request {
+            let parentMessage: Message
+            let index: Int
+        }
+    }
 }
 
 enum DiscussionDetailCellType {
     case message(Message)
+    case reply(Message)
 }
 extension DiscussionDetailCellType: Equatable {
 
@@ -50,6 +62,10 @@ extension DiscussionDetailCellType: Equatable {
         switch (lhs, rhs) {
         case (.message(let lMessage), .message(let rMessage)):
             return lMessage == rMessage
+        case (.reply(let lReply), .reply(let rReply)):
+            return lReply.id == rReply.id
+        default:
+            return false
         }
     }
 

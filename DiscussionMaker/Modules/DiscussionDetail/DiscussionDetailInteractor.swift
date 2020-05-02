@@ -19,6 +19,8 @@ protocol DiscussionDetailBusinessLogic {
     func getNextMessagesPage()
     func vote(request: DiscussionDetail.Vote.Request)
     func sendMessage(request: DiscussionDetail.ChatSend.Request)
+    func sendReply(request: DiscussionDetail.ReplySend.Request)
+    func getNextRepliesPage(request: DiscussionDetail.RepliesBatch.Request)
 }
 
 protocol DiscussionDetailDataStore {}
@@ -62,7 +64,7 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
         guard
             debate?.messagesList.hasNextPage == true,
             let lastTime = debate?.messagesList.messages.last?.createdTime
-        else { return }
+            else { return }
 
         worker.getNextMessages(id: debate.id, ctime: lastTime)
             .subscribe(onNext: { [weak self] in
@@ -75,6 +77,24 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
             }).disposed(by: disposeBag)
     }
 
+    func getNextRepliesPage(request: DiscussionDetail.RepliesBatch.Request) {
+        let lastTime = !request.parentMessage.replyList.isEmpty
+            ? request.parentMessage.replyList[0].createdTime
+            : 0
+
+        worker.getNextReplies(id: request.parentMessage.id, after: lastTime)
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+
+                self.debate.messagesList.messages[request.index].replyList =
+                    $0.messages + self.debate.messagesList.messages[request.index].replyList
+
+                self.debate.messagesList.messages[request.index].replyCount -= 5
+
+                self.presenter?.presentNewRepliesBatch(message: self.debate.messagesList.messages[request.index])
+            }).disposed(by: disposeBag)
+    }
+
     func vote(request: DiscussionDetail.Vote.Request) {
         worker.vote(debateId: debate.id, sideId: request.sideId)
             .map { [weak self] _ in self?.reloadDebate() }
@@ -82,8 +102,24 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
             .disposed(by: disposeBag)
     }
 
+    func sendReply(request: DiscussionDetail.ReplySend.Request) {
+        worker.sendReply(text: request.text, threadId: request.threadId)
+            .subscribe(onNext: { [weak self] in
+                guard
+                    let `self` = self,
+                    let index = self.getIndexOfMessage(id: request.threadId)
+                else { return }
+                self.debate.messagesList.messages[index].replyList += [$0]
+
+                self.presenter?.presentNewReply(
+                    parentMessage: self.debate.messagesList.messages[index],
+                    threadMessage: $0
+                )
+            }).disposed(by: disposeBag)
+    }
+
     func sendMessage(request: DiscussionDetail.ChatSend.Request) {
-        worker.send(message: request.message, debateId: debate.id)
+        worker.sendMessage(text: request.message, debateId: debate.id)
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
 
@@ -98,6 +134,17 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
     private func didFetchDebate(_ debate: Discussion) {
         self.debate = debate
         presenter?.presentDebate(response: .init(debate: debate))
+    }
+
+    private func getIndexOfMessage(id: String) -> Int? {
+        var indexSection: Int? = nil
+        debate.messagesList.messages.enumerated().forEach { index, message in
+            if message.id == id {
+                indexSection = index
+                return
+            }
+        }
+        return indexSection
     }
 
 }
