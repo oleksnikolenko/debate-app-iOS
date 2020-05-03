@@ -18,6 +18,7 @@ enum DiscussionList {
 
         struct Request {
             let categoryId: String?
+            let selectedSorting: String
         }
 
         struct Response {
