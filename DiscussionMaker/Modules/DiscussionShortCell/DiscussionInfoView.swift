@@ -6,8 +6,7 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-import RxCocoa
-import RxSwift
+import UIKit
 
 class DiscussionInfoView: UIView {
 
@@ -32,10 +31,6 @@ class DiscussionInfoView: UIView {
 
 
     // MARK: - Properties
-    var didClickFavorites: Observable<Void> {
-        favoritesImageView.didClick
-    }
-    let disposeBag = DisposeBag()
     var isFavorite: Bool = false {
         didSet {
             favoritesImageView.image = isFavorite ? filledFavoritesImage : nonFilledFavoritesImage
