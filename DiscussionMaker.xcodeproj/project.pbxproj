@@ -67,8 +67,13 @@
 		4C0F32D649FD1B0E359DC000 /* Pods_DiscussionMakerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05023D48FDD92879D81ACA7 /* Pods_DiscussionMakerTests.framework */; };
 		861DE6A32455D94C00B864EB /* DiscussionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A22455D94C00B864EB /* DiscussionInfoView.swift */; };
 		861DE6A72455DCEE00B864EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A62455DCEE00B864EB /* Category.swift */; };
+		861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E91E2245B674900A3E4A9 /* VoteModel.swift */; };
 		86B4A3B22459A3CA00EFE7C9 /* SideVoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3B12459A3CA00EFE7C9 /* SideVoteButton.swift */; };
 		86B4A3BB2459EE4400EFE7C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3BA2459EE4400EFE7C9 /* Enums.swift */; };
+		86E8D81D245B01D40002DE7A /* VoteMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D81C245B01D40002DE7A /* VoteMessageButton.swift */; };
+		86E8D823245B22580002DE7A /* VoteMessageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D822245B22580002DE7A /* VoteMessageInteractor.swift */; };
+		86E8D825245B230F0002DE7A /* VoteMessagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */; };
+		86E8D827245B23C40002DE7A /* VoteMessageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D826245B23C40002DE7A /* VoteMessageWorker.swift */; };
 		C79251BE9E5AEA90538478A2 /* Pods_DiscussionMaker_DiscussionMakerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9E3FFF07270B2943B53385 /* Pods_DiscussionMaker_DiscussionMakerUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -186,8 +191,13 @@
 		603992BE9B1D112A9C4667F1 /* Pods-DiscussionMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		861DE6A22455D94C00B864EB /* DiscussionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionInfoView.swift; sourceTree = "<group>"; };
 		861DE6A62455DCEE00B864EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		861E91E2245B674900A3E4A9 /* VoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteModel.swift; sourceTree = "<group>"; };
 		86B4A3B12459A3CA00EFE7C9 /* SideVoteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideVoteButton.swift; sourceTree = "<group>"; };
 		86B4A3BA2459EE4400EFE7C9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		86E8D81C245B01D40002DE7A /* VoteMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageButton.swift; sourceTree = "<group>"; };
+		86E8D822245B22580002DE7A /* VoteMessageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageInteractor.swift; sourceTree = "<group>"; };
+		86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessagePresenter.swift; sourceTree = "<group>"; };
+		86E8D826245B23C40002DE7A /* VoteMessageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageWorker.swift; sourceTree = "<group>"; };
 		9B8CFB57FBB82248B4DFF563 /* Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B080ED73F031732B083157A1 /* Pods-DiscussionMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker.release.xcconfig"; sourceTree = "<group>"; };
 		BC9E3FFF07270B2943B53385 /* Pods_DiscussionMaker_DiscussionMakerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiscussionMaker_DiscussionMakerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +237,7 @@
 		39215B7223D350F1000B5AA1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				86E8D821245B22400002DE7A /* VoteMessage */,
 				39BD33DE24531A3800741A8F /* Profile */,
 				398086D82438CED400CDA1D2 /* AuthorizationScreen */,
 				39EFACD123DDACE300E1E8BA /* DiscussionShortCell */,
@@ -493,6 +504,7 @@
 				39DAE96D245488CB00AF7B96 /* UserEditResponse.swift */,
 				861DE6A62455DCEE00B864EB /* Category.swift */,
 				86B4A3BA2459EE4400EFE7C9 /* Enums.swift */,
+				861E91E2245B674900A3E4A9 /* VoteModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -518,6 +530,17 @@
 				2AACB45F9AA7F28D412DD4D3 /* Pods-DiscussionMakerTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		86E8D821245B22400002DE7A /* VoteMessage */ = {
+			isa = PBXGroup;
+			children = (
+				86E8D826245B23C40002DE7A /* VoteMessageWorker.swift */,
+				86E8D822245B22580002DE7A /* VoteMessageInteractor.swift */,
+				86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */,
+				86E8D81C245B01D40002DE7A /* VoteMessageButton.swift */,
+			);
+			path = VoteMessage;
 			sourceTree = "<group>";
 		};
 		CA1E839BD6E22E2B1D2EF7D6 /* Frameworks */ = {
@@ -829,11 +852,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86E8D825245B230F0002DE7A /* VoteMessagePresenter.swift in Sources */,
 				398086D22438CED000CDA1D2 /* AuthorizationScreenRouter.swift in Sources */,
 				3943F1AC243F0FB000BC11D0 /* DiscussionDetailWorker.swift in Sources */,
 				398086D02438CED000CDA1D2 /* AuthorizationScreenPresenter.swift in Sources */,
 				398086D12438CED000CDA1D2 /* AuthorizationScreenWorker.swift in Sources */,
 				39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */,
+				86E8D827245B23C40002DE7A /* VoteMessageWorker.swift in Sources */,
 				39D5F9E22454807900BDD7B9 /* DataPicker.swift in Sources */,
 				399C0EC524436AAE00EEEC19 /* Empty.swift in Sources */,
 				39C8AB8D2441C4FF00D299CE /* User.swift in Sources */,
@@ -852,6 +877,7 @@
 				39215B8323D35390000B5AA1 /* DiscussionListViewController.swift in Sources */,
 				39BD33EB24531A4C00741A8F /* UserProfileViewController.swift in Sources */,
 				398086F32439D44B00CDA1D2 /* DiscussionSide.swift in Sources */,
+				86E8D823245B22580002DE7A /* VoteMessageInteractor.swift in Sources */,
 				3943F1AB243F0FB000BC11D0 /* DiscussionDetailPresenter.swift in Sources */,
 				3943F1AD243F0FB000BC11D0 /* DiscussionDetailRouter.swift in Sources */,
 				39C8AB9D24431CE000D299CE /* AuthProvider.swift in Sources */,
@@ -882,6 +908,8 @@
 				39D5F9E42454808000BDD7B9 /* DataPickerImplementation.swift in Sources */,
 				3943F1B0243F0FB000BC11D0 /* DiscussionDetailInteractor.swift in Sources */,
 				399C0EBE2443568100EEEC19 /* Session.swift in Sources */,
+				86E8D81D245B01D40002DE7A /* VoteMessageButton.swift in Sources */,
+				861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

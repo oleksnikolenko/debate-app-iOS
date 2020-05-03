@@ -18,3 +18,20 @@ public enum SideVoteStyle {
     case voted
     case singleWinner
 }
+
+public enum VoteType: String, Codable {
+    case up
+    case down
+    case none
+
+    init(_ string: String) {
+        switch string {
+        case "up":
+            self = .up
+        case "down":
+            self = .down
+        default:
+            self = .none
+        }
+    }
+}

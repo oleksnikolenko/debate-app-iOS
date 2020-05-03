@@ -11,7 +11,6 @@
 //
 
 import Alamofire
-import UIKit
 import RxSwift
 
 class DiscussionListWorker {

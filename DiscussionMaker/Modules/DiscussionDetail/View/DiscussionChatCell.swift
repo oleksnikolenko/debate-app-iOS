@@ -28,6 +28,7 @@ class DiscussionChatCell: UITableViewCell {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.textColor = .lightGray
     }
+    let voteButton = VoteMessageButton()
 
     // MARK: - Properties
     var model: Message?
@@ -43,7 +44,8 @@ class DiscussionChatCell: UITableViewCell {
             avatar,
             name,
             messageLabel,
-            dateLabel
+            dateLabel,
+            voteButton
         )
     }
 
@@ -64,7 +66,7 @@ class DiscussionChatCell: UITableViewCell {
 
         return CGSize(
             width: size.width,
-            height: messageLabel.frame.maxY + 12
+            height: voteButton.frame.maxY + 12
         )
     }
 
@@ -92,6 +94,13 @@ class DiscussionChatCell: UITableViewCell {
             .marginTop(8)
             .end(20)
             .sizeToFit(.width)
+
+        voteButton.pin
+            .below(of: messageLabel, aligned: .left)
+            .marginTop(8)
+            .height(18)
+            .sizeToFit(.height)
+            .start(to: messageLabel.edge.left)
     }
 
     func setup(_ message: Message) {
@@ -101,6 +110,7 @@ class DiscussionChatCell: UITableViewCell {
         name.text = message.user.name
         messageLabel.text = message.text
         dateLabel.text = message.createdTime.toDate.dateSinceNow
+        voteButton.model = message
     }
 
 }
