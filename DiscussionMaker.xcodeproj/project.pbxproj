@@ -68,6 +68,8 @@
 		861DE6A32455D94C00B864EB /* DiscussionInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A22455D94C00B864EB /* DiscussionInfoView.swift */; };
 		861DE6A72455DCEE00B864EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A62455DCEE00B864EB /* Category.swift */; };
 		861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E91E2245B674900A3E4A9 /* VoteModel.swift */; };
+		8683CA4F245EEB3A00CE31CE /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683CA4E245EEB3A00CE31CE /* CategoryTableViewCell.swift */; };
+		8683CA51245EEB9B00CE31CE /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */; };
 		86B4A3B22459A3CA00EFE7C9 /* SideVoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3B12459A3CA00EFE7C9 /* SideVoteButton.swift */; };
 		86B4A3BB2459EE4400EFE7C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3BA2459EE4400EFE7C9 /* Enums.swift */; };
 		86E8D81D245B01D40002DE7A /* VoteMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D81C245B01D40002DE7A /* VoteMessageButton.swift */; };
@@ -192,6 +194,8 @@
 		861DE6A22455D94C00B864EB /* DiscussionInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionInfoView.swift; sourceTree = "<group>"; };
 		861DE6A62455DCEE00B864EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		861E91E2245B674900A3E4A9 /* VoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteModel.swift; sourceTree = "<group>"; };
+		8683CA4E245EEB3A00CE31CE /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
 		86B4A3B12459A3CA00EFE7C9 /* SideVoteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideVoteButton.swift; sourceTree = "<group>"; };
 		86B4A3BA2459EE4400EFE7C9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		86E8D81C245B01D40002DE7A /* VoteMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageButton.swift; sourceTree = "<group>"; };
@@ -250,11 +254,11 @@
 		39215B8523D3539D000B5AA1 /* DiscussionList */ = {
 			isa = PBXGroup;
 			children = (
+				8683CA4B245EEB2500CE31CE /* View */,
 				39215B7923D35390000B5AA1 /* DiscussionListPresenter.swift */,
 				39215B7A23D35390000B5AA1 /* DiscussionListWorker.swift */,
 				39215B7B23D35390000B5AA1 /* DiscussionListRouter.swift */,
 				39215B7C23D35390000B5AA1 /* DiscussionListModels.swift */,
-				39215B7D23D35390000B5AA1 /* DiscussionListViewController.swift */,
 				39215B7E23D35390000B5AA1 /* DiscussionListInteractor.swift */,
 			);
 			path = DiscussionList;
@@ -530,6 +534,16 @@
 				2AACB45F9AA7F28D412DD4D3 /* Pods-DiscussionMakerTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		8683CA4B245EEB2500CE31CE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				39215B7D23D35390000B5AA1 /* DiscussionListViewController.swift */,
+				8683CA4E245EEB3A00CE31CE /* CategoryTableViewCell.swift */,
+				8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		86E8D821245B22400002DE7A /* VoteMessage */ = {
@@ -894,8 +908,10 @@
 				398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */,
 				39215B8423D35390000B5AA1 /* DiscussionListInteractor.swift in Sources */,
 				39215B8223D35390000B5AA1 /* DiscussionListModels.swift in Sources */,
+				8683CA4F245EEB3A00CE31CE /* CategoryTableViewCell.swift in Sources */,
 				39DAE96E245488CB00AF7B96 /* UserEditResponse.swift in Sources */,
 				86B4A3BB2459EE4400EFE7C9 /* Enums.swift in Sources */,
+				8683CA51245EEB9B00CE31CE /* CategoryCollectionCell.swift in Sources */,
 				39C8AB962442DFD800D299CE /* MessagesList.swift in Sources */,
 				39BD33E924531A4C00741A8F /* UserProfileRouter.swift in Sources */,
 				398086FE243C6FEB00CDA1D2 /* NetworkService.swift in Sources */,

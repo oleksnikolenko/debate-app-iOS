@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-struct Category: Decodable {
+struct Category: Decodable, Equatable {
     let id: String
     let name: String
 }
