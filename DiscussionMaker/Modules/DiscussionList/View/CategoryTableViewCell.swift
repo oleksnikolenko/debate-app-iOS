@@ -33,13 +33,12 @@ class CategoryTableViewCell: UITableViewCell {
     var disposeBag = DisposeBag()
     var model: [Category]? {
         didSet {
-            model?.insert(categoryAll, at: 0)
+            model?.insert(Category.all, at: 0)
             reloadCollectionView()
         }
     }
     /// TODO: - Localize
-    private let categoryAll = Category(id: "all", name: "All")
-    lazy var selectedCategory = BehaviorRelay<Category>(value: categoryAll)
+    lazy var selectedCategory = BehaviorRelay<Category>(value: Category.all)
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
