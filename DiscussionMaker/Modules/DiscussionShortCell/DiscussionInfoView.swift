@@ -29,7 +29,6 @@ class DiscussionInfoView: UIView {
     private let nonFilledFavoritesImage = UIImage(named: "nonFilledFavorites")
     private let filledFavoritesImage = UIImage(named: "filledFavorites")
 
-
     // MARK: - Properties
     var isFavorite: Bool = false {
         didSet {

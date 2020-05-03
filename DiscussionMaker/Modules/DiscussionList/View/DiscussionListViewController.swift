@@ -188,12 +188,12 @@ extension DiscussionListViewController: UITableViewDelegate, UITableViewDataSour
                 .subscribe(onNext: { [weak self] in
                     guard let `self` = self else { return }
 
-                    let completion: (() -> Void)? = {
+                    let completionHandler: (() -> Void)? = {
                         cell.toggleFavorite()
                     }
                     self.interactor?.toggleFavorites(
                         request: DiscussionList.Favorites.PostRequest(debate: discussion, isFavorite: cell.isFavorite),
-                        completion: completion
+                        requestCompletion: completionHandler
                     )
                 }).disposed(by: cell.disposeBag)
 
