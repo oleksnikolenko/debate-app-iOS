@@ -33,6 +33,16 @@ enum DiscussionList {
         }
     }
 
+    enum Favorites {
+        struct PostRequest {
+            let debate: Discussion
+            let isFavorite: Bool
+        }
+        struct GetRequest {
+            let page: Int
+        }
+    }
+
     enum CellType {
         case categoryList([Category])
         case discussionLink(Discussion)

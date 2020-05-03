@@ -33,4 +33,28 @@ class DiscussionListWorker {
         )
     }
 
+    func toggleFavorites(request: DiscussionList.Favorites.PostRequest) -> Observable<Empty> {
+        if request.isFavorite {
+            return deleteFavorites(debateId: request.debate.id)
+        } else {
+            return postFavorites(debateId: request.debate.id)
+        }
+    }
+
+    private func postFavorites(debateId: String) -> Observable<Empty> {
+        networkService.getData(
+            endpoint: "favorites",
+            parameters: ["debate_id": debateId],
+            method: .post
+        )
+    }
+
+    private func deleteFavorites(debateId: String) -> Observable<Empty> {
+        networkService.getData(
+            endpoint: "favorites",
+            parameters: ["debate_id": debateId],
+            method: .delete
+        )
+    }
+
 }

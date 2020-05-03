@@ -6,22 +6,40 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-import UIKit
+import RxCocoa
+import RxSwift
 
 class DiscussionInfoView: UIView {
 
     // MARK: - Views
-    let userImage = UIImageView().with {
+    private let userImage = UIImageView().with {
         $0.image = UIImage(named: "user")
     }
-    let userCount = UILabel().with {
+    private let userCount = UILabel().with {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
     }
-    let messageImage = UIImageView().with {
+    private let messageImage = UIImageView().with {
         $0.image = UIImage(named: "message")
     }
-    let messageCount = UILabel().with {
+    private let messageCount = UILabel().with {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+    }
+    let favoritesImageView = UIImageView().with {
+        $0.isUserInteractionEnabled = true
+    }
+    private let nonFilledFavoritesImage = UIImage(named: "nonFilledFavorites")
+    private let filledFavoritesImage = UIImage(named: "filledFavorites")
+
+
+    // MARK: - Properties
+    var didClickFavorites: Observable<Void> {
+        favoritesImageView.didClick
+    }
+    let disposeBag = DisposeBag()
+    var isFavorite: Bool = false {
+        didSet {
+            favoritesImageView.image = isFavorite ? filledFavoritesImage : nonFilledFavoritesImage
+        }
     }
 
     // MARK: - Init
@@ -32,7 +50,8 @@ class DiscussionInfoView: UIView {
             userImage,
             userCount,
             messageImage,
-            messageCount
+            messageCount,
+            favoritesImageView
         ])
     }
 
@@ -69,13 +88,19 @@ class DiscussionInfoView: UIView {
             .vCenter(to: messageImage.edge.vCenter)
             .marginStart(10)
             .sizeToFit()
+
+        favoritesImageView.pin
+            .size(18)
+            .after(of: messageCount)
+            .vCenter(to: messageImage.edge.vCenter)
+            .marginStart(12)
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         layout()
 
         return .init(
-            width: messageCount.frame.maxX,
+            width: favoritesImageView.frame.maxX,
             height: messageImage.frame.maxY
         )
     }
@@ -84,6 +109,8 @@ class DiscussionInfoView: UIView {
     func setup(_ discussion: Discussion) {
         userCount.text = discussion.votesCount.description
         messageCount.text = discussion.messagesList.messages.count.description
+
+        isFavorite = discussion.isFavorite
 
         setNeedsLayout()
     }

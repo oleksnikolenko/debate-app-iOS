@@ -182,7 +182,18 @@ extension DiscussionListViewController: UITableViewDelegate, UITableViewDataSour
         switch cells[indexPath.row] {
         case .discussionLink(let discussion):
             let cell = tableView.cell(for: DiscussionShortCell.self)
+
             cell.setup(discussion)
+            cell.didClickFavorites
+                .subscribe(onNext: { [weak self] in
+                    guard let `self` = self else { return }
+
+                    self.interactor?.toggleFavorites(
+                        request: DiscussionList.Favorites.PostRequest(debate: discussion, isFavorite: cell.isFavorite)
+                    )
+                    cell.toggleFavorite()
+                }).disposed(by: cell.disposeBag)
+
             return cell
 
         case .categoryList(let categories):
