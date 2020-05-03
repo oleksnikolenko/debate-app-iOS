@@ -16,7 +16,10 @@ import RxSwift
 protocol DiscussionListBusinessLogic {
     func getData(request: DiscussionList.Something.Request)
     func getNextPage()
-    func toggleFavorites(request: DiscussionList.Favorites.PostRequest)
+    func toggleFavorites(
+        request: DiscussionList.Favorites.PostRequest,
+        completion: (() -> Void)?
+    )
 }
 
 protocol DiscussionListDataStore {}
@@ -75,8 +78,11 @@ class DiscussionListInteractor: DiscussionListBusinessLogic, DiscussionListDataS
         }).disposed(by: disposeBag)
     }
 
-    func toggleFavorites(request: DiscussionList.Favorites.PostRequest) {
-        worker.toggleFavorites(request: request).subscribe().disposed(by: disposeBag)
+    func toggleFavorites(request: DiscussionList.Favorites.PostRequest, completion: (() -> Void)?) {
+        worker.toggleFavorites(request: request)
+            .subscribe(onNext: { _ in
+                completion?()
+            }).disposed(by: disposeBag)
     }
     
 }
