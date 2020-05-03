@@ -8,7 +8,7 @@
 
 import SUHelpers
 
-class Message: Decodable {
+class Message: Decodable, Equatable {
 
     let id: String
     let createdTime: Double
