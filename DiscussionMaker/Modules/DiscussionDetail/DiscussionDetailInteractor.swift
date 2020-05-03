@@ -80,9 +80,7 @@ class DiscussionDetailInteractor: DiscussionDetailBusinessLogic, DiscussionDetai
     }
 
     func getNextRepliesPage(request: DiscussionDetail.RepliesBatch.Request) {
-        let lastTime = !request.parentMessage.replyList.isEmpty
-            ? request.parentMessage.replyList[0].createdTime
-            : 0
+        let lastTime = request.parentMessage.replyList.first?.createdTime ?? 0
 
         worker.getNextReplies(id: request.parentMessage.id, after: lastTime)
             .subscribe(onNext: { [weak self] in

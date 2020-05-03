@@ -1,12 +1,11 @@
 //
-//  Rx+Tap.swift
+//  Rx.swift
 //  DiscussionMaker
 //
 //  Created by Artem Trubacheev on 12.04.2020.
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-import UIKit
 import RxSwift
 
 public extension UIView {
@@ -20,3 +19,10 @@ public extension UIView {
     }
 
 }
+
+public extension ObservableType {
+
+    func skipNil<T>() -> Observable<T> where Element == T? { flatMap { Observable.from(optional: $0) } }
+
+}
+

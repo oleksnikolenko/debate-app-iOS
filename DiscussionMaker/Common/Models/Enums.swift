@@ -40,3 +40,16 @@ public enum MessageStyle {
     case message
     case reply
 }
+
+public extension MessageStyle {
+
+    var objectIdParameterName: String {
+        switch self {
+        case .message:
+            return "message_id"
+        case .reply:
+            return "thread_id"
+        }
+    }
+
+}

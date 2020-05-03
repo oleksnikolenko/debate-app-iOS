@@ -37,7 +37,7 @@
 		399C0EC12443583300EEEC19 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC02443583300EEEC19 /* UserDefaultsService.swift */; };
 		399C0EC3244368AF00EEEC19 /* RefreshTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC2244368AF00EEEC19 /* RefreshTokenResult.swift */; };
 		399C0EC524436AAE00EEEC19 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC424436AAE00EEEC19 /* Empty.swift */; };
-		399C0EC824436CA800EEEC19 /* Rx+Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC724436CA800EEEC19 /* Rx+Tap.swift */; };
+		399C0EC824436CA800EEEC19 /* Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC724436CA800EEEC19 /* Rx.swift */; };
 		39BD33E724531A4C00741A8F /* UserProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BD33E124531A4C00741A8F /* UserProfilePresenter.swift */; };
 		39BD33E824531A4C00741A8F /* UserProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BD33E224531A4C00741A8F /* UserProfileWorker.swift */; };
 		39BD33E924531A4C00741A8F /* UserProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BD33E324531A4C00741A8F /* UserProfileRouter.swift */; };
@@ -153,7 +153,7 @@
 		399C0EC02443583300EEEC19 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		399C0EC2244368AF00EEEC19 /* RefreshTokenResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenResult.swift; sourceTree = "<group>"; };
 		399C0EC424436AAE00EEEC19 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
-		399C0EC724436CA800EEEC19 /* Rx+Tap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+Tap.swift"; sourceTree = "<group>"; };
+		399C0EC724436CA800EEEC19 /* Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rx.swift; sourceTree = "<group>"; };
 		39BD33E124531A4C00741A8F /* UserProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePresenter.swift; sourceTree = "<group>"; };
 		39BD33E224531A4C00741A8F /* UserProfileWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileWorker.swift; sourceTree = "<group>"; };
 		39BD33E324531A4C00741A8F /* UserProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRouter.swift; sourceTree = "<group>"; };
@@ -322,7 +322,7 @@
 		399C0EC624436C9B00EEEC19 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				399C0EC724436CA800EEEC19 /* Rx+Tap.swift */,
+				399C0EC724436CA800EEEC19 /* Rx.swift */,
 				397319EC244C9EA60050325A /* Reactive+NotificationCenter.swift */,
 			);
 			path = Extensions;
@@ -890,7 +890,7 @@
 				39C8AB9B24431CB800D299CE /* GoogleAuthenticationProvider.swift in Sources */,
 				39C8AB8F2441D00800D299CE /* DiscussionDetailHeader.swift in Sources */,
 				399C0EC12443583300EEEC19 /* UserDefaultsService.swift in Sources */,
-				399C0EC824436CA800EEEC19 /* Rx+Tap.swift in Sources */,
+				399C0EC824436CA800EEEC19 /* Rx.swift in Sources */,
 				398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */,
 				39215B8423D35390000B5AA1 /* DiscussionListInteractor.swift in Sources */,
 				39215B8223D35390000B5AA1 /* DiscussionListModels.swift in Sources */,

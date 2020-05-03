@@ -153,18 +153,13 @@ class DiscussionChatCell: UITableViewCell {
 
         avatar.kf.setImage(with: try? message.user.avatar.asURL())
         avatar.layer.cornerRadius = style.avatarSize.height / 2
+        // TODO: - Localize
         showRepliesButton.setTitle("Show " + message.replyCount.description + " more replies", for: .normal)
         name.text = message.user.name
         messageLabel.text = message.text
         dateLabel.text = message.createdTime.toDate.dateSinceNow
         voteButton.model = message
     }
-
-}
-
-extension ObservableType {
-
-    func skipNil<T>() -> Observable<T> where Element == T? { flatMap { Observable.from(optional: $0) } }
 
 }
 
