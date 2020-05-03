@@ -16,10 +16,13 @@ enum DiscussionList {
   // MARK: Use cases
     enum Something {
 
-        struct Request {}
+        struct Request {
+            let categoryId: String?
+        }
 
         struct Response {
             let data: [Discussion]
+            let categories: [Category]
             let hasNextPage: Bool
         }
 
@@ -30,6 +33,7 @@ enum DiscussionList {
     }
 
     enum CellType {
+        case categoryList([Category])
         case discussionLink(Discussion)
     }
 

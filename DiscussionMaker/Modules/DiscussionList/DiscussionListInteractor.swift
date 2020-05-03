@@ -29,23 +29,26 @@ class DiscussionListInteractor: DiscussionListBusinessLogic, DiscussionListDataS
 
     private var response = DebatesResponse()
     private var page = 1
+    private var categoryId: String?
 
     // MARK: - Do something
     func getData(request: DiscussionList.Something.Request) {
-        worker.getDiscussions().subscribe(onNext: { [weak self] in
+        worker.getDiscussions(categoryId: request.categoryId).subscribe(onNext: { [weak self] in
             self?.presenter?.presentSomething(response:
                 .init(
                     data: $0.debates,
+                    categories: $0.categories,
                     hasNextPage: $0.hasNextPage
                 )
             )
             self?.response = $0
+            self?.categoryId = request.categoryId
             self?.page = 1
         }).disposed(by: disposeBag)
     }
 
     func getNextPage() {
-        worker.getDiscussions(page: page + 1).subscribe(onNext: { [weak self] in
+        worker.getDiscussions(page: page + 1, categoryId: categoryId).subscribe(onNext: { [weak self] in
             guard let `self` = self else { return }
 
             self.response.debates += $0.debates
@@ -54,6 +57,7 @@ class DiscussionListInteractor: DiscussionListBusinessLogic, DiscussionListDataS
             self.presenter?.presentSomething(response:
                 .init(
                     data: self.response.debates,
+                    categories: self.response.categories,
                     hasNextPage: self.response.hasNextPage
                 )
             )

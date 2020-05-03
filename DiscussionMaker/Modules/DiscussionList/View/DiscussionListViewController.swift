@@ -10,13 +10,14 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
-import RxSwift
 import ESPullToRefresh
 import GoogleSignIn
+import RxSwift
+import RxCocoa
+import SUHelpers
 
 protocol DiscussionListDisplayLogic: class {
-    func displaySomething(viewModel: DiscussionList.Something.ViewModel)
+    func displayCells(viewModel: DiscussionList.Something.ViewModel)
 }
 
 class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic {
@@ -27,12 +28,14 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         $0.delegate = self
         $0.separatorStyle = .none
         $0.es.addPullToRefresh { [weak self] in
-            self?.interactor?.getData(request: .init())
+            self?.interactor?.getData(request: .init(categoryId: self?.selectedCategoryId))
         }
         $0.es.addInfiniteScrolling { [weak self] in
             self?.interactor?.getNextPage()
         }
     }
+
+    private var selectedCategoryId: String?
 
     private lazy var profileButton = UIBarButtonItem(
         image: UIImage(named: "profile"),
@@ -99,7 +102,7 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
 
         navigationItem.rightBarButtonItem = profileButton
 
-        let request = DiscussionList.Something.Request()
+        let request = DiscussionList.Something.Request(categoryId: selectedCategoryId)
         interactor?.getData(request: request)
     }
 
@@ -114,7 +117,7 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     }
 
     // MARK: - Do something
-    func displaySomething(viewModel: DiscussionList.Something.ViewModel) {
+    func displayCells(viewModel: DiscussionList.Something.ViewModel) {
         self.cells = viewModel.cells
 
         tableView.es.stopLoadingMore()
@@ -141,6 +144,20 @@ extension DiscussionListViewController: UITableViewDelegate, UITableViewDataSour
             let cell = tableView.cell(for: DiscussionShortCell.self)
             cell.setup(discussion)
             return cell
+
+        case .categoryList(let categories):
+            let cell = tableView.cell(for: CategoryTableViewCell.self)
+            cell.model = categories
+
+            cell.selectedCategory
+                .skip(1)
+                .distinctUntilChanged()
+                .subscribe(onNext: { category in
+                    self.selectedCategoryId = category.id
+                    self.interactor?.getData(request: DiscussionList.Something.Request(categoryId: category.id))
+                }).disposed(by: cell.disposeBag)
+
+            return cell
         }
     }
 
@@ -152,6 +169,8 @@ extension DiscussionListViewController: UITableViewDelegate, UITableViewDataSour
         switch cells[indexPath.row] {
         case .discussionLink(let discussion):
             router?.navigateToDebate(discussion)
+        case .categoryList:
+            break
         }
     }
 

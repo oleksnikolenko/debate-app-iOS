@@ -17,10 +17,14 @@ class DiscussionListWorker {
 
     let networkService = NetworkServiceImplementation.shared
 
-    func getDiscussions(page: Int = 1) -> Observable<DebatesResponse> {
+    func getDiscussions(page: Int = 1, categoryId: String? = Category.all.id) -> Observable<DebatesResponse> {
         networkService.getData(
             endpoint: "debates",
-            parameters: ["page": page, "sorting": "popular"],
+            parameters: [
+                "page": page,
+                "sorting": "popular",
+                "category_id": categoryId ?? Category.all.id
+            ],
             shouldLocalize: true
         )
     }
