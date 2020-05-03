@@ -55,8 +55,23 @@ public extension MessageStyle {
 }
 
 public enum DebateSorting: String {
-    ///TODO: - Localize
     case popular
     case newest
     case oldest
+}
+
+public extension DebateSorting {
+
+    var name: String {
+        /// TODO: - Localize
+        switch self {
+        case .popular:
+            return "Popular"
+        case .newest:
+            return "Newest"
+        case .oldest:
+            return "Oldest"
+        }
+    }
+
 }
