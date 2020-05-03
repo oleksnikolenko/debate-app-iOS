@@ -28,6 +28,16 @@ class CategoryTableViewCell: UITableViewCell {
         $0.scrollDirection = .horizontal
         $0.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
     }
+    private lazy var sortingLabel = UILabel().with {
+        $0.textColor = .lightGray
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.text = selectedSorting.rawValue.capitalized
+        $0.isUserInteractionEnabled = true
+    }
+    private let sortingIcon = UIImageView().with {
+        $0.image = UIImage(named: "downarrow")
+        $0.isUserInteractionEnabled = true
+    }
 
     // MARK: - Properties
     var disposeBag = DisposeBag()
@@ -37,15 +47,24 @@ class CategoryTableViewCell: UITableViewCell {
             reloadCollectionView()
         }
     }
+    var didClickSorting: Observable<Void> {
+        return Observable.merge(sortingLabel.didClick, sortingIcon.didClick)
+    }
     /// TODO: - Localize
     lazy var selectedCategory = BehaviorRelay<Category>(value: Category.all)
+    var selectedSorting: DebateSorting = .popular {
+        didSet {
+            sortingLabel.text = selectedSorting.rawValue.capitalized
+            setNeedsLayout()
+        }
+    }
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         selectionStyle = .none
-        addSubviews(collectionView)
+        addSubviews(collectionView, sortingLabel, sortingIcon)
         collectionView.contentInsetAdjustmentBehavior = .never
     }
 
@@ -69,15 +88,27 @@ class CategoryTableViewCell: UITableViewCell {
 
     private func layout() {
         collectionView.pin
-            .horizontally(8)
+            .horizontally(12)
             .height(40)
-            .top(8)
+            .top()
+
+        sortingLabel.pin
+            .below(of: collectionView)
+            .start(12)
+            .sizeToFit()
+            .marginTop(4)
+
+        sortingIcon.pin
+            .after(of: sortingLabel)
+            .marginStart(4)
+            .size(10)
+            .vCenter(to: sortingLabel.edge.vCenter)
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         pin.width(size.width)
         layout()
-        return CGSize(width: size.width, height: collectionView.frame.maxY)
+        return CGSize(width: size.width, height: sortingLabel.frame.maxY)
     }
 
     // MARK: - Private methods
@@ -86,6 +117,10 @@ class CategoryTableViewCell: UITableViewCell {
         collectionView.reloadData()
         layoutIfNeeded()
         collectionView.setContentOffset(contentOffset, animated: false)
+    }
+
+    func setSorting(sorting: DebateSorting) {
+        selectedSorting = sorting
     }
 
 }

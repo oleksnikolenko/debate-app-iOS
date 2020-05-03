@@ -53,3 +53,10 @@ public extension MessageStyle {
     }
 
 }
+
+public enum DebateSorting: String {
+    ///TODO: - Localize
+    case popular
+    case newest
+    case oldest
+}

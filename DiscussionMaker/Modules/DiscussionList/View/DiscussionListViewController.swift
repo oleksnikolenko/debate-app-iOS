@@ -28,7 +28,8 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         $0.delegate = self
         $0.separatorStyle = .none
         $0.es.addPullToRefresh { [weak self] in
-            self?.interactor?.getData(request: .init(categoryId: self?.selectedCategoryId))
+            guard let `self` = self else { return }
+            self.interactor?.getData(request: self.request)
         }
         $0.es.addInfiniteScrolling { [weak self] in
             self?.interactor?.getNextPage()
@@ -36,6 +37,12 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     }
 
     private var selectedCategoryId: String?
+    private var selectedSorting: DebateSorting = .popular {
+        didSet {
+            guard selectedSorting != oldValue else { return }
+            self.interactor?.getData(request: self.request)
+        }
+    }
 
     private lazy var profileButton = UIBarButtonItem(
         image: UIImage(named: "profile"),
@@ -45,6 +52,9 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
     )
 
     // MARK: - Properties
+    var request: DiscussionList.Something.Request {
+        DiscussionList.Something.Request(categoryId: selectedCategoryId, selectedSorting: selectedSorting.rawValue)
+    }
     var cells: [DiscussionList.CellType] = [] {
         didSet {
             tableView.reloadData()
@@ -97,12 +107,12 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         navigationController?.navigationBar.isTranslucent = false
         edgesForExtendedLayout = []
 
+        /// TODO: - Localize
         title = "Debates"
         view.addSubviews(tableView)
 
         navigationItem.rightBarButtonItem = profileButton
 
-        let request = DiscussionList.Something.Request(categoryId: selectedCategoryId)
         interactor?.getData(request: request)
     }
 
@@ -134,6 +144,36 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         router?.navigateToProfile()
     }
 
+    private func presentSortingActionSheet(indexPath: IndexPath, completion: (() -> Void)?) {
+        /// TODO: - Localize
+        let actionSheet = UIAlertController(
+            title: "Sort debates",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        /// TODO: - Localize
+        actionSheet.addAction(UIAlertAction(title: "Popular", style: .default) { [weak self] _ in
+            self?.setSelectedSorting(sorting: .popular, completion: completion)
+        })
+        /// TODO: - Localize
+        actionSheet.addAction(UIAlertAction(title: "Newest", style: .default) { [weak self] _ in
+            self?.setSelectedSorting(sorting: .newest, completion: completion)
+        })
+        /// TODO: - Localize
+        actionSheet.addAction(UIAlertAction(title: "Oldest", style: .default) { [weak self] _ in
+            self?.setSelectedSorting(sorting: .oldest, completion: completion)
+        })
+        /// TODO: - Localize
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        present(actionSheet, animated: true)
+    }
+
+    private func setSelectedSorting(sorting: DebateSorting, completion: (() -> Void)?) {
+        selectedSorting = sorting
+        completion?()
+    }
+
 }
 
 extension DiscussionListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -154,7 +194,16 @@ extension DiscussionListViewController: UITableViewDelegate, UITableViewDataSour
                 .distinctUntilChanged()
                 .subscribe(onNext: { category in
                     self.selectedCategoryId = category.id
-                    self.interactor?.getData(request: DiscussionList.Something.Request(categoryId: category.id))
+                    self.interactor?.getData(request: self.request)
+                }).disposed(by: cell.disposeBag)
+
+            cell.didClickSorting
+                .subscribe(onNext: {
+                    let completion: (() -> Void)? = { [weak self] in
+                        guard let `self` = self else { return }
+                        cell.setSorting(sorting: self.selectedSorting)
+                    }
+                    self.presentSortingActionSheet(indexPath: indexPath, completion: completion)
                 }).disposed(by: cell.disposeBag)
 
             return cell
