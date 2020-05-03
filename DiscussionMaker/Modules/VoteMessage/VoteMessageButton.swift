@@ -33,6 +33,7 @@ class VoteMessageButton: UIView {
     private let disposeBag = DisposeBag()
     var interactor: VoteMessageInteractor?
 
+    var style: MessageStyle = .message
     var model: Votable? {
         didSet {
             setup(model)
@@ -124,9 +125,9 @@ class VoteMessageButton: UIView {
             guard let `self` = self, let model = self.model else { return }
 
             if model.voteType == .up {
-                self.interactor?.unvote(model)
+                self.interactor?.unvote(model, style: self.style)
             } else {
-                self.interactor?.vote(model: model, voteType: .up)
+                self.interactor?.vote(model: model, voteType: .up, style: self.style)
             }
         }).disposed(by: disposeBag)
 
@@ -134,9 +135,9 @@ class VoteMessageButton: UIView {
             guard let `self` = self, let model = self.model else { return }
 
             if model.voteType == .down {
-                self.interactor?.unvote(model)
+                self.interactor?.unvote(model, style: self.style)
             } else {
-                self.interactor?.vote(model: model, voteType: .down)
+                self.interactor?.vote(model: model, voteType: .down, style: self.style)
             }
         }).disposed(by: disposeBag)
     }

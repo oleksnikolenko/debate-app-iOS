@@ -9,13 +9,14 @@
 import RxSwift
 
 protocol VoteMessageBusinessLogic {
-    func vote(model: Votable, voteType: VoteType)
-    func unvote(_ model: Votable)
+    func vote(model: Votable, voteType: VoteType, style: MessageStyle)
+    func unvote(_ model: Votable, style: MessageStyle)
 }
 
 protocol Votable {
     var voteType: VoteType { get }
     var objectId: String { get }
+    var threadId: String? { get }
     var votesCount: Int { get }
 
     func setVoteType(_ voteType: VoteType)
@@ -29,11 +30,11 @@ class VoteMessageInteractor: VoteMessageBusinessLogic {
 
     private let disposeBag = DisposeBag()
 
-    func vote(model: Votable, voteType: VoteType) {
+    func vote(model: Votable, voteType: VoteType, style: MessageStyle) {
         model.setVoteType(voteType)
-        
+
         worker
-            .postVote(objectId: model.objectId, voteType: voteType)
+            .postVote(objectId: model.objectId, voteType: voteType, style: style)
             .subscribe(onNext: { [weak self] modifiedModel in
                 guard let `self` = self else { return }
 
@@ -42,11 +43,11 @@ class VoteMessageInteractor: VoteMessageBusinessLogic {
             }).disposed(by: disposeBag)
     }
 
-    func unvote(_ model: Votable) {
+    func unvote(_ model: Votable, style: MessageStyle) {
         model.setVoteType(.none)
 
         worker
-            .deleteVote(objectId: model.objectId)
+            .deleteVote(objectId: model.objectId, style: style)
             .subscribe(onNext: { [weak self] modifiedModel in
                 guard let `self` = self else { return }
 

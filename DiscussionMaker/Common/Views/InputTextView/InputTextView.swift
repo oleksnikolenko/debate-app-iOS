@@ -10,7 +10,7 @@ import RxSwift
 import SUHelpers
 import UIKit
 
-class InputTextView: UIView {
+class InputTextView: UIView, UITextViewDelegate {
 
     // MARK: - Subviews
     var textView = UITextView().with {
@@ -40,11 +40,12 @@ class InputTextView: UIView {
     var text: String {
         textView.text
     }
+    var threadId: String?
     var textChange: Observable<String?> {
         textView.rx.text.asObservable()
     }
-    var sendTap: Observable<String> {
-        sendButton.rx.tap.map { [unowned self] in self.text }
+    var sendTap: Observable<(String, String?)> {
+        sendButton.rx.tap.map { [unowned self] in (self.text, self.threadId) }
     }
     private var textViewHeight: CGFloat {
         textView.sizeThatFits(
@@ -87,7 +88,7 @@ class InputTextView: UIView {
 
         return CGSize(
             width: size.width,
-            height: totalHeight //+ max(verticalMargin, safeAreaInsets.bottom)
+            height: totalHeight
         )
     }
 
@@ -116,6 +117,8 @@ class InputTextView: UIView {
 
     func emptyInput() {
         textView.text = ""
+        textView.resignFirstResponder()
+        threadId = nil
     }
 
     override func resignFirstResponder() -> Bool {

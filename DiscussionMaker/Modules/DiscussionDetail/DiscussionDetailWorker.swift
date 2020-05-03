@@ -31,6 +31,13 @@ class DiscussionDetailWorker {
         )
     }
 
+    func getNextReplies(id: String, after: Double) -> Observable<MessagesList> {
+        networkService.getData(
+            endpoint: "messages",
+            parameters: ["thread_id": id, "after_time": after]
+        )
+    }
+
     func vote(debateId: String, sideId: String) -> Observable<Empty> {
         networkService.getData(
             endpoint: "vote",
@@ -39,10 +46,18 @@ class DiscussionDetailWorker {
         )
     }
 
-    func send(message: String, debateId: String) -> Observable<Message> {
+    func sendMessage(text: String, debateId: String) -> Observable<Message> {
         networkService.getData(
             endpoint: "message",
-            parameters: ["text": message, "debate_id": debateId],
+            parameters: ["text": text, "debate_id": debateId],
+            method: .post
+        )
+    }
+
+    func sendReply(text: String, threadId: String) -> Observable<Message> {
+        networkService.getData(
+            endpoint: "message",
+            parameters: ["text": text, "thread_id": threadId],
             method: .post
         )
     }
