@@ -6,7 +6,7 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public enum SideType {
     case left
@@ -55,8 +55,34 @@ public extension MessageStyle {
 }
 
 public enum DebateSorting: String {
-    ///TODO: - Localize
     case popular
     case newest
     case oldest
+}
+
+public enum DiscussionCellStyle {
+    case regular
+    case search
+}
+
+public extension DiscussionCellStyle {
+
+    var isInfoViewHidden: Bool {
+        switch self {
+        case .regular:
+            return false
+        case .search:
+            return true
+        }
+    }
+
+    var separatorMargin: CGFloat {
+        switch self {
+        case .regular:
+            return 12
+        case .search:
+            return 16
+        }
+    }
+
 }

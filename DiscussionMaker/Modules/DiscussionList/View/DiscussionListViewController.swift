@@ -51,6 +51,12 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         action: #selector(navigateToAuthorization)
     )
 
+    private lazy var searchButton = UIBarButtonItem(
+        barButtonSystemItem: .search,
+        target: self,
+        action: #selector(navigateToSearch)
+    )
+
     // MARK: - Properties
     var request: DiscussionList.Something.Request {
         DiscussionList.Something.Request(categoryId: selectedCategoryId, selectedSorting: selectedSorting.rawValue)
@@ -111,7 +117,9 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
         title = "Debates"
         view.addSubviews(tableView)
 
-        navigationItem.rightBarButtonItem = profileButton
+        navigationItem.leftBarButtonItem = profileButton
+        navigationItem.rightBarButtonItem = searchButton
+        navigationController?.navigationBar.tintColor = .black
 
         interactor?.getData(request: request)
     }
@@ -142,6 +150,10 @@ class DiscussionListViewController: UIViewController, DiscussionListDisplayLogic
 
     @objc private func navigateToAuthorization() {
         router?.navigateToProfile()
+    }
+
+    @objc private func navigateToSearch() {
+        router?.navigateToSearch()
     }
 
     private func presentSortingActionSheet(indexPath: IndexPath, completion: (() -> Void)?) {
