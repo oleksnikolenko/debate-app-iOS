@@ -43,6 +43,7 @@ class CategoryTableViewCell: UITableViewCell {
     var disposeBag = DisposeBag()
     var model: [Category]? {
         didSet {
+            model?.insert(Category.favorites, at: 0)
             model?.insert(Category.all, at: 0)
             reloadCollectionView()
         }
