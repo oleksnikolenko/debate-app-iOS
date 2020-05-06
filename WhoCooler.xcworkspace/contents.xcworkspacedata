@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SUHelpers/SUHelpers.xcodeproj">
+      location = "group:WhoCooler.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:WhoCooler.xcodeproj">
+      location = "group:SUHelpers/SUHelpers.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
