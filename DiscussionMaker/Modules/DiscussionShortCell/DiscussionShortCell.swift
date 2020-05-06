@@ -6,9 +6,9 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-import UIKit
-import SUHelpers
 import Kingfisher
+import RxSwift
+import SUHelpers
 
 class DiscussionShortCell: TableViewCell {
 
@@ -50,6 +50,19 @@ class DiscussionShortCell: TableViewCell {
     }
     let discussionInfoView = DiscussionInfoView()
 
+    // MARK: - Properties
+    private let leftSideColor = UIColor(hex: 0x29AB60)
+    private let rightSideColor = UIColor(hex: 0xE74C3C)
+    var isFavorite: Bool = false {
+        didSet {
+            discussionInfoView.isFavorite = !discussionInfoView.isFavorite
+        }
+    }
+    var disposeBag = DisposeBag()
+    var didClickFavorites: Observable<Void> {
+        discussionInfoView.favoritesImageView.didClick
+    }
+
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -61,9 +74,12 @@ class DiscussionShortCell: TableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Properties
-    let leftSideColor = UIColor(hex: 0x29AB60)
-    let rightSideColor = UIColor(hex: 0xE74C3C)
+    // MARK: - Reuse
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        disposeBag = DisposeBag()
+    }
 
     // MARK: - Layout
     override func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -129,6 +145,7 @@ class DiscussionShortCell: TableViewCell {
     // MARK: - Setup
     func setup(_ discussion: Discussion) {
         category.text = discussion.category.name
+        isFavorite = discussion.isFavorite
 
         leftImage.kf.setImage(with: try? discussion.leftSide.image.asURL())
         rightImage.kf.setImage(with: try? discussion.rightSide.image.asURL())
@@ -137,6 +154,10 @@ class DiscussionShortCell: TableViewCell {
         discussionInfoView.setup(discussion)
 
         setNeedsLayout()
+    }
+
+    func toggleFavorite() {
+        isFavorite = !isFavorite
     }
 
 }

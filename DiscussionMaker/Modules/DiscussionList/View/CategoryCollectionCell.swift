@@ -27,7 +27,9 @@ class CategoryCollectionCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        contentView.layer.cornerRadius = 8
+        contentView.layer.cornerRadius = 10
+        contentView.layer.borderWidth = 0.5
+        contentView.layer.borderColor = UIColor.gray.cgColor
         contentView.addSubview(label)
     }
 
