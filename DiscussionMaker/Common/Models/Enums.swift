@@ -60,6 +60,22 @@ public enum DebateSorting: String {
     case oldest
 }
 
+public extension DebateSorting {
+
+    var name: String {
+        /// TODO: - Localize
+        switch self {
+        case .popular:
+            return "Popular"
+        case .newest:
+            return "Newest"
+        case .oldest:
+            return "Oldest"
+        }
+    }
+
+}
+
 public enum DiscussionCellStyle {
     case regular
     case search

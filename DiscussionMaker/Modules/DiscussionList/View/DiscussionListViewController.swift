@@ -205,7 +205,7 @@ extension DiscussionListViewController: UITableViewDelegate, UITableViewDataSour
                     }
                     self.interactor?.toggleFavorites(
                         request: DiscussionList.Favorites.PostRequest(debate: discussion, isFavorite: cell.isFavorite),
-                        requestCompletion: completionHandler
+                        successCompletion: completionHandler
                     )
                 }).disposed(by: cell.disposeBag)
 

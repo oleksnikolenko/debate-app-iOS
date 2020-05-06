@@ -31,7 +31,7 @@ class CategoryTableViewCell: UITableViewCell {
     private lazy var sortingLabel = UILabel().with {
         $0.textColor = .lightGray
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.text = selectedSorting.rawValue.capitalized
+        $0.text = selectedSorting.name
         $0.isUserInteractionEnabled = true
     }
     private let sortingIcon = UIImageView().with {
@@ -55,7 +55,7 @@ class CategoryTableViewCell: UITableViewCell {
     lazy var selectedCategory = BehaviorRelay<Category>(value: Category.all)
     var selectedSorting: DebateSorting = .popular {
         didSet {
-            sortingLabel.text = selectedSorting.rawValue.capitalized
+            sortingLabel.text = selectedSorting.name
             setNeedsLayout()
         }
     }
