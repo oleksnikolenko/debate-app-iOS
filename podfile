@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'DiscussionMaker' do
+target 'WhoCooler' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
@@ -19,12 +19,12 @@ target 'DiscussionMaker' do
   pod 'SwiftMessages'
   # Pods for DiscussionMaker
 
-  target 'DiscussionMakerTests' do
+  target 'WhoCoolerTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'DiscussionMakerUITests' do
+  target 'WhoCoolerUITests' do
     # Pods for testing
   end
 
