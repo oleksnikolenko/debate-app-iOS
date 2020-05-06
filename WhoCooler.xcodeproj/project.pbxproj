@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		369BEC6480CD351446CAB812 /* Pods_WhoCooler_WhoCoolerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F2C66A6C58D6F06BCD7C8E1 /* Pods_WhoCooler_WhoCoolerUITests.framework */; };
 		39215B7F23D35390000B5AA1 /* DebateListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7923D35390000B5AA1 /* DebateListPresenter.swift */; };
 		39215B8023D35390000B5AA1 /* DebateListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7A23D35390000B5AA1 /* DebateListWorker.swift */; };
 		39215B8123D35390000B5AA1 /* DebateListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7B23D35390000B5AA1 /* DebateListRouter.swift */; };
@@ -27,7 +28,6 @@
 		398086D32438CED000CDA1D2 /* AuthorizationScreenModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CD2438CED000CDA1D2 /* AuthorizationScreenModels.swift */; };
 		398086D42438CED000CDA1D2 /* AuthorizationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CE2438CED000CDA1D2 /* AuthorizationScreenViewController.swift */; };
 		398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CF2438CED000CDA1D2 /* AuthorizationScreenInteractor.swift */; };
-		398086D92438CF9000CDA1D2 /* Pods_DiscussionMaker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BDC83A45612595CCA6F5C0 /* Pods_DiscussionMaker.framework */; };
 		398086F02438E01500CDA1D2 /* SUHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398086ED2438DBF800CDA1D2 /* SUHelpers.framework */; };
 		398086F12438E01500CDA1D2 /* SUHelpers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 398086ED2438DBF800CDA1D2 /* SUHelpers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		398086F32439D44B00CDA1D2 /* DiscussionSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086F22439D44B00CDA1D2 /* DiscussionSide.swift */; };
@@ -64,7 +64,6 @@
 		39EFACD323DDAD2500E1E8BA /* DebateShortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD223DDAD2500E1E8BA /* DebateShortCell.swift */; };
 		39EFACD923DDADB700E1E8BA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD823DDADB700E1E8BA /* TableViewCell.swift */; };
 		39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACDF23DDB11000E1E8BA /* Discussion.swift */; };
-		4C0F32D649FD1B0E359DC000 /* Pods_DiscussionMakerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05023D48FDD92879D81ACA7 /* Pods_DiscussionMakerTests.framework */; };
 		861DE6A32455D94C00B864EB /* DebateInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A22455D94C00B864EB /* DebateInfoView.swift */; };
 		861DE6A72455DCEE00B864EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A62455DCEE00B864EB /* Category.swift */; };
 		861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E91E2245B674900A3E4A9 /* VoteModel.swift */; };
@@ -82,7 +81,8 @@
 		86E8D823245B22580002DE7A /* VoteMessageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D822245B22580002DE7A /* VoteMessageInteractor.swift */; };
 		86E8D825245B230F0002DE7A /* VoteMessagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */; };
 		86E8D827245B23C40002DE7A /* VoteMessageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D826245B23C40002DE7A /* VoteMessageWorker.swift */; };
-		C79251BE9E5AEA90538478A2 /* Pods_DiscussionMaker_DiscussionMakerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9E3FFF07270B2943B53385 /* Pods_DiscussionMaker_DiscussionMakerUITests.framework */; };
+		CA3D2007E351404D8D6D464F /* Pods_WhoCooler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F76D3C9B55E7A057C89B64CC /* Pods_WhoCooler.framework */; };
+		F3C25EC7F7AA3280F6BC9715 /* Pods_WhoCoolerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5463360E8125B9A1E4E8F8C2 /* Pods_WhoCoolerTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +196,8 @@
 		39EFACD823DDADB700E1E8BA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		39EFACDF23DDB11000E1E8BA /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		4784EF150D11D3D62744CD2D /* Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5463360E8125B9A1E4E8F8C2 /* Pods_WhoCoolerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoCoolerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F188B59484FFB42C92E94F8 /* Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig"; path = "Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		603992BE9B1D112A9C4667F1 /* Pods-DiscussionMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		861DE6A22455D94C00B864EB /* DebateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateInfoView.swift; sourceTree = "<group>"; };
 		861DE6A62455DCEE00B864EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -214,11 +216,15 @@
 		86E8D822245B22580002DE7A /* VoteMessageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageInteractor.swift; sourceTree = "<group>"; };
 		86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessagePresenter.swift; sourceTree = "<group>"; };
 		86E8D826245B23C40002DE7A /* VoteMessageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageWorker.swift; sourceTree = "<group>"; };
+		8AD473F6D6F50D129A3CB29D /* Pods-WhoCooler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler.release.xcconfig"; path = "Target Support Files/Pods-WhoCooler/Pods-WhoCooler.release.xcconfig"; sourceTree = "<group>"; };
+		8F2C66A6C58D6F06BCD7C8E1 /* Pods_WhoCooler_WhoCoolerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoCooler_WhoCoolerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8CFB57FBB82248B4DFF563 /* Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9E841A502850A6188D04DBE0 /* Pods-WhoCoolerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCoolerTests.release.xcconfig"; path = "Target Support Files/Pods-WhoCoolerTests/Pods-WhoCoolerTests.release.xcconfig"; sourceTree = "<group>"; };
+		9F1E5D689700E4B38B6D4D0E /* Pods-WhoCoolerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCoolerTests.debug.xcconfig"; path = "Target Support Files/Pods-WhoCoolerTests/Pods-WhoCoolerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B080ED73F031732B083157A1 /* Pods-DiscussionMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker.release.xcconfig"; sourceTree = "<group>"; };
-		BC9E3FFF07270B2943B53385 /* Pods_DiscussionMaker_DiscussionMakerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiscussionMaker_DiscussionMakerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F05023D48FDD92879D81ACA7 /* Pods_DiscussionMakerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiscussionMakerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6BDC83A45612595CCA6F5C0 /* Pods_DiscussionMaker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DiscussionMaker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7A9A48801613C4E6854D5F5 /* Pods-WhoCooler-WhoCoolerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler-WhoCoolerUITests.release.xcconfig"; path = "Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DE1689751B398E1AEDDF0D4E /* Pods-WhoCooler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler.debug.xcconfig"; path = "Target Support Files/Pods-WhoCooler/Pods-WhoCooler.debug.xcconfig"; sourceTree = "<group>"; };
+		F76D3C9B55E7A057C89B64CC /* Pods_WhoCooler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoCooler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,7 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				398086F02438E01500CDA1D2 /* SUHelpers.framework in Frameworks */,
-				398086D92438CF9000CDA1D2 /* Pods_DiscussionMaker.framework in Frameworks */,
+				CA3D2007E351404D8D6D464F /* Pods_WhoCooler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,7 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C0F32D649FD1B0E359DC000 /* Pods_DiscussionMakerTests.framework in Frameworks */,
+				F3C25EC7F7AA3280F6BC9715 /* Pods_WhoCoolerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +249,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C79251BE9E5AEA90538478A2 /* Pods_DiscussionMaker_DiscussionMakerUITests.framework in Frameworks */,
+				369BEC6480CD351446CAB812 /* Pods_WhoCooler_WhoCoolerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +551,12 @@
 				4784EF150D11D3D62744CD2D /* Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig */,
 				00A01725C3A4B8D6ED573AA5 /* Pods-DiscussionMakerTests.debug.xcconfig */,
 				2AACB45F9AA7F28D412DD4D3 /* Pods-DiscussionMakerTests.release.xcconfig */,
+				DE1689751B398E1AEDDF0D4E /* Pods-WhoCooler.debug.xcconfig */,
+				8AD473F6D6F50D129A3CB29D /* Pods-WhoCooler.release.xcconfig */,
+				5F188B59484FFB42C92E94F8 /* Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig */,
+				B7A9A48801613C4E6854D5F5 /* Pods-WhoCooler-WhoCoolerUITests.release.xcconfig */,
+				9F1E5D689700E4B38B6D4D0E /* Pods-WhoCoolerTests.debug.xcconfig */,
+				9E841A502850A6188D04DBE0 /* Pods-WhoCoolerTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -586,9 +598,9 @@
 		CA1E839BD6E22E2B1D2EF7D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F6BDC83A45612595CCA6F5C0 /* Pods_DiscussionMaker.framework */,
-				BC9E3FFF07270B2943B53385 /* Pods_DiscussionMaker_DiscussionMakerUITests.framework */,
-				F05023D48FDD92879D81ACA7 /* Pods_DiscussionMakerTests.framework */,
+				F76D3C9B55E7A057C89B64CC /* Pods_WhoCooler.framework */,
+				8F2C66A6C58D6F06BCD7C8E1 /* Pods_WhoCooler_WhoCoolerUITests.framework */,
+				5463360E8125B9A1E4E8F8C2 /* Pods_WhoCoolerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -766,7 +778,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DiscussionMaker-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WhoCooler-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -779,15 +791,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		419B6A13C61CA7D53F647E48 /* [CP] Copy Pods Resources */ = {
@@ -796,15 +808,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9484FB20F86776C9C2942DF2 /* [CP] Embed Pods Frameworks */ = {
@@ -813,15 +825,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BD72B8D1301407615D49FDD1 /* [CP] Embed Pods Frameworks */ = {
@@ -830,15 +842,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CCADA9F418E7D8FFB988901A /* [CP] Check Pods Manifest.lock */ = {
@@ -856,7 +868,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DiscussionMakerTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WhoCoolerTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -878,7 +890,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DiscussionMaker-DiscussionMakerUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WhoCooler-WhoCoolerUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1121,7 +1133,7 @@
 		};
 		39D1038D23D0ED1400A0C3F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 603992BE9B1D112A9C4667F1 /* Pods-DiscussionMaker.debug.xcconfig */;
+			baseConfigurationReference = DE1689751B398E1AEDDF0D4E /* Pods-WhoCooler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DiscussionMaker/DiscussionMaker.entitlements;
@@ -1144,7 +1156,7 @@
 		};
 		39D1038E23D0ED1400A0C3F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B080ED73F031732B083157A1 /* Pods-DiscussionMaker.release.xcconfig */;
+			baseConfigurationReference = 8AD473F6D6F50D129A3CB29D /* Pods-WhoCooler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = DiscussionMaker/DiscussionMaker.entitlements;
@@ -1167,7 +1179,7 @@
 		};
 		39D1039023D0ED1400A0C3F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00A01725C3A4B8D6ED573AA5 /* Pods-DiscussionMakerTests.debug.xcconfig */;
+			baseConfigurationReference = 9F1E5D689700E4B38B6D4D0E /* Pods-WhoCoolerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1190,7 +1202,7 @@
 		};
 		39D1039123D0ED1400A0C3F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AACB45F9AA7F28D412DD4D3 /* Pods-DiscussionMakerTests.release.xcconfig */;
+			baseConfigurationReference = 9E841A502850A6188D04DBE0 /* Pods-WhoCoolerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1213,7 +1225,7 @@
 		};
 		39D1039323D0ED1400A0C3F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B8CFB57FBB82248B4DFF563 /* Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig */;
+			baseConfigurationReference = 5F188B59484FFB42C92E94F8 /* Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1234,7 +1246,7 @@
 		};
 		39D1039423D0ED1400A0C3F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4784EF150D11D3D62744CD2D /* Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig */;
+			baseConfigurationReference = B7A9A48801613C4E6854D5F5 /* Pods-WhoCooler-WhoCoolerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
