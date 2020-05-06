@@ -176,7 +176,7 @@
 		39C8AB9A24431CB800D299CE /* GoogleAuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthenticationProvider.swift; sourceTree = "<group>"; };
 		39C8AB9C24431CE000D299CE /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		39C8AB9F2443254A00D299CE /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
-		39D1036223D0ED1000A0C3F7 /* WhoCoolerr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoCoolerr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		39D1036223D0ED1000A0C3F7 /* WhoCooler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoCooler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39D1036523D0ED1000A0C3F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39D1036E23D0ED1400A0C3F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39D1037123D0ED1400A0C3F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -426,7 +426,7 @@
 		39D1036323D0ED1000A0C3F7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				39D1036223D0ED1000A0C3F7 /* WhoCoolerr.app */,
+				39D1036223D0ED1000A0C3F7 /* WhoCooler.app */,
 				39D1037823D0ED1400A0C3F7 /* WhoCoolerTests.xctest */,
 				39D1038323D0ED1400A0C3F7 /* WhoCoolerUITests.xctest */,
 			);
@@ -626,7 +626,7 @@
 			);
 			name = WhoCooler;
 			productName = DiscussionMaker;
-			productReference = 39D1036223D0ED1000A0C3F7 /* WhoCoolerr.app */;
+			productReference = 39D1036223D0ED1000A0C3F7 /* WhoCooler.app */;
 			productType = "com.apple.product-type.application";
 		};
 		39D1037723D0ED1400A0C3F7 /* WhoCoolerTests */ = {
@@ -1147,7 +1147,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
-				PRODUCT_NAME = WhoCoolerr;
+				PRODUCT_NAME = WhoCooler;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1170,7 +1170,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
-				PRODUCT_NAME = WhoCoolerr;
+				PRODUCT_NAME = WhoCooler;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
