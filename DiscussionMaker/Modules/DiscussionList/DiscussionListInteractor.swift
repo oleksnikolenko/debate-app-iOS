@@ -18,7 +18,7 @@ protocol DiscussionListBusinessLogic {
     func getNextPage()
     func toggleFavorites(
         request: DiscussionList.Favorites.PostRequest,
-        requestCompletion: (() -> Void)?
+        successCompletion: (() -> Void)?
     )
 }
 
@@ -78,10 +78,10 @@ class DiscussionListInteractor: DiscussionListBusinessLogic, DiscussionListDataS
         }).disposed(by: disposeBag)
     }
 
-    func toggleFavorites(request: DiscussionList.Favorites.PostRequest, requestCompletion: (() -> Void)?) {
+    func toggleFavorites(request: DiscussionList.Favorites.PostRequest, successCompletion: (() -> Void)?) {
         worker.toggleFavorites(request: request)
             .subscribe(onNext: { _ in
-                requestCompletion?()
+                successCompletion?()
             }).disposed(by: disposeBag)
     }
     
