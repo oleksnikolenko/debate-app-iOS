@@ -53,6 +53,7 @@ class DiscussionShortCell: TableViewCell {
     // MARK: - Properties
     private let leftSideColor = UIColor(hex: 0x29AB60)
     private let rightSideColor = UIColor(hex: 0xE74C3C)
+    private var style: DiscussionCellStyle = .regular
     var isFavorite: Bool = false {
         didSet {
             discussionInfoView.isFavorite = !discussionInfoView.isFavorite
@@ -128,22 +129,26 @@ class DiscussionShortCell: TableViewCell {
             .after(of: middleSeparator)
             .end(10)
 
-        discussionInfoView.pin
-            .below(of: voteButton)
-            .marginTop(20)
-            .sizeToFit()
-            .hCenter()
+        if style == .regular {
+            discussionInfoView.pin
+                .below(of: voteButton)
+                .marginTop(20)
+                .sizeToFit()
+                .hCenter()
+        }
 
         bottomSeparator.pin
             .horizontally()
             .height(2)
-            .below(of: discussionInfoView)
-            .marginTop(12)
-
+            .below(of: style == .regular ? discussionInfoView : voteButton)
+            .marginTop(style.separatorMargin)
     }
 
     // MARK: - Setup
-    func setup(_ discussion: Discussion) {
+    func setup(_ discussion: Discussion, style: DiscussionCellStyle = .regular) {
+        self.style = style
+        discussionInfoView.isHidden = style.isInfoViewHidden
+
         category.text = discussion.category.name
         isFavorite = discussion.isFavorite
 

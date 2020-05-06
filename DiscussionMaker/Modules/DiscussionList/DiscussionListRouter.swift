@@ -15,6 +15,7 @@ import UIKit
 protocol DiscussionListRoutingLogic {
     func navigateToDebate(_ debate: Discussion)
     func navigateToProfile()
+    func navigateToSearch()
 }
 
 protocol DiscussionListDataPassing {}
@@ -47,6 +48,13 @@ class DiscussionListRouter: NSObject, DiscussionListRoutingLogic, DiscussionList
                 completion: nil
             )
         }
+    }
+
+    func navigateToSearch() {
+        viewController?.navigationController?.pushViewController(
+            SearchViewController(),
+            animated: true
+        )
     }
 
 }
