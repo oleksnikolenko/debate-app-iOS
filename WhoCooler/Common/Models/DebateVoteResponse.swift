@@ -8,6 +8,6 @@
 
 struct DebateVoteResponse: Decodable {
 
-    var debate: Debate?
+    var debate: Debate
 
 }

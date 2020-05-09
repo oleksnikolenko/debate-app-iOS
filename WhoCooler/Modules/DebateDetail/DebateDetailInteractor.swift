@@ -91,11 +91,10 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
     func vote(request: DebateDetail.Vote.Request) {
         worker.vote(debateId: debate.id, sideId: request.sideId)
             .subscribe(onNext: { debateVoteResponse in
-                guard let debate = debateVoteResponse.debate else { return }
-                self.debate.leftSide.ratingCount = debate.leftSide.ratingCount
-                self.debate.leftSide.isVotedByUser = debate.leftSide.isVotedByUser
-                self.debate.rightSide.ratingCount = debate.rightSide.ratingCount
-                self.debate.rightSide.isVotedByUser = debate.rightSide.isVotedByUser
+                self.debate.leftSide.ratingCount = debateVoteResponse.debate.leftSide.ratingCount
+                self.debate.leftSide.isVotedByUser = debateVoteResponse.debate.leftSide.isVotedByUser
+                self.debate.rightSide.ratingCount = debateVoteResponse.debate.rightSide.ratingCount
+                self.debate.rightSide.isVotedByUser = debateVoteResponse.debate.rightSide.isVotedByUser
 
                 self.presenter?.presentVotes(response: .init(debate: self.debate))
             }).disposed(by: disposeBag)
