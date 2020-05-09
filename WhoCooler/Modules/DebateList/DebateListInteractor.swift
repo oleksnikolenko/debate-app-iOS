@@ -20,6 +20,8 @@ protocol DebateListBusinessLogic {
         request: DebateList.Favorites.PostRequest,
         successCompletion: (() -> Void)?
     )
+    func reloadDebate(debateId: String)
+    func vote(debateId: String, sideId: String)
 }
 
 protocol DebateListDataStore {}
@@ -53,6 +55,18 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
             self?.categoryId = request.categoryId
             self?.selectedSorting = request.selectedSorting
             self?.page = 1
+        }).disposed(by: disposeBag)
+    }
+
+    func reloadDebate(debateId: String) {
+        worker.getDebate(id: debateId).subscribe(onNext: { [weak self] in
+            self?.presenter?.reloadDebate(debate: $0)
+        }).disposed(by: disposeBag)
+    }
+
+    func vote(debateId: String, sideId: String) {
+        worker.vote(debateId: debateId, sideId: sideId).subscribe(onNext: {
+            self.presenter?.reloadDebate(debate: $0.debate)
         }).disposed(by: disposeBag)
     }
 

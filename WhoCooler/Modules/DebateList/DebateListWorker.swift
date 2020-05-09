@@ -33,6 +33,21 @@ class DebateListWorker {
         )
     }
 
+    func getDebate(id: String) -> Observable<Debate> {
+        networkService.getData(
+            endpoint: "debate",
+            parameters: ["debate_id": id]
+        )
+    }
+
+    func vote(debateId: String, sideId: String) -> Observable<DebateVoteResponse> {
+        networkService.getData(
+            endpoint: "vote",
+            parameters: ["debate_id": debateId, "side_id": sideId],
+            method: .post
+        )
+    }
+
     func toggleFavorites(request: DebateList.Favorites.PostRequest) -> Observable<Empty> {
         if request.isFavorite {
             return deleteFromFavorites(debateId: request.debate.id)
