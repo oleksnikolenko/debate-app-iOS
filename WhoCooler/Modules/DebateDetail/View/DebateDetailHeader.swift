@@ -136,9 +136,28 @@ class DebateDetailHeader: UIView {
 
         UIView.animate(withDuration: 0.5) {
             self.voteButton.setup(debate)
-            self.messageCounter.text = debate.messagesList.messages.count.description
+            self.messageCounter.text = debate.messageCount.description
             self.layoutIfNeeded()
         }
+    }
+
+    func updateVotes(debate: Debate) {
+        UIView.animate(withDuration: 0.5) {
+            self.voteButton.setup(debate)
+            self.layoutIfNeeded()
+        }
+    }
+
+    func updateMessageCounter(value: Int) {
+        guard
+            let messageCounterText = messageCounter.text,
+            let currentMessageCount = Int(messageCounterText)
+        else { return }
+
+        let newMessageCount = currentMessageCount + value
+        messageCounter.text = newMessageCount.description
+
+        setNeedsLayout()
     }
 
 }

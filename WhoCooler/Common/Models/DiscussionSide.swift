@@ -10,8 +10,8 @@ struct DiscussionSide: Decodable {
     let id: String
     let name: String
     let image: String
-    let ratingCount: Int
-    let isVotedByUser: Bool
+    var ratingCount: Int
+    var isVotedByUser: Bool
 
     enum CodingKeys: String, CodingKey {
         case id

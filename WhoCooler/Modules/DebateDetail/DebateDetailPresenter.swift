@@ -14,9 +14,19 @@ import UIKit
 
 protocol DebateDetailPresentationLogic {
     func presentDebate(response: DebateDetail.Initializing.Response)
-    func presentNewRepliesBatch(message: Message)
-    func presentNewReply(parentMessage: Message, threadMessage: Message)
-    func didFinishSendMessage()
+    func presentVotes(response: DebateDetail.Vote.Response)
+
+    func presentNewMessageBatch(response: DebateDetail.MessageBatch.Response)
+    func presentNewRepliesBatch(response: DebateDetail.RepliesBatch.Response)
+
+    func presentNewMessage(response: DebateDetail.MessageSend.Response)
+    func presentNewReply(response: DebateDetail.ReplySend.Response)
+
+    func presentEditedMessage(response: DebateDetail.EditedMessageSend.Response)
+    func presentEditedReply(response: DebateDetail.EditedReplySend.Response)
+
+    func deleteMessage(response: DebateDetail.DeleteMessage.Response)
+    func deleteReply(response: DebateDetail.DeleteReply.Response)
 }
 
 class DebateDetailPresenter: DebateDetailPresentationLogic {
@@ -39,16 +49,55 @@ class DebateDetailPresenter: DebateDetailPresentationLogic {
         }
     }
 
-    func presentNewRepliesBatch(message: Message) {
-        viewController?.reloadMessage(message.id, threadMessageId: nil)
+    func presentVotes(response: DebateDetail.Vote.Response) {
+        viewController?.updateVotes(.init(debate: response.debate))
     }
 
-    func presentNewReply(parentMessage: Message, threadMessage: Message) {
-        viewController?.reloadMessage(parentMessage.id, threadMessageId: threadMessage.id)
+    // MARK: - Pagination of messages/replies
+    func presentNewMessageBatch(response: DebateDetail.MessageBatch.Response) {
+        let cells: [DebateDetailSection] = response.messages.map { (.message($0), rows: [.message($0)]) }
+        viewController?.addNewMessageBatch(.init(cells: cells))
+        viewController?.setReachEnd(!response.hasNextPage)
     }
 
-    func didFinishSendMessage() {
-        viewController?.didFinishSendMessage()
+    func presentNewRepliesBatch(response: DebateDetail.RepliesBatch.Response) {
+        viewController?.addNewRepliesBatch(.init(messageId: response.message.id))
+    }
+
+    // MARK: - New message/reply
+    func presentNewMessage(response: DebateDetail.MessageSend.Response) {
+        viewController?.addNewMessage(.init(message: response.message))
+        viewController?.updateMessageCounter(value: 1)
+        viewController?.resetTextView()
+    }
+
+    func presentNewReply(response: DebateDetail.ReplySend.Response) {
+        viewController?.addReplyToMessage(.init(reply: response.threadMessage))
+        viewController?.updateMessageCounter(value: 1)
+        viewController?.resetTextView()
+    }
+
+    // MARK: - Editing message/reply
+    func presentEditedMessage(response: DebateDetail.EditedMessageSend.Response) {
+        viewController?.reloadEditedMessage(.init(message: response.message))
+        viewController?.resetTextView()
+    }
+
+    func presentEditedReply(response: DebateDetail.EditedReplySend.Response) {
+        viewController?.reloadEditedReply(.init(message: response.message))
+        viewController?.resetTextView()
+    }
+
+    // MARK: - Deleting message/reply
+    func deleteMessage(response: DebateDetail.DeleteMessage.Response) {
+        viewController?.deleteMessage(.init(message: response.message))
+        let messageCountToDelete = 1 + response.message.replyCount
+        viewController?.updateMessageCounter(value: -messageCountToDelete)
+    }
+
+    func deleteReply(response: DebateDetail.DeleteReply.Response) {
+        viewController?.deleteReply(.init(message: response.message))
+        viewController?.updateMessageCounter(value: -1)
     }
 
 }

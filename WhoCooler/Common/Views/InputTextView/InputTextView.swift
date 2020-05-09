@@ -41,11 +41,12 @@ class InputTextView: UIView, UITextViewDelegate {
         textView.text
     }
     var threadId: String?
+    var editedMessage: Message?
     var textChange: Observable<String?> {
         textView.rx.text.asObservable()
     }
-    var sendTap: Observable<(String, String?)> {
-        sendButton.rx.tap.map { [unowned self] in (self.text, self.threadId) }
+    var sendTap: Observable<(String, String?, Message?)> {
+        sendButton.rx.tap.map { [unowned self] in (self.text, self.threadId, self.editedMessage) }
     }
     private var textViewHeight: CGFloat {
         textView.sizeThatFits(
@@ -119,6 +120,7 @@ class InputTextView: UIView, UITextViewDelegate {
         textView.text = ""
         textView.resignFirstResponder()
         threadId = nil
+        editedMessage = nil
     }
 
     override func resignFirstResponder() -> Bool {

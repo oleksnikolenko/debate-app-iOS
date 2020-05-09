@@ -19,6 +19,7 @@ class Message: Decodable, Equatable {
     var replyList: [Message]
     var replyCount: Int
     let threadId: String?
+    var notShownReplyCount: Int
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,6 +35,21 @@ class Message: Decodable, Equatable {
 
     static func == (lhs: Message, rhs: Message) -> Bool {
         lhs.id == rhs.id
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        id = try container.decode(String.self, forKey: .id)
+        createdTime = try container.decode(Double.self, forKey: .createdTime)
+        user = try container.decode(User.self, forKey: .user)
+        text = try container.decode(String.self, forKey: .text)
+        voteCount = try container.decode(Int.self, forKey: .voteCount)
+        userVote = try container.decode(String.self, forKey: .userVote)
+        replyList = try container.decode([Message].self, forKey: .replyList)
+        replyCount = try container.decode(Int.self, forKey: .replyCount)
+        threadId = try container.decodeIfPresent(String.self, forKey: .threadId)
+        notShownReplyCount = try container.decode(Int.self, forKey: .replyCount)
     }
 
 }

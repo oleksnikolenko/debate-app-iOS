@@ -38,7 +38,7 @@ class DebateDetailWorker {
         )
     }
 
-    func vote(debateId: String, sideId: String) -> Observable<Empty> {
+    func vote(debateId: String, sideId: String) -> Observable<DebateVoteResponse> {
         networkService.getData(
             endpoint: "vote",
             parameters: ["debate_id": debateId, "side_id": sideId],
@@ -59,6 +59,45 @@ class DebateDetailWorker {
             endpoint: "message",
             parameters: ["text": text, "thread_id": threadId],
             method: .post
+        )
+    }
+
+    func sendEditedMessage(messageId: String, newText: String) -> Observable<Message> {
+        networkService.getData(
+            endpoint: "message",
+            parameters: ["message_id": messageId, "text": newText],
+            method: .patch
+        )
+    }
+
+    func sendEditedReply(message: Message, newText: String) -> Observable<Message> {
+        networkService.getData(
+            endpoint: "message",
+            parameters: [
+                "message_id": message.id,
+                "thread_id": message.threadId as Any,
+                "text": newText
+            ],
+            method: .patch
+        )
+    }
+
+    func deleteMessage(messageId: String) -> Observable<ResponseStub> {
+        networkService.getData(
+            endpoint: "message",
+            parameters: ["message_id": messageId],
+            method: .delete
+        )
+    }
+
+    func deleteReply(replyId: String, threadId: String) -> Observable<ResponseStub> {
+        networkService.getData(
+            endpoint: "message",
+            parameters: [
+                "thread_id": threadId,
+                "message_id": replyId
+            ],
+            method: .delete
         )
     }
     
