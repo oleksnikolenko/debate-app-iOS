@@ -105,19 +105,24 @@ class SideVoteButton: UIView {
         leftName.pin
             .start(4)
             .end(to: middleSeparator.edge.left)
-            .sizeToFit(.width)
+            .height(viewHeight)
             .vCenter()
 
         rightName.pin
             .start(to: middleSeparator.edge.right)
             .end(4)
-            .sizeToFit(.width)
+            .height(viewHeight)
             .vCenter()
     }
 
     private func votedLayout() {
         votedShade.isHidden = false
         middleSeparator.isHidden = true
+
+        leftName.isHidden = false
+        leftPercentLabel.isHidden = false
+        rightName.isHidden = false
+        rightPercentLabel.isHidden = false
 
         switch userChosenSide {
         case .left:
@@ -130,77 +135,81 @@ class SideVoteButton: UIView {
     private func leftVotedLayout() {
         let votedShadeLength = min(frame.width * CGFloat(leftPercent) / 100, frame.width * 4 / 5)
 
-        votedShade.pin
-            .start()
-            .width(votedShadeLength)
-            .height(viewHeight)
-            .top()
+        UIView.animate(withDuration: 0.5) {
+            self.votedShade.pin
+                .start()
+                .width(votedShadeLength)
+                .height(self.viewHeight)
+                .top()
 
-        leftPercentLabel.pin
-            .bottom()
-            .start(4)
-            .end(to: votedShade.edge.right)
-            .sizeToFit(.width)
-            .marginVertical(4)
+            self.leftPercentLabel.pin
+                .bottom()
+                .start(4)
+                .end(to: self.votedShade.edge.right)
+                .sizeToFit(.width)
+                .marginVertical(4)
 
-        leftName.pin
-            .above(of: leftPercentLabel)
-            .top()
-            .start(4)
-            .end(to: votedShade.edge.right)
-            .marginHorizontal(4)
+            self.leftName.pin
+                .above(of: self.leftPercentLabel)
+                .top()
+                .start(4)
+                .end(to: self.votedShade.edge.right)
+                .marginHorizontal(4)
 
-        rightPercentLabel.pin
-            .bottom()
-            .start(to: votedShade.edge.right)
-            .end(4)
-            .sizeToFit(.width)
-            .marginVertical(4)
+            self.rightPercentLabel.pin
+                .bottom()
+                .start(to: self.votedShade.edge.right)
+                .end(4)
+                .sizeToFit(.width)
+                .marginVertical(4)
 
-        rightName.pin
-            .above(of: rightPercentLabel)
-            .end(4)
-            .start(to: votedShade.edge.right)
-            .top()
-            .marginHorizontal(4)
+            self.rightName.pin
+                .above(of: self.rightPercentLabel)
+                .end(4)
+                .start(to: self.votedShade.edge.right)
+                .top()
+                .marginHorizontal(4)
+        }
     }
 
     private func rightVotedLayout() {
         let votedShadeLength = min(frame.width * CGFloat(rightPercent) / 100, frame.width * 4 / 5)
 
-        votedShade.pin
-            .width(votedShadeLength)
-            .end()
-            .height(viewHeight)
-            .top()
+        UIView.animate(withDuration: 0.5) {
+            self.votedShade.pin
+                .width(votedShadeLength)
+                .end()
+                .height(self.viewHeight)
+                .top()
 
-        leftPercentLabel.pin
-            .bottom()
-            .start(4)
-            .end(to: votedShade.edge.left)
-            .sizeToFit(.width)
-            .marginVertical(4)
+            self.leftPercentLabel.pin
+                .bottom()
+                .start(4)
+                .end(to: self.votedShade.edge.left)
+                .sizeToFit(.width)
+                .marginVertical(4)
 
-        leftName.pin
-            .above(of: leftPercentLabel)
-            .top()
-            .start(4)
-            .end(to: votedShade.edge.left)
-            .marginHorizontal(4)
+            self.leftName.pin
+                .above(of: self.leftPercentLabel)
+                .top()
+                .start(4)
+                .end(to: self.votedShade.edge.left)
+                .marginHorizontal(4)
 
-        rightPercentLabel.pin
-            .bottom()
-            .start(to: votedShade.edge.left)
-            .end(4)
-            .sizeToFit(.width)
-            .marginVertical(4)
+            self.rightPercentLabel.pin
+                .bottom()
+                .start(to: self.votedShade.edge.left)
+                .end(4)
+                .sizeToFit(.width)
+                .marginVertical(4)
 
-        rightName.pin
-            .above(of: rightPercentLabel)
-            .end()
-            .start(to: votedShade.edge.left)
-            .marginHorizontal(4)
-            .top()
+            self.rightName.pin
+                .above(of: self.rightPercentLabel)
+                .end()
+                .start(to: self.votedShade.edge.left)
+                .marginHorizontal(4)
+                .top()
+        }
     }
 
     private func singleWinnerLayout() {
@@ -209,6 +218,8 @@ class SideVoteButton: UIView {
         if userChosenSide == .left {
             rightName.isHidden = true
             rightPercentLabel.isHidden = true
+            leftName.isHidden = false
+            leftPercentLabel.isHidden = false
 
             leftPercentLabel.pin
                 .bottom()
@@ -225,6 +236,8 @@ class SideVoteButton: UIView {
         } else {
             leftName.isHidden = true
             leftPercentLabel.isHidden = true
+            rightName.isHidden = false
+            rightPercentLabel.isHidden = false
 
             rightPercentLabel.pin
                 .bottom()

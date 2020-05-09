@@ -14,6 +14,7 @@ import UIKit
 
 protocol DebateListPresentationLogic {
     func presentSomething(response: DebateList.Something.Response)
+    func reloadDebate(debate: Debate)
 }
 
 class DebateListPresenter: DebateListPresentationLogic {
@@ -28,6 +29,10 @@ class DebateListPresenter: DebateListPresentationLogic {
         viewController?.displayCells(viewModel:
             .init(cells: cells, hasNextPage: response.hasNextPage)
         )
+    }
+
+    func reloadDebate(debate: Debate) {
+        viewController?.reloadDebate(debateCell: .debate(debate))
     }
 
 }

@@ -109,26 +109,18 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
                 self?.interactor?.handleSend(request: .init(text: text, threadId: threadId, editedMessage: editedMessage))
             }).disposed(by: disposeBag)
 
-        header.voteButton.leftName.didClick
-            .subscribe(onNext: { [unowned self] _ in
+        Observable.merge(
+            header.voteButton.leftName.didClick,
+            header.voteButton.leftPercentLabel.didClick
+        ).subscribe(onNext: { [unowned self] _ in
                 self.tableView.es.resetNoMoreData()
                 self.interactor?.vote(request: .init(sideId: self.debate.leftSide.id))
             }).disposed(by: disposeBag)
 
-        header.voteButton.leftPercentLabel.didClick
-            .subscribe(onNext: { [unowned self] _ in
-                self.tableView.es.resetNoMoreData()
-                self.interactor?.vote(request: .init(sideId: self.debate.leftSide.id))
-            }).disposed(by: disposeBag)
-
-        header.voteButton.rightName.didClick
-            .subscribe(onNext: { [unowned self] _ in
-                self.tableView.es.resetNoMoreData()
-                self.interactor?.vote(request: .init(sideId: self.debate.rightSide.id))
-            }).disposed(by: disposeBag)
-
-        header.voteButton.rightPercentLabel.didClick
-            .subscribe(onNext: { [unowned self] _ in
+        Observable.merge(
+            header.voteButton.rightName.didClick,
+            header.voteButton.rightPercentLabel.didClick
+        ).subscribe(onNext: { [unowned self] _ in
                 self.tableView.es.resetNoMoreData()
                 self.interactor?.vote(request: .init(sideId: self.debate.rightSide.id))
             }).disposed(by: disposeBag)
