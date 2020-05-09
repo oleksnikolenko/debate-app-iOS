@@ -27,6 +27,9 @@ protocol DebateDetailPresentationLogic {
 
     func deleteMessage(response: DebateDetail.DeleteMessage.Response)
     func deleteReply(response: DebateDetail.DeleteReply.Response)
+
+    func presentAuthScreen()
+    func presentNoInternet()
 }
 
 class DebateDetailPresenter: DebateDetailPresentationLogic {
@@ -98,6 +101,15 @@ class DebateDetailPresenter: DebateDetailPresentationLogic {
     func deleteReply(response: DebateDetail.DeleteReply.Response) {
         viewController?.deleteReply(.init(message: response.message))
         viewController?.updateMessageCounter(value: -1)
+    }
+
+    // MARK: - Error Handling
+    func presentAuthScreen() {
+        viewController?.navigateToAuthorization()
+    }
+
+    func presentNoInternet() {
+        viewController?.showNoInternet()
     }
 
 }

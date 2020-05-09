@@ -15,6 +15,8 @@ protocol DebateDetailDisplayLogic: class, MessageDisplayLogic {
     func displayDebate(viewModel: DebateDetail.Initializing.ViewModel)
     func setReachEnd(_ didReach: Bool)
     func updateVotes(_ debate: DebateDetail.Vote.ViewModel)
+    func navigateToAuthorization()
+    func showNoInternet()
 }
 
 class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
@@ -257,6 +259,22 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
         present(alertController, animated: true, completion: nil)
     }
 
+    func navigateToAuthorization() {
+        router?.navigateToAuthorization()
+    }
+
+    func showNoInternet() {
+        /// TODO: - Localize
+        let alert = UIAlertController(
+            title: "It seems there is no internet connection",
+            message: nil,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+        self.present(alert, animated: true)
+    }
+
 }
 
 extension DebateDetailViewController: UITextViewDelegate {
@@ -296,6 +314,14 @@ extension DebateDetailViewController: UITableViewDelegate, UITableViewDataSource
                 self?.interactor?.getNextRepliesPage(request: .init(parentMessage: message, index: indexPath.section))
             }).disposed(by: cell.disposeBag)
 
+            cell.authRequired.subscribe(onNext: { [weak self] in
+                self?.navigateToAuthorization()
+            }).disposed(by: cell.disposeBag)
+
+            cell.noInternet.subscribe(onNext: { [weak self] in
+                self?.showNoInternet()
+            }).disposed(by: cell.disposeBag)
+
             return cell
 
         case .reply(let reply):
@@ -310,6 +336,14 @@ extension DebateDetailViewController: UITableViewDelegate, UITableViewDataSource
 
             cell.replyPressed.subscribe(onNext: { [weak self] in
                 self?.setupReplyInputTextView(threadId: $0, message: reply)
+            }).disposed(by: cell.disposeBag)
+
+            cell.authRequired.subscribe(onNext: { [weak self] in
+                self?.navigateToAuthorization()
+            }).disposed(by: cell.disposeBag)
+
+            cell.noInternet.subscribe(onNext: { [weak self] in
+                self?.showNoInternet()
             }).disposed(by: cell.disposeBag)
 
             return cell

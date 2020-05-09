@@ -17,7 +17,7 @@ class AuthorizationScreenWorker {
     let networkService = NetworkServiceImplementation.shared
     let userDefaults = UserDefaultsService.shared
 
-    func authorize(with token: String) -> Observable<Session> {
+    func authorize(with token: String) -> Observable<UserSession> {
         networkService
             .getData(endpoint: "register", parameters: ["token": token], method: .post)
             .do(onNext: { [weak self] in

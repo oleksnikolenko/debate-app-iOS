@@ -11,6 +11,8 @@ import SUHelpers
 
 protocol VoteMessageDisplayLogic: class {
     func update(model: Votable)
+    func authRequired()
+    func showNoInternet()
 }
 
 class VoteMessageButton: UIView {
@@ -34,6 +36,8 @@ class VoteMessageButton: UIView {
     var interactor: VoteMessageInteractor?
 
     var style: MessageStyle = .message
+    var isAuthRequired = PublishSubject<Void>()
+    var noInternet = PublishSubject<Void>()
     var model: Votable? {
         didSet {
             setup(model)
@@ -148,6 +152,14 @@ extension VoteMessageButton: VoteMessageDisplayLogic {
 
     func update(model: Votable) {
         self.model = model
+    }
+
+    func authRequired() {
+        isAuthRequired.onNext(())
+    }
+
+    func showNoInternet() {
+        noInternet.onNext(())
     }
 
 }

@@ -15,10 +15,10 @@ class UserDefaultsService {
     private init() {}
     private let userDefaults = UserDefaults()
 
-    var session: Session? {
+    var session: UserSession? {
         get {
             guard let data = userDefaults.data(forKey: #function) else { return nil }
-            return try? JSONDecoder().decode(Session.self, from: data)
+            return try? JSONDecoder().decode(UserSession.self, from: data)
         } set {
             guard let session = newValue else {
                 userDefaults.set(nil, forKey: #function)

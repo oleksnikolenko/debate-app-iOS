@@ -15,6 +15,8 @@ import UIKit
 protocol DebateListPresentationLogic {
     func presentSomething(response: DebateList.Something.Response)
     func reloadDebate(debate: Debate)
+    func presentAuthScreen()
+    func presentNoInternet()
 }
 
 class DebateListPresenter: DebateListPresentationLogic {
@@ -33,6 +35,14 @@ class DebateListPresenter: DebateListPresentationLogic {
 
     func reloadDebate(debate: Debate) {
         viewController?.reloadDebate(debateCell: .debate(debate))
+    }
+
+    func presentAuthScreen() {
+        viewController?.navigateToAuthorization()
+    }
+
+    func presentNoInternet() {
+        viewController?.showNoInternet()
     }
 
 }

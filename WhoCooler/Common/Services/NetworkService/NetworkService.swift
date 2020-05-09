@@ -54,10 +54,17 @@ class NetworkServiceImplementation: NetworkService {
             url = baseUrl + endpoint
         }
 
+        if NetworkReachabilityManager()?.isReachable == false {
+            response.onError(URLError(.notConnectedToInternet))
+
+            return response
+        }
+
         AF.request(
             url,
             method: method,
             parameters: parameters,
+            encoding: URLEncoding.default,
             headers: headers
         ).responseData { [unowned self] in
             #if DEBUG
@@ -67,16 +74,7 @@ class NetworkServiceImplementation: NetworkService {
             #endif
 
             if ($0.response?.statusCode == 422 || $0.response?.statusCode == 401) {
-                self.refreshToken()
-                    .flatMap { [unowned self] event -> Observable<T> in
-                        self.getData(
-                            endpoint: endpoint,
-                            parameters: parameters,
-                            method: method
-                        )
-                    }
-                    .bind(to: response)
-                    .disposed(by: self.disposeBag)
+                response.onError(URLError(.userAuthenticationRequired))
             }
             guard let data = $0.data else {
                 response.onError($0.error ?? AFError.explicitlyCancelled)

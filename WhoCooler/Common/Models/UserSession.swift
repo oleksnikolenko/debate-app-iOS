@@ -1,12 +1,12 @@
 //
-//  Session.swift
+//  UserSession.swift
 //  WhoCooler
 //
 //  Created by Artem Trubacheev on 12.04.2020.
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-struct Session: Codable {
+struct UserSession: Codable {
 
     var user: User
     var accessToken: String

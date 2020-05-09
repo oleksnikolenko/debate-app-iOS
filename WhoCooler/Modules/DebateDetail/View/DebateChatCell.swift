@@ -64,6 +64,12 @@ class DebateChatCell: UITableViewCell {
     var moreButtonClicked: Observable<Void> {
         moreButton.rx.tap.asObservable()
     }
+    var authRequired: Observable<Void> {
+        voteButton.isAuthRequired.asObservable()
+    }
+    var noInternet: Observable<Void> {
+        voteButton.noInternet.asObservable()
+    }
 
     private var hasNotShownReplies: Bool {
         guard let model = model else { return false }
