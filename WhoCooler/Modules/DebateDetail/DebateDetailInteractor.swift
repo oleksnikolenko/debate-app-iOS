@@ -60,8 +60,11 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
         presenter?.presentDebate(response: response)
 
         worker.getDebate(id: request.debate.id)
-            .subscribe(onNext: { [weak self] in
+            .subscribe(
+            onNext: { [weak self] in
                 self?.didFetchDebate($0)
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
     }
 
@@ -71,6 +74,8 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
         worker.getDebate(id: id)
             .subscribe(onNext: { [weak self] in
                 self?.didFetchDebate($0)
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
     }
 
@@ -97,6 +102,8 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
                 self.debate.rightSide.isVotedByUser = debateVoteResponse.debate.rightSide.isVotedByUser
 
                 self.presenter?.presentVotes(response: .init(debate: self.debate))
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
     }
 
@@ -115,6 +122,8 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
                 self.debate.messagesList.hasNextPage = $0.hasNextPage
 
                 self.presenter?.presentNewMessageBatch(response: .init(messages: $0.messages, hasNextPage: $0.hasNextPage))
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
     }
 
@@ -133,6 +142,8 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
                 self.presenter?.presentNewRepliesBatch(
                     response: .init(message: self.debate.messagesList.messages[request.index])
                 )
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
     }
 
@@ -144,8 +155,9 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
 
                 self.debate.messagesList.messages.insert($0, at: 0)
                 self.presenter?.presentNewMessage(response: .init(message: $0))
-            })
-            .disposed(by: disposeBag)
+            }, onError: { [weak self] in
+                self?.handleError($0)
+            }).disposed(by: disposeBag)
     }
 
     func sendReply(request: DebateDetail.ReplySend.Request) {
@@ -163,6 +175,8 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
                     message: self.debate.messagesList.messages[index],
                     threadMessage: $0
                 ))
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
     }
 
@@ -177,6 +191,8 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
 
                 self.debate.messagesList.messages[index] = message
                 self.presenter?.presentEditedMessage(response: .init(message: message))
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
     }
 
@@ -193,6 +209,8 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
                 self.debate.messagesList.messages[messageIndex].replyList[replyIndex] = message
 
                 self.presenter?.presentEditedReply(response: .init(message: message))
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
     }
 
@@ -209,6 +227,8 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
                 self.debate.messagesList.messages.remove(at: index)
 
                 self.presenter?.deleteMessage(response: .init(message: message))
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
     }
 
@@ -225,7 +245,21 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
                 self.debate.messagesList.messages[messageIndex].replyCount -= 1
 
                 self.presenter?.deleteReply(response: .init(message: request.message))
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
+    }
+
+    private func handleError(_ error: Error) {
+        switch error.type {
+        case .noInternet:
+            presenter?.presentNoInternet()
+        case .unauthorized:
+            presenter?.presentAuthScreen()
+        case .unknown:
+            /// TODO - Handle error
+            break
+        }
     }
 
     // MARK: - Private Methods

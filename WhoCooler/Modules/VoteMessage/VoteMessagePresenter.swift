@@ -10,6 +10,8 @@ import UIKit
 
 protocol VoteMessagePresentationLogic {
     func didVote(model: Votable)
+    func authRequired()
+    func presentNoInternet()
 }
 
 class VoteMessagePresenter: VoteMessagePresentationLogic {
@@ -18,6 +20,14 @@ class VoteMessagePresenter: VoteMessagePresentationLogic {
 
     func didVote(model: Votable) {
         view?.update(model: model)
+    }
+
+    func authRequired() {
+        view?.authRequired()
+    }
+
+    func presentNoInternet() {
+        view?.showNoInternet()
     }
     
 }

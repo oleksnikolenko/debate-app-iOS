@@ -10,7 +10,7 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
+import Foundation
 import RxSwift
 
 protocol DebateListBusinessLogic {
@@ -55,6 +55,8 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
             self?.categoryId = request.categoryId
             self?.selectedSorting = request.selectedSorting
             self?.page = 1
+        }, onError: { [weak self] in
+            self?.handleError($0)
         }).disposed(by: disposeBag)
     }
 
@@ -65,9 +67,12 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
     }
 
     func vote(debateId: String, sideId: String) {
-        worker.vote(debateId: debateId, sideId: sideId).subscribe(onNext: {
-            self.presenter?.reloadDebate(debate: $0.debate)
-        }).disposed(by: disposeBag)
+        worker.vote(debateId: debateId, sideId: sideId)
+            .subscribe(onNext: {
+                self.presenter?.reloadDebate(debate: $0.debate)
+            }, onError: { [weak self] in
+                self?.handleError($0)
+            }).disposed(by: disposeBag)
     }
 
     func getNextPage() {
@@ -96,7 +101,21 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
         worker.toggleFavorites(request: request)
             .subscribe(onNext: { _ in
                 successCompletion?()
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
+    }
+
+    private func handleError(_ error: Error) {
+        switch error.type {
+        case .noInternet:
+            presenter?.presentNoInternet()
+        case .unauthorized:
+            presenter?.presentAuthScreen()
+        case .unknown:
+            /// TODO - Handle error
+            break
+        }
     }
     
 }

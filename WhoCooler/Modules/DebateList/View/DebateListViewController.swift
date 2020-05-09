@@ -19,6 +19,8 @@ import SUHelpers
 protocol DebateListDisplayLogic: class {
     func displayCells(viewModel: DebateList.Something.ViewModel)
     func reloadDebate(debateCell: DebateList.CellType)
+    func navigateToAuthorization()
+    func showNoInternet()
 }
 
 class DebateListViewController: UIViewController, DebateListDisplayLogic {
@@ -175,7 +177,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         }
     }
 
-    @objc private func navigateToAuthorization() {
+    @objc internal func navigateToAuthorization() {
         router?.navigateToProfile()
     }
 
@@ -211,6 +213,24 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
     private func setSelectedSorting(sorting: DebateSorting, completion: (() -> Void)?) {
         selectedSorting = sorting
         completion?()
+    }
+
+    func showNoInternet() {
+        /// TODO: - Localize
+        let alert = UIAlertController(
+            title: "It seems there is no internet connection",
+            message: nil,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { [weak self] _ in
+            guard let `self` = self else { return }
+
+            if self.cells.isEmpty {
+                self.interactor?.getData(request: self.request)
+            }
+        }))
+
+        self.present(alert, animated: true)
     }
 
 }

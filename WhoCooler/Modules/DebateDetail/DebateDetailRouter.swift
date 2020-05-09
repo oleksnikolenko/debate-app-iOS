@@ -12,7 +12,9 @@
 
 import UIKit
 
-@objc protocol DebateDetailRoutingLogic {}
+@objc protocol DebateDetailRoutingLogic {
+    func navigateToAuthorization()
+}
 
 protocol DebateDetailDataPassing {
     var dataStore: DebateDetailDataStore? { get }
@@ -23,34 +25,13 @@ class DebateDetailRouter: NSObject, DebateDetailRoutingLogic, DebateDetailDataPa
     weak var viewController: DebateDetailViewController?
     var dataStore: DebateDetailDataStore?
   
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+    // MARK: Routing
+    func navigateToAuthorization() {
+       viewController?.present(
+           AuthorizationScreenViewController(),
+           animated: true,
+           completion: nil
+       )
+    }
 
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: DebateDetailViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: DebateDetailDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
 }

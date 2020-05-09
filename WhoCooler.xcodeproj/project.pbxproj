@@ -33,7 +33,7 @@
 		398086F32439D44B00CDA1D2 /* DiscussionSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086F22439D44B00CDA1D2 /* DiscussionSide.swift */; };
 		398086F52439D51F00CDA1D2 /* DebatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086F42439D51F00CDA1D2 /* DebatesResponse.swift */; };
 		398086FE243C6FEB00CDA1D2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086FD243C6FEB00CDA1D2 /* NetworkService.swift */; };
-		399C0EBE2443568100EEEC19 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EBD2443568100EEEC19 /* Session.swift */; };
+		399C0EBE2443568100EEEC19 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EBD2443568100EEEC19 /* UserSession.swift */; };
 		399C0EC12443583300EEEC19 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC02443583300EEEC19 /* UserDefaultsService.swift */; };
 		399C0EC3244368AF00EEEC19 /* RefreshTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC2244368AF00EEEC19 /* RefreshTokenResult.swift */; };
 		399C0EC524436AAE00EEEC19 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC424436AAE00EEEC19 /* Empty.swift */; };
@@ -159,7 +159,7 @@
 		398086F22439D44B00CDA1D2 /* DiscussionSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionSide.swift; sourceTree = "<group>"; };
 		398086F42439D51F00CDA1D2 /* DebatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebatesResponse.swift; sourceTree = "<group>"; };
 		398086FD243C6FEB00CDA1D2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		399C0EBD2443568100EEEC19 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		399C0EBD2443568100EEEC19 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		399C0EC02443583300EEEC19 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		399C0EC2244368AF00EEEC19 /* RefreshTokenResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenResult.swift; sourceTree = "<group>"; };
 		399C0EC424436AAE00EEEC19 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
@@ -526,7 +526,7 @@
 				39C8AB8A2441C4A300D299CE /* Message.swift */,
 				39C8AB8C2441C4FF00D299CE /* User.swift */,
 				39C8AB952442DFD800D299CE /* MessagesList.swift */,
-				399C0EBD2443568100EEEC19 /* Session.swift */,
+				399C0EBD2443568100EEEC19 /* UserSession.swift */,
 				399C0EC2244368AF00EEEC19 /* RefreshTokenResult.swift */,
 				399C0EC424436AAE00EEEC19 /* Empty.swift */,
 				39DAE96D245488CB00AF7B96 /* UserEditResponse.swift */,
@@ -974,7 +974,7 @@
 				865CBB592466D56800BA50D8 /* DebateVoteResponse.swift in Sources */,
 				3943F1B0243F0FB000BC11D0 /* DebateDetailInteractor.swift in Sources */,
 				867FB90F2460566800820196 /* SearchInteractor.swift in Sources */,
-				399C0EBE2443568100EEEC19 /* Session.swift in Sources */,
+				399C0EBE2443568100EEEC19 /* UserSession.swift in Sources */,
 				867FB9132460567500820196 /* SearchWorker.swift in Sources */,
 				86E8D81D245B01D40002DE7A /* VoteMessageButton.swift in Sources */,
 				861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */,

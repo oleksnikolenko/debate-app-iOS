@@ -40,6 +40,8 @@ class VoteMessageInteractor: VoteMessageBusinessLogic {
 
                 model.didVote(voteModel: modifiedModel, voteType: voteType)
                 self.presenter?.didVote(model: model)
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
     }
 
@@ -53,7 +55,21 @@ class VoteMessageInteractor: VoteMessageBusinessLogic {
 
                 model.didVote(voteModel: modifiedModel, voteType: .none)
                 self.presenter?.didVote(model: model)
+            }, onError: { [weak self] in
+                self?.handleError($0)
             }).disposed(by: disposeBag)
+    }
+
+    private func handleError(_ error: Error) {
+        switch error.type {
+        case .noInternet:
+            presenter?.presentNoInternet()
+        case .unauthorized:
+            presenter?.authRequired()
+        case .unknown:
+            /// TODO - Handle error
+            break
+        }
     }
 
 }
