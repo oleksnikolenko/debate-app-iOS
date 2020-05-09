@@ -14,7 +14,6 @@ import UIKit
 
 @objc protocol DebateDetailRoutingLogic {
     func navigateToAuthorization()
-
 }
 
 protocol DebateDetailDataPassing {
