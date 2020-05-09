@@ -7,3 +7,7 @@
 //
 
 struct Empty: Codable {}
+
+struct ResponseStub: Codable {
+    let success: Bool
+}

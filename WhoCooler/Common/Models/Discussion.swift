@@ -8,12 +8,13 @@
 
 struct Debate: Decodable {
     let id: String
-    let leftSide: DiscussionSide
-    let rightSide: DiscussionSide
+    var leftSide: DiscussionSide
+    var rightSide: DiscussionSide
     let category: Category
     let votesCount: Int
     var messagesList: MessagesList
     var isFavorite: Bool
+    var messageCount: Int
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -23,6 +24,7 @@ struct Debate: Decodable {
         case votesCount = "votes_count"
         case category
         case isFavorite = "is_favorite"
+        case messageCount = "message_count"
     }
 }
 

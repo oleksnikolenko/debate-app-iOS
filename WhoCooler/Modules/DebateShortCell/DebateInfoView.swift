@@ -102,7 +102,7 @@ class DebateInfoView: UIView {
     // MARK: - Public methods
     func setup(_ debate: Debate) {
         userCount.text = debate.votesCount.description
-        messageCount.text = debate.messagesList.messages.count.description
+        messageCount.text = debate.messageCount.description
 
         isFavorite = debate.isFavorite
 

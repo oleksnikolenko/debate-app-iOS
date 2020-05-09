@@ -53,7 +53,15 @@ public extension UITableView {
         return headerOrFooter(forClass: headerClass)
     }
 
-    func update(_ updateClosure: () -> Void) {
+    func scrollToTop() {
+        if numberOfSections > 0 && numberOfRows(inSection: 0) > 0 {
+            scrollToRow(at: .init(row: 0, section: 0), at: .top, animated: true)
+        } else {
+            setContentOffset(.init(x: 0.0, y: -contentInset.top), animated: true)
+        }
+    }
+
+    func updateWithoutAnimation(_ updateClosure: () -> Void) {
         UIView.setAnimationsEnabled(false)
         beginUpdates()
         updateClosure()

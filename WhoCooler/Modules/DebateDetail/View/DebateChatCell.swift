@@ -1,6 +1,6 @@
 //
 //  DebateChatCell.swift
-//  DebateMaker
+//  WhoCooler
 //
 //  Created by Artem Trubacheev on 11.04.2020.
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
@@ -38,8 +38,13 @@ class DebateChatCell: UITableViewCell {
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
+    private let moreButton = UIButton().with {
+        $0.setImage(UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.tintColor = .black
+    }
 
     // MARK: - Properties
+    var disposeBag = DisposeBag()
     var style: MessageStyle = .message {
         didSet {
             voteButton.style = style
@@ -56,10 +61,13 @@ class DebateChatCell: UITableViewCell {
             }
             .skipNil()
     }
+    var moreButtonClicked: Observable<Void> {
+        moreButton.rx.tap.asObservable()
+    }
 
-    private var hasReplies: Bool {
+    private var hasNotShownReplies: Bool {
         guard let model = model else { return false }
-        return model.replyCount > 0
+        return model.notShownReplyCount > 0
     }
 
     // MARK: - Init
@@ -76,12 +84,20 @@ class DebateChatCell: UITableViewCell {
             dateLabel,
             voteButton,
             replyButton,
-            showRepliesButton
+            showRepliesButton,
+            moreButton
         )
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Reuse
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        disposeBag = DisposeBag()
     }
 
     // MARK: - Layout
@@ -97,7 +113,7 @@ class DebateChatCell: UITableViewCell {
 
         return CGSize(
             width: size.width,
-            height: hasReplies
+            height: hasNotShownReplies
                 ? showRepliesButton.frame.maxY + style.bottomMargin
                 : voteButton.frame.maxY + style.bottomMargin
         )
@@ -108,6 +124,11 @@ class DebateChatCell: UITableViewCell {
             .size(style.avatarSize)
             .start(style.startMargin)
             .top(style.topMargin)
+
+        moreButton.pin
+            .size(CGSize(width: 16, height: 16))
+            .top(style.topMargin)
+            .end(20)
 
         name.pin
             .after(of: avatar)
@@ -139,7 +160,7 @@ class DebateChatCell: UITableViewCell {
             .end(20)
             .vCenter(to: replyButton.edge.vCenter)
 
-        if hasReplies {
+        if hasNotShownReplies {
             showRepliesButton.pin
                 .below(of: voteButton)
                 .left(to: name.edge.left)
@@ -151,10 +172,11 @@ class DebateChatCell: UITableViewCell {
     func setup(_ message: Message) {
         self.model = message
 
+        showRepliesButton.isHidden = !hasNotShownReplies
         avatar.kf.setImage(with: try? message.user.avatar.asURL())
         avatar.layer.cornerRadius = style.avatarSize.height / 2
         // TODO: - Localize
-        showRepliesButton.setTitle("Show " + message.replyCount.description + " more replies", for: .normal)
+        showRepliesButton.setTitle("Show " + message.notShownReplyCount.description + " more replies", for: .normal)
         name.text = message.user.name
         messageLabel.text = message.text
         dateLabel.text = message.createdTime.toDate.dateSinceNow
