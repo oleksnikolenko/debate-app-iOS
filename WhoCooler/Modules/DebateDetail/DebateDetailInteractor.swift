@@ -101,7 +101,7 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
                 self.debate.rightSide.ratingCount = debateVoteResponse.debate.rightSide.ratingCount
                 self.debate.rightSide.isVotedByUser = debateVoteResponse.debate.rightSide.isVotedByUser
 
-                self.presenter?.presentVotes(response: .init(debate: self.debate))
+                self.presenter?.presentVotes(response: .init(debate: debateVoteResponse.debate))
             }, onError: { [weak self] in
                 self?.handleError($0)
             }).disposed(by: disposeBag)
@@ -112,7 +112,7 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
         guard
             debate?.messagesList.hasNextPage == true,
             let lastTime = debate?.messagesList.messages.last?.createdTime
-            else { return }
+        else { return }
 
         worker.getNextMessages(id: debate.id, ctime: lastTime)
             .subscribe(onNext: { [weak self] in
