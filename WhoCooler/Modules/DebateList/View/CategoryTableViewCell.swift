@@ -8,7 +8,6 @@
 
 import RxCocoa
 import RxSwift
-import SUHelpers
 
 class CategoryTableViewCell: UITableViewCell {
 

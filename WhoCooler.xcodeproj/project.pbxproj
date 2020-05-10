@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		369BEC6480CD351446CAB812 /* Pods_WhoCooler_WhoCoolerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F2C66A6C58D6F06BCD7C8E1 /* Pods_WhoCooler_WhoCoolerUITests.framework */; };
+		0554ADD12FA57B26501F840C /* libPods-WhoCooler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67EF838F0BEBBE23470370C3 /* libPods-WhoCooler.a */; };
 		39215B7F23D35390000B5AA1 /* DebateListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7923D35390000B5AA1 /* DebateListPresenter.swift */; };
 		39215B8023D35390000B5AA1 /* DebateListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7A23D35390000B5AA1 /* DebateListWorker.swift */; };
 		39215B8123D35390000B5AA1 /* DebateListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7B23D35390000B5AA1 /* DebateListRouter.swift */; };
@@ -28,8 +28,6 @@
 		398086D32438CED000CDA1D2 /* AuthorizationScreenModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CD2438CED000CDA1D2 /* AuthorizationScreenModels.swift */; };
 		398086D42438CED000CDA1D2 /* AuthorizationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CE2438CED000CDA1D2 /* AuthorizationScreenViewController.swift */; };
 		398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CF2438CED000CDA1D2 /* AuthorizationScreenInteractor.swift */; };
-		398086F02438E01500CDA1D2 /* SUHelpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398086ED2438DBF800CDA1D2 /* SUHelpers.framework */; };
-		398086F12438E01500CDA1D2 /* SUHelpers.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 398086ED2438DBF800CDA1D2 /* SUHelpers.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		398086F32439D44B00CDA1D2 /* DiscussionSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086F22439D44B00CDA1D2 /* DiscussionSide.swift */; };
 		398086F52439D51F00CDA1D2 /* DebatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086F42439D51F00CDA1D2 /* DebatesResponse.swift */; };
 		398086FE243C6FEB00CDA1D2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086FD243C6FEB00CDA1D2 /* NetworkService.swift */; };
@@ -68,6 +66,18 @@
 		861DE6A72455DCEE00B864EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A62455DCEE00B864EB /* Category.swift */; };
 		861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E91E2245B674900A3E4A9 /* VoteModel.swift */; };
 		865B4FCA2467FF3A00FAC5EC /* EmptyDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FC92467FF3A00FAC5EC /* EmptyDataCell.swift */; };
+		865B4FFE24681FB400FAC5EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FEF24681FB400FAC5EC /* Date.swift */; };
+		865B4FFF24681FB400FAC5EC /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FF024681FB400FAC5EC /* Collection.swift */; };
+		865B500024681FB400FAC5EC /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FF124681FB400FAC5EC /* CollectionView.swift */; };
+		865B500124681FB400FAC5EC /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FF224681FB400FAC5EC /* Comparable.swift */; };
+		865B500224681FB400FAC5EC /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FF324681FB400FAC5EC /* Error.swift */; };
+		865B500324681FB400FAC5EC /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FF424681FB400FAC5EC /* UIColor.swift */; };
+		865B500424681FB400FAC5EC /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FF524681FB400FAC5EC /* UITableView.swift */; };
+		865B500524681FB400FAC5EC /* GradientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FF624681FB400FAC5EC /* GradientLabel.swift */; };
+		865B500624681FB400FAC5EC /* AddSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FF724681FB400FAC5EC /* AddSubviews.swift */; };
+		865B500724681FB400FAC5EC /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FF824681FB400FAC5EC /* DateFormatter.swift */; };
+		865B500824681FB400FAC5EC /* With.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FF924681FB400FAC5EC /* With.swift */; };
+		865B500924681FB400FAC5EC /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FFA24681FB400FAC5EC /* Double.swift */; };
 		865CBB552466AE1700BA50D8 /* DebateDetailViewController+MessageDisplayLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CBB542466AE1700BA50D8 /* DebateDetailViewController+MessageDisplayLogic.swift */; };
 		865CBB592466D56800BA50D8 /* DebateVoteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865CBB582466D56800BA50D8 /* DebateVoteResponse.swift */; };
 		867FB90D2460561000820196 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867FB90C2460561000820196 /* SearchViewController.swift */; };
@@ -84,8 +94,8 @@
 		86E8D823245B22580002DE7A /* VoteMessageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D822245B22580002DE7A /* VoteMessageInteractor.swift */; };
 		86E8D825245B230F0002DE7A /* VoteMessagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */; };
 		86E8D827245B23C40002DE7A /* VoteMessageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D826245B23C40002DE7A /* VoteMessageWorker.swift */; };
-		CA3D2007E351404D8D6D464F /* Pods_WhoCooler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F76D3C9B55E7A057C89B64CC /* Pods_WhoCooler.framework */; };
-		F3C25EC7F7AA3280F6BC9715 /* Pods_WhoCoolerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5463360E8125B9A1E4E8F8C2 /* Pods_WhoCoolerTests.framework */; };
+		A2BA3766B7E55C7A3F66ABED /* libPods-WhoCoolerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3959D075EBDC1457C20928 /* libPods-WhoCoolerTests.a */; };
+		B517F606F090B0D8F5937EC5 /* libPods-WhoCooler-WhoCoolerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 104AEDC43F37E71DA6E71A76 /* libPods-WhoCooler-WhoCoolerUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,22 +129,9 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		398086DE2438CF9400CDA1D2 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				398086F12438E01500CDA1D2 /* SUHelpers.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		00A01725C3A4B8D6ED573AA5 /* Pods-DiscussionMakerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMakerTests.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMakerTests/Pods-DiscussionMakerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		104AEDC43F37E71DA6E71A76 /* libPods-WhoCooler-WhoCoolerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhoCooler-WhoCoolerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AACB45F9AA7F28D412DD4D3 /* Pods-DiscussionMakerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMakerTests.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMakerTests/Pods-DiscussionMakerTests.release.xcconfig"; sourceTree = "<group>"; };
 		39215B7923D35390000B5AA1 /* DebateListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateListPresenter.swift; sourceTree = "<group>"; };
 		39215B7A23D35390000B5AA1 /* DebateListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateListWorker.swift; sourceTree = "<group>"; };
@@ -199,13 +196,26 @@
 		39EFACD823DDADB700E1E8BA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		39EFACDF23DDB11000E1E8BA /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		4784EF150D11D3D62744CD2D /* Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig"; sourceTree = "<group>"; };
-		5463360E8125B9A1E4E8F8C2 /* Pods_WhoCoolerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoCoolerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E3959D075EBDC1457C20928 /* libPods-WhoCoolerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhoCoolerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F188B59484FFB42C92E94F8 /* Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig"; path = "Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		603992BE9B1D112A9C4667F1 /* Pods-DiscussionMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker.debug.xcconfig"; sourceTree = "<group>"; };
+		67EF838F0BEBBE23470370C3 /* libPods-WhoCooler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhoCooler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		861DE6A22455D94C00B864EB /* DebateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateInfoView.swift; sourceTree = "<group>"; };
 		861DE6A62455DCEE00B864EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		861E91E2245B674900A3E4A9 /* VoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteModel.swift; sourceTree = "<group>"; };
 		865B4FC92467FF3A00FAC5EC /* EmptyDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataCell.swift; sourceTree = "<group>"; };
+		865B4FEF24681FB400FAC5EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		865B4FF024681FB400FAC5EC /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		865B4FF124681FB400FAC5EC /* CollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		865B4FF224681FB400FAC5EC /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
+		865B4FF324681FB400FAC5EC /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		865B4FF424681FB400FAC5EC /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		865B4FF524681FB400FAC5EC /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		865B4FF624681FB400FAC5EC /* GradientLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientLabel.swift; sourceTree = "<group>"; };
+		865B4FF724681FB400FAC5EC /* AddSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSubviews.swift; sourceTree = "<group>"; };
+		865B4FF824681FB400FAC5EC /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		865B4FF924681FB400FAC5EC /* With.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = With.swift; sourceTree = "<group>"; };
+		865B4FFA24681FB400FAC5EC /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		865CBB542466AE1700BA50D8 /* DebateDetailViewController+MessageDisplayLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DebateDetailViewController+MessageDisplayLogic.swift"; sourceTree = "<group>"; };
 		865CBB582466D56800BA50D8 /* DebateVoteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateVoteResponse.swift; sourceTree = "<group>"; };
 		867FB90C2460561000820196 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -223,14 +233,12 @@
 		86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessagePresenter.swift; sourceTree = "<group>"; };
 		86E8D826245B23C40002DE7A /* VoteMessageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageWorker.swift; sourceTree = "<group>"; };
 		8AD473F6D6F50D129A3CB29D /* Pods-WhoCooler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler.release.xcconfig"; path = "Target Support Files/Pods-WhoCooler/Pods-WhoCooler.release.xcconfig"; sourceTree = "<group>"; };
-		8F2C66A6C58D6F06BCD7C8E1 /* Pods_WhoCooler_WhoCoolerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoCooler_WhoCoolerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8CFB57FBB82248B4DFF563 /* Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9E841A502850A6188D04DBE0 /* Pods-WhoCoolerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCoolerTests.release.xcconfig"; path = "Target Support Files/Pods-WhoCoolerTests/Pods-WhoCoolerTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F1E5D689700E4B38B6D4D0E /* Pods-WhoCoolerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCoolerTests.debug.xcconfig"; path = "Target Support Files/Pods-WhoCoolerTests/Pods-WhoCoolerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B080ED73F031732B083157A1 /* Pods-DiscussionMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker.release.xcconfig"; sourceTree = "<group>"; };
 		B7A9A48801613C4E6854D5F5 /* Pods-WhoCooler-WhoCoolerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler-WhoCoolerUITests.release.xcconfig"; path = "Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DE1689751B398E1AEDDF0D4E /* Pods-WhoCooler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler.debug.xcconfig"; path = "Target Support Files/Pods-WhoCooler/Pods-WhoCooler.debug.xcconfig"; sourceTree = "<group>"; };
-		F76D3C9B55E7A057C89B64CC /* Pods_WhoCooler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoCooler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,8 +246,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				398086F02438E01500CDA1D2 /* SUHelpers.framework in Frameworks */,
-				CA3D2007E351404D8D6D464F /* Pods_WhoCooler.framework in Frameworks */,
+				0554ADD12FA57B26501F840C /* libPods-WhoCooler.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,7 +254,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3C25EC7F7AA3280F6BC9715 /* Pods_WhoCoolerTests.framework in Frameworks */,
+				A2BA3766B7E55C7A3F66ABED /* libPods-WhoCoolerTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +262,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				369BEC6480CD351446CAB812 /* Pods_WhoCooler_WhoCoolerUITests.framework in Frameworks */,
+				B517F606F090B0D8F5937EC5 /* libPods-WhoCooler-WhoCoolerUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +511,7 @@
 		39EFACD723DDADA900E1E8BA /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				865B4FEE24681FB400FAC5EC /* SUHelpers */,
 				39C8AB9724431C8D00D299CE /* Services */,
 				39EFACDE23DDB0FD00E1E8BA /* Views */,
 				39EFACDD23DDB0F900E1E8BA /* Models */,
@@ -570,6 +578,26 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		865B4FEE24681FB400FAC5EC /* SUHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				865B4FEF24681FB400FAC5EC /* Date.swift */,
+				865B4FF024681FB400FAC5EC /* Collection.swift */,
+				865B4FF124681FB400FAC5EC /* CollectionView.swift */,
+				865B4FF224681FB400FAC5EC /* Comparable.swift */,
+				865B4FF324681FB400FAC5EC /* Error.swift */,
+				865B4FF424681FB400FAC5EC /* UIColor.swift */,
+				865B4FF524681FB400FAC5EC /* UITableView.swift */,
+				865B4FF624681FB400FAC5EC /* GradientLabel.swift */,
+				865B4FF724681FB400FAC5EC /* AddSubviews.swift */,
+				865B4FF824681FB400FAC5EC /* DateFormatter.swift */,
+				865B4FF924681FB400FAC5EC /* With.swift */,
+				865B4FFA24681FB400FAC5EC /* Double.swift */,
+			);
+			name = SUHelpers;
+			path = SUHelpers/SUHelpers;
+			sourceTree = SOURCE_ROOT;
+		};
 		867FB9092460560100820196 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,9 +635,9 @@
 		CA1E839BD6E22E2B1D2EF7D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F76D3C9B55E7A057C89B64CC /* Pods_WhoCooler.framework */,
-				8F2C66A6C58D6F06BCD7C8E1 /* Pods_WhoCooler_WhoCoolerUITests.framework */,
-				5463360E8125B9A1E4E8F8C2 /* Pods_WhoCoolerTests.framework */,
+				67EF838F0BEBBE23470370C3 /* libPods-WhoCooler.a */,
+				104AEDC43F37E71DA6E71A76 /* libPods-WhoCooler-WhoCoolerUITests.a */,
+				4E3959D075EBDC1457C20928 /* libPods-WhoCoolerTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -625,8 +653,6 @@
 				39D1035E23D0ED1000A0C3F7 /* Sources */,
 				39D1035F23D0ED1000A0C3F7 /* Frameworks */,
 				39D1036023D0ED1000A0C3F7 /* Resources */,
-				9484FB20F86776C9C2942DF2 /* [CP] Embed Pods Frameworks */,
-				398086DE2438CF9400CDA1D2 /* Embed Frameworks */,
 				189E8A440BF099890AF5EDBD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -665,7 +691,6 @@
 				39D1037F23D0ED1400A0C3F7 /* Sources */,
 				39D1038023D0ED1400A0C3F7 /* Frameworks */,
 				39D1038123D0ED1400A0C3F7 /* Resources */,
-				BD72B8D1301407615D49FDD1 /* [CP] Embed Pods Frameworks */,
 				419B6A13C61CA7D53F647E48 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -828,40 +853,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9484FB20F86776C9C2942DF2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BD72B8D1301407615D49FDD1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CCADA9F418E7D8FFB988901A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -932,17 +923,23 @@
 				3943F1AF243F0FB000BC11D0 /* DebateDetailViewController.swift in Sources */,
 				861DE6A72455DCEE00B864EB /* Category.swift in Sources */,
 				39EFACD323DDAD2500E1E8BA /* DebateShortCell.swift in Sources */,
+				865B500324681FB400FAC5EC /* UIColor.swift in Sources */,
 				398086F52439D51F00CDA1D2 /* DebatesResponse.swift in Sources */,
+				865B500624681FB400FAC5EC /* AddSubviews.swift in Sources */,
 				39215B8123D35390000B5AA1 /* DebateListRouter.swift in Sources */,
 				867FB9152460567D00820196 /* SearchModels.swift in Sources */,
 				399C0EC3244368AF00EEEC19 /* RefreshTokenResult.swift in Sources */,
 				867FB9112460567000820196 /* SearchPresenter.swift in Sources */,
 				39C8AB8B2441C4A300D299CE /* Message.swift in Sources */,
+				865B500524681FB400FAC5EC /* GradientLabel.swift in Sources */,
+				865B500124681FB400FAC5EC /* Comparable.swift in Sources */,
 				39BD33E824531A4C00741A8F /* UserProfileWorker.swift in Sources */,
+				865B4FFF24681FB400FAC5EC /* Collection.swift in Sources */,
 				867FB9172460568300820196 /* SearchRouter.swift in Sources */,
 				39BD33EC24531A4C00741A8F /* UserProfileInteractor.swift in Sources */,
 				39215B8323D35390000B5AA1 /* DebateListViewController.swift in Sources */,
 				39BD33EB24531A4C00741A8F /* UserProfileViewController.swift in Sources */,
+				865B500224681FB400FAC5EC /* Error.swift in Sources */,
 				398086F32439D44B00CDA1D2 /* DiscussionSide.swift in Sources */,
 				86E8D823245B22580002DE7A /* VoteMessageInteractor.swift in Sources */,
 				3943F1AB243F0FB000BC11D0 /* DebateDetailPresenter.swift in Sources */,
@@ -964,17 +961,23 @@
 				8683CA4F245EEB3A00CE31CE /* CategoryTableViewCell.swift in Sources */,
 				39DAE96E245488CB00AF7B96 /* UserEditResponse.swift in Sources */,
 				86B4A3BB2459EE4400EFE7C9 /* Enums.swift in Sources */,
+				865B4FFE24681FB400FAC5EC /* Date.swift in Sources */,
 				8683CA51245EEB9B00CE31CE /* CategoryCollectionCell.swift in Sources */,
+				865B500024681FB400FAC5EC /* CollectionView.swift in Sources */,
 				39C8AB962442DFD800D299CE /* MessagesList.swift in Sources */,
+				865B500924681FB400FAC5EC /* Double.swift in Sources */,
 				39BD33E924531A4C00741A8F /* UserProfileRouter.swift in Sources */,
 				398086FE243C6FEB00CDA1D2 /* NetworkService.swift in Sources */,
+				865B500424681FB400FAC5EC /* UITableView.swift in Sources */,
 				39C8AB942441DEBC00D299CE /* DebateChatCell.swift in Sources */,
+				865B500824681FB400FAC5EC /* With.swift in Sources */,
 				39C8ABA02443254A00D299CE /* AuthButton.swift in Sources */,
 				397319F1244CA5950050325A /* InputTextView.swift in Sources */,
 				39215B7F23D35390000B5AA1 /* DebateListPresenter.swift in Sources */,
 				39215B8023D35390000B5AA1 /* DebateListWorker.swift in Sources */,
 				398086D32438CED000CDA1D2 /* AuthorizationScreenModels.swift in Sources */,
 				39D5F9E42454808000BDD7B9 /* DataPickerImplementation.swift in Sources */,
+				865B500724681FB400FAC5EC /* DateFormatter.swift in Sources */,
 				865CBB592466D56800BA50D8 /* DebateVoteResponse.swift in Sources */,
 				3943F1B0243F0FB000BC11D0 /* DebateDetailInteractor.swift in Sources */,
 				867FB90F2460566800820196 /* SearchInteractor.swift in Sources */,
@@ -1148,17 +1151,17 @@
 			baseConfigurationReference = DE1689751B398E1AEDDF0D4E /* Pods-WhoCooler.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = DiscussionMaker/DiscussionMaker.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WhoCooler/WhoCooler.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 147;
-				DEVELOPMENT_TEAM = VZB2Q96A5B;
+				DEVELOPMENT_TEAM = S84XJ4L7NY;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oleksnikolenko.whoCooler;
 				PRODUCT_NAME = WhoCooler;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1171,17 +1174,17 @@
 			baseConfigurationReference = 8AD473F6D6F50D129A3CB29D /* Pods-WhoCooler.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = DiscussionMaker/DiscussionMaker.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WhoCooler/WhoCooler.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 147;
-				DEVELOPMENT_TEAM = VZB2Q96A5B;
+				DEVELOPMENT_TEAM = S84XJ4L7NY;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oleksnikolenko.whoCooler;
 				PRODUCT_NAME = WhoCooler;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

@@ -9,7 +9,6 @@
 
 import PinLayout
 import RxSwift
-import SUHelpers
 
 protocol DebateDetailDisplayLogic: class, MessageDisplayLogic {
     func displayDebate(viewModel: DebateDetail.Initializing.ViewModel)
@@ -34,10 +33,6 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
     }
     lazy var inputTextView = InputTextView().with {
         $0.textView.delegate = self
-    }
-    let backgroundView = UIButton().with {
-        $0.backgroundColor = .white
-        $0.alpha = 0
     }
 
     // MARK: - Properties
@@ -86,11 +81,17 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
         view.backgroundColor = .white
         view.addSubviews(
             tableView,
-            inputTextView,
-            backgroundView
+            inputTextView
         )
 
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+
         bindObservables()
+    }
+
+    @objc func dismissKeyboard() {
+        let _ = inputTextView.resignFirstResponder()
     }
 
     // MARK: - Binding
@@ -126,12 +127,6 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
                 self.tableView.es.resetNoMoreData()
                 self.interactor?.vote(request: .init(sideId: self.debate.rightSide.id))
             }).disposed(by: disposeBag)
-
-        backgroundView.didClick
-            .subscribe(onNext: { [unowned self] in
-                self.inputTextView.textView.resignFirstResponder()
-                self.view.setNeedsLayout()
-            }).disposed(by: disposeBag)
     }
 
     // MARK: - Layout
@@ -153,11 +148,6 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
             .top()
             .horizontally()
             .above(of: inputTextView)
-
-        backgroundView.pin
-            .above(of: inputTextView)
-            .horizontally()
-            .top()
     }
 
     private func animateKeyboard(_ height: CGFloat, _ duration: Double, _ curve: UInt) {
@@ -167,7 +157,7 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
             delay: 0,
             options: UIView.AnimationOptions(rawValue: curve),
             animations: { [unowned self] in
-                self.inputTextView.pin.bottom(self.keyboardHeight)
+                self.layout()
             },
             completion: nil
         )

@@ -8,7 +8,6 @@
 
 import Kingfisher
 import RxSwift
-import SUHelpers
 
 class DebateShortCell: TableViewCell {
 

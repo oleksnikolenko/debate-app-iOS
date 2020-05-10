@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import SUHelpers
 
 class DebateChatCell: UITableViewCell {
 
