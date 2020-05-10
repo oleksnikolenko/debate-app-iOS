@@ -21,7 +21,7 @@ protocol DebateListBusinessLogic {
         successCompletion: (() -> Void)?
     )
     func reloadDebate(debateId: String)
-    func vote(debateId: String, sideId: String)
+    func vote(debateId: String, sideId: String, successCompletion: ((Debate) -> Void)?)
 }
 
 protocol DebateListDataStore {}
@@ -66,10 +66,10 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
         }).disposed(by: disposeBag)
     }
 
-    func vote(debateId: String, sideId: String) {
+    func vote(debateId: String, sideId: String, successCompletion: ((Debate) -> Void)?) {
         worker.vote(debateId: debateId, sideId: sideId)
             .subscribe(onNext: {
-                self.presenter?.reloadDebate(debate: $0.debate)
+                successCompletion?($0.debate)
             }, onError: { [weak self] in
                 self?.handleError($0)
             }).disposed(by: disposeBag)

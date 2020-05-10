@@ -213,43 +213,46 @@ class SideVoteButton: UIView {
 
     private func singleWinnerLayout() {
         votedShade.isHidden = true
-
         if userChosenSide == .left {
             rightName.isHidden = true
             rightPercentLabel.isHidden = true
             leftName.isHidden = false
             leftPercentLabel.isHidden = false
 
-            leftPercentLabel.pin
-                .bottom()
-                .start(4)
-                .end(4)
-                .sizeToFit(.width)
-                .marginVertical(4)
+            UIView.animate(withDuration: 0.5) {
+                self.leftPercentLabel.pin
+                    .bottom()
+                    .start(4)
+                    .end(4)
+                    .sizeToFit(.width)
+                    .marginVertical(4)
 
-            leftName.pin
-                .above(of: leftPercentLabel)
-                .top()
-                .start(4)
-                .end()
+                self.leftName.pin
+                    .above(of: self.leftPercentLabel)
+                    .top()
+                    .start(4)
+                    .end()
+            }
         } else {
             leftName.isHidden = true
             leftPercentLabel.isHidden = true
             rightName.isHidden = false
             rightPercentLabel.isHidden = false
 
-            rightPercentLabel.pin
-                .bottom()
-                .start(4)
-                .end(4)
-                .sizeToFit(.width)
-                .marginVertical(4)
+            UIView.animate(withDuration: 0.5) {
+                self.rightPercentLabel.pin
+                    .bottom()
+                    .start(4)
+                    .end(4)
+                    .sizeToFit(.width)
+                    .marginVertical(4)
 
-            rightName.pin
-                .above(of: rightPercentLabel)
-                .top()
-                .start(4)
-                .end()
+                self.rightName.pin
+                    .above(of: self.rightPercentLabel)
+                    .top()
+                    .start(4)
+                    .end()
+            }
         }
     }
 

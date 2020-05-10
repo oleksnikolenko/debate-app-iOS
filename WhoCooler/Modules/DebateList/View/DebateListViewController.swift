@@ -64,11 +64,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
     var request: DebateList.Something.Request {
         DebateList.Something.Request(categoryId: selectedCategoryId, selectedSorting: selectedSorting.rawValue)
     }
-    var cells: [DebateList.CellType] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var cells: [DebateList.CellType] = []
     var debateToReloadId: String?
     var indexPathToReload: IndexPath?
 
@@ -138,6 +134,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
     // MARK: - Do something
     func displayCells(viewModel: DebateList.Something.ViewModel) {
         self.cells = viewModel.cells
+        tableView.reloadData()
 
         tableView.es.stopLoadingMore()
         tableView.es.stopPullToRefresh()
@@ -151,10 +148,8 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
 
     func reloadDebate(debateCell: DebateList.CellType) {
         if let indexPath = indexPathToReload {
-            tableView.updateWithoutAnimation {
-                cells[indexPath.row] = debateCell
-                tableView.reloadRows(at: [indexPath], with: .none)
-            }
+            cells[indexPath.row] = debateCell
+            tableView.reloadRows(at: [indexPath], with: .automatic)
 
             debateToReloadId = nil
             indexPathToReload = nil
@@ -242,16 +237,29 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.voteButton.leftName.didClick,
                 cell.voteButton.leftPercentLabel.didClick
             ).subscribe(onNext: { [weak self] in
-                self?.indexPathToReload = indexPath
-                self?.interactor?.vote(debateId: debate.id, sideId: debate.leftSide.id)
+                let completionHandler: ((Debate) -> Void)? = { debate in
+                    cell.voteButton.setup(debate)
+                }
+
+                self?.interactor?.vote(
+                    debateId: debate.id,
+                    sideId: debate.leftSide.id,
+                    successCompletion: completionHandler
+                )
             }).disposed(by: cell.disposeBag)
 
             Observable.merge(
                 cell.voteButton.rightName.didClick,
                 cell.voteButton.rightPercentLabel.didClick
             ).subscribe(onNext: { [weak self] in
-                self?.indexPathToReload = indexPath
-                self?.interactor?.vote(debateId: debate.id, sideId: debate.rightSide.id)
+                let completionHandler: ((Debate) -> Void)? = { debate in
+                    cell.voteButton.setup(debate)
+                }
+                self?.interactor?.vote(
+                    debateId: debate.id,
+                    sideId: debate.rightSide.id,
+                    successCompletion: completionHandler
+                )
             }).disposed(by: cell.disposeBag)
 
             cell.didClickFavorites
@@ -305,6 +313,15 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
             return tableView.frame.height
         default:
             return UITableView.automaticDimension
+        }
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch cells[indexPath.row] {
+        case .emptyFavorites:
+            return tableView.frame.height
+        default:
+            return 335
         }
     }
 
