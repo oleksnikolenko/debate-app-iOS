@@ -14,13 +14,13 @@ import ESPullToRefresh
 import GoogleSignIn
 import RxSwift
 import RxCocoa
-import SUHelpers
 
 protocol DebateListDisplayLogic: class {
     func displayCells(viewModel: DebateList.Something.ViewModel)
     func reloadDebate(debateCell: DebateList.CellType)
     func navigateToAuthorization()
     func showNoInternet()
+    func noticeNoMoreData()
 }
 
 class DebateListViewController: UIViewController, DebateListDisplayLogic {
@@ -221,6 +221,10 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         }))
 
         self.present(alert, animated: true)
+    }
+
+    func noticeNoMoreData() {
+        tableView.es.noticeNoMoreData()
     }
 
 }

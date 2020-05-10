@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import SUHelpers
 
 protocol VoteMessageDisplayLogic: class {
     func update(model: Votable)

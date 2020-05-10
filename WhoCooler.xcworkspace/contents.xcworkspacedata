@@ -5,9 +5,6 @@
       location = "group:WhoCooler.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:SUHelpers/SUHelpers.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

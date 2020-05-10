@@ -30,6 +30,7 @@ class DebateListPresenter: DebateListPresentationLogic {
 
         if cells.count == 1 {
             cells.append(.emptyFavorites)
+            viewController?.noticeNoMoreData()
         }
         viewController?.displayCells(viewModel:
             .init(cells: cells, hasNextPage: response.hasNextPage)

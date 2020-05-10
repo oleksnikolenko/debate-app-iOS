@@ -1,5 +1,5 @@
 //
-//  TableViewCell.swift
+//  UITableView.swift
 //  SUHelpers
 //
 //  Created by Artem Trubacheev on 26.01.2020.

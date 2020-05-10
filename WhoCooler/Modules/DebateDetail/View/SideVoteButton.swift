@@ -6,7 +6,6 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-import SUHelpers
 import UIKit
 
 class SideVoteButton: UIView {

@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import SUHelpers
 import UIKit
 
 class InputTextView: UIView, UITextViewDelegate {

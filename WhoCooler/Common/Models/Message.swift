@@ -6,8 +6,6 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-import SUHelpers
-
 class Message: Decodable, Equatable {
 
     let id: String
