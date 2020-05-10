@@ -160,7 +160,7 @@ class DebateChatCell: UITableViewCell {
             .marginTop(4)
 
         voteButton.pin
-            .height(18)
+            .height(20)
             .sizeToFit(.height)
             .end(20)
             .vCenter(to: replyButton.edge.vCenter)
@@ -222,7 +222,7 @@ private extension MessageStyle {
     var bottomMargin: CGFloat {
         switch self {
         case .message:
-            return 12
+            return 4
         case .reply:
             return 0
         }

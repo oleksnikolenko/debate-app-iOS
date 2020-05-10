@@ -17,18 +17,22 @@ protocol VoteMessageDisplayLogic: class {
 class VoteMessageButton: UIView {
 
     // MARK: - Subviews 
-    private var upButton = UIButton().with {
-        $0.setImage(UIImage(named: "thumbup")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        $0.tintColor = .lightGray
+    private lazy var upImage = UIImageView().with {
+        $0.tintColor = .darkGray
     }
-    private var downButton = UIButton().with {
-        $0.setImage(UIImage(named: "thumbdown")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        $0.tintColor = .lightGray
+    private lazy var downImage = UIImageView().with {
+        $0.tintColor = .darkGray
     }
+    private let upButton = UIButton()
+    private let downButton = UIButton()
     private var voteCounter = UILabel().with {
-        $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.textColor = UIColor.black
     }
+    private let chosenLikeImage = UIImage(named: "thumbup")?.withRenderingMode(.alwaysTemplate)
+    private let notChosenLikeImage = UIImage(named: "notchosenlike")
+    private let chosenDislikeImage = UIImage(named: "thumbdown")?.withRenderingMode(.alwaysTemplate)
+    private let notChosenDislikeImage = UIImage(named: "notchosendislike")
 
     // MARK: - Properties
     private let disposeBag = DisposeBag()
@@ -49,6 +53,7 @@ class VoteMessageButton: UIView {
 
         initialSetup()
         bindObservables()
+        addSubviews(upImage, downImage, voteCounter, upButton, downButton)
     }
 
     required init?(coder: NSCoder) {
@@ -63,8 +68,6 @@ class VoteMessageButton: UIView {
         view.interactor = interactor
         interactor.presenter = presenter
         presenter.view = view
-
-        addSubviews(upButton, downButton, voteCounter)
     }
 
     // MARK: - Layout
@@ -81,24 +84,31 @@ class VoteMessageButton: UIView {
     }
 
     private func layout() {
-        let buttonSize = CGSize(width: 18, height: 18)
-
-        upButton.pin
-            .size(buttonSize)
+        upImage.pin
+            .size(16)
             .top()
             .start()
 
         voteCounter.pin
             .sizeToFit()
-            .after(of: upButton)
-            .marginStart(8)
-            .vCenter(to: upButton.edge.vCenter)
+            .after(of: upImage)
+            .marginStart(12)
+            .bottom(to: upImage.edge.bottom)
+
+        downImage.pin
+            .size(16)
+            .after(of: voteCounter)
+            .vCenter(to: upImage.edge.bottom)
+            .marginTop(-4)
+            .marginStart(12)
+
+        upButton.pin
+            .size(32)
+            .center(to: upImage.anchor.center)
 
         downButton.pin
-            .size(buttonSize)
-            .after(of: voteCounter)
-            .top()
-            .marginStart(8)
+            .size(32)
+            .center(to: downImage.anchor.center)
     }
 
     // MARK: - Private methods
@@ -106,17 +116,24 @@ class VoteMessageButton: UIView {
         guard let model = model else { return }
 
         voteCounter.text = model.votesCount.description
+        if model.votesCount == 0 {
+            voteCounter.textColor = UIColor.black.withAlphaComponent(0.85)
+        } else if model.votesCount > 0 {
+            voteCounter.textColor = UIColor.systemGreen.withAlphaComponent(0.85)
+        } else if model.votesCount < 0 {
+            voteCounter.textColor = UIColor.systemRed.withAlphaComponent(0.85)
+        }
 
         switch model.voteType {
         case .up:
-            upButton.tintColor = .blue
-            downButton.tintColor = .gray
+            upImage.image = chosenLikeImage
+            downImage.image = notChosenDislikeImage
         case .down:
-            upButton.tintColor = .gray
-            downButton.tintColor = .blue
+            downImage.image = chosenDislikeImage
+            upImage.image = notChosenLikeImage
         case .none:
-            upButton.tintColor = .gray
-            downButton.tintColor = .gray
+            upImage.image = notChosenLikeImage
+            downImage.image = notChosenDislikeImage
         }
 
         setNeedsLayout()

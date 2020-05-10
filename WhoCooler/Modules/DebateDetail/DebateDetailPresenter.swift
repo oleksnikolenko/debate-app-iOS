@@ -58,6 +58,7 @@ class DebateDetailPresenter: DebateDetailPresentationLogic {
 
     func presentVotes(response: DebateDetail.Vote.Response) {
         viewController?.updateVotes(.init(debate: response.debate))
+        viewController?.setReachEnd(!response.debate.messagesList.hasNextPage)
     }
 
     // MARK: - Pagination of messages/replies
