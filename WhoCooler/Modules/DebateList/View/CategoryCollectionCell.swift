@@ -15,14 +15,6 @@ class CategoryCollectionCell: UICollectionViewCell {
         $0.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }
 
-    // MARK: - Properties
-    override var isSelected: Bool {
-        didSet {
-            label.textColor = isSelected ? .white : .black
-            contentView.backgroundColor = isSelected ? .black : .white
-        }
-    }
-
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,7 +50,8 @@ class CategoryCollectionCell: UICollectionViewCell {
     // MARK: - Public methods
     func setup(_ category: Category, isSelected: Bool) {
         label.text = category.name
-        self.isSelected = isSelected
+        label.textColor = isSelected ? .white : .black
+        contentView.backgroundColor = isSelected ? .black : .white
 
         setNeedsLayout()
     }

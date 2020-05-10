@@ -347,6 +347,20 @@ extension DebateDetailViewController: UITableViewDelegate, UITableViewDataSource
             }).disposed(by: cell.disposeBag)
 
             return cell
+
+        case .emptyMessages:
+            let cell = tableView.cell(for: EmptyDataCell.self)
+            cell.style = .message
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch sections[indexPath.section].rows[indexPath.row] {
+        case .emptyMessages:
+            return tableView.contentSize.height
+        default:
+            return UITableView.automaticDimension
         }
     }
 
