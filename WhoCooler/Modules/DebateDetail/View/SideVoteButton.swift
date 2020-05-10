@@ -282,12 +282,29 @@ class SideVoteButton: UIView {
         }
 
         leftName.text = debate.leftSide.name
-        leftPercentLabel.text = leftPercent.description + "%"
+        leftPercentLabel.attributedText = makeAttributedText(
+            percent: leftPercent.description, rating: debate.leftSide.ratingCount.description
+        )
 
         rightName.text = debate.rightSide.name
-        rightPercentLabel.text = rightPercent.description + "%"
+        rightPercentLabel.attributedText = makeAttributedText(
+            percent: rightPercent.description, rating: debate.rightSide.ratingCount.description
+        )
 
         setNeedsLayout()
+    }
+
+    private func makeAttributedText(percent: String, rating: String) -> NSAttributedString {
+        let percentAttrib = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .light)]
+        let percentString = NSAttributedString(string: percent + "%, ", attributes: percentAttrib)
+
+        let ratingAttrib = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .light)]
+        let ratingString = NSAttributedString(string: rating + " votes", attributes: ratingAttrib)
+
+        let attributedText = NSMutableAttributedString(attributedString: percentString)
+        attributedText.append(ratingString)
+
+        return attributedText
     }
 
     // MARK: - Private Methods
