@@ -53,11 +53,6 @@ class DebateShortCell: TableViewCell {
     private let leftSideColor = UIColor(hex: 0x29AB60)
     private let rightSideColor = UIColor(hex: 0xE74C3C)
     private var style: DebateCellStyle = .regular
-    var isFavorite: Bool = false {
-        didSet {
-            debateInfoView.isFavorite = !debateInfoView.isFavorite
-        }
-    }
     var disposeBag = DisposeBag()
     var didClickFavorites: Observable<Void> {
         debateInfoView.favoritesImageView.didClick
@@ -144,24 +139,23 @@ class DebateShortCell: TableViewCell {
     }
 
     // MARK: - Setup
-    func setup(_ Debate: Debate, style: DebateCellStyle = .regular) {
+    func setup(_ debate: Debate, style: DebateCellStyle = .regular) {
         self.style = style
         debateInfoView.isHidden = style.isInfoViewHidden
 
-        category.text = Debate.category.name
-        isFavorite = Debate.isFavorite
+        category.text = debate.category.name
 
-        leftImage.kf.setImage(with: try? Debate.leftSide.image.asURL())
-        rightImage.kf.setImage(with: try? Debate.rightSide.image.asURL())
+        leftImage.kf.setImage(with: try? debate.leftSide.image.asURL())
+        rightImage.kf.setImage(with: try? debate.rightSide.image.asURL())
 
-        voteButton.setup(Debate)
-        debateInfoView.setup(Debate)
+        voteButton.setup(debate)
+        debateInfoView.setup(debate)
 
         setNeedsLayout()
     }
 
     func toggleFavorite() {
-        isFavorite = !isFavorite
+        debateInfoView.toggleFavorite()
     }
 
 }

@@ -30,11 +30,7 @@ class DebateInfoView: UIView {
     private let filledFavoritesImage = UIImage(named: "filledFavorites")
 
     // MARK: - Properties
-    var isFavorite: Bool = false {
-        didSet {
-            favoritesImageView.image = isFavorite ? filledFavoritesImage : nonFilledFavoritesImage
-        }
-    }
+    var isFavorite: Bool = false
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -104,9 +100,26 @@ class DebateInfoView: UIView {
         userCount.text = debate.votesCount.description
         messageCount.text = debate.messageCount.description
 
+        favoritesImageView.image = debate.isFavorite ? filledFavoritesImage : nonFilledFavoritesImage
         isFavorite = debate.isFavorite
 
         setNeedsLayout()
+    }
+
+    func toggleFavorite() {
+        isFavorite = !isFavorite
+        UIView.animate(
+            withDuration: 0.15,
+            animations: {
+                self.favoritesImageView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }) { _ in
+            UIView.animate(withDuration: 0.25, animations: {
+                self.favoritesImageView.image = self.isFavorite
+                    ? self.filledFavoritesImage
+                    : self.nonFilledFavoritesImage
+                self.favoritesImageView.transform = CGAffineTransform.identity
+            })
+        }
     }
 
 }
