@@ -115,7 +115,6 @@ class VoteMessageButton: UIView {
     private func setup(_ model: Votable?) {
         guard let model = model else { return }
 
-        voteCounter.text = model.votesCount.description
         if model.votesCount == 0 {
             voteCounter.textColor = UIColor.black.withAlphaComponent(0.85)
         } else if model.votesCount > 0 {
@@ -126,14 +125,45 @@ class VoteMessageButton: UIView {
 
         switch model.voteType {
         case .up:
-            upImage.image = chosenLikeImage
-            downImage.image = notChosenDislikeImage
+            UIView.animate(
+                withDuration: 0.15,
+                animations: {
+                    self.upImage.image = self.chosenLikeImage
+                    self.upImage.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                    self.downImage.image = self.notChosenDislikeImage
+                    self.voteCounter.text = model.votesCount.description
+
+                },
+                completion: { _ in
+                    UIView.animate(withDuration: 0.15, animations: {
+                        self.upImage.transform = CGAffineTransform.identity
+                    })
+                }
+            )
         case .down:
-            downImage.image = chosenDislikeImage
-            upImage.image = notChosenLikeImage
+            UIView.animate(
+                withDuration: 0.15,
+                animations: {
+                    self.downImage.image = self.chosenDislikeImage
+                    self.downImage.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                    self.upImage.image = self.notChosenLikeImage
+                    self.voteCounter.text = model.votesCount.description
+                },
+                completion: { _ in
+                    UIView.animate(withDuration: 0.15, animations: {
+                        self.downImage.transform = CGAffineTransform.identity
+                    })
+                }
+            )
         case .none:
-            upImage.image = notChosenLikeImage
-            downImage.image = notChosenDislikeImage
+            UIView.animate(
+                withDuration: 0.25,
+                animations: {
+                    self.upImage.image = self.notChosenLikeImage
+                    self.downImage.image = self.notChosenDislikeImage
+                    self.voteCounter.text = model.votesCount.description
+                }
+            )
         }
 
         setNeedsLayout()

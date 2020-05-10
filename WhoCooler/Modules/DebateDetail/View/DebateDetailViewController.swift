@@ -30,6 +30,7 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
         $0.es.addInfiniteScrolling { [weak self] in
             self?.interactor?.getNextMessagesPage()
         }
+        $0.keyboardDismissMode = .onDrag
     }
     lazy var inputTextView = InputTextView().with {
         $0.textView.delegate = self

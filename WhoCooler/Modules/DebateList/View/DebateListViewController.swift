@@ -148,8 +148,10 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
 
     func reloadDebate(debateCell: DebateList.CellType) {
         if let indexPath = indexPathToReload {
-            cells[indexPath.row] = debateCell
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+            tableView.updateWithoutAnimation {
+                cells[indexPath.row] = debateCell
+                tableView.reloadRows(at: [indexPath], with: .none)
+            }
 
             debateToReloadId = nil
             indexPathToReload = nil
@@ -270,7 +272,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
                         cell.toggleFavorite()
                     }
                     self.interactor?.toggleFavorites(
-                        request: DebateList.Favorites.PostRequest(debate: debate, isFavorite: cell.isFavorite),
+                        request: DebateList.Favorites.PostRequest(debate: debate, isFavorite: cell.debateInfoView.isFavorite),
                         successCompletion: completionHandler
                     )
                 }).disposed(by: cell.disposeBag)
