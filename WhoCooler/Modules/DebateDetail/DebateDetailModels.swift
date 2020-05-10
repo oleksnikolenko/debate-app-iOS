@@ -144,6 +144,7 @@ enum DebateDetail {
 enum DebateDetailCellType {
     case message(Message)
     case reply(Message)
+    case emptyMessages
 }
 extension DebateDetailCellType: Equatable {
 
@@ -162,6 +163,7 @@ extension DebateDetailCellType: Equatable {
 
 enum DebateDetailSectionType {
     case message(Message)
+    case emptyMessages
 }
 extension DebateDetailSectionType: Equatable {
 
@@ -169,6 +171,8 @@ extension DebateDetailSectionType: Equatable {
         switch (lhs, rhs) {
         case (.message(let lMessage), .message(let rMessage)):
             return lMessage == rMessage
+        default:
+            return false
         }
     }
 

@@ -24,10 +24,13 @@ class DebateListPresenter: DebateListPresentationLogic {
 
     // MARK: Do something
     func presentSomething(response: DebateList.Something.Response) {
-        let cells: [DebateList.CellType] =
+        var cells: [DebateList.CellType] =
             [.categoryList(response.categories)] +
             response.data.map { .debate($0) }
 
+        if cells.count == 1 {
+            cells.append(.emptyFavorites)
+        }
         viewController?.displayCells(viewModel:
             .init(cells: cells, hasNextPage: response.hasNextPage)
         )

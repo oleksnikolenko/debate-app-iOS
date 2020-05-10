@@ -59,12 +59,22 @@ extension DebateDetailViewController {
 
                     return
                 }
+            case .emptyMessages:
+                break
             }
         }
     }
 
     // MARK: - Adding new message/reply
     func addNewMessage(_ viewModel: DebateDetail.MessageSend.ViewModel) {
+        /// Remove empty message cell if it appeared before
+        if case .emptyMessages = sections.first?.section {
+            tableView.updateWithoutAnimation {
+                sections.removeFirst()
+                tableView.deleteSections(IndexSet(integer: 0), with: .none)
+            }
+        }
+
         let replies: [DebateDetailCellType] = viewModel.message.replyList.map { .reply($0) }
         tableView.updateWithoutAnimation {
             sections.insert((.message(viewModel.message), rows: [.message(viewModel.message)] + replies), at: 0)
@@ -90,6 +100,8 @@ extension DebateDetailViewController {
 
                     return
                 }
+            case .emptyMessages:
+                break
             }
         }
     }
@@ -108,6 +120,8 @@ extension DebateDetailViewController {
 
                     return
                 }
+            case .emptyMessages:
+                break
             }
         }
     }
@@ -131,6 +145,8 @@ extension DebateDetailViewController {
                         break
                     }
                 }
+            case .emptyMessages:
+                break
             }
         }
     }
@@ -146,8 +162,17 @@ extension DebateDetailViewController {
                     tableView.deleteSections([sectionIndex], with: .automatic)
                     tableView.endUpdates()
 
+                    if sections.isEmpty {
+                        tableView.beginUpdates()
+                        sections.append((.emptyMessages, rows: [.emptyMessages]))
+                        tableView.insertSections([0], with: .automatic)
+                        tableView.endUpdates()
+                    }
+
                     return
                 }
+            case .emptyMessages:
+                break
             }
         }
     }
@@ -168,6 +193,8 @@ extension DebateDetailViewController {
                         break
                     }
                 }
+            case .emptyMessages:
+                break
             }
         }
     }

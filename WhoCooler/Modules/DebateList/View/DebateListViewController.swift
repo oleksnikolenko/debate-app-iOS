@@ -101,16 +101,6 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         router.viewController = viewController
     }
 
-    // MARK: - Routing
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -297,6 +287,20 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
                 }).disposed(by: cell.disposeBag)
 
             return cell
+
+        case .emptyFavorites:
+            let cell = tableView.cell(for: EmptyDataCell.self)
+            cell.style = .favorites
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch cells[indexPath.row] {
+        case .emptyFavorites:
+            return tableView.frame.height
+        default:
+            return UITableView.automaticDimension
         }
     }
 
@@ -310,7 +314,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
             indexPathToReload = indexPath
             debateToReloadId = debate.id
             router?.navigateToDebate(debate)
-        case .categoryList:
+        default:
             break
         }
     }

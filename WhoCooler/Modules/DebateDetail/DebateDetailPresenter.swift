@@ -47,8 +47,12 @@ class DebateDetailPresenter: DebateDetailPresentationLogic {
     }
 
     func makeSections(with debate: Debate) -> [DebateDetailSection] {
-        debate.messagesList.messages.map {
-            (.message($0), rows: [.message($0)])
+        if debate.messagesList.messages.isEmpty {
+            return [(.emptyMessages, rows: [.emptyMessages])]
+        } else {
+            return debate.messagesList.messages.map {
+                (.message($0), rows: [.message($0)])
+            }
         }
     }
 
