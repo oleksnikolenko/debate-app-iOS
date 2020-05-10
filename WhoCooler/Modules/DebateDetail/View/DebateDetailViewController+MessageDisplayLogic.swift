@@ -67,15 +67,14 @@ extension DebateDetailViewController {
 
     // MARK: - Adding new message/reply
     func addNewMessage(_ viewModel: DebateDetail.MessageSend.ViewModel) {
-        switch sections.first?.section {
-        case .emptyMessages:
+        /// Remove empty message cell if it appeared before
+        if case .emptyMessages = sections.first?.section {
             tableView.updateWithoutAnimation {
                 sections.removeFirst()
                 tableView.deleteSections(IndexSet(integer: 0), with: .none)
             }
-        default:
-            break
         }
+
         let replies: [DebateDetailCellType] = viewModel.message.replyList.map { .reply($0) }
         tableView.updateWithoutAnimation {
             sections.insert((.message(viewModel.message), rows: [.message(viewModel.message)] + replies), at: 0)
