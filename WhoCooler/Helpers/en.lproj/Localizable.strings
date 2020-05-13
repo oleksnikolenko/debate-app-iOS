@@ -25,6 +25,7 @@
 "profile.alert.changeNickname" = "Change your nickname";
 "profile.alert.title" = "Alert";
 "profile.alert.save" = "Save";
+"profile.privacyPolicy" = "Privacy policy";
 
 "cancelAction" = "Cancel";
 "deleteAction" = "Delete";

@@ -50,6 +50,11 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         $0.setTitleColor(.systemBlue, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
+    let privacyPolicyButton = UIButton().with {
+        $0.setTitle("profile.privacyPolicy".localized, for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+    }
 //    let userIdLabel = UILabel().with {
 //        $0.textAlignment = .center
 //        $0.textColor = .black
@@ -105,6 +110,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         view.addSubviews(
             avatar,
             userNameLabel,
+            privacyPolicyButton,
 //            userIdLabel,
 //            pushTokenLabel,
 //            accessTokenLabel,
@@ -161,6 +167,12 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
             self.presentChangeNameAlertController()
         }).disposed(by: disposeBag)
 
+        privacyPolicyButton.didClick.subscribe(onNext: {
+            /// TODO: - Provide link for privacy policy
+            guard let url = URL(string: "https://www.google.com") else { return }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }).disposed(by: disposeBag)
+
 //        userIdLabel.didClick
 //            .compactMap { [weak self] in self?.viewModel?.user.id }
 //            .subscribe(onNext: { [weak self] in self?.copy(text: $0) })
@@ -203,6 +215,11 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
 
         changeNameButton.pin
             .below(of: userNameLabel)
+            .start(20)
+            .sizeToFit()
+
+        privacyPolicyButton.pin
+            .below(of: changeNameButton)
             .start(20)
             .sizeToFit()
 

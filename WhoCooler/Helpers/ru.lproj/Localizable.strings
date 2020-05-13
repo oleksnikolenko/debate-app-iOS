@@ -25,6 +25,7 @@
 "profile.alert.changeNickname" = "Изменение имени";
 "profile.alert.title" = "Внимание";
 "profile.alert.save" = "Сохранить";
+"profile.privacyPolicy" = "Политика конфиденциальности";
 
 "cancelAction" = "Отменить";
 "deleteAction" = "Удалить";
