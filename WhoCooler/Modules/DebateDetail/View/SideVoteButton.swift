@@ -301,7 +301,7 @@ class SideVoteButton: UIView {
         let percentString = NSAttributedString(string: percent + "%, ", attributes: percentAttrib)
 
         let ratingAttrib = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .light)]
-        let ratingString = NSAttributedString(string: rating + " votes", attributes: ratingAttrib)
+        let ratingString = NSAttributedString(string: rating + " " + "debate.votes".localized, attributes: ratingAttrib)
 
         let attributedText = NSMutableAttributedString(attributedString: percentString)
         attributedText.append(ratingString)

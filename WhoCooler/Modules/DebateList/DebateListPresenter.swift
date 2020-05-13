@@ -28,7 +28,7 @@ class DebateListPresenter: DebateListPresentationLogic {
             [.categoryList(response.categories)] +
             response.data.map { .debate($0) }
 
-        if cells.count == 1 {
+        if cells.count == 1 && viewController?.selectedCategoryId == "favorites" {
             cells.append(.emptyFavorites)
             viewController?.noticeNoMoreData()
         }

@@ -21,19 +21,18 @@ public extension Date {
             return DateFormatter.date(with: .dayMonthYear).string(from: self)
         }
         if days == 1 {
-            return days.description + "d"
+            return days.description + "date.shortDay".localized
         } else if days > 1 {
             return DateFormatter.date(with: .monthDay).string(from: self)
         }
         if hours > 0 {
-            return hours.description + "h"
+            return hours.description + "date.shortHour".localized
         }
         if minutes > 0 {
-            return minutes.description + "m"
+            return minutes.description + "date.shortMinute".localized
         }
 
-        // TODO: - Localize
-        return "now"
+        return "date.now".localized
     }
 
     var isLastYear: Bool {

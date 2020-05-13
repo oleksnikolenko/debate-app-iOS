@@ -39,8 +39,7 @@ class DebateDetailHeader: UIView {
     }
     let messageLabel = UILabel().with {
         $0.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        // TODO: - Localize
-        $0.text = "Comments"
+        $0.text = "message.header".localized
     }
     let messageCounter = UILabel().with {
         $0.textColor = .lightGray

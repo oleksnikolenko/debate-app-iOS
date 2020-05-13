@@ -49,7 +49,8 @@ class NetworkServiceImplementation: NetworkService {
 
         let url: String
         if shouldLocalize {
-            url = baseUrl + "en/" + endpoint
+            guard let localization = Locale.current.languageCode else { return .never() }
+            url = baseUrl + localization + "/" + endpoint
         } else {
             url = baseUrl + endpoint
         }

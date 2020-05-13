@@ -1,0 +1,50 @@
+"textView.placeholder" = "Your comment";
+"textView.send" = "Send";
+
+"emptyData.messages" = "There are no comments yet\nbe first to express your opinion!";
+"emptyData.favorites" = "You have no favorites yet\nAdd them in the feed and they will appear here";
+
+"category.all" = "All";
+"category.favorites" = "Favorites";
+
+"sorting.popular" = "Popular";
+"sorting.newest" = "Newest";
+"sorting.oldest" = "Oldest";
+
+"date.now" = "now";
+"date.shortDay" = "d";
+"date.shortHour" = "h";
+"date.shortMinute" = "m";
+
+"search.placeholder" = "Start searching";
+"search.screenName" = "Search";
+
+"profile.changeAvatar" = "Change avatar";
+"profile.namePlaceholder" = "Name";
+"profile.changeNameButtonText" = "Change name";
+"profile.alert.changeNickname" = "Change your nickname";
+"profile.alert.title" = "Alert";
+"profile.alert.save" = "Save";
+"profile.privacyPolicy" = "Privacy policy";
+
+"cancelAction" = "Cancel";
+"deleteAction" = "Delete";
+"okay" = "OK";
+
+"auth.infoText" = "Please log in to vote and comment on Whocooler";
+
+"debate.actionSheet.edit" = "Edit";
+"debate.actionSheet.block" = "Block";
+"debate.actionSheet.sure" = "Are you sure?";
+"debates.screenName" = "Who's cooler";
+"debates.sort.title" = "Sort debates";
+
+"error.noInternet" = "It seems there is no internet connection";
+"error.tryAgain" = "Try again";
+
+"message.header" = "Comments";
+"message.reply" = "Reply";
+"message.show" = "Show";
+"message.moreReplies" = "more replies";
+
+"debate.votes" = "votes";

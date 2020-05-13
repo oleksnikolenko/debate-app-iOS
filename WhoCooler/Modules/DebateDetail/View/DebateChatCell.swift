@@ -29,8 +29,7 @@ class DebateChatCell: UITableViewCell {
     private let replyButton = UIButton().with {
         $0.setTitleColor(.lightGray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        // TODO: - Localize
-        $0.setTitle("Reply", for: .normal)
+        $0.setTitle("message.reply".localized, for: .normal)
     }
     private let voteButton = VoteMessageButton()
     private let showRepliesButton = UIButton().with {
@@ -180,8 +179,12 @@ class DebateChatCell: UITableViewCell {
         showRepliesButton.isHidden = !hasNotShownReplies
         avatar.kf.setImage(with: try? message.user.avatar.asURL())
         avatar.layer.cornerRadius = style.avatarSize.height / 2
-        // TODO: - Localize
-        showRepliesButton.setTitle("Show " + message.notShownReplyCount.description + " more replies", for: .normal)
+        showRepliesButton.setTitle(
+            "message.show".localized +
+            " " + message.notShownReplyCount.description +
+            " " + "message.moreReplies".localized,
+            for: .normal
+        )
         name.text = message.user.name
         messageLabel.text = message.text
         dateLabel.text = message.createdTime.toDate.dateSinceNow

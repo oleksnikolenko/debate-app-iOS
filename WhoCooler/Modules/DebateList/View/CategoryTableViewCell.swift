@@ -50,7 +50,6 @@ class CategoryTableViewCell: UITableViewCell {
     var didClickSorting: Observable<Void> {
         return Observable.merge(sortingLabel.didClick, sortingIcon.didClick)
     }
-    /// TODO: - Localize
     lazy var selectedCategory = BehaviorRelay<Category>(value: Category.all)
     var selectedSorting: DebateSorting = .popular {
         didSet {

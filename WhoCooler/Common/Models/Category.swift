@@ -14,13 +14,11 @@ struct Category: Decodable, Equatable {
 extension Category {
 
     static var all: Category {
-        /// TODO: - Localize
-        Category(id: "all", name: "All")
+        Category(id: "all", name: "category.all".localized)
     }
 
     static var favorites: Category {
-        /// TODO: - Localize
-        Category(id: "favorites", name: "Favorites")
+        Category(id: "favorites", name: "category.favorites".localized)
     }
 
 }
