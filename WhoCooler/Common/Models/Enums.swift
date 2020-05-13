@@ -63,14 +63,13 @@ public enum DebateSorting: String {
 public extension DebateSorting {
 
     var name: String {
-        /// TODO: - Localize
         switch self {
         case .popular:
-            return "Popular"
+            return "sorting.popular".localized
         case .newest:
-            return "Newest"
+            return "sorting.newest".localized
         case .oldest:
-            return "Oldest"
+            return "sorting.oldest".localized
         }
     }
 

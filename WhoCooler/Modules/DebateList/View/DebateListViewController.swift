@@ -21,6 +21,8 @@ protocol DebateListDisplayLogic: class {
     func navigateToAuthorization()
     func showNoInternet()
     func noticeNoMoreData()
+
+    var selectedCategoryId: String? { get }
 }
 
 class DebateListViewController: UIViewController, DebateListDisplayLogic {
@@ -39,7 +41,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         }
     }
 
-    private var selectedCategoryId: String?
+    var selectedCategoryId: String?
     private var selectedSorting: DebateSorting = .popular {
         didSet {
             guard selectedSorting != oldValue else { return }
@@ -104,8 +106,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         navigationController?.navigationBar.isTranslucent = false
         edgesForExtendedLayout = []
 
-        /// TODO: - Localize
-        title = "Debates"
+        title = "debates.screenName".localized
         view.addSubviews(tableView)
 
         navigationItem.leftBarButtonItem = profileButton
@@ -173,26 +174,23 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
     }
 
     private func presentSortingActionSheet(indexPath: IndexPath, completion: (() -> Void)?) {
-        /// TODO: - Localize
         let actionSheet = UIAlertController(
-            title: "Sort debates",
+            title: "debates.sort.title".localized,
             message: nil,
             preferredStyle: .actionSheet
         )
-        /// TODO: - Localize
-        actionSheet.addAction(UIAlertAction(title: "Popular", style: .default) { [weak self] _ in
+
+        actionSheet.addAction(UIAlertAction(title: "sorting.popular".localized, style: .default) { [weak self] _ in
             self?.setSelectedSorting(sorting: .popular, completion: completion)
         })
-        /// TODO: - Localize
-        actionSheet.addAction(UIAlertAction(title: "Newest", style: .default) { [weak self] _ in
+        actionSheet.addAction(UIAlertAction(title: "sorting.newest".localized, style: .default) { [weak self] _ in
             self?.setSelectedSorting(sorting: .newest, completion: completion)
         })
-        /// TODO: - Localize
-        actionSheet.addAction(UIAlertAction(title: "Oldest", style: .default) { [weak self] _ in
+        actionSheet.addAction(UIAlertAction(title: "sorting.oldest".localized, style: .default) { [weak self] _ in
             self?.setSelectedSorting(sorting: .oldest, completion: completion)
         })
-        /// TODO: - Localize
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        actionSheet.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
 
         present(actionSheet, animated: true)
     }
@@ -203,13 +201,12 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
     }
 
     func showNoInternet() {
-        /// TODO: - Localize
         let alert = UIAlertController(
-            title: "It seems there is no internet connection",
+            title: "error.noInternet".localized,
             message: nil,
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "error.tryAgain".localized, style: .default, handler: { [weak self] _ in
             guard let `self` = self else { return }
 
             if self.cells.isEmpty {

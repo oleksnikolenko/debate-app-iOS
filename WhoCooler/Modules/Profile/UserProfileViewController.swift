@@ -29,8 +29,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         $0.isUserInteractionEnabled = true
     }
     let changeAvatarButton = UIButton().with {
-        // TODO: - Localize
-        $0.setTitle("Change avatar", for: .normal)
+        $0.setTitle("profile.changeAvatar".localized, for: .normal)
         $0.setTitleColor(.systemBlue, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
@@ -44,12 +43,10 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
     let namePlaceholder = UILabel().with {
         $0.textColor = .lightGray
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        // TODO: - Localize
-        $0.text = "Name"
+        $0.text = "profile.namePlaceholder".localized
     }
     let changeNameButton = UIButton().with {
-        // TODO: - Localize
-        $0.setTitle("Change name", for: .normal)
+        $0.setTitle("profile.changeNameButtonText".localized, for: .normal)
         $0.setTitleColor(.systemBlue, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
@@ -266,18 +263,17 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
     private func presentChangeNameAlertController() {
         var textField: UITextField?
 
-        let alert = UIAlertController(title: "Alert", message: nil, preferredStyle: .alert)
-        // TODO: Localize
-        alert.title = "Change your nickname"
+        let alert = UIAlertController(title: "profile.alert.title".localized, message: nil, preferredStyle: .alert)
+        alert.title = "profile.alert.changeNickname".localized
         alert.addTextField {
             textField = $0
-            $0.placeholder = "Name"
+            $0.placeholder = "profile.namePlaceholder".localized
             $0.text = self.userNameLabel.text
         }
-        alert.addAction(.init(title: "Save", style: .default, handler: { [weak self] _ in
+        alert.addAction(.init(title: "profile.alert.save".localized, style: .default, handler: { [weak self] _ in
             self?.interactor?.modify(request: .init(avatar: nil, name: textField?.text))
         }))
-        alert.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(.init(title: "cancelAction".localized, style: .cancel, handler: nil))
 
         present(alert, animated: true, completion: nil)
     }

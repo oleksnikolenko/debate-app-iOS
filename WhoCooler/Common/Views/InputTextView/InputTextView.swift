@@ -13,8 +13,7 @@ class InputTextView: UIView, UITextViewDelegate {
 
     // MARK: - Subviews
     var textView = UITextView().with {
-        // TODO: - Localize
-        $0.text = "Tell others what you think"
+        $0.text = "textView.placeholder".localized
         $0.textColor = UIColor.gray
         $0.backgroundColor = UIColor(hex: 0xF1F1F1)
         $0.textContainerInset = UIEdgeInsets(top: 8, left: 12, bottom: 0, right: 12)
@@ -25,8 +24,7 @@ class InputTextView: UIView, UITextViewDelegate {
         $0.image = UIImage(named: "google")
     }
     private var sendButton = UIButton().with {
-        // TODO: - Localize
-        $0.setTitle("Send", for: .normal)
+        $0.setTitle("textView.send".localized, for: .normal)
         $0.setTitleColor(UIColor.systemBlue, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
     }

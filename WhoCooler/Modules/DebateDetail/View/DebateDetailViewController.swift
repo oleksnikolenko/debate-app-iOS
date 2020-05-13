@@ -211,35 +211,32 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         if interactor?.currentUser?.id == message.user.id {
-            /// TODO: - Localize
-            actionSheet.addAction(UIAlertAction(title: "Edit", style: .default) { [weak self] _ in
+            actionSheet.addAction(UIAlertAction(title: "debate.actionSheet.edit".localized, style: .default)
+            { [weak self] _ in
                 self?.setupEditInput(message: message)
             })
-            actionSheet.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            actionSheet.addAction(UIAlertAction(title: "deleteAction".localized, style: .destructive)
+            { [weak self] _ in
                 self?.showDeleteMessageAlert(message)
             })
         } else {
-            /// TODO: - Localize
-            actionSheet.addAction(UIAlertAction(title: "Block user", style: .default, handler: nil))
+            actionSheet.addAction(UIAlertAction(title: "debate.actionSheet.block".localized, style: .default, handler: nil))
         }
 
-        /// TODO: - Localize
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
 
         present(actionSheet, animated: true, completion: nil)
     }
 
     private func showDeleteMessageAlert(_ message: Message) {
-        /// TODO: - Localize
         let alertController = UIAlertController(
-            title: "Delete",
-            message: "Are you sure?",
+            title: "deleteAction".localized,
+            message: "debate.actionSheet.sure".localized,
             preferredStyle: .alert
         )
 
-        /// TODO: - Localize
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Delete", style: .default) { [weak self] _ in
+        alertController.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "deleteAction".localized, style: .default) { [weak self] _ in
             if let threadId = message.threadId {
                 self?.interactor?.deleteReply(request: .init(message: message, threadId: threadId))
             } else {
@@ -255,13 +252,12 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
     }
 
     func showNoInternet() {
-        /// TODO: - Localize
         let alert = UIAlertController(
-            title: "It seems there is no internet connection",
+            title: "error.noInternet".localized,
             message: nil,
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "okay".localized, style: .default, handler: nil))
 
         self.present(alert, animated: true)
     }

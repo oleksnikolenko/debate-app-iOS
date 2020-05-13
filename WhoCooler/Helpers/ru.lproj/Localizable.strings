@@ -1,0 +1,49 @@
+"textView.placeholder" = "Ваш комментарий";
+"textView.send" = "Отправить";
+
+"emptyData.messages" = "Здесь пока еще нет комментарие\nбудь первым(ой), поделись мнением!";
+"emptyData.favorites" = "У тебя еще пока нет избранных\nДобавляй их во вкладке со спорами и они обязательно появятся тут!";
+
+"category.all" = "Все";
+"category.favorites" = "Избранные";
+
+"sorting.popular" = "Популярные";
+"sorting.newest" = "Новые";
+"sorting.oldest" = "Старые";
+
+"date.now" = "только что";
+"date.shortDay" = "д";
+"date.shortHour" = "ч";
+"date.shortMinute" = "м";
+
+"search.placeholder" = "Поиск";
+"search.screenName" = "Поиск";
+
+"profile.changeAvatar" = "Изменить аватар";
+"profile.namePlaceholder" = "Имя";
+"profile.changeNameButtonText" = "Изменить имя";
+"profile.alert.changeNickname" = "Изменение имени";
+"profile.alert.title" = "Внимание";
+"profile.alert.save" = "Сохранить";
+
+"cancelAction" = "Отменить";
+"deleteAction" = "Удалить";
+"okay" = "OK";
+
+"auth.infoText" = "Пожалуйста, залогинься чтобы голосовать и комментировать на Whocooler";
+
+"debate.actionSheet.edit" = "Редактировать";
+"debate.actionSheet.block" = "Заблокировать";
+"debate.actionSheet.sure" = "Вы уверены?";
+"debates.screenName" = "Кто круче";
+"debates.sort.title" = "Сортировать споры";
+
+"error.noInternet" = "Кажется у тебя проблемы с интернетом";
+"error.tryAgain" = "Повторить";
+
+"message.header" = "Комментарии";
+"message.reply" = "Ответить";
+"message.show" = "Показать еще";
+"message.moreReplies" = "ответа";
+
+"debate.votes" = "голосов";

@@ -76,12 +76,11 @@ public extension EmptyDataCellStyle {
     }
 
     var placeholderText: String {
-        /// TODO: - Localize
         switch self {
         case .message:
-            return "There are no messages yet\nbe first to express your opinion!"
+            return "emptyData.messages".localized
         case .favorites:
-            return "You have no favorites yet\nAdd them in the feed and they will appear here"
+            return "emptyData.favorites".localized
         }
     }
 

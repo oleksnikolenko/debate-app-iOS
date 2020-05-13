@@ -25,8 +25,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         }
     }
     private lazy var searchBar = UISearchBar().with {
-        /// TODO: - Localize
-        $0.placeholder = "Search"
+        $0.placeholder = "search.placeholder".localized
         $0.barTintColor = .white
         $0.delegate = self
         $0.backgroundColor = .lightGray
@@ -75,8 +74,6 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
 
         navigationController?.navigationBar.isTranslucent = false
 
-        /// TODO: - Localize
-        title = "Search"
         view.addSubviews(searchBar, tableView)
     }
 

@@ -33,8 +33,7 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
         $0.textColor = UIColor.black
         $0.numberOfLines = 0
         $0.textAlignment = .center
-        // TODO: - Localize
-        $0.text = "Please log in to vote and comment on Whocooler"
+        $0.text = "auth.infoText".localized
     }
 
     // MARK: - Properties
