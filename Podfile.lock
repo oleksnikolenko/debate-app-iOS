@@ -7,6 +7,16 @@ PODS:
   - AppAuth/ExternalUserAgent (1.3.0)
   - Differentiator (4.0.1)
   - ESPullToRefresh (2.9.2)
+  - FBSDKCoreKit (7.0.0):
+    - FBSDKCoreKit/Basics (= 7.0.0)
+    - FBSDKCoreKit/Core (= 7.0.0)
+  - FBSDKCoreKit/Basics (7.0.0)
+  - FBSDKCoreKit/Core (7.0.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (7.0.0):
+    - FBSDKLoginKit/Login (= 7.0.0)
+  - FBSDKLoginKit/Login (7.0.0):
+    - FBSDKCoreKit (~> 7.0.0)
   - Firebase/Analytics (6.23.0):
     - Firebase/Core
   - Firebase/Auth (6.23.0):
@@ -137,6 +147,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - ESPullToRefresh
+  - FBSDKLoginKit
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Messaging
@@ -154,6 +165,8 @@ SPEC REPOS:
     - AppAuth
     - Differentiator
     - ESPullToRefresh
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -188,6 +201,8 @@ SPEC CHECKSUMS:
   AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   ESPullToRefresh: efed00d52597065e9a84e1e52fa444fdb1a1dee0
+  FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
+  FBSDKLoginKit: 5d1e321dc45ab1fa09198b77fc17c32a06f008c0
   Firebase: 585ae467b3edda6a5444e788fda6888f024d8d6f
   FirebaseAnalytics: 558f7a03d19de451093032c806f39d5f9dff096e
   FirebaseAnalyticsInterop: 3f86269c38ae41f47afeb43ebf32a001f58fcdae
@@ -217,6 +232,6 @@ SPEC CHECKSUMS:
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
 
-PODFILE CHECKSUM: e4aec80a17e24bfab0eb2ce61b906372da0fdb32
+PODFILE CHECKSUM: f7e6c6cda28e61f7821c1a79ef0fbc896d702c1c
 
 COCOAPODS: 1.8.4

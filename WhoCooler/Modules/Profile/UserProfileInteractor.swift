@@ -16,6 +16,7 @@ import RxSwift
 protocol UserProfileBusinessLogic {
     func getProfile(request: UserProfile.Profile.Request)
     func modify(request: UserProfile.Modify.Request)
+    func logout()
 }
 
 protocol UserProfileDataStore {}
@@ -88,6 +89,17 @@ class UserProfileInteractor: UserProfileBusinessLogic, UserProfileDataStore {
                     )
                 )
             }).disposed(by: disposeBag)
+    }
+
+    func logout() {
+        let providers: [AuthProvider] = [
+            GoogleAuthenticationProvider.shared,
+            FacebookAuthenticationProvider.shared
+        ]
+        providers.forEach { $0.logout() }
+        userDefaults.session = nil
+
+        presenter?.didLogOut()
     }
 
 }

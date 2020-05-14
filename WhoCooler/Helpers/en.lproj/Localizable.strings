@@ -26,10 +26,13 @@
 "profile.alert.title" = "Alert";
 "profile.alert.save" = "Save";
 "profile.privacyPolicy" = "Privacy policy";
+"profile.logout" = "Log out";
+"profile.alert.logout" = "Log out from profile";
 
 "cancelAction" = "Cancel";
 "deleteAction" = "Delete";
 "okay" = "OK";
+"yes" = "Yes";
 
 "auth.infoText" = "Please log in to vote and comment on Whocooler";
 

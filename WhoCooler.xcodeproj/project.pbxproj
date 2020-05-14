@@ -58,13 +58,13 @@
 		39D5F9E22454807900BDD7B9 /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D5F9E12454807900BDD7B9 /* DataPicker.swift */; };
 		39D5F9E42454808000BDD7B9 /* DataPickerImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D5F9E32454808000BDD7B9 /* DataPickerImplementation.swift */; };
 		39DAE96E245488CB00AF7B96 /* UserEditResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DAE96D245488CB00AF7B96 /* UserEditResponse.swift */; };
-		39DFA6FB2450605200A1A6B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39DFA6F82450605100A1A6B1 /* GoogleService-Info.plist */; };
 		39EFACD323DDAD2500E1E8BA /* DebateShortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD223DDAD2500E1E8BA /* DebateShortCell.swift */; };
 		39EFACD923DDADB700E1E8BA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD823DDADB700E1E8BA /* TableViewCell.swift */; };
 		39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACDF23DDB11000E1E8BA /* Discussion.swift */; };
 		861DE6A32455D94C00B864EB /* DebateInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A22455D94C00B864EB /* DebateInfoView.swift */; };
 		861DE6A72455DCEE00B864EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A62455DCEE00B864EB /* Category.swift */; };
 		861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E91E2245B674900A3E4A9 /* VoteModel.swift */; };
+		8644DD08246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8644DD07246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift */; };
 		864D82D6246BCEB500C6D184 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864D82D5246BCEB500C6D184 /* String.swift */; };
 		865B4FCA2467FF3A00FAC5EC /* EmptyDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FC92467FF3A00FAC5EC /* EmptyDataCell.swift */; };
 		865B4FFE24681FB400FAC5EC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FEF24681FB400FAC5EC /* Date.swift */; };
@@ -90,6 +90,7 @@
 		867FB9172460568300820196 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867FB9162460568300820196 /* SearchRouter.swift */; };
 		8683CA4F245EEB3A00CE31CE /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683CA4E245EEB3A00CE31CE /* CategoryTableViewCell.swift */; };
 		8683CA51245EEB9B00CE31CE /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */; };
+		86974BD8246D290800A4AA0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86974BD7246D290800A4AA0C /* GoogleService-Info.plist */; };
 		86B4A3B22459A3CA00EFE7C9 /* SideVoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3B12459A3CA00EFE7C9 /* SideVoteButton.swift */; };
 		86B4A3BB2459EE4400EFE7C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3BA2459EE4400EFE7C9 /* Enums.swift */; };
 		86E8D81D245B01D40002DE7A /* VoteMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D81C245B01D40002DE7A /* VoteMessageButton.swift */; };
@@ -178,7 +179,6 @@
 		39D5F9E12454807900BDD7B9 /* DataPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
 		39D5F9E32454808000BDD7B9 /* DataPickerImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPickerImplementation.swift; sourceTree = "<group>"; };
 		39DAE96D245488CB00AF7B96 /* UserEditResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditResponse.swift; sourceTree = "<group>"; };
-		39DFA6F82450605100A1A6B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39EFACD223DDAD2500E1E8BA /* DebateShortCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateShortCell.swift; sourceTree = "<group>"; };
 		39EFACD823DDADB700E1E8BA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		39EFACDF23DDB11000E1E8BA /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
@@ -190,6 +190,7 @@
 		861DE6A22455D94C00B864EB /* DebateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateInfoView.swift; sourceTree = "<group>"; };
 		861DE6A62455DCEE00B864EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		861E91E2245B674900A3E4A9 /* VoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteModel.swift; sourceTree = "<group>"; };
+		8644DD07246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthenticationProvider.swift; sourceTree = "<group>"; };
 		864D82D5246BCEB500C6D184 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		865B4FC92467FF3A00FAC5EC /* EmptyDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataCell.swift; sourceTree = "<group>"; };
 		865B4FEF24681FB400FAC5EC /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -216,6 +217,7 @@
 		867FB9162460568300820196 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		8683CA4E245EEB3A00CE31CE /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
+		86974BD7246D290800A4AA0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86B4A3B12459A3CA00EFE7C9 /* SideVoteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideVoteButton.swift; sourceTree = "<group>"; };
 		86B4A3BA2459EE4400EFE7C9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		86E8D81C245B01D40002DE7A /* VoteMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageButton.swift; sourceTree = "<group>"; };
@@ -384,18 +386,11 @@
 		39C8AB9824431C9500D299CE /* AuthProviders */ = {
 			isa = PBXGroup;
 			children = (
-				39C8AB9924431C9C00D299CE /* GoogleAuthProvider */,
 				39C8AB9C24431CE000D299CE /* AuthProvider.swift */,
-			);
-			path = AuthProviders;
-			sourceTree = "<group>";
-		};
-		39C8AB9924431C9C00D299CE /* GoogleAuthProvider */ = {
-			isa = PBXGroup;
-			children = (
+				8644DD07246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift */,
 				39C8AB9A24431CB800D299CE /* GoogleAuthenticationProvider.swift */,
 			);
-			path = GoogleAuthProvider;
+			path = AuthProviders;
 			sourceTree = "<group>";
 		};
 		39C8AB9E244322F600D299CE /* UIButton */ = {
@@ -433,7 +428,7 @@
 			children = (
 				39D59EAB244D96A900D0A1E8 /* WhoCooler.entitlements */,
 				39D1036523D0ED1000A0C3F7 /* AppDelegate.swift */,
-				39DFA6F82450605100A1A6B1 /* GoogleService-Info.plist */,
+				86974BD7246D290800A4AA0C /* GoogleService-Info.plist */,
 				39EFACD723DDADA900E1E8BA /* Common */,
 				39EFAC9F23DDAC3A00E1E8BA /* Helpers */,
 				39215B7223D350F1000B5AA1 /* Modules */,
@@ -736,8 +731,8 @@
 			files = (
 				39D1037223D0ED1400A0C3F7 /* LaunchScreen.storyboard in Resources */,
 				8675C140246ACB6D00887115 /* Localizable.strings in Resources */,
-				39DFA6FB2450605200A1A6B1 /* GoogleService-Info.plist in Resources */,
 				39D1036F23D0ED1400A0C3F7 /* Assets.xcassets in Resources */,
+				86974BD8246D290800A4AA0C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,6 +941,7 @@
 				399C0EBE2443568100EEEC19 /* UserSession.swift in Sources */,
 				867FB9132460567500820196 /* SearchWorker.swift in Sources */,
 				86E8D81D245B01D40002DE7A /* VoteMessageButton.swift in Sources */,
+				8644DD08246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift in Sources */,
 				861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
