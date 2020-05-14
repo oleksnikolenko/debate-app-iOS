@@ -181,7 +181,6 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         }).disposed(by: disposeBag)
 
         logoutButton.didClick.subscribe(onNext: { [weak self] in
-//            self?.interactor?.logout()
             self?.presentLogOutAlert()
         }).disposed(by: disposeBag)
 //        userIdLabel.didClick

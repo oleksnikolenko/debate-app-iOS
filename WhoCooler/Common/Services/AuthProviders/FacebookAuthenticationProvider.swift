@@ -40,7 +40,6 @@ class FacebookAuthenticationProvider: NSObject, AuthProvider {
         )
     }
 
-
     func logout() {
         LoginManager().logOut()
     }
