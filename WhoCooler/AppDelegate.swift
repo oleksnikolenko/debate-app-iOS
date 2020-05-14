@@ -6,11 +6,12 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
-import UIKit
+import FBSDKLoginKit
 import Firebase
 import FirebaseMessaging
 import FirebaseInstanceID
 import GoogleSignIn
+import UIKit
 import UserNotifications
 
 @UIApplicationMain
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
 
         UNUserNotificationCenter.current().delegate = self
         print("TOOOKEN = " + (Messaging.messaging().fcmToken ?? ""))
@@ -43,11 +45,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url)
-    }
+        GIDSignIn.sharedInstance().handle(url)
+        ApplicationDelegate.shared.application(
+            app,
+            open: url,
+            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+        )
 
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print(deviceToken)
+        return true
     }
 
 }

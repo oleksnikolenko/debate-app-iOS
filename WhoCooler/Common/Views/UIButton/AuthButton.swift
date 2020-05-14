@@ -89,6 +89,8 @@ private extension AuthProviderType {
         switch self {
         case .google:
             return UIImage(named: "google")
+        case .facebook:
+            return UIImage(named: "facebook")
         }
     }
 
@@ -96,6 +98,8 @@ private extension AuthProviderType {
         switch self {
         case .google:
             return "Google"
+        case .facebook:
+            return "Facebook"
         }
     }
 
@@ -103,12 +107,16 @@ private extension AuthProviderType {
         switch self {
         case .google:
             return .white
+        case .facebook:
+            return .white
         }
     }
 
     var textColor: UIColor {
         switch self {
         case .google:
+            return .gray
+        case .facebook:
             return .gray
         }
     }

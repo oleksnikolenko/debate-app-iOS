@@ -107,7 +107,7 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
                 .size(buttonSize)
                 .top(to: lastEdge)
                 .hCenter()
-                .marginTop(8)
+                .marginTop(12)
 
             lastEdge = $0.edge.bottom
         }

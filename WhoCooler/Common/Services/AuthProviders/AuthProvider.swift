@@ -19,4 +19,5 @@ protocol AuthProvider {
 
 enum AuthProviderType: String {
     case google
+    case facebook
 }

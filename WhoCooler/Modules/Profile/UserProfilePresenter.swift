@@ -14,6 +14,7 @@ import UIKit
 
 protocol UserProfilePresentationLogic {
     func presentProfile(response: UserProfile.Profile.Response)
+    func didLogOut()
 }
 
 class UserProfilePresenter: UserProfilePresentationLogic {
@@ -28,6 +29,10 @@ class UserProfilePresenter: UserProfilePresentationLogic {
                 accessToken: response.accessToken
             )
         )
+    }
+
+    func didLogOut() {
+        viewController?.dismiss()
     }
 
 }

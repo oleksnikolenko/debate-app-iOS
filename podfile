@@ -10,6 +10,7 @@ target 'WhoCooler' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
   pod 'GoogleSignIn'
+  pod 'FBSDKLoginKit'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'

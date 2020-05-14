@@ -17,6 +17,7 @@ import RxSwift
 
 protocol UserProfileDisplayLogic: class {
     func displayProfile(viewModel: UserProfile.Profile.ViewModel)
+    func dismiss()
 }
 
 class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
@@ -54,6 +55,11 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         $0.setTitle("profile.privacyPolicy".localized, for: .normal)
         $0.setTitleColor(.systemBlue, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+    }
+    let logoutButton = UIButton().with {
+        $0.setTitle("profile.logout".localized, for: .normal)
+        $0.setTitleColor(.systemRed, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
 //    let userIdLabel = UILabel().with {
 //        $0.textAlignment = .center
@@ -111,6 +117,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
             avatar,
             userNameLabel,
             privacyPolicyButton,
+            logoutButton,
 //            userIdLabel,
 //            pushTokenLabel,
 //            accessTokenLabel,
@@ -173,6 +180,9 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }).disposed(by: disposeBag)
 
+        logoutButton.didClick.subscribe(onNext: { [weak self] in
+            self?.presentLogOutAlert()
+        }).disposed(by: disposeBag)
 //        userIdLabel.didClick
 //            .compactMap { [weak self] in self?.viewModel?.user.id }
 //            .subscribe(onNext: { [weak self] in self?.copy(text: $0) })
@@ -220,6 +230,11 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
 
         privacyPolicyButton.pin
             .below(of: changeNameButton)
+            .start(20)
+            .sizeToFit()
+
+        logoutButton.pin
+            .below(of: privacyPolicyButton)
             .start(20)
             .sizeToFit()
 
@@ -276,6 +291,10 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         view.setNeedsLayout()
     }
 
+    func dismiss() {
+        router?.dismiss()
+    }
+
     // MARK: - Private methods
     private func presentChangeNameAlertController() {
         var textField: UITextField?
@@ -293,6 +312,20 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         alert.addAction(.init(title: "cancelAction".localized, style: .cancel, handler: nil))
 
         present(alert, animated: true, completion: nil)
+    }
+
+    private func presentLogOutAlert() {
+        let alertController = UIAlertController(
+            title: "profile.alert.logout".localized,
+            message: "debate.actionSheet.sure".localized,
+            preferredStyle: .alert
+        )
+        alertController.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "yes".localized, style: .default) { [weak self] _ in
+            self?.interactor?.logout()
+        })
+
+        present(alertController, animated: true, completion: nil)
     }
 
 }
