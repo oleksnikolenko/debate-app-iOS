@@ -38,6 +38,7 @@ class SideVoteButton: UIView {
         $0.numberOfLines = 1
         $0.textAlignment = .center
         $0.isUserInteractionEnabled = true
+        $0.adjustsFontSizeToFitWidth = true
     }
     let votedShade = UIView().with {
         $0.backgroundColor = UIColor(hex: 0xE6E6E6)
@@ -158,9 +159,9 @@ class SideVoteButton: UIView {
             self.rightPercentLabel.pin
                 .bottom()
                 .start(to: self.votedShade.edge.right)
-                .end(4)
+                .end()
                 .sizeToFit(.width)
-                .marginVertical(4)
+                .margin(4)
 
             self.rightName.pin
                 .above(of: self.rightPercentLabel)
@@ -198,9 +199,9 @@ class SideVoteButton: UIView {
             self.rightPercentLabel.pin
                 .bottom()
                 .start(to: self.votedShade.edge.left)
-                .end(4)
+                .end()
                 .sizeToFit(.width)
-                .marginVertical(4)
+                .margin(4)
 
             self.rightName.pin
                 .above(of: self.rightPercentLabel)
