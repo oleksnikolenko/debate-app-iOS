@@ -80,6 +80,7 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
     }
 
     func handleSend(request: DebateDetail.SendHandler.Request) {
+        guard userDefaults.session != nil else { presenter?.presentAuthScreen(); return }
         if let editedMessage = request.editedMessage {
             if request.threadId != nil {
                 sendEditedReply(request: .init(message: editedMessage, newText: request.text))
@@ -94,6 +95,7 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
     }
 
     func vote(request: DebateDetail.Vote.Request) {
+        guard userDefaults.session != nil else { presenter?.presentAuthScreen(); return }
         worker.vote(debateId: debate.id, sideId: request.sideId)
             .subscribe(onNext: { debateVoteResponse in
                 self.debate.leftSide.ratingCount = debateVoteResponse.debate.leftSide.ratingCount

@@ -27,10 +27,12 @@ class VoteMessageInteractor: VoteMessageBusinessLogic {
 
     var presenter: VoteMessagePresentationLogic?
     var worker = VoteMessageWorker()
+    let userDefaults = UserDefaultsService.shared
 
     private let disposeBag = DisposeBag()
 
     func vote(model: Votable, voteType: VoteType, style: MessageStyle) {
+        guard userDefaults.session != nil else { presenter?.authRequired(); return }
         model.setVoteType(voteType)
 
         worker
@@ -46,6 +48,7 @@ class VoteMessageInteractor: VoteMessageBusinessLogic {
     }
 
     func unvote(_ model: Votable, style: MessageStyle) {
+        guard userDefaults.session != nil else { presenter?.authRequired(); return }
         model.setVoteType(.none)
 
         worker

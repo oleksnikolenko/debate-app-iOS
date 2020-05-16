@@ -144,9 +144,20 @@ class DebateShortCell: TableViewCell {
         debateInfoView.isHidden = style.isInfoViewHidden
 
         category.text = debate.category.name
+        middleSeparator.isHidden = true
 
-        leftImage.kf.setImage(with: try? debate.leftSide.image.asURL())
-        rightImage.kf.setImage(with: try? debate.rightSide.image.asURL())
+        leftImage.kf.setImage(
+            with: try? debate.leftSide.image.asURL(),
+            completionHandler: { [weak self] _ in
+                self?.middleSeparator.isHidden = false
+            }
+        )
+        rightImage.kf.setImage(
+            with: try? debate.rightSide.image.asURL(),
+            completionHandler: { [weak self] _ in
+                self?.middleSeparator.isHidden = false
+            }
+        )
 
         voteButton.setup(debate)
         debateInfoView.setup(debate)
