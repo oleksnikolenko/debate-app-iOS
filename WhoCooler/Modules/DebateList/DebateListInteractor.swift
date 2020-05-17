@@ -30,6 +30,7 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
 
     var presenter: DebateListPresentationLogic?
     var worker = DebateListWorker()
+    let userDefaults = UserDefaultsService.shared
 
     let disposeBag = DisposeBag()
 
@@ -67,6 +68,7 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
     }
 
     func vote(debateId: String, sideId: String, successCompletion: ((Debate) -> Void)?) {
+        guard userDefaults.session != nil else { presenter?.presentAuthScreen(); return }
         worker.vote(debateId: debateId, sideId: sideId)
             .subscribe(onNext: {
                 successCompletion?($0.debate)

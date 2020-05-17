@@ -29,7 +29,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         $0.barTintColor = .white
         $0.delegate = self
         $0.backgroundColor = .lightGray
-        $0.searchTextField.backgroundColor = UIColor.init(red: 243/255, green: 242/255, blue: 248/255, alpha: 1)
+        //$0.searchTextField.backgroundColor = UIColor.init(red: 243/255, green: 242/255, blue: 248/255, alpha: 1)
     }
 
     // MARK: - Properties
