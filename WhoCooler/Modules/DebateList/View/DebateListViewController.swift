@@ -106,6 +106,9 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         navigationController?.navigationBar.isTranslucent = false
         edgesForExtendedLayout = []
 
+        view.backgroundColor = .white
+        tableView.backgroundView = DebateBackgroundShimmerView()
+
         title = "debates.screenName".localized
         view.addSubviews(tableView)
 
@@ -134,6 +137,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
 
     // MARK: - Do something
     func displayCells(viewModel: DebateList.Something.ViewModel) {
+        tableView.backgroundView = nil
         self.cells = viewModel.cells
         tableView.reloadData()
 

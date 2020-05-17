@@ -90,6 +90,8 @@
 		867FB9172460568300820196 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867FB9162460568300820196 /* SearchRouter.swift */; };
 		8683CA4F245EEB3A00CE31CE /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683CA4E245EEB3A00CE31CE /* CategoryTableViewCell.swift */; };
 		8683CA51245EEB9B00CE31CE /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */; };
+		868C48C524714464009EB515 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C48C424714464009EB515 /* ShimmerView.swift */; };
+		868C48C7247144C2009EB515 /* DebateBackgroundShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C48C6247144C2009EB515 /* DebateBackgroundShimmerView.swift */; };
 		86974BD8246D290800A4AA0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86974BD7246D290800A4AA0C /* GoogleService-Info.plist */; };
 		86B4A3B22459A3CA00EFE7C9 /* SideVoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3B12459A3CA00EFE7C9 /* SideVoteButton.swift */; };
 		86B4A3BB2459EE4400EFE7C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3BA2459EE4400EFE7C9 /* Enums.swift */; };
@@ -217,6 +219,8 @@
 		867FB9162460568300820196 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		8683CA4E245EEB3A00CE31CE /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
+		868C48C424714464009EB515 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
+		868C48C6247144C2009EB515 /* DebateBackgroundShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateBackgroundShimmerView.swift; sourceTree = "<group>"; };
 		86974BD7246D290800A4AA0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86B4A3B12459A3CA00EFE7C9 /* SideVoteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideVoteButton.swift; sourceTree = "<group>"; };
 		86B4A3BA2459EE4400EFE7C9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -531,6 +535,7 @@
 				397319F2244CA5A10050325A /* InputTextView */,
 				39C8AB9E244322F600D299CE /* UIButton */,
 				39EFACDA23DDADBA00E1E8BA /* TableViewCell */,
+				868C48C424714464009EB515 /* ShimmerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -594,6 +599,7 @@
 				39215B7D23D35390000B5AA1 /* DebateListViewController.swift */,
 				8683CA4E245EEB3A00CE31CE /* CategoryTableViewCell.swift */,
 				8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */,
+				868C48C6247144C2009EB515 /* DebateBackgroundShimmerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -884,6 +890,7 @@
 				398086F52439D51F00CDA1D2 /* DebatesResponse.swift in Sources */,
 				865B500624681FB400FAC5EC /* AddSubviews.swift in Sources */,
 				39215B8123D35390000B5AA1 /* DebateListRouter.swift in Sources */,
+				868C48C524714464009EB515 /* ShimmerView.swift in Sources */,
 				867FB9152460567D00820196 /* SearchModels.swift in Sources */,
 				399C0EC3244368AF00EEEC19 /* RefreshTokenResult.swift in Sources */,
 				867FB9112460567000820196 /* SearchPresenter.swift in Sources */,
@@ -943,6 +950,7 @@
 				86E8D81D245B01D40002DE7A /* VoteMessageButton.swift in Sources */,
 				8644DD08246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift in Sources */,
 				861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */,
+				868C48C7247144C2009EB515 /* DebateBackgroundShimmerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1124,13 +1132,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 147;
-				DEVELOPMENT_TEAM = S84XJ4L7NY;
+				DEVELOPMENT_TEAM = 977PPD5J76;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.oleksnikolenko.whoCooler;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oleksnikolenkomain.whoCooler;
 				PRODUCT_NAME = WhoCooler;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1147,13 +1155,13 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 147;
-				DEVELOPMENT_TEAM = S84XJ4L7NY;
+				DEVELOPMENT_TEAM = 977PPD5J76;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.oleksnikolenko.whoCooler;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oleksnikolenkomain.whoCooler;
 				PRODUCT_NAME = WhoCooler;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
