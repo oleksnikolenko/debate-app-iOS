@@ -28,6 +28,7 @@
 "profile.privacyPolicy" = "Privacy policy";
 "profile.logout" = "Log out";
 "profile.alert.logout" = "Log out from profile";
+"profile.contactUs" = "Contact Us";
 
 "cancelAction" = "Cancel";
 "deleteAction" = "Delete";

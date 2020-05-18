@@ -28,6 +28,7 @@
 "profile.privacyPolicy" = "Политика конфиденциальности";
 "profile.logout" = "Выйти";
 "profile.alert.logout" = "Выход из профиля";
+"profile.contactUs" = "Связаться с нами";
 
 "cancelAction" = "Отменить";
 "deleteAction" = "Удалить";

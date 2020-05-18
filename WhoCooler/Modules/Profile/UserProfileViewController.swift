@@ -56,6 +56,11 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         $0.setTitleColor(.systemBlue, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
     }
+    let contactUsButton = UIButton().with {
+        $0.setTitle("profile.contactUs".localized, for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+    }
     let logoutButton = UIButton().with {
         $0.setTitle("profile.logout".localized, for: .normal)
         $0.setTitleColor(.systemRed, for: .normal)
@@ -121,6 +126,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
 //            userIdLabel,
 //            pushTokenLabel,
 //            accessTokenLabel,
+            contactUsButton,
             changeAvatarButton,
             namePlaceholder,
             changeNameButton
@@ -174,10 +180,17 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
             self.presentChangeNameAlertController()
         }).disposed(by: disposeBag)
 
-        privacyPolicyButton.didClick.subscribe(onNext: {
-            /// TODO: - Provide link for privacy policy
-            guard let url = URL(string: "https://www.google.com") else { return }
+        privacyPolicyButton.rx.tap.subscribe(onNext: {
+            guard let url = URL(string: "https://www.iubenda.com/privacy-policy/66454455") else { return }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }).disposed(by: disposeBag)
+
+        contactUsButton.rx.tap.subscribe(onNext: {
+            let urlString = "mailto:whocoolerfeedback@gmail.com?subject=WhoCooler Support"
+            let codedUrl = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            if let url = try? codedUrl?.asURL() {
+                UIApplication.shared.open(url)
+            }
         }).disposed(by: disposeBag)
 
         logoutButton.didClick.subscribe(onNext: { [weak self] in
@@ -233,8 +246,13 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
             .start(20)
             .sizeToFit()
 
-        logoutButton.pin
+        contactUsButton.pin
             .below(of: privacyPolicyButton)
+            .start(20)
+            .sizeToFit()
+
+        logoutButton.pin
+            .below(of: contactUsButton)
             .start(20)
             .sizeToFit()
 
