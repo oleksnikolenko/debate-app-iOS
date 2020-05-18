@@ -24,6 +24,7 @@ class SideVoteButton: UIView {
         $0.numberOfLines = 1
         $0.textAlignment = .center
         $0.isUserInteractionEnabled = true
+        $0.adjustsFontSizeToFitWidth = true
     }
     let rightName = GradientLabel().with {
         $0.font = UIFont.systemFont(ofSize: 22, weight: .light)
@@ -144,10 +145,10 @@ class SideVoteButton: UIView {
 
             self.leftPercentLabel.pin
                 .bottom()
-                .start(4)
+                .start()
                 .end(to: self.votedShade.edge.right)
                 .sizeToFit(.width)
-                .marginVertical(4)
+                .margin(4)
 
             self.leftName.pin
                 .above(of: self.leftPercentLabel)
@@ -184,10 +185,10 @@ class SideVoteButton: UIView {
 
             self.leftPercentLabel.pin
                 .bottom()
-                .start(4)
+                .start()
                 .end(to: self.votedShade.edge.left)
                 .sizeToFit(.width)
-                .marginVertical(4)
+                .margin(4)
 
             self.leftName.pin
                 .above(of: self.leftPercentLabel)
