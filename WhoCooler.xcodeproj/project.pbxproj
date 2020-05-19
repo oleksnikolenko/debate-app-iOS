@@ -1138,7 +1138,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.main;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
 				PRODUCT_NAME = WhoCooler;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1161,7 +1161,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.main;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
 				PRODUCT_NAME = WhoCooler;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
