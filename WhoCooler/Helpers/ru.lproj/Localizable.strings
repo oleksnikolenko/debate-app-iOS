@@ -31,11 +31,15 @@
 "profile.contactUs" = "Связаться с нами";
 
 "cancelAction" = "Отменить";
+"acceptAction" = "Принять";
 "deleteAction" = "Удалить";
 "okay" = "OK";
 "yes" = "Да";
 
 "auth.infoText" = "Пожалуйста, залогинься чтобы голосовать и комментировать на Whocooler";
+"auth.termsOfUse.open" = "Открыть Условия использования";
+"auth.termsOfUse.title" = "Условия использования";
+"auth.termsOfUse.description" = "Вы должны принять Условия использования приложения для входа";
 
 "debate.actionSheet.edit" = "Редактировать";
 "debate.actionSheet.block" = "Заблокировать";

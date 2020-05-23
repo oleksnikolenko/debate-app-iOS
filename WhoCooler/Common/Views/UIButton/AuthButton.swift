@@ -9,8 +9,47 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import AuthenticationServices
 
-class AuthButton: UIButton {
+protocol AuthButtonProtocol: UIView {
+    var authProviderSelected: Observable<AuthProvider> { get }
+    var provider: AuthProvider { get }
+}
+
+@available(iOS 13, *)
+class AppleAuthButton: ASAuthorizationAppleIDButton, AuthButtonProtocol {
+
+    // MARK: - Properties
+    let provider: AuthProvider
+    var authProviderSelected: Observable<AuthProvider> {
+        rx.controlEvent(.touchUpInside).map { [unowned self] in self.provider }
+    }
+
+
+    init(provider: AuthProvider) {
+        self.provider = provider
+        super.init(authorizationButtonType: .signIn, authorizationButtonStyle: .white)
+
+        clipsToBounds = true
+        commonSetup()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func commonSetup() {
+        contentMode = .center
+        layer.shadowColor = UIColor.lightGray.cgColor
+        layer.shadowOpacity = 1
+        layer.shadowRadius = 8
+        layer.shadowOffset = CGSize(width: 0, height: 1)
+        layer.masksToBounds = false
+    }
+
+}
+
+class AuthButton: UIButton, AuthButtonProtocol {
 
     // MARK: - Subviews
     private let providerNameLabel = UILabel().with {
@@ -73,7 +112,7 @@ class AuthButton: UIButton {
 
     private func commonSetup() {
         contentMode = .center
-        layer.cornerRadius = 14
+        layer.cornerRadius = 8
         layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowOpacity = 1
         layer.shadowRadius = 8
@@ -91,6 +130,8 @@ private extension AuthProviderType {
             return UIImage(named: "google")
         case .facebook:
             return UIImage(named: "facebook")
+        case .apple:
+            return nil
         }
     }
 
@@ -100,6 +141,8 @@ private extension AuthProviderType {
             return "Google"
         case .facebook:
             return "Facebook"
+        case .apple:
+            return "Apple"
         }
     }
 
@@ -109,6 +152,8 @@ private extension AuthProviderType {
             return .white
         case .facebook:
             return .white
+        case .apple:
+            return .white
         }
     }
 
@@ -117,6 +162,8 @@ private extension AuthProviderType {
         case .google:
             return .gray
         case .facebook:
+            return .gray
+        case .apple:
             return .gray
         }
     }

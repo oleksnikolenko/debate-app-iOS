@@ -177,7 +177,7 @@ class DebateChatCell: UITableViewCell {
         self.model = message
 
         showRepliesButton.isHidden = !hasNotShownReplies
-        avatar.kf.setImage(with: try? message.user.avatar.asURL())
+        avatar.kf.setImage(with: try? message.user.avatar?.asURL())
         avatar.layer.cornerRadius = style.avatarSize.height / 2
         showRepliesButton.setTitle(
             "message.show".localized +

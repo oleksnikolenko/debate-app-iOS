@@ -36,6 +36,7 @@
 		399C0EC3244368AF00EEEC19 /* RefreshTokenResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC2244368AF00EEEC19 /* RefreshTokenResult.swift */; };
 		399C0EC524436AAE00EEEC19 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC424436AAE00EEEC19 /* Empty.swift */; };
 		399C0EC824436CA800EEEC19 /* Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC724436CA800EEEC19 /* Rx.swift */; };
+		399F68E5247955BB00AA3E9C /* AppleAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399F68E4247955BB00AA3E9C /* AppleAuthenticationProvider.swift */; };
 		39BD33E724531A4C00741A8F /* UserProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BD33E124531A4C00741A8F /* UserProfilePresenter.swift */; };
 		39BD33E824531A4C00741A8F /* UserProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BD33E224531A4C00741A8F /* UserProfileWorker.swift */; };
 		39BD33E924531A4C00741A8F /* UserProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BD33E324531A4C00741A8F /* UserProfileRouter.swift */; };
@@ -152,6 +153,7 @@
 		399C0EC2244368AF00EEEC19 /* RefreshTokenResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenResult.swift; sourceTree = "<group>"; };
 		399C0EC424436AAE00EEEC19 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		399C0EC724436CA800EEEC19 /* Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rx.swift; sourceTree = "<group>"; };
+		399F68E4247955BB00AA3E9C /* AppleAuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationProvider.swift; sourceTree = "<group>"; };
 		39BD33E124531A4C00741A8F /* UserProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePresenter.swift; sourceTree = "<group>"; };
 		39BD33E224531A4C00741A8F /* UserProfileWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileWorker.swift; sourceTree = "<group>"; };
 		39BD33E324531A4C00741A8F /* UserProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRouter.swift; sourceTree = "<group>"; };
@@ -379,8 +381,8 @@
 		39C8AB9724431C8D00D299CE /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				39D5F9DE24547F5600BDD7B9 /* ImagePicker */,
 				399C0EBF2443582800EEEC19 /* UserDefaults */,
+				39D5F9DE24547F5600BDD7B9 /* ImagePicker */,
 				39C8AB9824431C9500D299CE /* AuthProviders */,
 				398086FA243C6FDD00CDA1D2 /* NetworkService */,
 			);
@@ -393,6 +395,7 @@
 				39C8AB9C24431CE000D299CE /* AuthProvider.swift */,
 				8644DD07246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift */,
 				39C8AB9A24431CB800D299CE /* GoogleAuthenticationProvider.swift */,
+				399F68E4247955BB00AA3E9C /* AppleAuthenticationProvider.swift */,
 			);
 			path = AuthProviders;
 			sourceTree = "<group>";
@@ -877,6 +880,7 @@
 				86E8D827245B23C40002DE7A /* VoteMessageWorker.swift in Sources */,
 				39D5F9E22454807900BDD7B9 /* DataPicker.swift in Sources */,
 				399C0EC524436AAE00EEEC19 /* Empty.swift in Sources */,
+				399F68E5247955BB00AA3E9C /* AppleAuthenticationProvider.swift in Sources */,
 				39C8AB8D2441C4FF00D299CE /* User.swift in Sources */,
 				861DE6A32455D94C00B864EB /* DebateInfoView.swift in Sources */,
 				865CBB552466AE1700BA50D8 /* DebateDetailViewController+MessageDisplayLogic.swift in Sources */,

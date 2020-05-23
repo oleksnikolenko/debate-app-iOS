@@ -28,13 +28,17 @@ class AuthorizationScreenInteractor: AuthorizationScreenBusinessLogic, Authoriza
 
     // MARK: Do something
     func getProviders(request: AuthorizationScreen.Providers.Request) {
+        var providers: [AuthProvider] = [
+            GoogleAuthenticationProvider.shared,
+            FacebookAuthenticationProvider.shared
+        ]
+
+        if #available(iOS 13.0, *) {
+            providers.append(AppleAuthenticationProvider.shared)
+        }
+
         presenter?.presentProviders(
-            response: .init(
-                providers: [
-                    GoogleAuthenticationProvider.shared,
-                    FacebookAuthenticationProvider.shared
-                ]
-            )
+            response: .init(providers: providers)
         )
     }
 

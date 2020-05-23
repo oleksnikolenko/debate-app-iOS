@@ -31,11 +31,15 @@
 "profile.contactUs" = "Contact Us";
 
 "cancelAction" = "Cancel";
+"acceptAction" = "Accept";
 "deleteAction" = "Delete";
 "okay" = "OK";
 "yes" = "Yes";
 
 "auth.infoText" = "Please log in to vote and comment on Whocooler";
+"auth.termsOfUse.open" = "Open Terms of Use";
+"auth.termsOfUse.title" = "Terms of Use";
+"auth.termsOfUse.description" = "You must accept the app's Terms of Service to sign in";
 
 "debate.actionSheet.edit" = "Edit";
 "debate.actionSheet.block" = "Block";

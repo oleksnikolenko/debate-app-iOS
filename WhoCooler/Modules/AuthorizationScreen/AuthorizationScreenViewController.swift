@@ -21,7 +21,7 @@ protocol AuthorizationScreenDisplayLogic: class {
 class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDisplayLogic {
 
     // MARK: - Subviews
-    var authProviderButtons: [AuthButton] = [] {
+    var authProviderButtons: [AuthButtonProtocol] = [] {
         didSet {
             oldValue.forEach { $0.removeFromSuperview() }
             view.addSubviews(authProviderButtons)
@@ -45,7 +45,11 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
     var authProviders: [AuthProvider] = [] {
         didSet {
             authProviderButtons = authProviders.map {
-                .init(provider: $0)
+                if $0.type == .apple, #available(iOS 13, *) {
+                    return AppleAuthButton(provider: $0)
+                } else {
+                    return AuthButton(provider: $0)
+                }
             }
         }
     }
@@ -126,8 +130,37 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
                 $0.authProviderSelected
             }
         ).subscribe(onNext: { [unowned self] in
-            self.interactor?.didSelectProvider(request: .init(provider: $0))
+            self.showTermsOfUse(with: $0)
         }).disposed(by: disposeBag)
+    }
+
+    func showTermsOfUse(with provider: AuthProvider) {
+        let alert = UIAlertController(
+            title: "auth.termsOfUse.title".localized,
+            message: "auth.termsOfUse.description".localized,
+            preferredStyle: .actionSheet
+        )
+        alert.addAction(.init(
+            title: "auth.termsOfUse.open".localized,
+            style: .default,
+            handler: { _ in
+                guard let url = try? "https://api.whocooler.com/terms".asURL() else { return }
+                UIApplication.shared.open(
+                    url,
+                    options: [:],
+                    completionHandler: nil
+                )
+            }
+        ))
+        alert.addAction(.init(
+            title: "acceptAction".localized,
+            style: .default,
+            handler: { [provider] _ in
+                self.interactor?.didSelectProvider(request: .init(provider: provider))
+            }
+        ))
+        alert.addAction(.init(title: "cancelAction".localized, style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
     func didEndAuth(viewModel: AuthorizationScreen.Authorization.ViewModel) {

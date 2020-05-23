@@ -17,7 +17,14 @@ protocol AuthProvider {
 
 }
 
+extension AuthProvider {
+
+    func logout () {}
+
+}
+
 enum AuthProviderType: String {
     case google
     case facebook
+    case apple
 }

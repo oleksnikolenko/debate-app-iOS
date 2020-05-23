@@ -299,7 +299,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
     func displayProfile(viewModel: UserProfile.Profile.ViewModel) {
         self.viewModel = viewModel
 
-        avatar.kf.setImage(with: try? viewModel.user.avatar.asURL())
+        avatar.kf.setImage(with: try? viewModel.user.avatar?.asURL())
 
         userNameLabel.text = viewModel.user.name
 //        userIdLabel.text = viewModel.user.id
