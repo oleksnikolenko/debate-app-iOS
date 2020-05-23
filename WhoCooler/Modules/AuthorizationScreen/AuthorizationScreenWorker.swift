@@ -17,9 +17,21 @@ class AuthorizationScreenWorker {
     let networkService = NetworkServiceImplementation.shared
     let userDefaults = UserDefaultsService.shared
 
-    func authorize(with token: String) -> Observable<UserSession> {
-        networkService
-            .getData(endpoint: "register", parameters: ["token": token], method: .post)
+    func authorize(with token: AuthToken) -> Observable<UserSession> {
+        let args: [String: Any]
+        switch token {
+        case .facebook(let token), .google(let token):
+            args = ["token": token]
+        case .apple(let token, let name):
+            if let name = name {
+                args = ["token": token, "user_name": name]
+            } else {
+                args = ["token": token]
+            }
+        }
+
+        return networkService
+            .getData(endpoint: "register", parameters: args, method: .post)
             .do(onNext: { [weak self] in
                 self?.userDefaults.session = $0
             })

@@ -20,9 +20,9 @@ class GoogleAuthenticationProvider: NSObject, AuthProvider {
     }
 
     var type: AuthProviderType { .google }
-    var authResult: Observable<String> { authResultSubject.asObservable() }
+    var authResult: Observable<AuthToken> { authResultSubject.asObservable() }
 
-    private var authResultSubject = PublishSubject<String>()
+    private var authResultSubject = PublishSubject<AuthToken>()
 
     func login() {
         GIDSignIn.sharedInstance().delegate = self
@@ -54,7 +54,7 @@ extension GoogleAuthenticationProvider: GIDSignInDelegate {
         Auth.auth().signIn(with: credential) { [weak self] (authResult, _) in
             authResult?.user.getIDToken(completion: { [weak self] (idToken, _) in
                 if let idToken = idToken {
-                    self?.authResultSubject.onNext(idToken)
+                    self?.authResultSubject.onNext(.google(token: idToken))
                 }
             })
         }

@@ -10,7 +10,7 @@ import RxSwift
 
 protocol AuthProvider {
 
-    var authResult: Observable<String> { get }
+    var authResult: Observable<AuthToken> { get }
     var type: AuthProviderType { get }
     func login()
     func logout()
@@ -27,4 +27,10 @@ enum AuthProviderType: String {
     case google
     case facebook
     case apple
+}
+
+enum AuthToken {
+    case google(token: String)
+    case facebook(token: String)
+    case apple(token: String, name: String?)
 }

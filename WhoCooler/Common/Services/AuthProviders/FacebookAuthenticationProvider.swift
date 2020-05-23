@@ -14,9 +14,9 @@ class FacebookAuthenticationProvider: NSObject, AuthProvider {
 
     static let shared = FacebookAuthenticationProvider()
 
-    private var authResulSubject = PublishSubject<String>()
+    private var authResulSubject = PublishSubject<AuthToken>()
 
-    var authResult: Observable<String> { authResulSubject.asObservable() }
+    var authResult: Observable<AuthToken> { authResulSubject.asObservable() }
 
     var type: AuthProviderType { .facebook }
 
@@ -32,7 +32,7 @@ class FacebookAuthenticationProvider: NSObject, AuthProvider {
                 Auth.auth().signIn(with: credential) { [weak self] (authResult, _) in
                     authResult?.user.getIDToken(completion: { [weak self] (idToken, _) in
                         if let idToken = idToken {
-                            self?.authResulSubject.onNext(idToken)
+                            self?.authResulSubject.onNext(.facebook(token: idToken))
                         }
                     })
                 }
