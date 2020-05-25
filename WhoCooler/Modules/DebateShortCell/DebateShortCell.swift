@@ -19,14 +19,15 @@ class DebateShortCell: TableViewCell {
         rightImage,
         middleSeparator,
         bottomSeparator,
-        debateInfoView
+        debateInfoView,
+        moreButton
     ] }
-    let category = UILabel().with {
+    private let category = UILabel().with {
         $0.font = .boldSystemFont(ofSize: 14)
         $0.textAlignment = .left
         $0.textColor = .gray
     }
-    let leftImage = UIImageView().with {
+    private let leftImage = UIImageView().with {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
@@ -34,20 +35,24 @@ class DebateShortCell: TableViewCell {
         $0.layer.cornerRadius = 10
     }
     let voteButton = SideVoteButton()
-    let rightImage = UIImageView().with {
+    private let rightImage = UIImageView().with {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
         $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         $0.layer.cornerRadius = 10
     }
-    let middleSeparator = UIView().with {
+    private let middleSeparator = UIView().with {
         $0.backgroundColor = .lightGray
     }
-    let bottomSeparator = UIView().with {
+    private let bottomSeparator = UIView().with {
         $0.backgroundColor = .lightGray
     }
     let debateInfoView = DebateInfoView()
+    private let moreButton = UIButton().with {
+        $0.setImage(UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.tintColor = .black
+    }
 
     // MARK: - Properties
     private let leftSideColor = UIColor(hex: 0x29AB60)
@@ -56,6 +61,21 @@ class DebateShortCell: TableViewCell {
     var disposeBag = DisposeBag()
     var didClickFavorites: Observable<Void> {
         debateInfoView.favoritesImageView.didClick
+    }
+    var didClickLeft: Observable<Void> {
+        Observable.merge(
+            voteButton.leftName.didClick,
+            voteButton.leftPercentLabel.didClick
+        )
+    }
+    var didClickRight: Observable<Void> {
+        Observable.merge(
+            voteButton.rightName.didClick,
+            voteButton.rightPercentLabel.didClick
+        )
+    }
+    var didClickMoreButton: Observable<Void> {
+        moreButton.didClick
     }
 
     // MARK: - Init
@@ -122,6 +142,11 @@ class DebateShortCell: TableViewCell {
             .top(to: middleSeparator.edge.top)
             .after(of: middleSeparator)
             .end(10)
+
+        moreButton.pin
+            .size(CGSize(width: 16, height: 16))
+            .top(12)
+            .end(20)
 
         if style == .regular {
             debateInfoView.pin

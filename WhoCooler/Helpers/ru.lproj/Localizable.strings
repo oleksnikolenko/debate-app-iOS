@@ -43,6 +43,7 @@
 
 "debate.actionSheet.edit" = "Редактировать";
 "debate.actionSheet.block" = "Заблокировать";
+"debate.actionSheet.report" = "Пожаловаться";
 "debate.actionSheet.sure" = "Вы уверены?";
 "debates.screenName" = "Кто круче";
 "debates.sort.title" = "Сортировать споры";

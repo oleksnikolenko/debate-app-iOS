@@ -236,10 +236,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.setup(debate)
 
-            Observable.merge(
-                cell.voteButton.leftName.didClick,
-                cell.voteButton.leftPercentLabel.didClick
-            ).subscribe(onNext: { [weak self] in
+            cell.didClickLeft.subscribe(onNext: { [weak self] in
                 let completionHandler: ((Debate) -> Void)? = { debate in
                     cell.voteButton.setup(debate)
                 }
@@ -251,10 +248,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
                 )
             }).disposed(by: cell.disposeBag)
 
-            Observable.merge(
-                cell.voteButton.rightName.didClick,
-                cell.voteButton.rightPercentLabel.didClick
-            ).subscribe(onNext: { [weak self] in
+            cell.didClickRight.subscribe(onNext: { [weak self] in
                 let completionHandler: ((Debate) -> Void)? = { debate in
                     cell.voteButton.setup(debate)
                 }
@@ -276,6 +270,11 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
                         request: DebateList.Favorites.PostRequest(debate: debate, isFavorite: cell.debateInfoView.isFavorite),
                         successCompletion: completionHandler
                     )
+                }).disposed(by: cell.disposeBag)
+
+            cell.didClickMoreButton
+                .subscribe(onNext: { [weak self] in
+                    self?.showDebateActionSheet()
                 }).disposed(by: cell.disposeBag)
 
             return cell
@@ -341,6 +340,16 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             break
         }
+    }
+
+    func showDebateActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        actionSheet.addAction(UIAlertAction(title: "debate.actionSheet.block".localized, style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "debate.actionSheet.report".localized, style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
+
+        present(actionSheet, animated: true, completion: nil)
     }
 
 }

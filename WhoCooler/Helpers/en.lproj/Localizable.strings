@@ -43,6 +43,7 @@
 
 "debate.actionSheet.edit" = "Edit";
 "debate.actionSheet.block" = "Block";
+"debate.actionSheet.report" = "Report";
 "debate.actionSheet.sure" = "Are you sure?";
 "debates.screenName" = "Who's cooler";
 "debates.sort.title" = "Sort debates";

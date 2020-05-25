@@ -221,6 +221,7 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
             })
         } else {
             actionSheet.addAction(UIAlertAction(title: "debate.actionSheet.block".localized, style: .default, handler: nil))
+            actionSheet.addAction(UIAlertAction(title: "debate.actionSheet.report".localized, style: .default, handler: nil))
         }
 
         actionSheet.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
