@@ -46,6 +46,7 @@ enum DebateList {
     enum CellType {
         case categoryList([Category])
         case debate(Debate)
+        case new
         case emptyFavorites
     }
 

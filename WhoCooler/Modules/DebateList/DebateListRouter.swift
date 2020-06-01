@@ -16,6 +16,7 @@ protocol DebateListRoutingLogic {
     func navigateToDebate(_ debate: Debate)
     func navigateToProfile()
     func navigateToSearch()
+    func navigateToNewDebate()
 }
 
 protocol DebateListDataPassing {}
@@ -53,6 +54,13 @@ class DebateListRouter: NSObject, DebateListRoutingLogic, DebateListDataPassing 
     func navigateToSearch() {
         viewController?.navigationController?.pushViewController(
             SearchViewController(),
+            animated: true
+        )
+    }
+
+    func navigateToNewDebate() {
+        viewController?.navigationController?.pushViewController(
+            CreateDebateViewController(),
             animated: true
         )
     }

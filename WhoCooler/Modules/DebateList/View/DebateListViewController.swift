@@ -306,6 +306,15 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.cell(for: EmptyDataCell.self)
             cell.style = .favorites
             return cell
+
+        case .new:
+            let cell = tableView.cell(for: NewDebateCell.self)
+
+            cell.didClickCreate.subscribe(onNext: { [unowned self] in
+                self.router?.navigateToNewDebate()
+            }).disposed(by: cell.disposeBag)
+
+            return cell
         }
     }
 

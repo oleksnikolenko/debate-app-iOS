@@ -18,6 +18,13 @@ protocol NetworkService {
         shouldLocalize: Bool
     ) -> Observable<T>
 
+    func sendData<T: Decodable>(
+        endpoint: String,
+        parameters: [String: Any],
+        method: HTTPMethod,
+        shouldLocalize: Bool
+    ) -> Observable<T>
+
 }
 
 class NetworkServiceImplementation: NetworkService {
@@ -130,6 +137,79 @@ class NetworkServiceImplementation: NetworkService {
             .do(onNext: { [weak self] in
                 self?.userDefaults.session?.accessToken = $0.accessToken
             })
+    }
+
+    func sendData<T: Decodable>(
+        endpoint: String,
+        parameters: [String: Any] = [:],
+        method: HTTPMethod = .get,
+        shouldLocalize: Bool = false
+    ) -> Observable<T> {
+        let response = PublishSubject<T>()
+
+        var headers = HTTPHeaders()
+
+        if let session = userDefaults.session {
+            headers.add(
+                name: "Authorization",
+                value: "Bearer \(session.accessToken)"
+            )
+        }
+
+        let url: String
+        if shouldLocalize {
+            guard let localization = Locale.current.languageCode else { return .never() }
+            url = baseUrl + localization + "/" + endpoint
+        } else {
+            url = baseUrl + endpoint
+        }
+
+        if NetworkReachabilityManager()?.isReachable == false {
+            response.onError(URLError(.notConnectedToInternet))
+
+            return response
+        }
+
+        AF.upload(
+            multipartFormData: { multipartFormData in
+                for (key, parameter) in parameters {
+                    if let param = (parameter as? UIImage)?.jpegData(compressionQuality: 0.1) {
+                        multipartFormData.append(
+                            param,
+                            withName: "\(key)",
+                            fileName: "\(key).jpeg",
+                            mimeType: "image/jpeg"
+                        )
+                    } else if let param = (parameter as? String)?.data(using: .utf8) {
+                        multipartFormData.append(param, withName: key)
+                    } else if let param = parameter as? Int {
+                        multipartFormData.append(withUnsafeBytes(of: param, { Data($0) }), withName: key)
+                    }
+                }
+            },
+            to: url,
+            method: method,
+            headers: headers
+        ).responseData {
+            #if DEBUG
+            if let data = $0.data {
+                print(String(data: data, encoding: .utf8))
+            }
+            #endif
+            guard let data = $0.data else {
+                response.onError($0.error ?? AFError.explicitlyCancelled)
+                return
+            }
+
+            do {
+                let debates = try JSONDecoder().decode(T.self, from: data)
+                response.onNext(debates)
+            } catch {
+                response.onError(error)
+            }
+        }
+
+        return response
     }
 
     func updateProfile<T: Decodable>(

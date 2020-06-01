@@ -14,6 +14,13 @@
 		39215B8223D35390000B5AA1 /* DebateListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7C23D35390000B5AA1 /* DebateListModels.swift */; };
 		39215B8323D35390000B5AA1 /* DebateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7D23D35390000B5AA1 /* DebateListViewController.swift */; };
 		39215B8423D35390000B5AA1 /* DebateListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7E23D35390000B5AA1 /* DebateListInteractor.swift */; };
+		39406A9C2483D842004D63A7 /* CreateDebatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39406A962483D842004D63A7 /* CreateDebatePresenter.swift */; };
+		39406A9D2483D842004D63A7 /* CreateDebateWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39406A972483D842004D63A7 /* CreateDebateWorker.swift */; };
+		39406A9E2483D842004D63A7 /* CreateDebateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39406A982483D842004D63A7 /* CreateDebateRouter.swift */; };
+		39406A9F2483D842004D63A7 /* CreateDebateModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39406A992483D842004D63A7 /* CreateDebateModels.swift */; };
+		39406AA02483D842004D63A7 /* CreateDebateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39406A9A2483D842004D63A7 /* CreateDebateViewController.swift */; };
+		39406AA12483D842004D63A7 /* CreateDebateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39406A9B2483D842004D63A7 /* CreateDebateInteractor.swift */; };
+		39406AA32483DA91004D63A7 /* NewDebateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39406AA22483DA91004D63A7 /* NewDebateCell.swift */; };
 		3943F1AB243F0FB000BC11D0 /* DebateDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A5243F0FB000BC11D0 /* DebateDetailPresenter.swift */; };
 		3943F1AC243F0FB000BC11D0 /* DebateDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A6243F0FB000BC11D0 /* DebateDetailWorker.swift */; };
 		3943F1AD243F0FB000BC11D0 /* DebateDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A7243F0FB000BC11D0 /* DebateDetailRouter.swift */; };
@@ -131,6 +138,13 @@
 		39215B7C23D35390000B5AA1 /* DebateListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateListModels.swift; sourceTree = "<group>"; };
 		39215B7D23D35390000B5AA1 /* DebateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateListViewController.swift; sourceTree = "<group>"; };
 		39215B7E23D35390000B5AA1 /* DebateListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateListInteractor.swift; sourceTree = "<group>"; };
+		39406A962483D842004D63A7 /* CreateDebatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebatePresenter.swift; sourceTree = "<group>"; };
+		39406A972483D842004D63A7 /* CreateDebateWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebateWorker.swift; sourceTree = "<group>"; };
+		39406A982483D842004D63A7 /* CreateDebateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebateRouter.swift; sourceTree = "<group>"; };
+		39406A992483D842004D63A7 /* CreateDebateModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebateModels.swift; sourceTree = "<group>"; };
+		39406A9A2483D842004D63A7 /* CreateDebateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebateViewController.swift; sourceTree = "<group>"; };
+		39406A9B2483D842004D63A7 /* CreateDebateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDebateInteractor.swift; sourceTree = "<group>"; };
+		39406AA22483DA91004D63A7 /* NewDebateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebateCell.swift; sourceTree = "<group>"; };
 		3943F1A5243F0FB000BC11D0 /* DebateDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateDetailPresenter.swift; sourceTree = "<group>"; };
 		3943F1A6243F0FB000BC11D0 /* DebateDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateDetailWorker.swift; sourceTree = "<group>"; };
 		3943F1A7243F0FB000BC11D0 /* DebateDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateDetailRouter.swift; sourceTree = "<group>"; };
@@ -277,6 +291,7 @@
 				39EFACD123DDACE300E1E8BA /* DebateShortCell */,
 				3943F1A2243F0F1300BC11D0 /* DebateDetail */,
 				39215B8523D3539D000B5AA1 /* DebateList */,
+				39406A952483D81E004D63A7 /* CreateDebate */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -292,6 +307,19 @@
 				39215B7E23D35390000B5AA1 /* DebateListInteractor.swift */,
 			);
 			path = DebateList;
+			sourceTree = "<group>";
+		};
+		39406A952483D81E004D63A7 /* CreateDebate */ = {
+			isa = PBXGroup;
+			children = (
+				39406A962483D842004D63A7 /* CreateDebatePresenter.swift */,
+				39406A972483D842004D63A7 /* CreateDebateWorker.swift */,
+				39406A982483D842004D63A7 /* CreateDebateRouter.swift */,
+				39406A992483D842004D63A7 /* CreateDebateModels.swift */,
+				39406A9A2483D842004D63A7 /* CreateDebateViewController.swift */,
+				39406A9B2483D842004D63A7 /* CreateDebateInteractor.swift */,
+			);
+			path = CreateDebate;
 			sourceTree = "<group>";
 		};
 		3943F1A2243F0F1300BC11D0 /* DebateDetail */ = {
@@ -603,6 +631,7 @@
 				8683CA4E245EEB3A00CE31CE /* CategoryTableViewCell.swift */,
 				8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */,
 				868C48C6247144C2009EB515 /* DebateBackgroundShimmerView.swift */,
+				39406AA22483DA91004D63A7 /* NewDebateCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -874,6 +903,7 @@
 				864D82D6246BCEB500C6D184 /* String.swift in Sources */,
 				398086D22438CED000CDA1D2 /* AuthorizationScreenRouter.swift in Sources */,
 				3943F1AC243F0FB000BC11D0 /* DebateDetailWorker.swift in Sources */,
+				39406A9E2483D842004D63A7 /* CreateDebateRouter.swift in Sources */,
 				398086D02438CED000CDA1D2 /* AuthorizationScreenPresenter.swift in Sources */,
 				398086D12438CED000CDA1D2 /* AuthorizationScreenWorker.swift in Sources */,
 				39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */,
@@ -887,6 +917,7 @@
 				865B4FCA2467FF3A00FAC5EC /* EmptyDataCell.swift in Sources */,
 				397319ED244C9EA60050325A /* Reactive+NotificationCenter.swift in Sources */,
 				86B4A3B22459A3CA00EFE7C9 /* SideVoteButton.swift in Sources */,
+				39406AA12483D842004D63A7 /* CreateDebateInteractor.swift in Sources */,
 				3943F1AF243F0FB000BC11D0 /* DebateDetailViewController.swift in Sources */,
 				861DE6A72455DCEE00B864EB /* Category.swift in Sources */,
 				39EFACD323DDAD2500E1E8BA /* DebateShortCell.swift in Sources */,
@@ -898,8 +929,11 @@
 				867FB9152460567D00820196 /* SearchModels.swift in Sources */,
 				399C0EC3244368AF00EEEC19 /* RefreshTokenResult.swift in Sources */,
 				867FB9112460567000820196 /* SearchPresenter.swift in Sources */,
+				39406A9C2483D842004D63A7 /* CreateDebatePresenter.swift in Sources */,
+				39406A9D2483D842004D63A7 /* CreateDebateWorker.swift in Sources */,
 				39C8AB8B2441C4A300D299CE /* Message.swift in Sources */,
 				865B500524681FB400FAC5EC /* GradientLabel.swift in Sources */,
+				39406A9F2483D842004D63A7 /* CreateDebateModels.swift in Sources */,
 				865B500124681FB400FAC5EC /* Comparable.swift in Sources */,
 				39BD33E824531A4C00741A8F /* UserProfileWorker.swift in Sources */,
 				865B4FFF24681FB400FAC5EC /* Collection.swift in Sources */,
@@ -915,6 +949,7 @@
 				39C8AB9D24431CE000D299CE /* AuthProvider.swift in Sources */,
 				39BD33E724531A4C00741A8F /* UserProfilePresenter.swift in Sources */,
 				39EFACD923DDADB700E1E8BA /* TableViewCell.swift in Sources */,
+				39406AA02483D842004D63A7 /* CreateDebateViewController.swift in Sources */,
 				39BD33EA24531A4C00741A8F /* UserProfileModels.swift in Sources */,
 				3943F1AE243F0FB000BC11D0 /* DebateDetailModels.swift in Sources */,
 				398086D42438CED000CDA1D2 /* AuthorizationScreenViewController.swift in Sources */,
@@ -946,6 +981,7 @@
 				398086D32438CED000CDA1D2 /* AuthorizationScreenModels.swift in Sources */,
 				39D5F9E42454808000BDD7B9 /* DataPickerImplementation.swift in Sources */,
 				865B500724681FB400FAC5EC /* DateFormatter.swift in Sources */,
+				39406AA32483DA91004D63A7 /* NewDebateCell.swift in Sources */,
 				865CBB592466D56800BA50D8 /* DebateVoteResponse.swift in Sources */,
 				3943F1B0243F0FB000BC11D0 /* DebateDetailInteractor.swift in Sources */,
 				867FB90F2460566800820196 /* SearchInteractor.swift in Sources */,
