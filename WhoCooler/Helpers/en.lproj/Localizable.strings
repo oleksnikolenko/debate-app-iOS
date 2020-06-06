@@ -45,6 +45,7 @@
 "debate.actionSheet.block" = "Block";
 "debate.actionSheet.report" = "Report";
 "debate.actionSheet.sure" = "Are you sure?";
+"debate.categorySelect" = "Select Category";
 "debates.screenName" = "Who's cooler";
 "debates.sort.title" = "Sort debates";
 

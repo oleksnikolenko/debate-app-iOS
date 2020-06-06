@@ -44,6 +44,11 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         $0.placeholder = "Right side"
         $0.textAlignment = .right
     }
+    private let categoryButton = UIButton().with {
+        $0.setTitle("debate.categorySelect".localized, for: .normal)
+        $0.setTitleColor(.gray, for: .normal)
+        $0.contentHorizontalAlignment = .leading
+    }
     private let createButton = UIButton().with {
         $0.setTitle("debate.new".localized, for: .normal)
         $0.setTitleColor(.blue, for: .normal)
@@ -72,7 +77,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         }
     }
 
-    var category: Category = .init(id: "445789a4-cca4-4e40-b9e8-87e84beecd6b", name: "Technology")
+    var category: Category?
 
     // MARK: - Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -109,7 +114,8 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             rightSidePhoto,
             leftSideName,
             rightSideName,
-            createButton
+            createButton,
+            categoryButton
         )
         bindObservables()
     }
@@ -157,13 +163,27 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
                     return
                 }
 
+                guard let categoryId = self.category?.id else {
+                    return
+                }
+
                 self.interactor?.createDebate(request: .init(
                     leftName: leftName,
                     rightName: rightName,
                     leftImage: leftImage,
                     rightImage: rightImage,
-                    categoryId: self.category.id
+                    categoryId: categoryId
                 ))
+            }).disposed(by: disposeBag)
+
+        categoryButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                let pickCategoryViewController = PickCategoryViewController { [weak self] in
+                    self?.category = $0
+                    self?.categoryButton.setTitle($0.name, for: .normal)
+                    self?.categoryButton.setTitleColor(self?.leftSideName.textColor, for: .normal)
+                }
+                self.present(pickCategoryViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
     }
 
@@ -192,10 +212,16 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             .below(of: rightSidePhoto)
             .margin(8)
 
+        categoryButton.pin
+            .horizontally(16)
+            .sizeToFit(.width)
+            .below(of: rightSideName)
+            .marginTop(16)
+
         createButton.pin
             .horizontally(16)
             .height(48)
-            .below(of: rightSideName)
+            .below(of: categoryButton)
     }
 
     func displaySomething(viewModel: CreateDebate.Creation.ViewModel) {}

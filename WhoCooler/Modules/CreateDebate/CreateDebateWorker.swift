@@ -23,7 +23,7 @@ class CreateDebateWorker {
         leftImage: UIImage,
         rightImage: UIImage,
         categoryId: String
-    ) -> Observable<String> {
+    ) -> Observable<Debate> {
         networkService.sendData(
             endpoint: "debatecreate",
             parameters: [

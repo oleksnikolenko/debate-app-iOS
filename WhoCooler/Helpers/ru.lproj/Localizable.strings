@@ -45,6 +45,7 @@
 "debate.actionSheet.block" = "Заблокировать";
 "debate.actionSheet.report" = "Пожаловаться";
 "debate.actionSheet.sure" = "Вы уверены?";
+"debate.categorySelect" = "Выбрать категорию";
 "debates.screenName" = "Кто круче";
 "debates.sort.title" = "Сортировать споры";
 

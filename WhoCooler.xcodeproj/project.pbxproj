@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0554ADD12FA57B26501F840C /* libPods-WhoCooler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67EF838F0BEBBE23470370C3 /* libPods-WhoCooler.a */; };
+		391F7A1F248B2F5300337D23 /* PickCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A19248B2F5300337D23 /* PickCategoryPresenter.swift */; };
+		391F7A20248B2F5300337D23 /* PickCategoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A1A248B2F5300337D23 /* PickCategoryWorker.swift */; };
+		391F7A21248B2F5300337D23 /* PickCategoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A1B248B2F5300337D23 /* PickCategoryRouter.swift */; };
+		391F7A22248B2F5300337D23 /* PickCategoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A1C248B2F5300337D23 /* PickCategoryModels.swift */; };
+		391F7A23248B2F5300337D23 /* PickCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A1D248B2F5300337D23 /* PickCategoryViewController.swift */; };
+		391F7A24248B2F5300337D23 /* PickCategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A1E248B2F5300337D23 /* PickCategoryInteractor.swift */; };
+		391F7A26248BEDE500337D23 /* CategoriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A25248BEDE500337D23 /* CategoriesResponse.swift */; };
 		39215B7F23D35390000B5AA1 /* DebateListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7923D35390000B5AA1 /* DebateListPresenter.swift */; };
 		39215B8023D35390000B5AA1 /* DebateListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7A23D35390000B5AA1 /* DebateListWorker.swift */; };
 		39215B8123D35390000B5AA1 /* DebateListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39215B7B23D35390000B5AA1 /* DebateListRouter.swift */; };
@@ -132,6 +139,13 @@
 		00A01725C3A4B8D6ED573AA5 /* Pods-DiscussionMakerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMakerTests.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMakerTests/Pods-DiscussionMakerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		104AEDC43F37E71DA6E71A76 /* libPods-WhoCooler-WhoCoolerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhoCooler-WhoCoolerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AACB45F9AA7F28D412DD4D3 /* Pods-DiscussionMakerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMakerTests.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMakerTests/Pods-DiscussionMakerTests.release.xcconfig"; sourceTree = "<group>"; };
+		391F7A19248B2F5300337D23 /* PickCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryPresenter.swift; sourceTree = "<group>"; };
+		391F7A1A248B2F5300337D23 /* PickCategoryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryWorker.swift; sourceTree = "<group>"; };
+		391F7A1B248B2F5300337D23 /* PickCategoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryRouter.swift; sourceTree = "<group>"; };
+		391F7A1C248B2F5300337D23 /* PickCategoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryModels.swift; sourceTree = "<group>"; };
+		391F7A1D248B2F5300337D23 /* PickCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryViewController.swift; sourceTree = "<group>"; };
+		391F7A1E248B2F5300337D23 /* PickCategoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryInteractor.swift; sourceTree = "<group>"; };
+		391F7A25248BEDE500337D23 /* CategoriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesResponse.swift; sourceTree = "<group>"; };
 		39215B7923D35390000B5AA1 /* DebateListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateListPresenter.swift; sourceTree = "<group>"; };
 		39215B7A23D35390000B5AA1 /* DebateListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateListWorker.swift; sourceTree = "<group>"; };
 		39215B7B23D35390000B5AA1 /* DebateListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateListRouter.swift; sourceTree = "<group>"; };
@@ -281,6 +295,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		391F7A18248B2F3700337D23 /* PickCategory */ = {
+			isa = PBXGroup;
+			children = (
+				391F7A19248B2F5300337D23 /* PickCategoryPresenter.swift */,
+				391F7A1A248B2F5300337D23 /* PickCategoryWorker.swift */,
+				391F7A1B248B2F5300337D23 /* PickCategoryRouter.swift */,
+				391F7A1C248B2F5300337D23 /* PickCategoryModels.swift */,
+				391F7A1D248B2F5300337D23 /* PickCategoryViewController.swift */,
+				391F7A1E248B2F5300337D23 /* PickCategoryInteractor.swift */,
+			);
+			path = PickCategory;
+			sourceTree = "<group>";
+		};
 		39215B7223D350F1000B5AA1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +318,7 @@
 				39EFACD123DDACE300E1E8BA /* DebateShortCell */,
 				3943F1A2243F0F1300BC11D0 /* DebateDetail */,
 				39215B8523D3539D000B5AA1 /* DebateList */,
+				391F7A18248B2F3700337D23 /* PickCategory */,
 				39406A952483D81E004D63A7 /* CreateDebate */,
 			);
 			path = Modules;
@@ -556,6 +584,7 @@
 				86B4A3BA2459EE4400EFE7C9 /* Enums.swift */,
 				861E91E2245B674900A3E4A9 /* VoteModel.swift */,
 				865CBB582466D56800BA50D8 /* DebateVoteResponse.swift */,
+				391F7A25248BEDE500337D23 /* CategoriesResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -899,10 +928,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				867FB90D2460561000820196 /* SearchViewController.swift in Sources */,
+				391F7A1F248B2F5300337D23 /* PickCategoryPresenter.swift in Sources */,
 				86E8D825245B230F0002DE7A /* VoteMessagePresenter.swift in Sources */,
 				864D82D6246BCEB500C6D184 /* String.swift in Sources */,
 				398086D22438CED000CDA1D2 /* AuthorizationScreenRouter.swift in Sources */,
 				3943F1AC243F0FB000BC11D0 /* DebateDetailWorker.swift in Sources */,
+				391F7A24248B2F5300337D23 /* PickCategoryInteractor.swift in Sources */,
+				391F7A20248B2F5300337D23 /* PickCategoryWorker.swift in Sources */,
 				39406A9E2483D842004D63A7 /* CreateDebateRouter.swift in Sources */,
 				398086D02438CED000CDA1D2 /* AuthorizationScreenPresenter.swift in Sources */,
 				398086D12438CED000CDA1D2 /* AuthorizationScreenWorker.swift in Sources */,
@@ -927,12 +959,14 @@
 				39215B8123D35390000B5AA1 /* DebateListRouter.swift in Sources */,
 				868C48C524714464009EB515 /* ShimmerView.swift in Sources */,
 				867FB9152460567D00820196 /* SearchModels.swift in Sources */,
+				391F7A26248BEDE500337D23 /* CategoriesResponse.swift in Sources */,
 				399C0EC3244368AF00EEEC19 /* RefreshTokenResult.swift in Sources */,
 				867FB9112460567000820196 /* SearchPresenter.swift in Sources */,
 				39406A9C2483D842004D63A7 /* CreateDebatePresenter.swift in Sources */,
 				39406A9D2483D842004D63A7 /* CreateDebateWorker.swift in Sources */,
 				39C8AB8B2441C4A300D299CE /* Message.swift in Sources */,
 				865B500524681FB400FAC5EC /* GradientLabel.swift in Sources */,
+				391F7A22248B2F5300337D23 /* PickCategoryModels.swift in Sources */,
 				39406A9F2483D842004D63A7 /* CreateDebateModels.swift in Sources */,
 				865B500124681FB400FAC5EC /* Comparable.swift in Sources */,
 				39BD33E824531A4C00741A8F /* UserProfileWorker.swift in Sources */,
@@ -953,6 +987,7 @@
 				39BD33EA24531A4C00741A8F /* UserProfileModels.swift in Sources */,
 				3943F1AE243F0FB000BC11D0 /* DebateDetailModels.swift in Sources */,
 				398086D42438CED000CDA1D2 /* AuthorizationScreenViewController.swift in Sources */,
+				391F7A21248B2F5300337D23 /* PickCategoryRouter.swift in Sources */,
 				39D1036623D0ED1000A0C3F7 /* AppDelegate.swift in Sources */,
 				39C8AB9B24431CB800D299CE /* GoogleAuthenticationProvider.swift in Sources */,
 				39C8AB8F2441D00800D299CE /* DebateDetailHeader.swift in Sources */,
@@ -982,6 +1017,7 @@
 				39D5F9E42454808000BDD7B9 /* DataPickerImplementation.swift in Sources */,
 				865B500724681FB400FAC5EC /* DateFormatter.swift in Sources */,
 				39406AA32483DA91004D63A7 /* NewDebateCell.swift in Sources */,
+				391F7A23248B2F5300337D23 /* PickCategoryViewController.swift in Sources */,
 				865CBB592466D56800BA50D8 /* DebateVoteResponse.swift in Sources */,
 				3943F1B0243F0FB000BC11D0 /* DebateDetailInteractor.swift in Sources */,
 				867FB90F2460566800820196 /* SearchInteractor.swift in Sources */,
