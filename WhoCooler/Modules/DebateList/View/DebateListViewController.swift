@@ -274,7 +274,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.didClickMoreButton
                 .subscribe(onNext: { [weak self] in
-                    self?.showDebateActionSheet()
+                    self?.showDebateActionSheet(debate: debate)
                 }).disposed(by: cell.disposeBag)
 
             return cell
@@ -311,7 +311,11 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.cell(for: NewDebateCell.self)
 
             cell.didClickCreate.subscribe(onNext: { [unowned self] in
-                self.router?.navigateToNewDebate()
+                if UserDefaultsService.shared.session == nil {
+                    self.router?.navigateToProfile()
+                } else {
+                    self.router?.navigateToNewDebate()
+                }
             }).disposed(by: cell.disposeBag)
 
             return cell
@@ -351,11 +355,15 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    func showDebateActionSheet() {
+    func showDebateActionSheet(debate: Debate) {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        actionSheet.addAction(UIAlertAction(title: "debate.actionSheet.block".localized, style: .default, handler: nil))
-        actionSheet.addAction(UIAlertAction(title: "debate.actionSheet.report".localized, style: .default, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "debate.actionSheet.block".localized, style: .default, handler: { [weak self] _ in
+            self?.interactor?.reportDebate(id: debate.id)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "debate.actionSheet.report".localized, style: .default, handler: { [weak self] _ in
+            self?.interactor?.reportDebate(id: debate.id)
+        }))
         actionSheet.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
 
         present(actionSheet, animated: true, completion: nil)

@@ -183,6 +183,7 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
     }
 
     func setReachEnd(_ didReach: Bool) {
+        tableView.es.stopLoadingMore()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             didReach
                 ? self?.tableView.es.noticeNoMoreData()

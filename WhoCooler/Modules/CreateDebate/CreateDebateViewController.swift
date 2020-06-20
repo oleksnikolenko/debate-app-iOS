@@ -58,6 +58,9 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         $0.layer.borderWidth = 0.5
         $0.layer.borderColor = UIColor.blue.cgColor
     }
+    private let middleSeparator = UIView().with {
+        $0.backgroundColor = .lightGray
+    }
 
     // MARK: - Properties
     var interactor: CreateDebateBusinessLogic?
@@ -115,7 +118,8 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             leftSideName,
             rightSideName,
             createButton,
-            categoryButton
+            categoryButton,
+            middleSeparator
         )
         bindObservables()
     }
@@ -203,25 +207,34 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             .sizeToFit(.width)
             .start()
             .below(of: leftSidePhoto)
-            .margin(8)
+            .marginStart(16)
+            .marginTop(8)
 
         rightSideName.pin
             .width(45%)
             .sizeToFit(.width)
             .end()
             .below(of: rightSidePhoto)
-            .margin(8)
+            .marginEnd(16)
+            .marginTop(8)
 
         categoryButton.pin
             .horizontally(16)
             .sizeToFit(.width)
             .below(of: rightSideName)
-            .marginTop(16)
+            .marginTop(8)
 
         createButton.pin
             .horizontally(16)
             .height(48)
             .below(of: categoryButton)
+            .marginTop(8)
+
+        middleSeparator.pin
+            .height(of: leftSidePhoto)
+            .hCenter()
+            .top()
+            .width(0.5)
     }
 
     func displaySomething(viewModel: CreateDebate.Creation.ViewModel) {}

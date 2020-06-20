@@ -40,6 +40,14 @@ class DebateListWorker {
         )
     }
 
+    func reportDebate(id: String) -> Observable<Empty> {
+        networkService.getData(
+            endpoint: "debatereport",
+            parameters: ["debate_id": id],
+            method: .post
+        )
+    }
+
     func vote(debateId: String, sideId: String) -> Observable<DebateVoteResponse> {
         networkService.getData(
             endpoint: "vote",
