@@ -34,8 +34,9 @@ class CreateDebateInteractor: CreateDebateBusinessLogic, CreateDebateDataStore {
             leftImage: request.leftImage,
             rightImage: request.rightImage,
             categoryId: request.categoryId
-        ).subscribe()
-        .disposed(by: disposeBag)
+        ).subscribe(onNext: { [weak self] in
+            self?.presenter?.didCreateDebate($0)
+        }).disposed(by: disposeBag)
     }
 
 }

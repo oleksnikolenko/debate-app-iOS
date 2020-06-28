@@ -13,15 +13,14 @@
 import UIKit
 
 protocol CreateDebatePresentationLogic {
-    func presentSomething(response: CreateDebate.Creation.Response)
+    func didCreateDebate(_ debate: Debate)
 }
 
 class CreateDebatePresenter: CreateDebatePresentationLogic {
     weak var viewController: CreateDebateDisplayLogic?
 
     // MARK: Do something
-    func presentSomething(response: CreateDebate.Creation.Response) {
-        let viewModel = CreateDebate.Creation.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func didCreateDebate(_ debate: Debate) {
+        viewController?.didCreateDebate(debate)
     }
 }

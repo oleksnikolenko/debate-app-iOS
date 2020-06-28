@@ -1,6 +1,8 @@
 "textView.placeholder" = "Your comment";
 "textView.send" = "Send";
 
+"alert.title" = "Alert";
+
 "emptyData.messages" = "There are no comments yet\nbe first to express your opinion!";
 "emptyData.favorites" = "You have no favorites yet\nAdd them in the feed and they will appear here";
 
@@ -23,7 +25,6 @@
 "profile.namePlaceholder" = "Name";
 "profile.changeNameButtonText" = "Change name";
 "profile.alert.changeNickname" = "Change your nickname";
-"profile.alert.title" = "Alert";
 "profile.alert.save" = "Save";
 "profile.privacyPolicy" = "Privacy policy";
 "profile.logout" = "Log out";
@@ -59,3 +60,9 @@
 
 "debate.votes" = "votes";
 "debate.new" = "New Debate";
+"debate.left" = "Left side";
+"debate.right" = "Right side";
+"debate.leftImage" = "Left image";
+"debate.rightImage" = "Right image";
+"debate.category" = "Category";
+"debate.somethingNotFilled" = "%@ is empty";

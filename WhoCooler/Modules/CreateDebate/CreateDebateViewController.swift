@@ -14,8 +14,10 @@ import UIKit
 import PinLayout
 import RxSwift
 
+typealias CreationHandler = (Debate, UIViewController) -> ()
+
 protocol CreateDebateDisplayLogic: class {
-    func displaySomething(viewModel: CreateDebate.Creation.ViewModel)
+    func didCreateDebate(_ debate: Debate)
 }
 
 class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
@@ -29,7 +31,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     }
     private lazy var leftSideName = UITextField().with {
         $0.borderStyle = .none
-        $0.placeholder = "Left side"
+        $0.placeholder = "debate.left".localized
         $0.textAlignment = .left
     }
 
@@ -41,7 +43,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     }
     private lazy var rightSideName = UITextField().with {
         $0.borderStyle = .none
-        $0.placeholder = "Right side"
+        $0.placeholder = "debate.right".localized
         $0.textAlignment = .right
     }
     private let categoryButton = UIButton().with {
@@ -65,6 +67,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     // MARK: - Properties
     var interactor: CreateDebateBusinessLogic?
     var router: (NSObjectProtocol & CreateDebateRoutingLogic & CreateDebateDataPassing)?
+    var creationHandler: CreationHandler?
     let disposeBag = DisposeBag()
     let dataPicker: DataPicker = DataPickerImplementation.shared
     let placeholderImage = UIImage(named: "debatePlaceholder")
@@ -83,6 +86,11 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     var category: Category?
 
     // MARK: - Object lifecycle
+    convenience init(creationHandler: CreationHandler?) {
+        self.init()
+        self.creationHandler = creationHandler
+    }
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
@@ -152,22 +160,27 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
                 guard let `self` = self else { return }
 
                 guard let leftName = self.leftSideName.text, !leftName.isEmpty else {
+                    self.notEnoughData(error: "debate.left".localized)
                     return
                 }
 
                 guard let rightName = self.rightSideName.text, !rightName.isEmpty else {
+                    self.notEnoughData(error: "debate.right".localized)
                     return
                 }
 
                 guard let leftImage = self.leftImage else {
+                    self.notEnoughData(error: "debate.leftImage".localized)
                     return
                 }
 
                 guard let rightImage = self.rightImage else {
+                    self.notEnoughData(error: "debate.rightImage".localized)
                     return
                 }
 
                 guard let categoryId = self.category?.id else {
+                    self.notEnoughData(error: "debate.category".localized)
                     return
                 }
 
@@ -237,6 +250,19 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             .width(0.5)
     }
 
-    func displaySomething(viewModel: CreateDebate.Creation.ViewModel) {}
+    func notEnoughData(error: String) {
+        let alert = UIAlertController(
+            title: "alert.title".localized,
+            message: String(format: "debate.somethingNotFilled".localized, error),
+            preferredStyle: .alert
+        )
+        alert.addAction(.init(title: "okay".localized, style: .default, handler: nil))
+
+        present(alert, animated: true, completion: nil)
+    }
+
+    func didCreateDebate(_ debate: Debate) {
+        creationHandler?(debate, self)
+    }
 
 }

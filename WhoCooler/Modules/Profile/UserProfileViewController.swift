@@ -317,7 +317,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
     private func presentChangeNameAlertController() {
         var textField: UITextField?
 
-        let alert = UIAlertController(title: "profile.alert.title".localized, message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "alert.title".localized, message: nil, preferredStyle: .alert)
         alert.title = "profile.alert.changeNickname".localized
         alert.addTextField {
             textField = $0

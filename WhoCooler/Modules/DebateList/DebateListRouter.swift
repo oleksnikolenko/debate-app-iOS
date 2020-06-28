@@ -59,8 +59,12 @@ class DebateListRouter: NSObject, DebateListRoutingLogic, DebateListDataPassing 
     }
 
     func navigateToNewDebate() {
+        let creationController = CreateDebateViewController { debate, view in
+            view.navigationController?.popToViewController(self.viewController!, animated: true)
+            self.navigateToDebate(debate)
+        }
         viewController?.navigationController?.pushViewController(
-            CreateDebateViewController(),
+            creationController,
             animated: true
         )
     }

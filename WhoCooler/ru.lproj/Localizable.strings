@@ -1,6 +1,8 @@
 "textView.placeholder" = "Ваш комментарий";
 "textView.send" = "Отправить";
 
+"alert.title" = "Внимание";
+
 "emptyData.messages" = "Здесь пока еще нет комментарие\nбудь первым(ой), поделись мнением!";
 "emptyData.favorites" = "У тебя еще пока нет избранных\nДобавляй их во вкладке со спорами и они обязательно появятся тут!";
 
@@ -23,7 +25,6 @@
 "profile.namePlaceholder" = "Имя";
 "profile.changeNameButtonText" = "Изменить имя";
 "profile.alert.changeNickname" = "Изменение имени";
-"profile.alert.title" = "Внимание";
 "profile.alert.save" = "Сохранить";
 "profile.privacyPolicy" = "Политика конфиденциальности";
 "profile.logout" = "Выйти";
@@ -59,3 +60,9 @@
 
 "debate.votes" = "голосов";
 "debate.new" = "Новый дебат";
+"debate.left" = "Левая сторона";
+"debate.right" = "Правая сторона";
+"debate.leftImage" = "Левое фото";
+"debate.rightImage" = "Правое фото";
+"debate.category" = "Категория";
+"debate.somethingNotFilled" = "Не заполнено поле \"%@\"";

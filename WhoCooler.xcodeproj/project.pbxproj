@@ -492,6 +492,7 @@
 				39D59EAB244D96A900D0A1E8 /* WhoCooler.entitlements */,
 				39D1036523D0ED1000A0C3F7 /* AppDelegate.swift */,
 				86974BD7246D290800A4AA0C /* GoogleService-Info.plist */,
+				8675C142246ACB6D00887115 /* Localizable.strings */,
 				39EFACD723DDADA900E1E8BA /* Common */,
 				39EFAC9F23DDAC3A00E1E8BA /* Helpers */,
 				39215B7223D350F1000B5AA1 /* Modules */,
@@ -534,7 +535,6 @@
 			children = (
 				865B4FEE24681FB400FAC5EC /* SUHelpers */,
 				399C0EC624436C9B00EEEC19 /* Extensions */,
-				8675C142246ACB6D00887115 /* Localizable.strings */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
