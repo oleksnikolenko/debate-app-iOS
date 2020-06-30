@@ -40,6 +40,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
             self?.interactor?.getNextPage()
         }
     }
+    private let addButton = ActionButton()
 
     var selectedCategoryId: String?
     private var selectedSorting: DebateSorting = .popular {
@@ -110,11 +111,20 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         tableView.backgroundView = DebateBackgroundShimmerView()
 
         title = "debates.screenName".localized
-        view.addSubviews(tableView)
+        view.addSubviews(tableView, addButton)
 
         navigationItem.leftBarButtonItem = profileButton
         navigationItem.rightBarButtonItem = searchButton
         navigationController?.navigationBar.tintColor = .black
+
+        addButton.didClickEdit
+            .subscribe(onNext: { [weak self] in
+                if UserDefaultsService.shared.session == nil {
+                    self?.router?.navigateToProfile()
+                } else {
+                    self?.router?.navigateToNewDebate()
+                }
+            }).disposed(by: disposeBag)
 
         interactor?.getData(request: request)
     }
@@ -133,6 +143,10 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
 
     func layout () {
         tableView.pin.all()
+
+        addButton.pin
+            .sizeToFit()
+            .bottomEnd(16)
     }
 
     // MARK: - Do something

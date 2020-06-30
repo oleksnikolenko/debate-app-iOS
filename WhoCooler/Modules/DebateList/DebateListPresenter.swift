@@ -25,7 +25,7 @@ class DebateListPresenter: DebateListPresentationLogic {
     // MARK: Do something
     func presentSomething(response: DebateList.Something.Response) {
         var cells: [DebateList.CellType] =
-            [.categoryList(response.categories), .new] +
+            [.categoryList(response.categories)] +
             response.data.map { .debate($0) }
 
         if cells.count == 1 && viewController?.selectedCategoryId == "favorites" {

@@ -34,6 +34,7 @@
 		3943F1AE243F0FB000BC11D0 /* DebateDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A8243F0FB000BC11D0 /* DebateDetailModels.swift */; };
 		3943F1AF243F0FB000BC11D0 /* DebateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1A9243F0FB000BC11D0 /* DebateDetailViewController.swift */; };
 		3943F1B0243F0FB000BC11D0 /* DebateDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3943F1AA243F0FB000BC11D0 /* DebateDetailInteractor.swift */; };
+		394D421924AB70B200ACFF22 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394D421824AB70B200ACFF22 /* ActionButton.swift */; };
 		397319ED244C9EA60050325A /* Reactive+NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397319EC244C9EA60050325A /* Reactive+NotificationCenter.swift */; };
 		397319F1244CA5950050325A /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397319F0244CA5950050325A /* InputTextView.swift */; };
 		398086D02438CED000CDA1D2 /* AuthorizationScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398086CA2438CED000CDA1D2 /* AuthorizationScreenPresenter.swift */; };
@@ -165,6 +166,7 @@
 		3943F1A8243F0FB000BC11D0 /* DebateDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateDetailModels.swift; sourceTree = "<group>"; };
 		3943F1A9243F0FB000BC11D0 /* DebateDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateDetailViewController.swift; sourceTree = "<group>"; };
 		3943F1AA243F0FB000BC11D0 /* DebateDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateDetailInteractor.swift; sourceTree = "<group>"; };
+		394D421824AB70B200ACFF22 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		397319EC244C9EA60050325A /* Reactive+NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+NotificationCenter.swift"; sourceTree = "<group>"; };
 		397319F0244CA5950050325A /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		398086CA2438CED000CDA1D2 /* AuthorizationScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationScreenPresenter.swift; sourceTree = "<group>"; };
@@ -361,6 +363,14 @@
 				3943F1AA243F0FB000BC11D0 /* DebateDetailInteractor.swift */,
 			);
 			path = DebateDetail;
+			sourceTree = "<group>";
+		};
+		394D421724AB70A400ACFF22 /* ActionButton */ = {
+			isa = PBXGroup;
+			children = (
+				394D421824AB70B200ACFF22 /* ActionButton.swift */,
+			);
+			path = ActionButton;
 			sourceTree = "<group>";
 		};
 		397319F2244CA5A10050325A /* InputTextView */ = {
@@ -592,6 +602,7 @@
 		39EFACDE23DDB0FD00E1E8BA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				394D421724AB70A400ACFF22 /* ActionButton */,
 				397319F2244CA5A10050325A /* InputTextView */,
 				39C8AB9E244322F600D299CE /* UIButton */,
 				39EFACDA23DDADBA00E1E8BA /* TableViewCell */,
@@ -1017,6 +1028,7 @@
 				39D5F9E42454808000BDD7B9 /* DataPickerImplementation.swift in Sources */,
 				865B500724681FB400FAC5EC /* DateFormatter.swift in Sources */,
 				39406AA32483DA91004D63A7 /* NewDebateCell.swift in Sources */,
+				394D421924AB70B200ACFF22 /* ActionButton.swift in Sources */,
 				391F7A23248B2F5300337D23 /* PickCategoryViewController.swift in Sources */,
 				865CBB592466D56800BA50D8 /* DebateVoteResponse.swift in Sources */,
 				3943F1B0243F0FB000BC11D0 /* DebateDetailInteractor.swift in Sources */,
