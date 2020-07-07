@@ -59,10 +59,11 @@
 "message.moreReplies" = "more replies";
 
 "debate.votes" = "votes";
-"debate.new" = "New Debate";
-"debate.left" = "Left side";
-"debate.right" = "Right side";
-"debate.leftImage" = "Left image";
-"debate.rightImage" = "Right image";
+"debate.new" = "Create a new debate";
+"debate.left" = "Left side name";
+"debate.right" = "Right side name";
+"debate.leftImage" = "Left side image";
+"debate.rightImage" = "Right side image";
 "debate.category" = "Category";
 "debate.somethingNotFilled" = "%@ is empty";
+"debate.name.placeholder" = "Debate name (optional, may be left blank)";

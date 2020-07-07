@@ -15,6 +15,7 @@ class DebateShortCell: TableViewCell {
     override var addableSubviews: [UIView] { [
         category,
         leftImage,
+        debateName,
         voteButton,
         rightImage,
         middleSeparator,
@@ -33,6 +34,12 @@ class DebateShortCell: TableViewCell {
         $0.layer.masksToBounds = true
         $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         $0.layer.cornerRadius = 10
+        $0.backgroundColor = UIColor(hex: 0xE6E6E6)
+    }
+    private let debateName = UILabel().with {
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+        $0.font = .systemFont(ofSize: 20, weight: .regular)
     }
     let voteButton = SideVoteButton()
     private let rightImage = UIImageView().with {
@@ -41,6 +48,7 @@ class DebateShortCell: TableViewCell {
         $0.layer.masksToBounds = true
         $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         $0.layer.cornerRadius = 10
+        $0.backgroundColor = UIColor(hex: 0xE6E6E6)
     }
     private let middleSeparator = UIView().with {
         $0.backgroundColor = .lightGray
@@ -131,10 +139,18 @@ class DebateShortCell: TableViewCell {
             .top(to: middleSeparator.edge.top)
             .before(of: middleSeparator)
 
+        if !debateName.isHidden {
+            debateName.pin
+                .horizontally(40)
+                .sizeToFit(.width)
+                .below(of: leftImage)
+                .marginTop(24)
+        }
+
         voteButton.pin
             .horizontally(30)
             .sizeToFit(.width)
-            .below(of: leftImage)
+            .below(of: debateName.isHidden ? leftImage : debateName)
             .marginTop(24)
 
         rightImage.pin
@@ -167,6 +183,9 @@ class DebateShortCell: TableViewCell {
     func setup(_ debate: Debate, style: DebateCellStyle = .regular) {
         self.style = style
         debateInfoView.isHidden = style.isInfoViewHidden
+
+        debateName.text = debate.name
+        debateName.isHidden = debate.name == nil
 
         category.text = debate.category.name
         middleSeparator.isHidden = true

@@ -22,6 +22,7 @@ enum CreateDebate {
             let leftImage: UIImage
             let rightImage: UIImage
             let categoryId: String
+            let name: String?
         }
         struct Response {}
         struct ViewModel {}

@@ -3,8 +3,8 @@
 
 "alert.title" = "Внимание";
 
-"emptyData.messages" = "Здесь пока еще нет комментарие\nбудь первым(ой), поделись мнением!";
-"emptyData.favorites" = "У тебя еще пока нет избранных\nДобавляй их во вкладке со спорами и они обязательно появятся тут!";
+"emptyData.messages" = "Здесь пока еще нет комментариев.\nБудь первым(ой), поделись мнением!";
+"emptyData.favorites" = "У тебя еще пока нет избранных.\nДобавляй их во вкладке со спорами и они обязательно появятся тут!";
 
 "category.all" = "Все";
 "category.favorites" = "Избранные";
@@ -59,10 +59,11 @@
 "message.moreReplies" = "ответа";
 
 "debate.votes" = "голосов";
-"debate.new" = "Новый дебат";
-"debate.left" = "Левая сторона";
-"debate.right" = "Правая сторона";
-"debate.leftImage" = "Левое фото";
-"debate.rightImage" = "Правое фото";
+"debate.new" = "Создать новый спор";
+"debate.left" = "Имя левой стороны";
+"debate.right" = "Имя правой стороны";
+"debate.leftImage" = "Фото левой стороны";
+"debate.rightImage" = "Фото правой стороны";
 "debate.category" = "Категория";
 "debate.somethingNotFilled" = "Не заполнено поле \"%@\"";
+"debate.name.placeholder" = "Имя спора (необязательно заполнять)";

@@ -29,12 +29,15 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         $0.isUserInteractionEnabled = true
         $0.layer.masksToBounds = true
     }
+    private let debateName = UITextField().with {
+        $0.textAlignment = .center
+        $0.placeholder = "debate.name.placeholder".localized
+    }
     private lazy var leftSideName = UITextField().with {
         $0.borderStyle = .none
         $0.placeholder = "debate.left".localized
         $0.textAlignment = .left
     }
-
     private lazy var rightSidePhoto = UIImageView().with {
         $0.image = placeholderImage
         $0.contentMode = .scaleAspectFill
@@ -123,6 +126,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         view.addSubviews(
             leftSidePhoto,
             rightSidePhoto,
+            debateName,
             leftSideName,
             rightSideName,
             createButton,
@@ -159,16 +163,6 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
 
-                guard let leftName = self.leftSideName.text, !leftName.isEmpty else {
-                    self.notEnoughData(error: "debate.left".localized)
-                    return
-                }
-
-                guard let rightName = self.rightSideName.text, !rightName.isEmpty else {
-                    self.notEnoughData(error: "debate.right".localized)
-                    return
-                }
-
                 guard let leftImage = self.leftImage else {
                     self.notEnoughData(error: "debate.leftImage".localized)
                     return
@@ -176,6 +170,16 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
                 guard let rightImage = self.rightImage else {
                     self.notEnoughData(error: "debate.rightImage".localized)
+                    return
+                }
+
+                guard let leftName = self.leftSideName.text, !leftName.isEmpty else {
+                    self.notEnoughData(error: "debate.left".localized)
+                    return
+                }
+
+                guard let rightName = self.rightSideName.text, !rightName.isEmpty else {
+                    self.notEnoughData(error: "debate.right".localized)
                     return
                 }
 
@@ -189,7 +193,8 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
                     rightName: rightName,
                     leftImage: leftImage,
                     rightImage: rightImage,
-                    categoryId: categoryId
+                    categoryId: categoryId,
+                    name: self.debateName.text
                 ))
             }).disposed(by: disposeBag)
 
@@ -215,33 +220,39 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             .height(150)
             .width(50%)
 
+        debateName.pin
+            .horizontally(16)
+            .sizeToFit(.width)
+            .below(of: leftSidePhoto)
+            .marginTop(16)
+
         leftSideName.pin
             .width(45%)
             .sizeToFit(.width)
             .start()
-            .below(of: leftSidePhoto)
+            .below(of: debateName)
             .marginStart(16)
-            .marginTop(8)
+            .marginTop(16)
 
         rightSideName.pin
             .width(45%)
             .sizeToFit(.width)
             .end()
-            .below(of: rightSidePhoto)
+            .below(of: debateName)
             .marginEnd(16)
-            .marginTop(8)
+            .marginTop(16)
 
         categoryButton.pin
             .horizontally(16)
             .sizeToFit(.width)
             .below(of: rightSideName)
-            .marginTop(8)
+            .marginTop(16)
 
         createButton.pin
             .horizontally(16)
             .height(48)
             .below(of: categoryButton)
-            .marginTop(8)
+            .marginTop(48)
 
         middleSeparator.pin
             .height(of: leftSidePhoto)

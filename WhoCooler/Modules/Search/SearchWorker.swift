@@ -18,7 +18,7 @@ class SearchWorker {
             endpoint: "search",
             parameters: ["search_context": context, "page": page],
             method: .get,
-            shouldLocalize: false
+            shouldLocalize: true
         )
     }
 }

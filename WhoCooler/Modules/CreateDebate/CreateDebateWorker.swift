@@ -22,7 +22,8 @@ class CreateDebateWorker {
         rightName: String,
         leftImage: UIImage,
         rightImage: UIImage,
-        categoryId: String
+        categoryId: String,
+        name: String?
     ) -> Observable<Debate> {
         networkService.sendData(
             endpoint: "debatecreate",
@@ -31,7 +32,8 @@ class CreateDebateWorker {
                 "leftside_image": leftImage,
                 "rightside_name": rightName,
                 "rightside_image": rightImage,
-                "category_id": categoryId
+                "category_id": categoryId,
+                "name": name
             ],
             method: .post,
             shouldLocalize: true

@@ -15,6 +15,7 @@ struct Debate: Decodable {
     var messagesList: MessagesList
     var isFavorite: Bool
     var messageCount: Int
+    let name: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -25,6 +26,7 @@ struct Debate: Decodable {
         case category
         case isFavorite = "is_favorite"
         case messageCount = "message_count"
+        case name
     }
 }
 

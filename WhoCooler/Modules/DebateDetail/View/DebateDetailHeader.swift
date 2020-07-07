@@ -33,6 +33,11 @@ class DebateDetailHeader: UIView {
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
     }
+    private let debateName = UILabel().with {
+        $0.numberOfLines = 0
+        $0.textAlignment = .center
+        $0.font = .systemFont(ofSize: 20, weight: .regular)
+    }
     let voteButton = SideVoteButton()
     let middleSeparator = UIView().with {
         $0.backgroundColor = .lightGray
@@ -56,6 +61,7 @@ class DebateDetailHeader: UIView {
         addSubviews(
             leftImage,
             voteButton,
+            debateName,
             middleSeparator,
             rightImage,
             shade,
@@ -103,10 +109,18 @@ class DebateDetailHeader: UIView {
                 .top(to: self.middleSeparator.edge.top)
                 .before(of: self.middleSeparator)
 
+            if !self.debateName.isHidden {
+                self.debateName.pin
+                    .horizontally(40)
+                    .sizeToFit(.width)
+                    .below(of: self.leftImage)
+                    .marginTop(24)
+            }
+
             self.voteButton.pin
                 .horizontally(20)
                 .sizeToFit(.width)
-                .below(of: self.leftImage)
+                .below(of: self.debateName.isHidden ? self.leftImage : self.debateName)
                 .marginTop(24)
 
             self.rightImage.pin
@@ -132,6 +146,9 @@ class DebateDetailHeader: UIView {
     func setup(debate: Debate) {
         leftImage.kf.setImage(with: try? debate.leftSide.image.asURL())
         rightImage.kf.setImage(with: try? debate.rightSide.image.asURL())
+
+        debateName.text = debate.name
+        debateName.isHidden = debate.name == nil
 
         UIView.animate(withDuration: 0.5) {
             self.voteButton.setup(debate)
