@@ -63,6 +63,15 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         action: #selector(navigateToSearch)
     )
 
+    private lazy var sortButton = UIBarButtonItem(
+        image: UIImage(named: "sort"),
+        style: .plain,
+        target: self,
+        action: #selector(didClickSortingIcon)
+    ).with {
+        $0.imageInsets = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
+    }
+
     // MARK: - Properties
     var request: DebateList.Something.Request {
         DebateList.Something.Request(categoryId: selectedCategoryId, selectedSorting: selectedSorting.rawValue)
@@ -114,7 +123,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         view.addSubviews(tableView, addButton)
 
         navigationItem.leftBarButtonItem = profileButton
-        navigationItem.rightBarButtonItem = searchButton
+        navigationItem.rightBarButtonItems = [searchButton, sortButton]
         navigationController?.navigationBar.tintColor = .black
 
         addButton.didClickEdit
@@ -191,7 +200,11 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         router?.navigateToSearch()
     }
 
-    private func presentSortingActionSheet(indexPath: IndexPath, completion: (() -> Void)?) {
+    @objc private func didClickSortingIcon() {
+        presentSortingActionSheet()
+    }
+
+    private func presentSortingActionSheet() {
         let actionSheet = UIAlertController(
             title: "debates.sort.title".localized,
             message: nil,
@@ -199,23 +212,18 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         )
 
         actionSheet.addAction(UIAlertAction(title: "sorting.popular".localized, style: .default) { [weak self] _ in
-            self?.setSelectedSorting(sorting: .popular, completion: completion)
+            self?.selectedSorting = .popular
         })
         actionSheet.addAction(UIAlertAction(title: "sorting.newest".localized, style: .default) { [weak self] _ in
-            self?.setSelectedSorting(sorting: .newest, completion: completion)
+            self?.selectedSorting = .newest
         })
         actionSheet.addAction(UIAlertAction(title: "sorting.oldest".localized, style: .default) { [weak self] _ in
-            self?.setSelectedSorting(sorting: .oldest, completion: completion)
+            self?.selectedSorting = .oldest
         })
 
         actionSheet.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
 
         present(actionSheet, animated: true)
-    }
-
-    private func setSelectedSorting(sorting: DebateSorting, completion: (() -> Void)?) {
-        selectedSorting = sorting
-        completion?()
     }
 
     func showNoInternet() {
@@ -303,15 +311,6 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
                 .subscribe(onNext: { category in
                     self.selectedCategoryId = category.id
                     self.interactor?.getData(request: self.request)
-                }).disposed(by: cell.disposeBag)
-
-            cell.didClickSorting
-                .subscribe(onNext: {
-                    let completion: (() -> Void)? = { [weak self] in
-                        guard let `self` = self else { return }
-                        cell.setSorting(sorting: self.selectedSorting)
-                    }
-                    self.presentSortingActionSheet(indexPath: indexPath, completion: completion)
                 }).disposed(by: cell.disposeBag)
 
             return cell
