@@ -48,7 +48,7 @@
 "debate.actionSheet.sure" = "Вы уверены?";
 "debate.categorySelect" = "Выбрать категорию";
 "debates.screenName" = "Кто круче";
-"debates.sort.title" = "Сортировать споры";
+"debates.sort.title" = "Сортировать споры, текущая сортировка: ";
 
 "error.noInternet" = "Кажется у тебя проблемы с интернетом";
 "error.tryAgain" = "Повторить";

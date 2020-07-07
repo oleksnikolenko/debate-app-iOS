@@ -206,7 +206,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
 
     private func presentSortingActionSheet() {
         let actionSheet = UIAlertController(
-            title: "debates.sort.title".localized,
+            title: "debates.sort.title".localized + selectedSorting.name,
             message: nil,
             preferredStyle: .actionSheet
         )

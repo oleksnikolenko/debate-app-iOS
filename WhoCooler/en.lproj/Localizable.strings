@@ -48,7 +48,7 @@
 "debate.actionSheet.sure" = "Are you sure?";
 "debate.categorySelect" = "Select Category";
 "debates.screenName" = "Who's cooler";
-"debates.sort.title" = "Sort debates";
+"debates.sort.title" = "Sort debates, current sorting: ";
 
 "error.noInternet" = "It seems there is no internet connection";
 "error.tryAgain" = "Try again";
