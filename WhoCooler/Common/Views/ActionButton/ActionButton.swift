@@ -20,7 +20,6 @@ class ActionButton: UIButton {
     private let disposeBag = DisposeBag()
     private let didClickEditButton = PublishSubject<Void>()
     private var width: CGFloat = 56
-    private let plusImage = UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate)
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -30,9 +29,7 @@ class ActionButton: UIButton {
         layer.masksToBounds = false
 
         backgroundColor = .white
-        setImage(plusImage, for: .normal)
-
-        imageView?.tintColor = .black
+        setImage(UIImage(named: "plus"), for: .normal)
 
         layer.cornerRadius = width / 2
         imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
