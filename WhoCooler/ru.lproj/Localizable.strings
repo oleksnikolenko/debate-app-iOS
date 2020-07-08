@@ -4,7 +4,7 @@
 "alert.title" = "Внимание";
 
 "emptyData.messages" = "Здесь пока еще нет комментариев.\nБудь первым(ой), поделись мнением!";
-"emptyData.favorites" = "У тебя еще пока нет избранных.\nДобавляй их во вкладке со спорами и они обязательно появятся тут!";
+"emptyData.favorites" = "У тебя еще пока нет избранных.\nДобавляй их во вкладке с дебатами и они обязательно появятся тут!";
 
 "category.all" = "Все";
 "category.favorites" = "Избранные";
@@ -37,7 +37,7 @@
 "okay" = "OK";
 "yes" = "Да";
 
-"auth.infoText" = "Пожалуйста, залогинься чтобы голосовать и комментировать на Whocooler";
+"auth.infoText" = "Пожалуйста, залогинься чтобы голосовать, комментировать и создавать дебаты на Whocooler";
 "auth.termsOfUse.open" = "Открыть Условия использования";
 "auth.termsOfUse.title" = "Условия использования";
 "auth.termsOfUse.description" = "Вы должны принять Условия использования приложения для входа";
@@ -48,7 +48,7 @@
 "debate.actionSheet.sure" = "Вы уверены?";
 "debate.categorySelect" = "Выбрать категорию";
 "debates.screenName" = "Кто круче";
-"debates.sort.title" = "Сортировать споры, текущая сортировка: ";
+"debates.sort.title" = "Сортировать дебаты, текущая сортировка: ";
 
 "error.noInternet" = "Кажется у тебя проблемы с интернетом";
 "error.tryAgain" = "Повторить";
@@ -59,11 +59,11 @@
 "message.moreReplies" = "ответа";
 
 "debate.votes" = "голосов";
-"debate.new" = "Создать новый спор";
+"debate.new" = "Создать новый дебат";
 "debate.left" = "Имя левой стороны";
 "debate.right" = "Имя правой стороны";
 "debate.leftImage" = "Фото левой стороны";
 "debate.rightImage" = "Фото правой стороны";
 "debate.category" = "Категория";
 "debate.somethingNotFilled" = "Не заполнено поле \"%@\"";
-"debate.name.placeholder" = "Имя спора (необязательно заполнять)";
+"debate.name.placeholder" = "Имя дебата (необязательно заполнять)";

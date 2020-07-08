@@ -37,7 +37,7 @@
 "okay" = "OK";
 "yes" = "Yes";
 
-"auth.infoText" = "Please log in to vote and comment on Whocooler";
+"auth.infoText" = "Please log in to vote, comment and create debates on Whocooler";
 "auth.termsOfUse.open" = "Open Terms of Use";
 "auth.termsOfUse.title" = "Terms of Use";
 "auth.termsOfUse.description" = "You must accept the app's Terms of Service to sign in";
