@@ -10,11 +10,13 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
+import RxCocoa
+import RxSwift
 
 typealias SelectionHandler = (Category) -> ()
 protocol PickCategoryDisplayLogic: class {
     func displayCategories(viewModel: PickCategory.GetCategories.ViewModel)
+    func didSelectCategory(_ category: Category)
 }
 
 class PickCategoryViewController: UIViewController, PickCategoryDisplayLogic {
@@ -22,8 +24,19 @@ class PickCategoryViewController: UIViewController, PickCategoryDisplayLogic {
     var interactor: PickCategoryBusinessLogic?
     var router: (NSObjectProtocol & PickCategoryRoutingLogic & PickCategoryDataPassing)?
     var selectionHandler: SelectionHandler?
+    private let disposeBag = DisposeBag()
 
     // MARK: - Subviews
+    private lazy var searchBar = UISearchBar().with {
+        $0.placeholder = "search.placeholder".localized
+        $0.barTintColor = .white
+        $0.delegate = self
+        $0.backgroundColor = .lightGray
+    }
+    private lazy var addButton = UIButton().with {
+        $0.setImage(UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        $0.imageView?.tintColor = UIColor.systemBlue
+    }
     private lazy var tableView = UITableView().with {
         $0.delegate = self
         $0.dataSource = self
@@ -82,17 +95,67 @@ class PickCategoryViewController: UIViewController, PickCategoryDisplayLogic {
 
         view.backgroundColor = .white
         interactor?.requestCategoryList()
-        view.addSubviews(tableView)
+        view.addSubviews(addButton, searchBar, tableView)
+
+        bindObservables()
     }
 
+    // MARK: - Binding
+    private func bindObservables() {
+        addButton.rx.tap.subscribe(onNext: { [weak self] in
+            self?.showCreateCategoryPopup()
+        }).disposed(by: disposeBag)
+    }
+
+    // MARK: - Layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        tableView.pin.all()
+        searchBar.pin
+            .top()
+            .start(32)
+            .end()
+            .sizeToFit(.width)
+
+        addButton.pin
+            .start(12)
+            .vCenter(to: searchBar.edge.vCenter)
+            .size(16)
+
+        tableView.pin
+            .below(of: searchBar)
+            .bottom()
+            .horizontally()
+    }
+
+    private func showCreateCategoryPopup() {
+        var textField: UITextField?
+        let alert = UIAlertController(title: "alert.title".localized, message: nil, preferredStyle: .alert)
+
+        // TODO - Localize
+        alert.title = "category.createNew".localized
+        alert.addTextField {
+            textField = $0
+            $0.placeholder = "category.name.placeholder".localized
+        }
+
+        alert.addAction(.init(title: "profile.alert.save".localized, style: .default, handler: { [weak self] _ in
+            guard let textFieldText = textField?.text else { return }
+            self?.interactor?.createCategory(request: .init(name: textFieldText))
+        }))
+        alert.addAction(.init(title: "cancelAction".localized, style: .cancel, handler: nil))
+
+        present(alert, animated: true, completion: nil)
     }
 
     func displayCategories(viewModel: PickCategory.GetCategories.ViewModel) {
         self.categories = viewModel.categories
+    }
+
+    func didSelectCategory(_ category: Category) {
+        selectionHandler?(category)
+
+        self.dismiss(animated: true, completion: nil)
     }
 
 }
@@ -111,10 +174,28 @@ extension PickCategoryViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let category = categories[indexPath.row]
-        selectionHandler?(category)
-
-        self.dismiss(animated: true, completion: nil)
+        didSelectCategory(categories[indexPath.row])
     }
 
 }
+
+extension PickCategoryViewController: UISearchBarDelegate {
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        /// Because we shouldn't send request with each character while typing
+        NSObject.cancelPreviousPerformRequests(
+            withTarget: self,
+            selector: #selector(searchContext(_:)),
+            object: searchBar
+        )
+        perform(#selector(searchContext(_:)), with: searchBar, afterDelay: 0.5)
+    }
+
+    @objc func searchContext(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            interactor?.searchCategory(request: .init(searchContext: searchText))
+        }
+    }
+
+}
+

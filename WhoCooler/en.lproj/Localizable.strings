@@ -67,3 +67,6 @@
 "debate.category" = "Category";
 "debate.somethingNotFilled" = "%@ is empty";
 "debate.name.placeholder" = "Debate name (optional, may be left blank)";
+
+"category.createNew" = "Create a new category";
+"category.name.placeholder" = "Category name";

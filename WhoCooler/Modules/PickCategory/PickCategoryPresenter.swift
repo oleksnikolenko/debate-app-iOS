@@ -14,6 +14,7 @@ import UIKit
 
 protocol PickCategoryPresentationLogic {
     func didFetchСategories(response: PickCategory.GetCategories.Response)
+    func didCreateCategory(response: PickCategory.Create.Response)
 }
 
 class PickCategoryPresenter: PickCategoryPresentationLogic {
@@ -22,6 +23,10 @@ class PickCategoryPresenter: PickCategoryPresentationLogic {
 
     func didFetchСategories(response: PickCategory.GetCategories.Response) {
         viewController?.displayCategories(viewModel: .init(categories: response.categories))
+    }
+
+    func didCreateCategory(response: PickCategory.Create.Response) {
+        viewController?.didSelectCategory(response.category)
     }
 
 }

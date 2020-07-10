@@ -32,7 +32,7 @@ class CreateDebateWorker {
                 "leftside_image": leftImage,
                 "rightside_name": rightName,
                 "rightside_image": rightImage,
-                "category_id": categoryId,
+                "category_list": categoryId,
                 "name": name
             ],
             method: .post,

@@ -23,4 +23,22 @@ enum PickCategory {
         }
     }
 
+    enum Search {
+        struct Request {
+            let searchContext: String
+        }
+        struct Response {}
+        struct ViewModel {}
+    }
+
+    enum Create {
+        struct Request {
+            let name: String
+        }
+        struct Response {
+            let category: Category
+        }
+        struct ViewModel {}
+    }
+
 }

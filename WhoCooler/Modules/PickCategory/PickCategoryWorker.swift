@@ -24,4 +24,21 @@ class PickCategoryWorker {
         )
     }
 
+    func search(context: String) -> Observable<CategoriesResponse> {
+        networkService.getData(
+            endpoint: "categorysearch",
+            parameters: ["search_context": context],
+            shouldLocalize: true
+        )
+    }
+
+    func createCategory(name: String) -> Observable<Category> {
+        networkService.getData(
+            endpoint: "category",
+            parameters: ["category_name": name],
+            method: .post,
+            shouldLocalize: true
+        )
+    }
+
 }

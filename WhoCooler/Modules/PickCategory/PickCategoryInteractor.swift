@@ -15,6 +15,8 @@ import RxSwift
 
 protocol PickCategoryBusinessLogic {
     func requestCategoryList()
+    func searchCategory(request: PickCategory.Search.Request)
+    func createCategory(request: PickCategory.Create.Request)
 }
 
 protocol PickCategoryDataStore {}
@@ -30,6 +32,20 @@ class PickCategoryInteractor: PickCategoryBusinessLogic, PickCategoryDataStore {
         worker.getCategories()
             .subscribe(onNext: { [weak self] in
                 self?.presenter?.didFetchСategories(response: .init(categories: $0.categories))
+            }).disposed(by: disposeBag)
+    }
+
+    func searchCategory(request: PickCategory.Search.Request) {
+        worker.search(context: request.searchContext)
+            .subscribe(onNext: { [weak self] in
+                self?.presenter?.didFetchСategories(response: .init(categories: $0.categories))
+            }).disposed(by: disposeBag)
+    }
+
+    func createCategory(request: PickCategory.Create.Request) {
+        worker.createCategory(name: request.name)
+            .subscribe(onNext: { [weak self] category in
+                self?.presenter?.didCreateCategory(response: .init(category: category))
             }).disposed(by: disposeBag)
     }
 
