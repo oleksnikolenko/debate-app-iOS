@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class UserDefaultsService {
 
@@ -20,11 +21,14 @@ class UserDefaultsService {
             guard let data = userDefaults.data(forKey: #function) else { return nil }
             return try? JSONDecoder().decode(UserSession.self, from: data)
         } set {
+            defer {
+                didUpdateUserSubject.onNext(())
+            }
             guard let session = newValue else {
                 userDefaults.set(nil, forKey: #function)
                 return
             }
-            guard let data = try? JSONEncoder().encode(newValue) else { return }
+            guard let data = try? JSONEncoder().encode(session) else { return }
             userDefaults.set(data, forKey: "session")
         }
     }
@@ -33,5 +37,10 @@ class UserDefaultsService {
         get { userDefaults.string(forKey: #function) }
         set { userDefaults.set(newValue, forKey: #function) }
     }
+
+    var didUpdateUser: Observable<Void> {
+        didUpdateUserSubject.asObservable()
+    }
+    private var didUpdateUserSubject = PublishSubject<Void>()
 
 }

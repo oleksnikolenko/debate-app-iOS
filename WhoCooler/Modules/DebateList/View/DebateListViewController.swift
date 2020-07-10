@@ -74,7 +74,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
 
     // MARK: - Properties
     var request: DebateList.Something.Request {
-        DebateList.Something.Request(categoryId: selectedCategoryId, selectedSorting: selectedSorting.rawValue)
+        .init(categoryId: selectedCategoryId, selectedSorting: selectedSorting.rawValue)
     }
     var cells: [DebateList.CellType] = []
     var debateToReloadId: String?
@@ -133,6 +133,12 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
                 } else {
                     self?.router?.navigateToNewDebate()
                 }
+            }).disposed(by: disposeBag)
+
+        UserDefaultsService.shared.didUpdateUser
+            .subscribe(onNext: { [weak self] in
+                guard let `self` = self else { return }
+                self.interactor?.getData(request: self.request)
             }).disposed(by: disposeBag)
 
         interactor?.getData(request: request)
