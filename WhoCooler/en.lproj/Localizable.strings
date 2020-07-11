@@ -37,7 +37,7 @@
 "okay" = "OK";
 "yes" = "Yes";
 
-"auth.infoText" = "Please log in to vote, comment and create debates on Whocooler";
+"auth.infoText" = "Please log in to vote, comment and create debates on Sporno";
 "auth.termsOfUse.open" = "Open Terms of Use";
 "auth.termsOfUse.title" = "Terms of Use";
 "auth.termsOfUse.description" = "You must accept the app's Terms of Service to sign in";
@@ -47,7 +47,7 @@
 "debate.actionSheet.report" = "Report";
 "debate.actionSheet.sure" = "Are you sure?";
 "debate.categorySelect" = "Select Category";
-"debates.screenName" = "Who's cooler";
+"debates.screenName" = "Sporno";
 "debates.sort.title" = "Sort debates, current sorting: ";
 
 "error.noInternet" = "It seems there is no internet connection";
