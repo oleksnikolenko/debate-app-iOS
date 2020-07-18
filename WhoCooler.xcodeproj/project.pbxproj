@@ -115,6 +115,7 @@
 		86E8D823245B22580002DE7A /* VoteMessageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D822245B22580002DE7A /* VoteMessageInteractor.swift */; };
 		86E8D825245B230F0002DE7A /* VoteMessagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */; };
 		86E8D827245B23C40002DE7A /* VoteMessageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D826245B23C40002DE7A /* VoteMessageWorker.swift */; };
+		86F7EA7524C3558600F858AF /* AuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F7EA7424C3558600F858AF /* AuthContainerView.swift */; };
 		A2BA3766B7E55C7A3F66ABED /* libPods-WhoCoolerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3959D075EBDC1457C20928 /* libPods-WhoCoolerTests.a */; };
 		B517F606F090B0D8F5937EC5 /* libPods-WhoCooler-WhoCoolerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 104AEDC43F37E71DA6E71A76 /* libPods-WhoCooler-WhoCoolerUITests.a */; };
 /* End PBXBuildFile section */
@@ -260,6 +261,7 @@
 		86E8D822245B22580002DE7A /* VoteMessageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageInteractor.swift; sourceTree = "<group>"; };
 		86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessagePresenter.swift; sourceTree = "<group>"; };
 		86E8D826245B23C40002DE7A /* VoteMessageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageWorker.swift; sourceTree = "<group>"; };
+		86F7EA7424C3558600F858AF /* AuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerView.swift; sourceTree = "<group>"; };
 		8AD473F6D6F50D129A3CB29D /* Pods-WhoCooler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler.release.xcconfig"; path = "Target Support Files/Pods-WhoCooler/Pods-WhoCooler.release.xcconfig"; sourceTree = "<group>"; };
 		9B8CFB57FBB82248B4DFF563 /* Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9E841A502850A6188D04DBE0 /* Pods-WhoCoolerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCoolerTests.release.xcconfig"; path = "Target Support Files/Pods-WhoCoolerTests/Pods-WhoCoolerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -384,11 +386,11 @@
 		398086D82438CED400CDA1D2 /* AuthorizationScreen */ = {
 			isa = PBXGroup;
 			children = (
+				86F7EA7324C3557700F858AF /* View */,
 				398086CA2438CED000CDA1D2 /* AuthorizationScreenPresenter.swift */,
 				398086CB2438CED000CDA1D2 /* AuthorizationScreenWorker.swift */,
 				398086CC2438CED000CDA1D2 /* AuthorizationScreenRouter.swift */,
 				398086CD2438CED000CDA1D2 /* AuthorizationScreenModels.swift */,
-				398086CE2438CED000CDA1D2 /* AuthorizationScreenViewController.swift */,
 				398086CF2438CED000CDA1D2 /* AuthorizationScreenInteractor.swift */,
 			);
 			path = AuthorizationScreen;
@@ -685,6 +687,15 @@
 				86E8D81C245B01D40002DE7A /* VoteMessageButton.swift */,
 			);
 			path = VoteMessage;
+			sourceTree = "<group>";
+		};
+		86F7EA7324C3557700F858AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				398086CE2438CED000CDA1D2 /* AuthorizationScreenViewController.swift */,
+				86F7EA7424C3558600F858AF /* AuthContainerView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		CA1E839BD6E22E2B1D2EF7D6 /* Frameworks */ = {
@@ -1028,6 +1039,7 @@
 				39D5F9E42454808000BDD7B9 /* DataPickerImplementation.swift in Sources */,
 				865B500724681FB400FAC5EC /* DateFormatter.swift in Sources */,
 				39406AA32483DA91004D63A7 /* NewDebateCell.swift in Sources */,
+				86F7EA7524C3558600F858AF /* AuthContainerView.swift in Sources */,
 				394D421924AB70B200ACFF22 /* ActionButton.swift in Sources */,
 				391F7A23248B2F5300337D23 /* PickCategoryViewController.swift in Sources */,
 				865CBB592466D56800BA50D8 /* DebateVoteResponse.swift in Sources */,
