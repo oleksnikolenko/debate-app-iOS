@@ -32,7 +32,6 @@ class DebateShortCell: TableViewCell {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
-        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         $0.layer.cornerRadius = 10
         $0.backgroundColor = UIColor(hex: 0xE6E6E6)
     }
@@ -46,7 +45,6 @@ class DebateShortCell: TableViewCell {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.masksToBounds = true
-        $0.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         $0.layer.cornerRadius = 10
         $0.backgroundColor = UIColor(hex: 0xE6E6E6)
     }
@@ -66,6 +64,7 @@ class DebateShortCell: TableViewCell {
     private let leftSideColor = UIColor(hex: 0x29AB60)
     private let rightSideColor = UIColor(hex: 0xE74C3C)
     private var style: DebateCellStyle = .regular
+    private var debateType: DebateType = .sides
     var disposeBag = DisposeBag()
     var didClickFavorites: Observable<Void> {
         debateInfoView.favoritesImageView.didClick
@@ -126,6 +125,36 @@ class DebateShortCell: TableViewCell {
             .end(12)
             .sizeToFit(.width)
 
+        switch debateType {
+        case .sides:
+            sidesLayout()
+        case .statement:
+            statementLayout()
+        }
+
+        moreButton.pin
+            .size(CGSize(width: 16, height: 16))
+            .top(12)
+            .end(20)
+
+        if style == .regular {
+            debateInfoView.pin
+                .below(of: voteButton)
+                .marginTop(20)
+                .sizeToFit()
+                .hCenter()
+        }
+
+        bottomSeparator.pin
+            .horizontally()
+            .height(2)
+            .below(of: style == .regular ? debateInfoView : voteButton)
+            .marginTop(style.separatorMargin)
+    }
+
+    private func sidesLayout() {
+        rightImage.isHidden = false
+
         middleSeparator.pin
             .height(150)
             .hCenter()
@@ -158,25 +187,31 @@ class DebateShortCell: TableViewCell {
             .top(to: middleSeparator.edge.top)
             .after(of: middleSeparator)
             .end(10)
+    }
 
-        moreButton.pin
-            .size(CGSize(width: 16, height: 16))
-            .top(12)
-            .end(20)
+    private func statementLayout() {
+        rightImage.isHidden = true
 
-        if style == .regular {
-            debateInfoView.pin
-                .below(of: voteButton)
-                .marginTop(20)
-                .sizeToFit()
-                .hCenter()
+        leftImage.pin
+            .height(225)
+            .horizontally(10)
+            .marginTop(16)
+            .below(of: category)
+
+        if !debateName.isHidden {
+            debateName.pin
+                .horizontally(40)
+                .sizeToFit(.width)
+                .below(of: leftImage)
+                .marginTop(24)
         }
 
-        bottomSeparator.pin
-            .horizontally()
-            .height(2)
-            .below(of: style == .regular ? debateInfoView : voteButton)
-            .marginTop(style.separatorMargin)
+        voteButton.pin
+            .horizontally(30)
+            .sizeToFit(.width)
+            .below(of: debateName.isHidden ? leftImage : debateName)
+            .marginTop(24)
+
     }
 
     // MARK: - Setup
@@ -190,18 +225,29 @@ class DebateShortCell: TableViewCell {
         category.text = debate.category.name
         middleSeparator.isHidden = true
 
-        leftImage.kf.setImage(
-            with: try? debate.leftSide.image.asURL(),
-            completionHandler: { [weak self] _ in
-                self?.middleSeparator.isHidden = false
-            }
-        )
-        rightImage.kf.setImage(
-            with: try? debate.rightSide.image.asURL(),
-            completionHandler: { [weak self] _ in
-                self?.middleSeparator.isHidden = false
-            }
-        )
+        switch debate.debateType {
+        case .sides:
+            leftImage.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+            rightImage.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+
+            leftImage.kf.setImage(
+                with: try? debate.leftSide.image?.asURL(),
+                completionHandler: { [weak self] _ in
+                    self?.middleSeparator.isHidden = false
+                }
+            )
+            rightImage.kf.setImage(
+                with: try? debate.rightSide.image?.asURL(),
+                completionHandler: { [weak self] _ in
+                    self?.middleSeparator.isHidden = false
+                }
+            )
+        case .statement:
+            leftImage.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+            leftImage.kf.setImage(with: try? debate.image?.asURL())
+        }
+
+        debateType = debate.debateType
 
         voteButton.setup(debate)
         debateInfoView.setup(debate)

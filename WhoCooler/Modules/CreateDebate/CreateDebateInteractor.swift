@@ -14,7 +14,8 @@ import UIKit
 import RxSwift
 
 protocol CreateDebateBusinessLogic {
-    func createDebate(request: CreateDebate.Creation.Request)
+    func createDebateSides(request: CreateDebate.Creation.Sides.Request)
+    func createDebateStatement(request: CreateDebate.Creation.Statement.Request)
 }
 
 protocol CreateDebateDataStore {}
@@ -27,12 +28,24 @@ class CreateDebateInteractor: CreateDebateBusinessLogic, CreateDebateDataStore {
     let disposeBag = DisposeBag()
 
     // MARK: Do something
-    func createDebate(request: CreateDebate.Creation.Request) {
-        worker.createDebate(
+    func createDebateSides(request: CreateDebate.Creation.Sides.Request) {
+        worker.createDebateSides(
             leftName: request.leftName,
             rightName: request.rightName,
             leftImage: request.leftImage,
             rightImage: request.rightImage,
+            categoryId: request.categoryId,
+            name: request.name
+        ).subscribe(onNext: { [weak self] in
+            self?.presenter?.didCreateDebate($0)
+        }).disposed(by: disposeBag)
+    }
+
+    func createDebateStatement(request: CreateDebate.Creation.Statement.Request) {
+        worker.createDebateStatement(
+            leftName: request.leftName,
+            rightName: request.rightName,
+            debateImage: request.debateImage,
             categoryId: request.categoryId,
             name: request.name
         ).subscribe(onNext: { [weak self] in

@@ -36,6 +36,7 @@
 "deleteAction" = "Delete";
 "okay" = "OK";
 "yes" = "Yes";
+"no" = "No";
 
 "auth.infoText" = "Please log in to vote, comment and create debates on Sporno";
 "auth.termsOfUse.open" = "Open Terms of Use";
@@ -67,6 +68,15 @@
 "debate.category" = "Category";
 "debate.somethingNotFilled" = "%@ is empty";
 "debate.name.placeholder" = "Debate name (optional, may be left blank)";
+"debate.name.placeholder.required" = "Debate name";
+"debate.image" = "Debate image";
+
+"debate.type.sides.type" = "Type: Left/Right side";
+"debate.type.sides" = "Left/Right side";
+"debate.type.statement.type" = "Type: Agree/Disagree";
+"debate.type.statement" = "Agree/Disagree statement";
+
+"debate.choosetype" = "Choose debate type";
 
 "category.createNew" = "Create a new category";
 "category.name.placeholder" = "Category name";

@@ -23,6 +23,15 @@ protocol CreateDebateDisplayLogic: class {
 class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
     // MARK: - Subviews
+    private let debateTypeButton = UIButton().with {
+        $0.setTitle("debate.type.sides.type".localized, for: .normal)
+        $0.setTitleColor(.gray, for: .normal)
+        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+        $0.layer.borderColor = UIColor.gray.cgColor
+        $0.layer.borderWidth = 1
+        $0.layer.cornerRadius = 6
+    }
     private lazy var leftSidePhoto = UIImageView().with {
         $0.image = placeholderImage
         $0.contentMode = .scaleAspectFill
@@ -74,6 +83,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     let disposeBag = DisposeBag()
     let dataPicker: DataPicker = DataPickerImplementation.shared
     let placeholderImage = UIImage(named: "debatePlaceholder")
+    private var debateType: DebateType = .sides
 
     var leftImage: UIImage? {
         didSet {
@@ -124,6 +134,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         view.backgroundColor = .white
 
         view.addSubviews(
+            debateTypeButton,
             leftSidePhoto,
             rightSidePhoto,
             debateName,
@@ -143,6 +154,11 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     }
 
     func bindObservables() {
+        debateTypeButton.didClick
+            .subscribe(onNext: { [weak self] in
+                self?.showDebateTypeAlert()
+            }).disposed(by: disposeBag)
+
         leftSidePhoto.didClick
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
@@ -161,41 +177,14 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
         createButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                guard let `self` = self else { return }
-
-                guard let leftImage = self.leftImage else {
-                    self.notEnoughData(error: "debate.leftImage".localized)
-                    return
+                switch self?.debateType {
+                case .sides:
+                    self?.handleCreateSides()
+                case .statement:
+                    self?.handleCreateStatement()
+                default:
+                    break
                 }
-
-                guard let rightImage = self.rightImage else {
-                    self.notEnoughData(error: "debate.rightImage".localized)
-                    return
-                }
-
-                guard let leftName = self.leftSideName.text, !leftName.isEmpty else {
-                    self.notEnoughData(error: "debate.left".localized)
-                    return
-                }
-
-                guard let rightName = self.rightSideName.text, !rightName.isEmpty else {
-                    self.notEnoughData(error: "debate.right".localized)
-                    return
-                }
-
-                guard let categoryId = self.category?.id else {
-                    self.notEnoughData(error: "debate.category".localized)
-                    return
-                }
-
-                self.interactor?.createDebate(request: .init(
-                    leftName: leftName,
-                    rightName: rightName,
-                    leftImage: leftImage,
-                    rightImage: rightImage,
-                    categoryId: categoryId,
-                    name: self.debateName.text
-                ))
             }).disposed(by: disposeBag)
 
         categoryButton.rx.tap
@@ -210,15 +199,45 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     }
 
     func layout() {
-        leftSidePhoto.pin
-            .topStart()
-            .height(150)
-            .width(50%)
+        debateTypeButton.pin
+            .height(36)
+            .sizeToFit()
+            .top(8)
+            .start(16)
 
-        rightSidePhoto.pin
-            .topEnd()
-            .height(150)
-            .width(50%)
+        switch debateType {
+        case .sides:
+            leftSideName.text = nil
+            rightSideName.text = nil
+            rightSidePhoto.isHidden = false
+            middleSeparator.isHidden = false
+
+            leftSidePhoto.pin
+                .start()
+                .below(of: debateTypeButton)
+                .height(150)
+                .width(50%)
+                .marginTop(8)
+
+            rightSidePhoto.pin
+                .end()
+                .below(of: debateTypeButton)
+                .height(150)
+                .width(50%)
+                .marginTop(8)
+        case .statement:
+            leftSideName.text = "yes".localized
+            rightSideName.text = "no".localized
+            rightSidePhoto.isHidden = true
+            middleSeparator.isHidden = true
+
+            leftSidePhoto.pin
+                .start()
+                .below(of: debateTypeButton)
+                .height(225)
+                .horizontally()
+                .marginTop(8)
+        }
 
         debateName.pin
             .horizontally(16)
@@ -257,8 +276,24 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         middleSeparator.pin
             .height(of: leftSidePhoto)
             .hCenter()
-            .top()
+            .below(of: debateTypeButton)
             .width(0.5)
+            .marginTop(8)
+    }
+
+    func statementLayout() {
+        debateTypeButton.pin
+            .height(36)
+            .sizeToFit()
+            .top(8)
+            .start(16)
+
+        leftSidePhoto.pin
+            .start()
+            .below(of: debateTypeButton)
+            .height(225)
+            .horizontally()
+            .marginTop(8)
     }
 
     func notEnoughData(error: String) {
@@ -274,6 +309,114 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
     func didCreateDebate(_ debate: Debate) {
         creationHandler?(debate, self)
+    }
+
+    private func showDebateTypeAlert() {
+        let actionSheet = UIAlertController(
+            title: "debate.choosetype".localized,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+
+        actionSheet.addAction(UIAlertAction(title: "debate.type.sides".localized, style: .default) { [weak self] _ in
+            self?.setupDebateSidesType()
+        })
+        actionSheet.addAction(UIAlertAction(title: "debate.type.statement".localized, style: .default) { [weak self] _ in
+            self?.setupDebateStatementType()
+        })
+
+        actionSheet.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
+
+        present(actionSheet, animated: true)
+    }
+
+    private func setupDebateSidesType() {
+        debateType = .sides
+        debateTypeButton.setTitle("debate.type.sides.type".localized, for: .normal)
+        debateName.placeholder = "debate.name.placeholder".localized
+        leftSidePhoto.image = placeholderImage
+        rightSidePhoto.image = placeholderImage
+        view.setNeedsLayout()
+    }
+
+    private func setupDebateStatementType() {
+        debateType = .statement
+        debateTypeButton.setTitle("debate.type.statement.type".localized, for: .normal)
+        leftSidePhoto.image = placeholderImage
+
+        debateName.placeholder = "debate.name.placeholder.required".localized
+        view.setNeedsLayout()
+    }
+
+    private func handleCreateSides() {
+        guard let leftImage = leftImage else {
+            notEnoughData(error: "debate.leftImage".localized)
+            return
+        }
+
+        guard let rightImage = rightImage else {
+            notEnoughData(error: "debate.rightImage".localized)
+            return
+        }
+
+        guard let leftName = leftSideName.text, !leftName.isEmpty else {
+            notEnoughData(error: "debate.left".localized)
+            return
+        }
+
+        guard let rightName = rightSideName.text, !rightName.isEmpty else {
+            notEnoughData(error: "debate.right".localized)
+            return
+        }
+
+        guard let categoryId = category?.id else {
+            notEnoughData(error: "debate.category".localized)
+            return
+        }
+
+        interactor?.createDebateSides(request: .init(
+            leftName: leftName,
+            rightName: rightName,
+            leftImage: leftImage,
+            rightImage: rightImage,
+            categoryId: categoryId,
+            name: debateName.text
+        ))
+    }
+
+    private func handleCreateStatement() {
+        guard let debateImage = leftImage else {
+            notEnoughData(error: "debate.image".localized)
+            return
+        }
+
+        guard let debateName = debateName.text, !debateName.isEmpty else {
+            notEnoughData(error: "debate.name.placeholder.required".localized)
+            return
+        }
+
+        guard let leftName = leftSideName.text, !leftName.isEmpty else {
+            notEnoughData(error: "debate.left".localized)
+            return
+        }
+
+        guard let rightName = rightSideName.text, !rightName.isEmpty else {
+            notEnoughData(error: "debate.right".localized)
+            return
+        }
+
+        guard let categoryId = category?.id else {
+            notEnoughData(error: "debate.category".localized)
+            return
+        }
+
+        interactor?.createDebateStatement(request: .init(
+            leftName: leftName,
+            rightName: rightName,
+            debateImage: debateImage,
+            categoryId: categoryId,
+            name: debateName
+            ))
     }
 
 }

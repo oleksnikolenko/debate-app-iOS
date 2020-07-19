@@ -53,6 +53,7 @@ class DebateDetailHeader: UIView {
 
     // MARK: - Properties
     private let middleSeparatorWidth: CGFloat = 0.5
+    private var debateType: DebateType = .sides
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -76,7 +77,12 @@ class DebateDetailHeader: UIView {
 
     // MARK: - Layout
     override func sizeThatFits(_ size: CGSize) -> CGSize {
-        layout()
+        switch debateType {
+        case .sides:
+            sidesLayout()
+        case .statement:
+            statementLayout()
+        }
 
         return .init(
             width: size.width,
@@ -87,10 +93,16 @@ class DebateDetailHeader: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        layout()
+        switch debateType {
+        case .sides:
+            sidesLayout()
+        case .statement:
+            statementLayout()
+        }
     }
 
-    private func layout() {
+    private func sidesLayout() {
+        rightImage.isHidden = false
         UIView.animate(withDuration: 0.5) {
             self.shade.pin
                 .horizontally()
@@ -142,10 +154,63 @@ class DebateDetailHeader: UIView {
         }
     }
 
+    private func statementLayout() {
+        rightImage.isHidden = true
+        UIView.animate(withDuration: 0.5) {
+            self.shade.pin
+                .horizontally()
+                .height(225)
+                .top()
+
+            self.leftImage.pin
+                .height(225)
+                .horizontally()
+                .top()
+
+            if !self.debateName.isHidden {
+                self.debateName.pin
+                    .horizontally(40)
+                    .sizeToFit(.width)
+                    .below(of: self.leftImage)
+                    .marginTop(24)
+            }
+
+            self.voteButton.pin
+                .horizontally(20)
+                .sizeToFit(.width)
+                .below(of: self.debateName.isHidden ? self.leftImage : self.debateName)
+                .marginTop(24)
+
+            self.rightImage.pin
+                .height(150)
+                .top(to: self.middleSeparator.edge.top)
+                .after(of: self.middleSeparator)
+                .end()
+
+            self.messageLabel.pin
+                .below(of: self.voteButton)
+                .start(20)
+                .sizeToFit()
+                .marginTop(16)
+
+            self.messageCounter.pin
+                .after(of: self.messageLabel, aligned: .center)
+                .marginStart(12)
+                .sizeToFit()
+        }
+    }
+
     // MARK: - Public methods
     func setup(debate: Debate) {
-        leftImage.kf.setImage(with: try? debate.leftSide.image.asURL())
-        rightImage.kf.setImage(with: try? debate.rightSide.image.asURL())
+        debateType = debate.debateType
+
+        switch debateType {
+        case .sides:
+            leftImage.kf.setImage(with: try? debate.leftSide.image?.asURL())
+            rightImage.kf.setImage(with: try? debate.rightSide.image?.asURL())
+        case .statement:
+            leftImage.kf.setImage(with: try? debate.image?.asURL())
+        }
 
         debateName.text = debate.name
         debateName.isHidden = debate.name == nil

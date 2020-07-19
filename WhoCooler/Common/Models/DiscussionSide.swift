@@ -9,7 +9,7 @@
 struct DiscussionSide: Decodable {
     let id: String
     let name: String
-    let image: String
+    let image: String?
     var ratingCount: Int
     var isVotedByUser: Bool
 
