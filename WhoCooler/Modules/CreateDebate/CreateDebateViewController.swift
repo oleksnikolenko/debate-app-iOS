@@ -207,11 +207,6 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
         switch debateType {
         case .sides:
-            leftSideName.text = nil
-            rightSideName.text = nil
-            rightSidePhoto.isHidden = false
-            middleSeparator.isHidden = false
-
             leftSidePhoto.pin
                 .start()
                 .below(of: debateTypeButton)
@@ -226,11 +221,6 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
                 .width(50%)
                 .marginTop(8)
         case .statement:
-            leftSideName.text = "yes".localized
-            rightSideName.text = "no".localized
-            rightSidePhoto.isHidden = true
-            middleSeparator.isHidden = true
-
             leftSidePhoto.pin
                 .start()
                 .below(of: debateTypeButton)
@@ -334,17 +324,32 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         debateType = .sides
         debateTypeButton.setTitle("debate.type.sides.type".localized, for: .normal)
         debateName.placeholder = "debate.name.placeholder".localized
+
         leftSidePhoto.image = placeholderImage
         rightSidePhoto.image = placeholderImage
+
+        leftSideName.text = nil
+        rightSideName.text = nil
+
+        rightSidePhoto.isHidden = false
+        middleSeparator.isHidden = false
+
         view.setNeedsLayout()
     }
 
     private func setupDebateStatementType() {
         debateType = .statement
         debateTypeButton.setTitle("debate.type.statement.type".localized, for: .normal)
-        leftSidePhoto.image = placeholderImage
 
+        leftSidePhoto.image = placeholderImage
+        leftSideName.text = "yes".localized
+
+        rightSideName.text = "no".localized
+        rightSidePhoto.isHidden = true
+
+        middleSeparator.isHidden = true
         debateName.placeholder = "debate.name.placeholder.required".localized
+
         view.setNeedsLayout()
     }
 
