@@ -42,6 +42,10 @@
 "auth.termsOfUse.open" = "Открыть Условия использования";
 "auth.termsOfUse.title" = "Условия использования";
 "auth.termsOfUse.description" = "Вы должны принять Условия использования приложения для входа";
+"auth.byProceeding" = "Продолжая, Вы соглашаетесь с нашими";
+"auth.termsOfUse.info" = "Условиями использования";
+"auth.privacy" = "Политику Конфиденциальности.";
+"auth.toFindOut" = ". Чтобы узнать как мы используем Ваши данные, загляните в ";
 
 "debate.actionSheet.edit" = "Редактировать";
 "debate.actionSheet.block" = "Заблокировать";

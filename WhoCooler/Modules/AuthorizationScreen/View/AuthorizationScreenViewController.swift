@@ -103,37 +103,8 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
                 $0.authProviderSelected
             }
         ).subscribe(onNext: { [unowned self] in
-            self.showTermsOfUse(with: $0)
+            self.interactor?.didSelectProvider(request: .init(provider: $0))
         }).disposed(by: disposeBag)
-    }
-
-    func showTermsOfUse(with provider: AuthProvider) {
-        let alert = UIAlertController(
-            title: "auth.termsOfUse.title".localized,
-            message: "auth.termsOfUse.description".localized,
-            preferredStyle: .actionSheet
-        )
-        alert.addAction(.init(
-            title: "auth.termsOfUse.open".localized,
-            style: .default,
-            handler: { _ in
-                guard let url = try? "https://api.whocooler.com/terms".asURL() else { return }
-                UIApplication.shared.open(
-                    url,
-                    options: [:],
-                    completionHandler: nil
-                )
-            }
-        ))
-        alert.addAction(.init(
-            title: "acceptAction".localized,
-            style: .default,
-            handler: { [provider] _ in
-                self.interactor?.didSelectProvider(request: .init(provider: provider))
-            }
-        ))
-        alert.addAction(.init(title: "cancelAction".localized, style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 
     func didEndAuth(viewModel: AuthorizationScreen.Authorization.ViewModel) {

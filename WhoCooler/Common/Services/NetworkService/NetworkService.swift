@@ -31,7 +31,7 @@ class NetworkServiceImplementation: NetworkService {
 
     static let shared = NetworkServiceImplementation()
 
-    let baseUrl = "https://stage.whocooler.com/"
+    let baseUrl = "https://api.whocooler.com/"
     let disposeBag = DisposeBag()
 
     private init () {}

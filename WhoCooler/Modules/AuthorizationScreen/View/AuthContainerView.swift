@@ -30,13 +30,24 @@ class AuthContainerView: UIView {
         $0.textAlignment = .center
         $0.text = "auth.infoText".localized
     }
-    private lazy var lastView: UIView = informationLabel
+    private let privacyTermsView = UITextView().with {
+        $0.font = UIFont.systemFont(ofSize: 8)
+        $0.textColor = UIColor.gray
+        $0.textAlignment = .center
+        $0.isEditable = false
+        $0.isUserInteractionEnabled = true
+        $0.linkTextAttributes = [
+            .foregroundColor: UIColor.systemBlue,
+            .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]
+    }
 
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        addSubviews(informationLabel, appLogo)
+        addSubviews(informationLabel, appLogo, privacyTermsView)
+        setupPrivacyTermsView()
     }
 
     required init?(coder: NSCoder) {
@@ -80,14 +91,49 @@ class AuthContainerView: UIView {
             }
 
             lastEdge = $0.edge.bottom
-            lastView = $0
         }
+
+        privacyTermsView.pin
+            .top(to: lastEdge)
+            .horizontally(48)
+            .marginTop(16)
+            .sizeToFit(.width)
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         pin.width(size.width)
         layout()
-        return CGSize(width: size.width, height: lastView.frame.maxY)
+        return CGSize(width: size.width, height: privacyTermsView.frame.maxY)
+    }
+
+    private func setupPrivacyTermsView() {
+        let mainAttrString = NSMutableAttributedString(string: "auth.byProceeding".localized)
+
+        guard
+            let termsOfUseUrl = URL(string: "https://api.whocooler.com/terms"),
+            let privacyPolicyUrl = URL(string: "https://www.iubenda.com/privacy-policy/66454455")
+        else { return }
+
+        let termsOfUseText = NSAttributedString(string: "auth.termsOfUse.info".localized)
+        let privacyPolicyText = NSAttributedString(string: "auth.privacy".localized)
+
+        let termsOfUseMutableString = NSMutableAttributedString(attributedString: termsOfUseText).with {
+            $0.setAttributes([.link: termsOfUseUrl], range: NSRange(location: 0, length: termsOfUseText.length))
+        }
+
+        let privacyMutableString = NSMutableAttributedString(attributedString: privacyPolicyText).with {
+            $0.setAttributes([.link: privacyPolicyUrl], range: NSRange(location: 0, length: privacyPolicyText.length))
+        }
+
+        let secondSentence = NSMutableAttributedString(string: "auth.toFindOut".localized)
+
+        mainAttrString.append(termsOfUseMutableString)
+        mainAttrString.append(secondSentence)
+        mainAttrString.append(privacyMutableString)
+
+        privacyTermsView.attributedText = mainAttrString
+        privacyTermsView.textAlignment = .center
+        privacyTermsView.textColor = .gray
     }
 
 }
