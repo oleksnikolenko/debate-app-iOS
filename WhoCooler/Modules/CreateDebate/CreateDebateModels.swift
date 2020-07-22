@@ -16,16 +16,29 @@ enum CreateDebate {
 
     // MARK: Use cases
     enum Creation {
-        struct Request {
-            let leftName: String
-            let rightName: String
-            let leftImage: UIImage
-            let rightImage: UIImage
-            let categoryId: String
-            let name: String?
+        enum Sides {
+            struct Request {
+                let leftName: String
+                let rightName: String
+                let leftImage: UIImage
+                let rightImage: UIImage
+                let categoryId: String
+                let name: String?
+            }
+            struct Response {}
+            struct ViewModel {}
         }
-        struct Response {}
-        struct ViewModel {}
+        enum Statement {
+            struct Request {
+                let leftName: String
+                let rightName: String
+                let debateImage: UIImage
+                let categoryId: String
+                let name: String
+            }
+            struct Response {}
+            struct ViewModel {}
+        }
     }
 
 }

@@ -29,18 +29,23 @@
 "profile.privacyPolicy" = "Privacy policy";
 "profile.logout" = "Log out";
 "profile.alert.logout" = "Log out from profile";
-"profile.contactUs" = "Contact Us";
+"profile.contactUs" = "Send your feedback";
 
 "cancelAction" = "Cancel";
 "acceptAction" = "Accept";
 "deleteAction" = "Delete";
 "okay" = "OK";
 "yes" = "Yes";
+"no" = "No";
 
 "auth.infoText" = "Please log in to vote, comment and create debates on Sporno";
 "auth.termsOfUse.open" = "Open Terms of Use";
 "auth.termsOfUse.title" = "Terms of Use";
 "auth.termsOfUse.description" = "You must accept the app's Terms of Service to sign in";
+"auth.byProceeding" = "By proceeding you agree with our ";
+"auth.termsOfUse.info" = "Terms of Use";
+"auth.privacy" = "Privacy policy.";
+"auth.toFindOut" = ". To find out how we use your data please visit our ";
 
 "debate.actionSheet.edit" = "Edit";
 "debate.actionSheet.block" = "Block";
@@ -53,7 +58,7 @@
 "error.noInternet" = "It seems there is no internet connection";
 "error.tryAgain" = "Try again";
 
-"message.header" = "Comments";
+"message.header" = "Discussion";
 "message.reply" = "Reply";
 "message.show" = "Show";
 "message.moreReplies" = "more replies";
@@ -67,6 +72,15 @@
 "debate.category" = "Category";
 "debate.somethingNotFilled" = "%@ is empty";
 "debate.name.placeholder" = "Debate name (optional, may be left blank)";
+"debate.name.placeholder.required" = "Debate name";
+"debate.image" = "Debate image";
+
+"debate.type.sides.type" = "Type: Left/Right side";
+"debate.type.sides" = "Left/Right side";
+"debate.type.statement.type" = "Type: Yes/No statement";
+"debate.type.statement" = "Yes/No statement";
+
+"debate.choosetype" = "Choose debate type";
 
 "category.createNew" = "Create a new category";
 "category.name.placeholder" = "Category name";

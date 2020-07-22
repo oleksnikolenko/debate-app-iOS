@@ -17,7 +17,7 @@ class CreateDebateWorker {
 
     let networkService: NetworkService = NetworkServiceImplementation.shared
 
-    func createDebate(
+    func createDebateSides(
         leftName: String,
         rightName: String,
         leftImage: UIImage,
@@ -33,7 +33,30 @@ class CreateDebateWorker {
                 "rightside_name": rightName,
                 "rightside_image": rightImage,
                 "category_list": categoryId,
-                "name": name
+                "name": name,
+                "debate_type": "sides"
+            ],
+            method: .post,
+            shouldLocalize: true
+        )
+    }
+
+    func createDebateStatement(
+        leftName: String,
+        rightName: String,
+        debateImage: UIImage,
+        categoryId: String,
+        name: String
+    ) -> Observable<Debate> {
+        networkService.sendData(
+            endpoint: "debatecreate",
+            parameters: [
+                "leftside_name": leftName,
+                "debate_image": debateImage,
+                "rightside_name": rightName,
+                "category_list": categoryId,
+                "name": name,
+                "debate_type": "statement"
             ],
             method: .post,
             shouldLocalize: true

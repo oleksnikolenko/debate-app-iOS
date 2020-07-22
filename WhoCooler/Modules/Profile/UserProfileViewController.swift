@@ -51,39 +51,13 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         $0.setTitleColor(.systemBlue, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
     }
-    let privacyPolicyButton = UIButton().with {
-        $0.setTitle("profile.privacyPolicy".localized, for: .normal)
-        $0.setTitleColor(.systemBlue, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+    private lazy var tableView = UITableView().with {
+        $0.delegate = self
+        $0.dataSource = self
+        $0.backgroundColor = .white
+        $0.isScrollEnabled = false
+        $0.tableFooterView = UIView()
     }
-    let contactUsButton = UIButton().with {
-        $0.setTitle("profile.contactUs".localized, for: .normal)
-        $0.setTitleColor(.systemBlue, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-    }
-    let logoutButton = UIButton().with {
-        $0.setTitle("profile.logout".localized, for: .normal)
-        $0.setTitleColor(.systemRed, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-    }
-//    let userIdLabel = UILabel().with {
-//        $0.textAlignment = .center
-//        $0.textColor = .black
-//        $0.numberOfLines = 0
-//        $0.isUserInteractionEnabled = true
-//    }
-//    let pushTokenLabel = UILabel().with {
-//        $0.textAlignment = .center
-//        $0.textColor = .black
-//        $0.numberOfLines = 0
-//        $0.isUserInteractionEnabled = true
-//    }
-//    let accessTokenLabel = UILabel().with {
-//        $0.textAlignment = .center
-//        $0.textColor = .black
-//        $0.numberOfLines = 0
-//        $0.isUserInteractionEnabled = true
-//    }
 
     // MARK: - Properties
     var viewModel: UserProfile.Profile.ViewModel?
@@ -121,12 +95,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         view.addSubviews(
             avatar,
             userNameLabel,
-            privacyPolicyButton,
-            logoutButton,
-//            userIdLabel,
-//            pushTokenLabel,
-//            accessTokenLabel,
-            contactUsButton,
+            tableView,
             changeAvatarButton,
             namePlaceholder,
             changeNameButton
@@ -179,37 +148,6 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
             guard let `self` = self else { return }
             self.presentChangeNameAlertController()
         }).disposed(by: disposeBag)
-
-        privacyPolicyButton.rx.tap.subscribe(onNext: {
-            guard let url = URL(string: "https://www.iubenda.com/privacy-policy/66454455") else { return }
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }).disposed(by: disposeBag)
-
-        contactUsButton.rx.tap.subscribe(onNext: {
-            let urlString = "mailto:whocoolerfeedback@gmail.com?subject=WhoCooler Support"
-            let codedUrl = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            if let url = try? codedUrl?.asURL() {
-                UIApplication.shared.open(url)
-            }
-        }).disposed(by: disposeBag)
-
-        logoutButton.didClick.subscribe(onNext: { [weak self] in
-            self?.presentLogOutAlert()
-        }).disposed(by: disposeBag)
-//        userIdLabel.didClick
-//            .compactMap { [weak self] in self?.viewModel?.user.id }
-//            .subscribe(onNext: { [weak self] in self?.copy(text: $0) })
-//            .disposed(by: disposeBag)
-//
-//        pushTokenLabel.didClick
-//            .compactMap { [weak self] in self?.viewModel?.pushToken }
-//            .subscribe(onNext: { [weak self] in self?.copy(text: $0) })
-//            .disposed(by: disposeBag)
-//
-//        accessTokenLabel.didClick
-//            .compactMap { [weak self] in self?.viewModel?.accessToken }
-//            .subscribe(onNext: { [weak self] in self?.copy(text: $0) })
-//            .disposed(by: disposeBag)
     }
 
     func layout() {
@@ -241,39 +179,11 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
             .start(20)
             .sizeToFit()
 
-        privacyPolicyButton.pin
+        tableView.pin
             .below(of: changeNameButton)
-            .start(20)
-            .sizeToFit()
-
-        contactUsButton.pin
-            .below(of: privacyPolicyButton)
-            .start(20)
-            .sizeToFit()
-
-        logoutButton.pin
-            .below(of: contactUsButton)
-            .start(20)
-            .sizeToFit()
-
-//        userIdLabel.pin
-//            .horizontally(8)
-//            .sizeToFit(.width)
-//            .below(of: changeNameButton)
-//            .marginTop(30)
-
-//        pushTokenLabel.pin
-//            .horizontally(8)
-//            .sizeToFit(.width)
-//            .below(of: userIdLabel)
-//            .marginTop(8)
-//
-//        accessTokenLabel.pin
-//            .horizontally(8)
-//            .sizeToFit(.width)
-//            .below(of: pushTokenLabel)
-//            .marginTop(8)
-//
+            .horizontally()
+            .bottom()
+            .marginTop(12)
     }
 
     // MARK: Do something
@@ -281,30 +191,12 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         interactor?.getProfile(request: .init())
     }
 
-//    func copy(text: String?) {
-//        UIPasteboard.general.string = text
-//        SwiftMessages.defaultConfig.presentationContext = .window(windowLevel: .statusBar)
-//        SwiftMessages.show {
-//            let card = MessageView.viewFromNib(layout: .cardView)
-//
-//            card.configureContent(body: "Copied: \(text ?? "nothing")")
-//            card.button?.isHidden = true
-//            card.titleLabel?.isHidden = true
-//            card.configureTheme(.success)
-//
-//            return card
-//        }
-//    }
-
     func displayProfile(viewModel: UserProfile.Profile.ViewModel) {
         self.viewModel = viewModel
 
         avatar.kf.setImage(with: try? viewModel.user.avatar?.asURL())
 
         userNameLabel.text = viewModel.user.name
-//        userIdLabel.text = viewModel.user.id
-//        pushTokenLabel.text = "push token: " + viewModel.pushToken
-//        accessTokenLabel.text = "access token: " + viewModel.accessToken
 
         view.setNeedsLayout()
     }
@@ -344,6 +236,55 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         })
 
         present(alertController, animated: true, completion: nil)
+    }
+
+}
+
+
+extension UserProfileViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 3 }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.cell(for: UserProfileMenuCell.self)
+        switch indexPath.row {
+        case 0:
+            // localized
+            cell.setup(image: UIImage(named: "mail"), text: "profile.contactUs".localized)
+        case 1:
+            cell.setup(image: UIImage(named: "privacy"), text: "profile.privacyPolicy".localized)
+        case 2:
+            cell.setup(
+                image: UIImage(named: "logout"),
+                text: "profile.logout".localized,
+                textColor: .systemRed,
+                imageMarginStart: 23,
+                descriptionMarginStart: 17
+            )
+        default:
+            break
+        }
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { 44 }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let urlString = "mailto:whocoolerfeedback@gmail.com?subject=WhoCooler Support"
+            let codedUrl = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            if let url = try? codedUrl?.asURL() {
+                UIApplication.shared.open(url)
+            }
+        case 1:
+            guard let url = URL(string: "https://www.iubenda.com/privacy-policy/66454455") else { return }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        case 2:
+            presentLogOutAlert()
+        default:
+            break
+        }
     }
 
 }

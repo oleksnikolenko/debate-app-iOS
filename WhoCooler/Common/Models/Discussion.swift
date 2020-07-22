@@ -16,6 +16,8 @@ struct Debate: Decodable {
     var isFavorite: Bool
     var messageCount: Int
     let name: String?
+    let image: String?
+    let type: String
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -27,6 +29,8 @@ struct Debate: Decodable {
         case isFavorite = "is_favorite"
         case messageCount = "message_count"
         case name
+        case image
+        case type
     }
 }
 
@@ -44,4 +48,24 @@ extension Debate {
         100 - leftSidePercents
     }
 
+    var debateType: DebateType {
+        return DebateType(type)
+    }
+
+}
+
+enum DebateType {
+    case sides
+    case statement
+
+    init(_ type: String) {
+        switch type {
+        case "sides":
+            self = .sides
+        case "statement":
+            self = .statement
+        default:
+            self = .sides
+        }
+    }
 }

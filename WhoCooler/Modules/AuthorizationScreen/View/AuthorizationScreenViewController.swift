@@ -21,20 +21,7 @@ protocol AuthorizationScreenDisplayLogic: class {
 class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDisplayLogic {
 
     // MARK: - Subviews
-    var authProviderButtons: [AuthButtonProtocol] = [] {
-        didSet {
-            oldValue.forEach { $0.removeFromSuperview() }
-            view.addSubviews(authProviderButtons)
-            view.setNeedsLayout()
-        }
-    }
-    private var informationLabel = UILabel().with {
-        $0.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        $0.textColor = UIColor.black
-        $0.numberOfLines = 0
-        $0.textAlignment = .center
-        $0.text = "auth.infoText".localized
-    }
+    private var authContainerView = AuthContainerView()
 
     // MARK: - Properties
     var interactor: AuthorizationScreenBusinessLogic?
@@ -44,9 +31,9 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
 
     var authProviders: [AuthProvider] = [] {
         didSet {
-            authProviderButtons = authProviders.map {
+            authContainerView.authProviderButtons = authProviders.map {
                 if $0.type == .apple, #available(iOS 13, *) {
-                    return AppleAuthButton(provider: $0)
+                    return AuthButton(provider: $0)
                 } else {
                     return AuthButton(provider: $0)
                 }
@@ -97,70 +84,27 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
     }
 
     func layout() {
-        let buttonSize = CGSize(width: 250, height: 44)
-        var lastEdge = view.edge.vCenter
-
-        informationLabel.pin
-            .horizontally(view.frame.width / 6)
-            .bottom(to: view.edge.vCenter)
+        authContainerView.pin
+            .horizontally()
+            .vCenter()
             .sizeToFit(.width)
-            .marginBottom(64)
-
-        authProviderButtons.forEach {
-            $0.pin
-                .size(buttonSize)
-                .top(to: lastEdge)
-                .hCenter()
-                .marginTop(12)
-
-            lastEdge = $0.edge.bottom
-        }
     }
 
     // MARK: - Private methods
     private func addSubviews() {
-        view.addSubviews(informationLabel)
+        view.addSubviews(authContainerView)
     }
 
     func displayProviders(viewModel: AuthorizationScreen.Providers.ViewModel) {
         authProviders = viewModel.providers
 
         Observable.merge(
-            authProviderButtons.map {
+            authContainerView.authProviderButtons.map {
                 $0.authProviderSelected
             }
         ).subscribe(onNext: { [unowned self] in
-            self.showTermsOfUse(with: $0)
+            self.interactor?.didSelectProvider(request: .init(provider: $0))
         }).disposed(by: disposeBag)
-    }
-
-    func showTermsOfUse(with provider: AuthProvider) {
-        let alert = UIAlertController(
-            title: "auth.termsOfUse.title".localized,
-            message: "auth.termsOfUse.description".localized,
-            preferredStyle: .actionSheet
-        )
-        alert.addAction(.init(
-            title: "auth.termsOfUse.open".localized,
-            style: .default,
-            handler: { _ in
-                guard let url = try? "https://api.whocooler.com/terms".asURL() else { return }
-                UIApplication.shared.open(
-                    url,
-                    options: [:],
-                    completionHandler: nil
-                )
-            }
-        ))
-        alert.addAction(.init(
-            title: "acceptAction".localized,
-            style: .default,
-            handler: { [provider] _ in
-                self.interactor?.didSelectProvider(request: .init(provider: provider))
-            }
-        ))
-        alert.addAction(.init(title: "cancelAction".localized, style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
     }
 
     func didEndAuth(viewModel: AuthorizationScreen.Authorization.ViewModel) {
