@@ -29,7 +29,7 @@
 "profile.privacyPolicy" = "Политика конфиденциальности";
 "profile.logout" = "Выйти";
 "profile.alert.logout" = "Выход из профиля";
-"profile.contactUs" = "Связаться с нами";
+"profile.contactUs" = "Обратная связь";
 
 "cancelAction" = "Отменить";
 "acceptAction" = "Принять";
@@ -38,7 +38,7 @@
 "yes" = "Да";
 "no" = "Нет";
 
-"auth.infoText" = "Пожалуйста, залогинься, чтобы голосовать, комментировать и создавать дебаты на Sporno";
+"auth.infoText" = "Залогиньтесь, чтобы голосовать, комментировать и создавать дебаты на Sporno";
 "auth.termsOfUse.open" = "Открыть Условия использования";
 "auth.termsOfUse.title" = "Условия использования";
 "auth.termsOfUse.description" = "Вы должны принять Условия использования приложения для входа";
@@ -55,10 +55,10 @@
 "debates.screenName" = "Sporno";
 "debates.sort.title" = "Сортировать дебаты, текущая сортировка: ";
 
-"error.noInternet" = "Кажется у тебя проблемы с интернетом";
+"error.noInternet" = "Кажется проблемы с интернетом";
 "error.tryAgain" = "Повторить";
 
-"message.header" = "Комментарии";
+"message.header" = "Обсуждение";
 "message.reply" = "Ответить";
 "message.show" = "Показать еще";
 "message.moreReplies" = "ответа";

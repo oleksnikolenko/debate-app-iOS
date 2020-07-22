@@ -13,8 +13,6 @@ class AuthContainerView: UIView {
     // MARK: - Subviews
     var appLogo = UIImageView().with {
         $0.image = UIImage(named: "AppLogo")
-        // TODO - remove this when new flipped icon is ready
-        $0.transform = CGAffineTransform(scaleX: 1, y: -1)
     }
     var authProviderButtons: [AuthButtonProtocol] = [] {
         didSet {

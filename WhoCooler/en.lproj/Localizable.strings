@@ -29,7 +29,7 @@
 "profile.privacyPolicy" = "Privacy policy";
 "profile.logout" = "Log out";
 "profile.alert.logout" = "Log out from profile";
-"profile.contactUs" = "Contact Us";
+"profile.contactUs" = "Send your feedback";
 
 "cancelAction" = "Cancel";
 "acceptAction" = "Accept";
@@ -58,7 +58,7 @@
 "error.noInternet" = "It seems there is no internet connection";
 "error.tryAgain" = "Try again";
 
-"message.header" = "Comments";
+"message.header" = "Discussion";
 "message.reply" = "Reply";
 "message.show" = "Show";
 "message.moreReplies" = "more replies";

@@ -25,10 +25,10 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     // MARK: - Subviews
     private let debateTypeButton = UIButton().with {
         $0.setTitle("debate.type.sides.type".localized, for: .normal)
-        $0.setTitleColor(.gray, for: .normal)
+        $0.setTitleColor(.darkGray, for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
-        $0.layer.borderColor = UIColor.gray.cgColor
+        $0.layer.borderColor = UIColor.darkGray.cgColor
         $0.layer.borderWidth = 1
         $0.layer.cornerRadius = 6
     }
@@ -258,7 +258,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             .marginTop(16)
 
         createButton.pin
-            .horizontally(16)
+            .horizontally(20)
             .height(48)
             .below(of: categoryButton)
             .marginTop(48)

@@ -77,6 +77,7 @@
 		39EFACD323DDAD2500E1E8BA /* DebateShortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD223DDAD2500E1E8BA /* DebateShortCell.swift */; };
 		39EFACD923DDADB700E1E8BA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD823DDADB700E1E8BA /* TableViewCell.swift */; };
 		39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACDF23DDB11000E1E8BA /* Discussion.swift */; };
+		86072ADC24C8865000D0C1B0 /* UserProfileMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86072ADB24C8865000D0C1B0 /* UserProfileMenuCell.swift */; };
 		861DE6A32455D94C00B864EB /* DebateInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A22455D94C00B864EB /* DebateInfoView.swift */; };
 		861DE6A72455DCEE00B864EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A62455DCEE00B864EB /* Category.swift */; };
 		861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E91E2245B674900A3E4A9 /* VoteModel.swift */; };
@@ -222,6 +223,7 @@
 		5F188B59484FFB42C92E94F8 /* Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig"; path = "Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		603992BE9B1D112A9C4667F1 /* Pods-DiscussionMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		67EF838F0BEBBE23470370C3 /* libPods-WhoCooler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhoCooler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86072ADB24C8865000D0C1B0 /* UserProfileMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileMenuCell.swift; sourceTree = "<group>"; };
 		861DE6A22455D94C00B864EB /* DebateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateInfoView.swift; sourceTree = "<group>"; };
 		861DE6A62455DCEE00B864EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		861E91E2245B674900A3E4A9 /* VoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteModel.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				39BD33E324531A4C00741A8F /* UserProfileRouter.swift */,
 				39BD33E424531A4C00741A8F /* UserProfileModels.swift */,
 				39BD33E524531A4C00741A8F /* UserProfileViewController.swift */,
+				86072ADB24C8865000D0C1B0 /* UserProfileMenuCell.swift */,
 				39BD33E624531A4C00741A8F /* UserProfileInteractor.swift */,
 			);
 			path = Profile;
@@ -1002,6 +1005,7 @@
 				86E8D823245B22580002DE7A /* VoteMessageInteractor.swift in Sources */,
 				3943F1AB243F0FB000BC11D0 /* DebateDetailPresenter.swift in Sources */,
 				3943F1AD243F0FB000BC11D0 /* DebateDetailRouter.swift in Sources */,
+				86072ADC24C8865000D0C1B0 /* UserProfileMenuCell.swift in Sources */,
 				39C8AB9D24431CE000D299CE /* AuthProvider.swift in Sources */,
 				39BD33E724531A4C00741A8F /* UserProfilePresenter.swift in Sources */,
 				39EFACD923DDADB700E1E8BA /* TableViewCell.swift in Sources */,
