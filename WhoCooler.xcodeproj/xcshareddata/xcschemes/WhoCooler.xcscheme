@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "39D1036123D0ED1000A0C3F7"
-               BuildableName = "WhoCooler.app"
+               BuildableName = "Sporno.app"
                BlueprintName = "WhoCooler"
                ReferencedContainer = "container:WhoCooler.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "39D1036123D0ED1000A0C3F7"
-            BuildableName = "WhoCooler.app"
+            BuildableName = "Sporno.app"
             BlueprintName = "WhoCooler"
             ReferencedContainer = "container:WhoCooler.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "39D1036123D0ED1000A0C3F7"
-            BuildableName = "WhoCooler.app"
+            BuildableName = "Sporno.app"
             BlueprintName = "WhoCooler"
             ReferencedContainer = "container:WhoCooler.xcodeproj">
          </BuildableReference>
