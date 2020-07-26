@@ -183,8 +183,10 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
     func reloadDebate(debateCell: DebateList.CellType) {
         if let indexPath = indexPathToReload {
             tableView.updateWithoutAnimation {
-                cells[indexPath.row] = debateCell
-                tableView.reloadRows(at: [indexPath], with: .none)
+                if cells.count > indexPath.row {
+                    cells[indexPath.row] = debateCell
+                    tableView.reloadRows(at: [indexPath], with: .none)
+                }
             }
 
             debateToReloadId = nil
