@@ -57,6 +57,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         $0.backgroundColor = .white
         $0.isScrollEnabled = false
         $0.tableFooterView = UIView()
+        $0.separatorStyle = .none
     }
 
     // MARK: - Properties
