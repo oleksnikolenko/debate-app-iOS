@@ -23,24 +23,18 @@ protocol CreateDebateDisplayLogic: class {
 class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
     // MARK: - Subviews
-    private let debateTypeButton = UIButton().with {
-        $0.setTitle("debate.type.sides.type".localized, for: .normal)
-        $0.setTitleColor(.darkGray, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.contentEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
-        $0.layer.borderColor = UIColor.darkGray.cgColor
-        $0.layer.borderWidth = 1
-        $0.layer.cornerRadius = 6
-    }
     private lazy var leftSidePhoto = UIImageView().with {
         $0.image = placeholderImage
         $0.contentMode = .scaleAspectFill
         $0.isUserInteractionEnabled = true
         $0.layer.masksToBounds = true
     }
-    private let debateName = UITextField().with {
+    private lazy var debateName = UITextView().with {
         $0.textAlignment = .center
-        $0.placeholder = "debate.name.placeholder".localized
+        $0.delegate = self
+        $0.text = "debate.name.placeholder".localized
+        $0.textColor = .lightGray
+        $0.font = .systemFont(ofSize: 18)
     }
     private lazy var leftSideName = UITextField().with {
         $0.borderStyle = .none
@@ -75,6 +69,10 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     private let middleSeparator = UIView().with {
         $0.backgroundColor = .lightGray
     }
+    private lazy var segmentedControl = UISegmentedControl().with {
+        $0.backgroundColor = UIColor.white
+        $0.selectedSegmentIndex = 0
+    }
 
     // MARK: - Properties
     var interactor: CreateDebateBusinessLogic?
@@ -84,6 +82,15 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     let dataPicker: DataPicker = DataPickerImplementation.shared
     let placeholderImage = UIImage(named: "debatePlaceholder")
     private var debateType: DebateType = .sides
+    let debateNameHeightBounds: ClosedRange<CGFloat> = 40...120
+    var debateNameHeight: CGFloat {
+        debateName.sizeThatFits(
+            CGSize(
+                width: debateName.bounds.width,
+                height: .infinity
+            )
+        ).height.inRange(of: debateNameHeightBounds)
+    }
 
     var leftImage: UIImage? {
         didSet {
@@ -134,7 +141,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         view.backgroundColor = .white
 
         view.addSubviews(
-            debateTypeButton,
+            segmentedControl,
             leftSidePhoto,
             rightSidePhoto,
             debateName,
@@ -145,6 +152,8 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             middleSeparator
         )
         bindObservables()
+
+        setupSegmentController(with: [.sides, .statement])
     }
 
     override func viewDidLayoutSubviews() {
@@ -154,11 +163,6 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     }
 
     func bindObservables() {
-        debateTypeButton.didClick
-            .subscribe(onNext: { [weak self] in
-                self?.showDebateTypeAlert()
-            }).disposed(by: disposeBag)
-
         leftSidePhoto.didClick
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
@@ -196,34 +200,38 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
                 }
                 self.present(pickCategoryViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
+
+        debateName.rx.text.subscribe(onNext: { _ in
+            self.view.setNeedsLayout()
+            }).disposed(by: disposeBag)
+
     }
 
     func layout() {
-        debateTypeButton.pin
-            .height(36)
-            .sizeToFit()
+        segmentedControl.pin
             .top(8)
-            .start(16)
+            .horizontally(24)
+            .sizeToFit(.width)
 
         switch debateType {
         case .sides:
             leftSidePhoto.pin
                 .start()
-                .below(of: debateTypeButton)
+                .below(of: segmentedControl)
                 .height(150)
                 .width(50%)
                 .marginTop(8)
 
             rightSidePhoto.pin
                 .end()
-                .below(of: debateTypeButton)
+                .below(of: segmentedControl)
                 .height(150)
                 .width(50%)
                 .marginTop(8)
         case .statement:
             leftSidePhoto.pin
                 .start()
-                .below(of: debateTypeButton)
+                .below(of: segmentedControl)
                 .height(225)
                 .horizontally()
                 .marginTop(8)
@@ -231,7 +239,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
         debateName.pin
             .horizontally(16)
-            .sizeToFit(.width)
+            .height(debateNameHeight)
             .below(of: leftSidePhoto)
             .marginTop(16)
 
@@ -266,21 +274,20 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         middleSeparator.pin
             .height(of: leftSidePhoto)
             .hCenter()
-            .below(of: debateTypeButton)
+            .below(of: segmentedControl)
             .width(0.5)
             .marginTop(8)
     }
 
     func statementLayout() {
-        debateTypeButton.pin
-            .height(36)
-            .sizeToFit()
+        segmentedControl.pin
             .top(8)
-            .start(16)
+            .horizontally(24)
+            .sizeToFit(.width)
 
         leftSidePhoto.pin
             .start()
-            .below(of: debateTypeButton)
+            .below(of: segmentedControl)
             .height(225)
             .horizontally()
             .marginTop(8)
@@ -301,29 +308,12 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         creationHandler?(debate, self)
     }
 
-    private func showDebateTypeAlert() {
-        let actionSheet = UIAlertController(
-            title: "debate.choosetype".localized,
-            message: nil,
-            preferredStyle: .actionSheet
-        )
-
-        actionSheet.addAction(UIAlertAction(title: "debate.type.sides".localized, style: .default) { [weak self] _ in
-            self?.setupDebateSidesType()
-        })
-        actionSheet.addAction(UIAlertAction(title: "debate.type.statement".localized, style: .default) { [weak self] _ in
-            self?.setupDebateStatementType()
-        })
-
-        actionSheet.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
-
-        present(actionSheet, animated: true)
-    }
-
     private func setupDebateSidesType() {
         debateType = .sides
-        debateTypeButton.setTitle("debate.type.sides.type".localized, for: .normal)
-        debateName.placeholder = "debate.name.placeholder".localized
+
+        debateName.text = debateType.debateNamePlaceholder
+        debateName.textColor = UIColor.lightGray
+        debateName.resignFirstResponder()
 
         leftSidePhoto.image = placeholderImage
         rightSidePhoto.image = placeholderImage
@@ -339,7 +329,10 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
     private func setupDebateStatementType() {
         debateType = .statement
-        debateTypeButton.setTitle("debate.type.statement.type".localized, for: .normal)
+
+        debateName.text = debateType.debateNamePlaceholder
+        debateName.textColor = UIColor.lightGray
+        debateName.resignFirstResponder()
 
         leftSidePhoto.image = placeholderImage
         leftSideName.text = "yes".localized
@@ -348,7 +341,6 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         rightSidePhoto.isHidden = true
 
         middleSeparator.isHidden = true
-        debateName.placeholder = "debate.name.placeholder.required".localized
 
         view.setNeedsLayout()
     }
@@ -422,6 +414,44 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             categoryId: categoryId,
             name: debateName
             ))
+    }
+
+    private func setupSegmentController(with debateTypes: [DebateType]) {
+        for index in 0..<debateTypes.count {
+            segmentedControl.insertSegment(withTitle: debateTypes[index].name, at: index, animated: true)
+        }
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+    }
+
+    @objc func segmentedControlValueChanged() {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            setupDebateSidesType()
+        case 1:
+            setupDebateStatementType()
+        default:
+            break
+        }
+    }
+
+}
+
+// MARK: - Debate name delegate
+extension CreateDebateViewController: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .lightGray {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = debateType.debateNamePlaceholder
+            textView.textColor = UIColor.lightGray
+        }
     }
 
 }

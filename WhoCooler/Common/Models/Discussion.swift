@@ -53,19 +53,3 @@ extension Debate {
     }
 
 }
-
-enum DebateType {
-    case sides
-    case statement
-
-    init(_ type: String) {
-        switch type {
-        case "sides":
-            self = .sides
-        case "statement":
-            self = .statement
-        default:
-            self = .sides
-        }
-    }
-}

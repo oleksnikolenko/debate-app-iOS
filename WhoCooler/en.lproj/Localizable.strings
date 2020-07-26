@@ -75,9 +75,7 @@
 "debate.name.placeholder.required" = "Debate name";
 "debate.image" = "Debate image";
 
-"debate.type.sides.type" = "Type: Left/Right side";
 "debate.type.sides" = "Left/Right side";
-"debate.type.statement.type" = "Type: Yes/No statement";
 "debate.type.statement" = "Yes/No statement";
 
 "debate.choosetype" = "Choose debate type";

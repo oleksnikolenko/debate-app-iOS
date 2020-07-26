@@ -76,9 +76,7 @@
 
 "debate.image" = "Фото дебата";
 
-"debate.type.sides.type" = "Тип: Левая/Правая сторона";
 "debate.type.sides" = "Левая/Правая сторона";
-"debate.type.statement.type" = "Тип: Да/Нет";
 "debate.type.statement" = "Утверждение Да/Нет";
 
 "debate.choosetype" = "Выберите тип дебата";

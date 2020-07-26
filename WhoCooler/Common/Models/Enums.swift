@@ -101,3 +101,41 @@ public extension DebateCellStyle {
     }
 
 }
+
+public enum DebateType {
+    case sides
+    case statement
+
+    init(_ type: String) {
+        switch type {
+        case "sides":
+            self = .sides
+        case "statement":
+            self = .statement
+        default:
+            self = .sides
+        }
+    }
+}
+
+public extension DebateType {
+
+    var name: String {
+        switch self {
+        case .sides:
+            return "debate.type.sides".localized
+        case .statement:
+            return "debate.type.statement".localized
+        }
+    }
+
+    var debateNamePlaceholder: String {
+        switch self {
+        case .sides:
+            return "debate.name.placeholder".localized
+        case .statement:
+            return "debate.name.placeholder.required".localized
+        }
+    }
+
+}
