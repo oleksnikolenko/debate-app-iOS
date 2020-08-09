@@ -112,6 +112,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        AnalyticsService.shared.trackScreen(.list)
 
         navigationController?.navigationBar.isTranslucent = false
         edgesForExtendedLayout = []
@@ -128,6 +129,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
 
         addButton.didClickEdit
             .subscribe(onNext: { [weak self] in
+                AnalyticsService.shared.trackEvent(.didClickNew)
                 if UserDefaultsService.shared.session == nil {
                     self?.router?.navigateToProfile()
                 } else {

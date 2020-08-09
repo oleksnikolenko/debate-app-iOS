@@ -39,6 +39,8 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     private lazy var leftSideName = UITextField().with {
         $0.borderStyle = .none
         $0.placeholder = "debate.left".localized
+        $0.returnKeyType = .done
+        $0.delegate = self
         $0.textAlignment = .left
     }
     private lazy var rightSidePhoto = UIImageView().with {
@@ -50,6 +52,8 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     private lazy var rightSideName = UITextField().with {
         $0.borderStyle = .none
         $0.placeholder = "debate.right".localized
+        $0.returnKeyType = .done
+        $0.delegate = self
         $0.textAlignment = .right
     }
     private let categoryButton = UIButton().with {
@@ -140,6 +144,8 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         super.viewDidLoad()
         view.backgroundColor = .white
 
+        AnalyticsService.shared.trackScreen(.create)
+
         view.addSubviews(
             segmentedControl,
             leftSidePhoto,
@@ -166,6 +172,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         leftSidePhoto.didClick
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
+                self.view.endEditing(true)
                 self.dataPicker.tryToFetchImage(vc: self) { [weak self] in
                     self?.leftImage = $0
                 }
@@ -174,6 +181,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         rightSidePhoto.didClick
             .subscribe(onNext: { [weak self] in
                 guard let `self` = self else { return }
+                self.view.endEditing(true)
                 self.dataPicker.tryToFetchImage(vc: self) { [weak self] in
                     self?.rightImage = $0
                 }
@@ -198,6 +206,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
                     self?.categoryButton.setTitle($0.name, for: .normal)
                     self?.categoryButton.setTitleColor(self?.leftSideName.textColor, for: .normal)
                 }
+                self.view.endEditing(true)
                 self.present(pickCategoryViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
 
@@ -269,7 +278,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             .horizontally(20)
             .height(48)
             .below(of: categoryButton)
-            .marginTop(48)
+            .marginTop(20)
 
         middleSeparator.pin
             .height(of: leftSidePhoto)
@@ -452,6 +461,15 @@ extension CreateDebateViewController: UITextViewDelegate {
             textView.text = debateType.debateNamePlaceholder
             textView.textColor = UIColor.lightGray
         }
+    }
+
+}
+
+extension CreateDebateViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
     }
 
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0554ADD12FA57B26501F840C /* libPods-WhoCooler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67EF838F0BEBBE23470370C3 /* libPods-WhoCooler.a */; };
+		39196CB124DFEFBD002396E7 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39196CB024DFEFBD002396E7 /* AnalyticsService.swift */; };
 		391F7A1F248B2F5300337D23 /* PickCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A19248B2F5300337D23 /* PickCategoryPresenter.swift */; };
 		391F7A20248B2F5300337D23 /* PickCategoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A1A248B2F5300337D23 /* PickCategoryWorker.swift */; };
 		391F7A21248B2F5300337D23 /* PickCategoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A1B248B2F5300337D23 /* PickCategoryRouter.swift */; };
@@ -142,6 +143,7 @@
 		00A01725C3A4B8D6ED573AA5 /* Pods-DiscussionMakerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMakerTests.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMakerTests/Pods-DiscussionMakerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		104AEDC43F37E71DA6E71A76 /* libPods-WhoCooler-WhoCoolerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhoCooler-WhoCoolerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AACB45F9AA7F28D412DD4D3 /* Pods-DiscussionMakerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMakerTests.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMakerTests/Pods-DiscussionMakerTests.release.xcconfig"; sourceTree = "<group>"; };
+		39196CB024DFEFBD002396E7 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		391F7A19248B2F5300337D23 /* PickCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryPresenter.swift; sourceTree = "<group>"; };
 		391F7A1A248B2F5300337D23 /* PickCategoryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryWorker.swift; sourceTree = "<group>"; };
 		391F7A1B248B2F5300337D23 /* PickCategoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryRouter.swift; sourceTree = "<group>"; };
@@ -301,6 +303,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39196CAF24DFEFAC002396E7 /* AnalyticsService */ = {
+			isa = PBXGroup;
+			children = (
+				39196CB024DFEFBD002396E7 /* AnalyticsService.swift */,
+			);
+			path = AnalyticsService;
+			sourceTree = "<group>";
+		};
 		391F7A18248B2F3700337D23 /* PickCategory */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +462,7 @@
 		39C8AB9724431C8D00D299CE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				39196CAF24DFEFAC002396E7 /* AnalyticsService */,
 				399C0EBF2443582800EEEC19 /* UserDefaults */,
 				39D5F9DE24547F5600BDD7B9 /* ImagePicker */,
 				39C8AB9824431C9500D299CE /* AuthProviders */,
@@ -1018,6 +1029,7 @@
 				39C8AB9B24431CB800D299CE /* GoogleAuthenticationProvider.swift in Sources */,
 				39C8AB8F2441D00800D299CE /* DebateDetailHeader.swift in Sources */,
 				399C0EC12443583300EEEC19 /* UserDefaultsService.swift in Sources */,
+				39196CB124DFEFBD002396E7 /* AnalyticsService.swift in Sources */,
 				399C0EC824436CA800EEEC19 /* Rx.swift in Sources */,
 				398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */,
 				39215B8423D35390000B5AA1 /* DebateListInteractor.swift in Sources */,
@@ -1235,14 +1247,14 @@
 				CODE_SIGN_ENTITLEMENTS = WhoCooler/WhoCooler.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.0.1;
+				CURRENT_PROJECT_VERSION = 1.3.1.0;
 				DEVELOPMENT_TEAM = VZB2Q96A5B;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
 				PRODUCT_NAME = Sporno;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1259,14 +1271,14 @@
 				CODE_SIGN_ENTITLEMENTS = WhoCooler/WhoCooler.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.0.1;
+				CURRENT_PROJECT_VERSION = 1.3.1.0;
 				DEVELOPMENT_TEAM = VZB2Q96A5B;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
 				PRODUCT_NAME = Sporno;
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -76,6 +76,8 @@ class DebateDetailViewController: UIViewController, DebateDetailDisplayLogic {
 
     // MARK: View lifecycle
     override func viewDidLoad() {
+        AnalyticsService.shared.trackScreen(.detail)
+
         super.viewDidLoad()
         sendDebate()
 

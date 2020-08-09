@@ -71,6 +71,7 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        AnalyticsService.shared.trackScreen(.auth)
 
         view.backgroundColor = .white
         addSubviews()
@@ -103,11 +104,13 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
                 $0.authProviderSelected
             }
         ).subscribe(onNext: { [unowned self] in
+            AnalyticsService.shared.trackEvent(.loginTry(provider: $0.type.rawValue))
             self.interactor?.didSelectProvider(request: .init(provider: $0))
         }).disposed(by: disposeBag)
     }
 
     func didEndAuth(viewModel: AuthorizationScreen.Authorization.ViewModel) {
+        AnalyticsService.shared.trackEvent(.loginSuccess)
         dismiss(animated: true, completion: nil)
     }
 

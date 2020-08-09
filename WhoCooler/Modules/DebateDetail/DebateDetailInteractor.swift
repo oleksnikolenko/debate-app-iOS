@@ -80,7 +80,11 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
     }
 
     func handleSend(request: DebateDetail.SendHandler.Request) {
-        guard userDefaults.session != nil else { presenter?.presentAuthScreen(); return }
+        AnalyticsService.shared.trackEvent(.commentSendTry)
+        guard userDefaults.session != nil else {
+            presenter?.presentAuthScreen()
+            return
+        }
         if let editedMessage = request.editedMessage {
             if request.threadId != nil {
                 sendEditedReply(request: .init(message: editedMessage, newText: request.text))
@@ -153,6 +157,7 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
     func sendMessage(request: DebateDetail.MessageSend.Request) {
         worker.sendMessage(text: request.message, debateId: debate.id)
             .subscribe(onNext: { [weak self] in
+                AnalyticsService.shared.trackEvent(.commentSentSuccess)
                 guard let `self` = self else { return }
 
                 self.debate.messagesList.messages.insert($0, at: 0)
@@ -165,6 +170,7 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
     func sendReply(request: DebateDetail.ReplySend.Request) {
         worker.sendReply(text: request.text, threadId: request.threadId)
             .subscribe(onNext: { [weak self] in
+                AnalyticsService.shared.trackEvent(.commentSentSuccess)
                 guard
                     let `self` = self,
                     let index = self.getIndexOfMessage(id: request.threadId)
@@ -186,6 +192,7 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
     func sendEditedMessage(request: DebateDetail.EditedMessageSend.Request) {
         worker.sendEditedMessage(messageId: request.messageId, newText: request.newText)
             .subscribe(onNext: { [weak self] message in
+                AnalyticsService.shared.trackEvent(.commentSentSuccess)
                 guard
                     let `self` = self,
                     let index = self.getIndexOfMessage(id: message.id)
@@ -201,6 +208,7 @@ class DebateDetailInteractor: DebateDetailBusinessLogic, DebateDetailDataStore {
     func sendEditedReply(request: DebateDetail.EditedReplySend.Request) {
         worker.sendEditedReply(message: request.message, newText: request.newText)
             .subscribe(onNext: { [weak self] message in
+                AnalyticsService.shared.trackEvent(.commentSentSuccess)
                 guard
                     let `self` = self,
                     let threadId = message.threadId,

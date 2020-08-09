@@ -37,6 +37,7 @@ class CreateDebateInteractor: CreateDebateBusinessLogic, CreateDebateDataStore {
             categoryId: request.categoryId,
             name: request.name
         ).subscribe(onNext: { [weak self] in
+            AnalyticsService.shared.trackEvent(.newCreated(id: $0.id))
             self?.presenter?.didCreateDebate($0)
         }).disposed(by: disposeBag)
     }
@@ -49,6 +50,7 @@ class CreateDebateInteractor: CreateDebateBusinessLogic, CreateDebateDataStore {
             categoryId: request.categoryId,
             name: request.name
         ).subscribe(onNext: { [weak self] in
+            AnalyticsService.shared.trackEvent(.newCreated(id: $0.id))
             self?.presenter?.didCreateDebate($0)
         }).disposed(by: disposeBag)
     }
