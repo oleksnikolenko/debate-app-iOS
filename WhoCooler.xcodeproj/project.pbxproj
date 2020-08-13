@@ -82,6 +82,8 @@
 		861DE6A32455D94C00B864EB /* DebateInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A22455D94C00B864EB /* DebateInfoView.swift */; };
 		861DE6A72455DCEE00B864EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A62455DCEE00B864EB /* Category.swift */; };
 		861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E91E2245B674900A3E4A9 /* VoteModel.swift */; };
+		8632176D24E59F0A006C8C45 /* DebateBottomContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8632176C24E59F0A006C8C45 /* DebateBottomContainer.swift */; };
+		8632176F24E59F24006C8C45 /* DebateShortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8632176E24E59F24006C8C45 /* DebateShortView.swift */; };
 		8644DD08246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8644DD07246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift */; };
 		864D82D6246BCEB500C6D184 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864D82D5246BCEB500C6D184 /* String.swift */; };
 		865B4FCA2467FF3A00FAC5EC /* EmptyDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865B4FC92467FF3A00FAC5EC /* EmptyDataCell.swift */; };
@@ -229,6 +231,8 @@
 		861DE6A22455D94C00B864EB /* DebateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateInfoView.swift; sourceTree = "<group>"; };
 		861DE6A62455DCEE00B864EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		861E91E2245B674900A3E4A9 /* VoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteModel.swift; sourceTree = "<group>"; };
+		8632176C24E59F0A006C8C45 /* DebateBottomContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateBottomContainer.swift; sourceTree = "<group>"; };
+		8632176E24E59F24006C8C45 /* DebateShortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateShortView.swift; sourceTree = "<group>"; };
 		8644DD07246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthenticationProvider.swift; sourceTree = "<group>"; };
 		864D82D5246BCEB500C6D184 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		865B4FC92467FF3A00FAC5EC /* EmptyDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDataCell.swift; sourceTree = "<group>"; };
@@ -569,6 +573,8 @@
 			isa = PBXGroup;
 			children = (
 				39EFACD223DDAD2500E1E8BA /* DebateShortCell.swift */,
+				8632176E24E59F24006C8C45 /* DebateShortView.swift */,
+				8632176C24E59F0A006C8C45 /* DebateBottomContainer.swift */,
 				861DE6A22455D94C00B864EB /* DebateInfoView.swift */,
 			);
 			path = DebateShortCell;
@@ -1006,6 +1012,7 @@
 				39406A9F2483D842004D63A7 /* CreateDebateModels.swift in Sources */,
 				865B500124681FB400FAC5EC /* Comparable.swift in Sources */,
 				39BD33E824531A4C00741A8F /* UserProfileWorker.swift in Sources */,
+				8632176D24E59F0A006C8C45 /* DebateBottomContainer.swift in Sources */,
 				865B4FFF24681FB400FAC5EC /* Collection.swift in Sources */,
 				867FB9172460568300820196 /* SearchRouter.swift in Sources */,
 				39BD33EC24531A4C00741A8F /* UserProfileInteractor.swift in Sources */,
@@ -1032,6 +1039,7 @@
 				39196CB124DFEFBD002396E7 /* AnalyticsService.swift in Sources */,
 				399C0EC824436CA800EEEC19 /* Rx.swift in Sources */,
 				398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */,
+				8632176F24E59F24006C8C45 /* DebateShortView.swift in Sources */,
 				39215B8423D35390000B5AA1 /* DebateListInteractor.swift in Sources */,
 				39215B8223D35390000B5AA1 /* DebateListModels.swift in Sources */,
 				8683CA4F245EEB3A00CE31CE /* CategoryTableViewCell.swift in Sources */,

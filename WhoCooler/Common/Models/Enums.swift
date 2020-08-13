@@ -132,7 +132,7 @@ public extension DebateType {
     var debateNamePlaceholder: String {
         switch self {
         case .sides:
-            return "debate.name.placeholder".localized
+            return "debate.name.placeholder.required".localized
         case .statement:
             return "debate.name.placeholder.required".localized
         }
