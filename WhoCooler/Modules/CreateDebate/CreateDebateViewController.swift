@@ -32,7 +32,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     private lazy var debateName = UITextView().with {
         $0.textAlignment = .center
         $0.delegate = self
-        $0.text = "debate.name.placeholder".localized
+        $0.text = "debate.name.placeholder.required".localized
         $0.textColor = .lightGray
         $0.font = .systemFont(ofSize: 18)
     }
@@ -356,6 +356,11 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             return
         }
 
+        guard let debateName = debateName.text, !debateName.isEmpty else {
+            notEnoughData(error: "debate.name.placeholder.required".localized)
+            return
+        }
+
         guard let leftName = leftSideName.text, !leftName.isEmpty else {
             notEnoughData(error: "debate.left".localized)
             return
@@ -377,7 +382,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             leftImage: leftImage,
             rightImage: rightImage,
             categoryId: categoryId,
-            name: debateName.text
+            name: debateName
         ))
     }
 

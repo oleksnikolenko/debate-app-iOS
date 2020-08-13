@@ -35,8 +35,8 @@ class DebateDetailHeader: UIView {
     }
     private let debateName = UILabel().with {
         $0.numberOfLines = 0
-        $0.textAlignment = .center
-        $0.font = .systemFont(ofSize: 20, weight: .regular)
+        $0.textAlignment = .left
+        $0.font = .systemFont(ofSize: 24, weight: .bold)
     }
     let voteButton = SideVoteButton()
     let middleSeparator = UIView().with {
@@ -123,7 +123,7 @@ class DebateDetailHeader: UIView {
 
             if !self.debateName.isHidden {
                 self.debateName.pin
-                    .horizontally(40)
+                    .horizontally(20)
                     .sizeToFit(.width)
                     .below(of: self.leftImage)
                     .marginTop(24)
@@ -169,7 +169,7 @@ class DebateDetailHeader: UIView {
 
             if !self.debateName.isHidden {
                 self.debateName.pin
-                    .horizontally(40)
+                    .horizontally(20)
                     .sizeToFit(.width)
                     .below(of: self.leftImage)
                     .marginTop(24)
