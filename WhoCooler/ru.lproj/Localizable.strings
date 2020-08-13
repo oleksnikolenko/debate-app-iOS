@@ -71,7 +71,6 @@
 "debate.rightImage" = "Фото правой стороны";
 "debate.category" = "Категория";
 "debate.somethingNotFilled" = "Не заполнено поле \"%@\"";
-"debate.name.placeholder" = "Имя дебата (необязательно заполнять)";
 "debate.name.placeholder.required" = "Имя дебата";
 
 "debate.image" = "Фото дебата";

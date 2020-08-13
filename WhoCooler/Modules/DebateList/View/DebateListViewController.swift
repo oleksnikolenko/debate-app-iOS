@@ -268,7 +268,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.didClickLeft.subscribe(onNext: { [weak self] in
                 let completionHandler: ((Debate) -> Void)? = { debate in
-                    cell.voteButton.setup(debate)
+                    cell.debateShortView.debateBottomContainer.voteButton.setup(debate)
                 }
 
                 self?.interactor?.vote(
@@ -280,7 +280,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.didClickRight.subscribe(onNext: { [weak self] in
                 let completionHandler: ((Debate) -> Void)? = { debate in
-                    cell.voteButton.setup(debate)
+                    cell.debateShortView.debateBottomContainer.voteButton.setup(debate)
                 }
                 self?.interactor?.vote(
                     debateId: debate.id,
@@ -297,7 +297,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
                         cell.toggleFavorite()
                     }
                     self.interactor?.toggleFavorites(
-                        request: DebateList.Favorites.PostRequest(debate: debate, isFavorite: cell.debateInfoView.isFavorite),
+                        request: DebateList.Favorites.PostRequest(debate: debate, isFavorite: cell.debateShortView.debateBottomContainer.debateInfoView.isFavorite),
                         successCompletion: completionHandler
                     )
                 }).disposed(by: cell.disposeBag)
