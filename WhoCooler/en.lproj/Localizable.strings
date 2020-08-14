@@ -74,6 +74,8 @@
 "debate.name.placeholder.required" = "Debate name";
 "debate.image" = "Debate image";
 
+"debate.create" = "Create";
+
 "debate.type.sides" = "Left/Right side";
 "debate.type.statement" = "Yes/No statement";
 

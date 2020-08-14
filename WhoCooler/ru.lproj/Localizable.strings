@@ -73,6 +73,8 @@
 "debate.somethingNotFilled" = "Не заполнено поле \"%@\"";
 "debate.name.placeholder.required" = "Имя дебата";
 
+"debate.create" = "Создать";
+
 "debate.image" = "Фото дебата";
 
 "debate.type.sides" = "Левая/Правая сторона";

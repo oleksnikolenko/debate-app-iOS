@@ -32,6 +32,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     private lazy var debateName = UITextView().with {
         $0.textAlignment = .center
         $0.delegate = self
+        $0.returnKeyType = .done
         $0.text = "debate.name.placeholder.required".localized
         $0.textColor = .lightGray
         $0.font = .systemFont(ofSize: 18)
@@ -60,15 +61,6 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         $0.setTitle("debate.categorySelect".localized, for: .normal)
         $0.setTitleColor(.gray, for: .normal)
         $0.contentHorizontalAlignment = .leading
-    }
-    private let createButton = UIButton().with {
-        $0.setTitle("debate.new".localized, for: .normal)
-        $0.setTitleColor(.blue, for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        $0.backgroundColor = .white
-        $0.layer.cornerRadius = 14
-        $0.layer.borderWidth = 0.5
-        $0.layer.borderColor = UIColor.blue.cgColor
     }
     private let middleSeparator = UIView().with {
         $0.backgroundColor = .lightGray
@@ -144,6 +136,17 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         super.viewDidLoad()
         view.backgroundColor = .white
 
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(
+                title: "debate.create".localized,
+                style: .done,
+                target: self,
+                action: #selector(createTapped)
+        )
+
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+
         AnalyticsService.shared.trackScreen(.create)
 
         view.addSubviews(
@@ -153,7 +156,6 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             debateName,
             leftSideName,
             rightSideName,
-            createButton,
             categoryButton,
             middleSeparator
         )
@@ -187,18 +189,6 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
                 }
             }).disposed(by: disposeBag)
 
-        createButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                switch self?.debateType {
-                case .sides:
-                    self?.handleCreateSides()
-                case .statement:
-                    self?.handleCreateStatement()
-                default:
-                    break
-                }
-            }).disposed(by: disposeBag)
-
         categoryButton.rx.tap
             .subscribe(onNext: { [unowned self] in
                 let pickCategoryViewController = PickCategoryViewController { [weak self] in
@@ -212,8 +202,19 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
         debateName.rx.text.subscribe(onNext: { _ in
             self.view.setNeedsLayout()
-            }).disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
 
+    }
+
+    @objc func createTapped() {
+        switch debateType {
+        case .sides:
+            handleCreateSides()
+        case .statement:
+            handleCreateStatement()
+        default:
+            break
+        }
     }
 
     func layout() {
@@ -273,12 +274,6 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             .sizeToFit(.width)
             .below(of: rightSideName)
             .marginTop(16)
-
-        createButton.pin
-            .horizontally(20)
-            .height(48)
-            .below(of: categoryButton)
-            .marginTop(20)
 
         middleSeparator.pin
             .height(of: leftSidePhoto)
@@ -447,6 +442,12 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         default:
             break
         }
+    }
+
+    @objc private func dismissKeyboard() {
+        debateName.resignFirstResponder()
+        leftSideName.resignFirstResponder()
+        rightSideName.resignFirstResponder()
     }
 
 }
