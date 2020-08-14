@@ -1255,14 +1255,14 @@
 				CODE_SIGN_ENTITLEMENTS = WhoCooler/WhoCooler.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.1.0;
+				CURRENT_PROJECT_VERSION = 1.4.0.1;
 				DEVELOPMENT_TEAM = VZB2Q96A5B;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
 				PRODUCT_NAME = Sporno;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1279,14 +1279,14 @@
 				CODE_SIGN_ENTITLEMENTS = WhoCooler/WhoCooler.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.1.0;
+				CURRENT_PROJECT_VERSION = 1.4.0.1;
 				DEVELOPMENT_TEAM = VZB2Q96A5B;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
 				PRODUCT_NAME = Sporno;
 				PROVISIONING_PROFILE_SPECIFIER = "";
