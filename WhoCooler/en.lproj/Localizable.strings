@@ -83,3 +83,8 @@
 
 "category.createNew" = "Create a new category";
 "category.name.placeholder" = "Category name";
+
+"custdev.title" = "Your opinion is important!";
+"custdev.description" = "We need your help! Leave us a way to contact with you to make our product better!";
+"custdev.agree" = "AGREE";
+"custdev.askInfo" = "Describe a way for us to contact with you";

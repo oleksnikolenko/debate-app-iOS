@@ -53,6 +53,8 @@
 		399C0EC524436AAE00EEEC19 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC424436AAE00EEEC19 /* Empty.swift */; };
 		399C0EC824436CA800EEEC19 /* Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399C0EC724436CA800EEEC19 /* Rx.swift */; };
 		399F68E5247955BB00AA3E9C /* AppleAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399F68E4247955BB00AA3E9C /* AppleAuthenticationProvider.swift */; };
+		39A77EC424FFC23700EBFEDA /* CustdevCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A77EC324FFC23700EBFEDA /* CustdevCell.swift */; };
+		39A77EC624FFC36100EBFEDA /* CustdevView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A77EC524FFC36100EBFEDA /* CustdevView.swift */; };
 		39BD33E724531A4C00741A8F /* UserProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BD33E124531A4C00741A8F /* UserProfilePresenter.swift */; };
 		39BD33E824531A4C00741A8F /* UserProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BD33E224531A4C00741A8F /* UserProfileWorker.swift */; };
 		39BD33E924531A4C00741A8F /* UserProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BD33E324531A4C00741A8F /* UserProfileRouter.swift */; };
@@ -190,6 +192,8 @@
 		399C0EC424436AAE00EEEC19 /* Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		399C0EC724436CA800EEEC19 /* Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rx.swift; sourceTree = "<group>"; };
 		399F68E4247955BB00AA3E9C /* AppleAuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthenticationProvider.swift; sourceTree = "<group>"; };
+		39A77EC324FFC23700EBFEDA /* CustdevCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustdevCell.swift; sourceTree = "<group>"; };
+		39A77EC524FFC36100EBFEDA /* CustdevView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustdevView.swift; sourceTree = "<group>"; };
 		39BD33E124531A4C00741A8F /* UserProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePresenter.swift; sourceTree = "<group>"; };
 		39BD33E224531A4C00741A8F /* UserProfileWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileWorker.swift; sourceTree = "<group>"; };
 		39BD33E324531A4C00741A8F /* UserProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileRouter.swift; sourceTree = "<group>"; };
@@ -576,6 +580,8 @@
 				8632176E24E59F24006C8C45 /* DebateShortView.swift */,
 				8632176C24E59F0A006C8C45 /* DebateBottomContainer.swift */,
 				861DE6A22455D94C00B864EB /* DebateInfoView.swift */,
+				39A77EC324FFC23700EBFEDA /* CustdevCell.swift */,
+				39A77EC524FFC36100EBFEDA /* CustdevView.swift */,
 			);
 			path = DebateShortCell;
 			sourceTree = "<group>";
@@ -1074,7 +1080,9 @@
 				86E8D81D245B01D40002DE7A /* VoteMessageButton.swift in Sources */,
 				8644DD08246C7D4F00D87EB0 /* FacebookAuthenticationProvider.swift in Sources */,
 				861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */,
+				39A77EC624FFC36100EBFEDA /* CustdevView.swift in Sources */,
 				868C48C7247144C2009EB515 /* DebateBackgroundShimmerView.swift in Sources */,
+				39A77EC424FFC23700EBFEDA /* CustdevCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,14 +1263,14 @@
 				CODE_SIGN_ENTITLEMENTS = WhoCooler/WhoCooler.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4.0.1;
+				CURRENT_PROJECT_VERSION = 1.5.0.0;
 				DEVELOPMENT_TEAM = VZB2Q96A5B;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
 				PRODUCT_NAME = Sporno;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1279,14 +1287,14 @@
 				CODE_SIGN_ENTITLEMENTS = WhoCooler/WhoCooler.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4.0.1;
+				CURRENT_PROJECT_VERSION = 1.5.0.0;
 				DEVELOPMENT_TEAM = VZB2Q96A5B;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
 				PRODUCT_NAME = Sporno;
 				PROVISIONING_PROFILE_SPECIFIER = "";

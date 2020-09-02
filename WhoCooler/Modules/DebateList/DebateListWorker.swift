@@ -64,6 +64,14 @@ class DebateListWorker {
         }
     }
 
+    func sendCustdevInfo(text: String) -> Observable<Empty> {
+        networkService.getData(
+            endpoint: "soup",
+            parameters: ["key": "custdev", "text": text],
+            method: .post
+        )
+    }
+
     private func addToFavorites(debateId: String) -> Observable<Empty> {
         networkService.getData(
             endpoint: "favorites",

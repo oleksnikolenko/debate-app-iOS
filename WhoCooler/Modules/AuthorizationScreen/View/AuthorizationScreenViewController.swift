@@ -31,13 +31,7 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
 
     var authProviders: [AuthProvider] = [] {
         didSet {
-            authContainerView.authProviderButtons = authProviders.map {
-                if $0.type == .apple, #available(iOS 13, *) {
-                    return AuthButton(provider: $0)
-                } else {
-                    return AuthButton(provider: $0)
-                }
-            }
+            authContainerView.authProviderButtons = authProviders.map { AuthButton(provider: $0) }
         }
     }
 

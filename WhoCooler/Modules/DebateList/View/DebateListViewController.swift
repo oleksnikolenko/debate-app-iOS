@@ -311,6 +311,15 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
 
             return cell
 
+        case .custdev:
+            let cell = tableView.cell(for: CustdevCell.self)
+
+            cell.didClickAgree.subscribe(onNext: { [weak self] in
+                self?.askForFeedbackContact()
+            })
+
+            return cell
+
         case .categoryList(let categories):
             let cell = tableView.cell(for: CategoryTableViewCell.self)
             cell.model = categories
@@ -390,6 +399,34 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
         actionSheet.addAction(UIAlertAction(title: "cancelAction".localized, style: .cancel, handler: nil))
 
         present(actionSheet, animated: true, completion: nil)
+    }
+
+    func askForFeedbackContact() {
+        let alert = UIAlertController(
+            title: nil,
+            message: "custdev.askInfo".localized,
+            preferredStyle: .alert
+        )
+
+        var alertTextField: UITextField?
+        alert.addTextField { alertTextField = $0 }
+
+        let okAction = UIAlertAction(
+            title: "okay".localized,
+            style: .default,
+            handler: { [weak self] _ in
+                self?.interactor?.sendCustdevInfo(text: alertTextField?.text ?? "")
+            }
+        )
+        let cancelAction = UIAlertAction(
+            title: "cancelAction".localized,
+            style: .cancel,
+            handler: nil
+        )
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+
+        present(alert, animated: true, completion: nil)
     }
 
 }

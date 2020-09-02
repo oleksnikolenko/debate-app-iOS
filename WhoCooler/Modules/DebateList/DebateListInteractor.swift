@@ -23,6 +23,7 @@ protocol DebateListBusinessLogic {
     func reloadDebate(debateId: String)
     func reportDebate(id: String)
     func vote(debateId: String, sideId: String, successCompletion: ((Debate) -> Void)?)
+    func sendCustdevInfo(text: String)
 }
 
 protocol DebateListDataStore {}
@@ -69,7 +70,7 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
     }
 
     func reportDebate(id: String) {
-        worker.getDebate(id: id)
+        worker.reportDebate(id: id).subscribe().disposed(by: disposeBag)
     }
 
     func vote(debateId: String, sideId: String, successCompletion: ((Debate) -> Void)?) {
@@ -123,6 +124,21 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
             /// TODO - Handle error
             break
         }
+    }
+
+    func sendCustdevInfo(text: String) {
+        worker.sendCustdevInfo(text: text)
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                UserDefaultsService.shared.didSendCustdevData = true
+                self.presenter?.presentSomething(response:
+                    .init(
+                        data: self.response.debates,
+                        categories: self.response.categories,
+                        hasNextPage: self.response.hasNextPage
+                    )
+                )
+            }).disposed(by: disposeBag)
     }
     
 }

@@ -23,7 +23,7 @@ class AppleAuthenticationProvider: NSObject, AuthProvider {
     var type: AuthProviderType { .apple }
     var authResult: Observable<AuthToken> { authResultSubject.asObservable() }
 
-    private var authResultSubject = PublishSubject<AuthToken>()
+    private let authResultSubject = PublishSubject<AuthToken>()
     private var currentNonce: String?
 
     func login() {

@@ -38,6 +38,11 @@ class UserDefaultsService {
         set { userDefaults.set(newValue, forKey: #function) }
     }
 
+    var didSendCustdevData: Bool? {
+        get { userDefaults.bool(forKey: #function) }
+        set { userDefaults.set(newValue, forKey: #function) }
+    }
+
     var didUpdateUser: Observable<Void> {
         didUpdateUserSubject.asObservable()
     }

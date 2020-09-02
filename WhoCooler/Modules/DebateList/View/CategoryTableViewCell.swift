@@ -21,7 +21,8 @@ class CategoryTableViewCell: UITableViewCell {
         $0.backgroundColor = .white
         $0.alwaysBounceHorizontal = true
         $0.showsHorizontalScrollIndicator = false
-        $0.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        $0.contentInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        $0.setContentOffset(.init(x: -12, y: 0), animated: false)
     }
     private var collectionViewFlowLayout = UICollectionViewFlowLayout().with {
         $0.scrollDirection = .horizontal
@@ -68,7 +69,7 @@ class CategoryTableViewCell: UITableViewCell {
 
     private func layout() {
         collectionView.pin
-            .horizontally(12)
+            .horizontally()
             .height(40)
             .top(2)
     }

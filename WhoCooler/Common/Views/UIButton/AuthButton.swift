@@ -61,9 +61,7 @@ class AuthButton: UIButton, AuthButtonProtocol {
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     let provider: AuthProvider
-    var authProviderSelected: Observable<AuthProvider> {
-        return rx.tap.map { [unowned self] in self.provider }
-    }
+    var authProviderSelected: Observable<AuthProvider> { rx.tap.map { [unowned self] in self.provider } }
 
     // MARK: - Init
     init(provider: AuthProvider) {

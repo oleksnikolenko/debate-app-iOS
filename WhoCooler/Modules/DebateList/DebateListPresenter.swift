@@ -32,6 +32,12 @@ class DebateListPresenter: DebateListPresentationLogic {
             cells.append(.emptyFavorites)
             viewController?.noticeNoMoreData()
         }
+
+        if
+            cells.count >= 3 &&
+            UserDefaultsService.shared.didSendCustdevData != true
+        { cells.insert(.custdev, at: 2) }
+        
         viewController?.displayCells(viewModel:
             .init(cells: cells, hasNextPage: response.hasNextPage)
         )
