@@ -21,6 +21,9 @@ protocol AuthorizationScreenDisplayLogic: class {
 class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDisplayLogic {
 
     // MARK: - Subviews
+    private let navbarView = NavBarView().with {
+        $0.setup(title: "", isSeparatorHidden: true)
+    }
     private var authContainerView = AuthContainerView()
 
     // MARK: - Properties
@@ -70,6 +73,8 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
         view.backgroundColor = .white
         addSubviews()
         interactor?.getProviders(request: .init())
+
+        bindObservables()
     }
 
     override func viewWillLayoutSubviews() {
@@ -79,6 +84,11 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
     }
 
     func layout() {
+        navbarView.pin
+            .top(view.pin.safeArea.top)
+            .horizontally()
+            .height(44)
+
         authContainerView.pin
             .horizontally()
             .vCenter()
@@ -87,7 +97,13 @@ class AuthorizationScreenViewController: UIViewController, AuthorizationScreenDi
 
     // MARK: - Private methods
     private func addSubviews() {
-        view.addSubviews(authContainerView)
+        view.addSubviews(navbarView, authContainerView)
+    }
+
+    private func bindObservables() {
+        navbarView.close.subscribe(onNext: { [weak self] in
+            self?.dismiss(animated: true)
+        }).disposed(by: disposeBag)
     }
 
     func displayProviders(viewModel: AuthorizationScreen.Providers.ViewModel) {

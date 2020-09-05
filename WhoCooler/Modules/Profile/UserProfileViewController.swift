@@ -23,6 +23,9 @@ protocol UserProfileDisplayLogic: class {
 class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
 
     // MARK: - Subviews
+    private let navBarView = NavBarView().with {
+        $0.setup(title: "profile.screenName".localized)
+    }
     lazy var avatar = UIImageView().with {
         $0.layer.cornerRadius = avatarSize.height / 2
         $0.layer.masksToBounds = true
@@ -94,6 +97,7 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
         router.dataStore = interactor
 
         view.addSubviews(
+            navBarView,
             avatar,
             userNameLabel,
             tableView,
@@ -149,12 +153,22 @@ class UserProfileViewController: UIViewController, UserProfileDisplayLogic {
             guard let `self` = self else { return }
             self.presentChangeNameAlertController()
         }).disposed(by: disposeBag)
+
+        navBarView.close.subscribe(onNext: { [weak self] in
+            self?.dismiss()
+        }).disposed(by: disposeBag)
     }
 
     func layout() {
+        navBarView.pin
+            .horizontally()
+            .top(view.pin.safeArea.top)
+            .height(44)
+
         avatar.pin
             .size(avatarSize)
-            .top(40)
+            .below(of: navBarView)
+            .marginTop(32)
             .hCenter()
 
         changeAvatarButton.pin
@@ -250,7 +264,6 @@ extension UserProfileViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.cell(for: UserProfileMenuCell.self)
         switch indexPath.row {
         case 0:
-            // localized
             cell.setup(image: UIImage(named: "mail"), text: "profile.contactUs".localized)
         case 1:
             cell.setup(image: UIImage(named: "privacy"), text: "profile.privacyPolicy".localized)

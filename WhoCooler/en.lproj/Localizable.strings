@@ -30,6 +30,7 @@
 "profile.logout" = "Log out";
 "profile.alert.logout" = "Log out from profile";
 "profile.contactUs" = "Send your feedback";
+"profile.screenName" = "Profile";
 
 "cancelAction" = "Cancel";
 "acceptAction" = "Accept";

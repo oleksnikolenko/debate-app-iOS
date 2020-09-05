@@ -30,6 +30,7 @@
 "profile.logout" = "Выйти";
 "profile.alert.logout" = "Выход из профиля";
 "profile.contactUs" = "Обратная связь";
+"profile.screenName" = "Профиль";
 
 "cancelAction" = "Отменить";
 "acceptAction" = "Принять";
