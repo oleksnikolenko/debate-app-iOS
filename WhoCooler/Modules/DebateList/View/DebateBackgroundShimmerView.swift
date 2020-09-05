@@ -11,8 +11,6 @@ import UIKit
 class DebateBackgroundShimmerView: UIView {
 
     // MARK: - Subviews
-    private var categoryCollection = ShimmerView()
-    private var sortLabel = ShimmerView()
     private lazy var tableView = UITableView().with {
         $0.delegate = self
         $0.dataSource = self
@@ -22,7 +20,7 @@ class DebateBackgroundShimmerView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        addSubviews(categoryCollection, sortLabel, tableView)
+        addSubviews(tableView)
     }
 
     required init?(coder: NSCoder) {
@@ -34,25 +32,11 @@ class DebateBackgroundShimmerView: UIView {
         super.layoutSubviews()
 
         layout()
-        categoryCollection.startAnimating(cornerRadius: 0)
-        sortLabel.startAnimating(cornerRadius: 0)
     }
 
     private func layout() {
-        categoryCollection.pin
-            .height(40)
-            .horizontally(12)
-            .top(4)
-
-        sortLabel.pin
-            .below(of: categoryCollection)
-            .width(80)
-            .height(20)
-            .start(12)
-            .marginTop(8)
-
         tableView.pin
-            .below(of: sortLabel)
+            .top()
             .horizontally()
             .bottom()
             .marginTop(2)
@@ -79,16 +63,12 @@ class DebateShimmerCell: UITableViewCell {
 
     // MARK: - Subviews
     private var sidesImage = ShimmerView()
-    private var button = ShimmerView()
-    private var separator = UIView().with {
-        $0.backgroundColor = .lightGray
-    }
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        addSubviews(sidesImage, button, separator)
+        addSubviews(sidesImage)
         selectionStyle = .none
     }
 
@@ -102,31 +82,18 @@ class DebateShimmerCell: UITableViewCell {
 
         layout()
         sidesImage.startAnimating()
-        button.startAnimating()
     }
 
     private func layout() {
         sidesImage.pin
-            .height(150)
-            .top(48)
+            .height(380)
+            .top(20)
             .horizontally(12)
-
-        button.pin
-            .horizontally(30)
-            .below(of: sidesImage)
-            .height(64)
-            .marginTop(24)
-
-        separator.pin
-            .below(of: button)
-            .marginTop(44)
-            .horizontally()
-            .height(2)
     }
 
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         layout()
-        return CGSize(width: size.width, height: separator.frame.maxY)
+        return CGSize(width: size.width, height: sidesImage.frame.maxY)
     }
 
 }
