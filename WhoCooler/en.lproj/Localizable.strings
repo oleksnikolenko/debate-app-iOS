@@ -87,5 +87,8 @@
 
 "custdev.title" = "Your opinion is important!";
 "custdev.description" = "We need your help! Leave us a way to contact with you to make our product better!";
+"custdev.text.description" = "We want to make Sporno better. Please tell us what we can improve!";
+"custdev.text.send" = "Send";
+"custdev.alert.thankYou" = "Thank you!";
 "custdev.agree" = "AGREE";
 "custdev.askInfo" = "Describe a way for us to contact with you";

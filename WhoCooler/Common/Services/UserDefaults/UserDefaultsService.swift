@@ -38,7 +38,12 @@ class UserDefaultsService {
         set { userDefaults.set(newValue, forKey: #function) }
     }
 
-    var didSendCustdevData: Bool? {
+    var didSendCustdevContacts: Bool? {
+        get { userDefaults.bool(forKey: #function) }
+        set { userDefaults.set(newValue, forKey: #function) }
+    }
+
+    var didSendCustdevFeedback: Bool? {
         get { userDefaults.bool(forKey: #function) }
         set { userDefaults.set(newValue, forKey: #function) }
     }

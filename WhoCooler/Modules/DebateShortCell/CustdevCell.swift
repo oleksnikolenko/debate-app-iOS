@@ -19,7 +19,11 @@ class CustdevCell: TableViewCell {
 
     // MARK: - Properties
     var didClickAgree: Observable<Void> { custdevView.didClickAgree }
+    var didClickClose: Observable<Void> { custdevView.didClickClose }
     var disposeBag = DisposeBag()
+    var textChange: Observable<String?> {
+        custdevView.textView.rx.text.changed.asObservable()
+    }
 
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

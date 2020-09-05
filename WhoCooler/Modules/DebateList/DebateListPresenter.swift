@@ -25,19 +25,24 @@ class DebateListPresenter: DebateListPresentationLogic {
     // MARK: Do something
     func presentSomething(response: DebateList.Something.Response) {
         var cells: [DebateList.CellType] =
-            [.categoryList(response.categories)] +
+            [.categoryList(response.categories), .new] +
             response.data.map { .debate($0) }
 
-        if cells.count == 1 && viewController?.selectedCategoryId == "favorites" {
+        if cells.count == 2 && viewController?.selectedCategoryId == "favorites" {
             cells.append(.emptyFavorites)
             viewController?.noticeNoMoreData()
         }
 
         if
-            cells.count >= 3 &&
-            UserDefaultsService.shared.didSendCustdevData != true
-        { cells.insert(.custdev, at: 2) }
-        
+            cells.count >= 5 &&
+            UserDefaultsService.shared.didSendCustdevContacts != true
+        { cells.insert(.custdev(style: .contacts), at: 4) }
+
+        if
+            cells.count >= 8 &&
+            UserDefaultsService.shared.didSendCustdevFeedback != true
+        { cells.insert(.custdev(style: .text), at: 7) }
+
         viewController?.displayCells(viewModel:
             .init(cells: cells, hasNextPage: response.hasNextPage)
         )

@@ -52,7 +52,7 @@ class NewDebateCell: TableViewCell {
 
         return .init(
             width: size.width,
-            height: createButton.frame.maxY + 16
+            height: createButton.frame.maxY
         )
     }
 

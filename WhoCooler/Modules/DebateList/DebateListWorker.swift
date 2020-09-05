@@ -64,10 +64,10 @@ class DebateListWorker {
         }
     }
 
-    func sendCustdevInfo(text: String) -> Observable<Empty> {
+    func sendCustdevInfo(text: String, style: CustdevStyle) -> Observable<Empty> {
         networkService.getData(
             endpoint: "soup",
-            parameters: ["key": "custdev", "text": text],
+            parameters: ["key": style.requestParameter, "text": text],
             method: .post
         )
     }

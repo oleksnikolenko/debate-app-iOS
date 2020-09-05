@@ -20,26 +20,42 @@ class CustdevView: UIView {
     }
     let invitationText = UILabel().with {
         $0.font = .systemFont(ofSize: 14)
-        $0.text = "custdev.description".localized
         $0.textAlignment = .center
         $0.numberOfLines = 0
     }
     let agreeButton = UIButton().with {
-        $0.setTitle("custdev.agree".localized, for: .normal)
         $0.backgroundColor = .blue
         $0.titleLabel?.font = .boldSystemFont(ofSize: 15)
         $0.titleLabel?.textColor = .white
         $0.layer.cornerRadius = 10
     }
+    let textView = UITextView().with {
+        $0.isUserInteractionEnabled = true
+        $0.isEditable = true
+        $0.isScrollEnabled = false
+        $0.textContainerInset.left = 4
+        $0.layer.cornerRadius = 4
+        $0.layer.shadowColor = UIColor.lightGray.cgColor
+        $0.layer.shadowOpacity = 1
+        $0.layer.shadowRadius = 4
+        $0.layer.shadowOffset = CGSize(width: 0, height: 1)
+        $0.layer.masksToBounds = false
+    }
+    private let closeButton = UIButton().with {
+        $0.tintColor = .gray
+        $0.setImage(UIImage(named: "close"), for: .normal)
+    }
 
     // MARK: - Properties
-    var didClickAgree: Observable<Void> { agreeButton.rx.tap.asObservable() }
+    var style: CustdevStyle = .contacts
+    var didClickAgree: Observable<Void> { agreeButton.didClick.asObservable() }
+    var didClickClose: Observable<Void> { closeButton.didClick.asObservable() }
 
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        addSubviews(headlineText, invitationText, agreeButton)
+        addSubviews(headlineText, invitationText, agreeButton, closeButton, textView)
 
         layer.shadowColor = UIColor.gray.cgColor
         layer.shadowOffset = CGSize(width: 1, height: 1)
@@ -73,9 +89,13 @@ class CustdevView: UIView {
 
     private func layout() {
         headlineText.pin
-            .horizontally(20)
-            .top(16)
-            .sizeToFit(.width)
+           .horizontally(20)
+           .top(16)
+           .sizeToFit(.width)
+
+       closeButton.pin
+           .topEnd(12)
+           .size(16)
 
         invitationText.pin
             .below(of: headlineText)
@@ -83,6 +103,15 @@ class CustdevView: UIView {
             .horizontally(20)
             .sizeToFit(.width)
 
+        switch style {
+        case .contacts:
+            contactsLayout()
+        case .text:
+            textLayout()
+        }
+    }
+
+    private func contactsLayout() {
         agreeButton.pin
             .below(of: invitationText)
             .marginTop(16)
@@ -90,5 +119,28 @@ class CustdevView: UIView {
             .height(40)
     }
 
-}
+    private func textLayout() {
+        textView.pin
+            .below(of: invitationText)
+            .marginTop(8)
+            .horizontally(20)
+            .sizeToFit(.width)
 
+        agreeButton.pin
+            .below(of: textView)
+            .marginTop(16)
+            .horizontally(16)
+            .height(40)
+    }
+
+    func setup(style: CustdevStyle) {
+        self.style = style
+
+        invitationText.text = style.descriptionText
+        agreeButton.setTitle(style.agreeButtonText, for: .normal)
+        textView.isHidden = style.isTextViewHidden
+
+        setNeedsLayout()
+    }
+
+}

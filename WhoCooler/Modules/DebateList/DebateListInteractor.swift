@@ -23,7 +23,8 @@ protocol DebateListBusinessLogic {
     func reloadDebate(debateId: String)
     func reportDebate(id: String)
     func vote(debateId: String, sideId: String, successCompletion: ((Debate) -> Void)?)
-    func sendCustdevInfo(text: String)
+    func sendCustdevInfo(text: String, style: CustdevStyle)
+    func didClickCloseFeedback(style: CustdevStyle)
 }
 
 protocol DebateListDataStore {}
@@ -126,11 +127,12 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
         }
     }
 
-    func sendCustdevInfo(text: String) {
-        worker.sendCustdevInfo(text: text)
+    func sendCustdevInfo(text: String, style: CustdevStyle) {
+        worker.sendCustdevInfo(text: text, style: style)
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else { return }
-                UserDefaultsService.shared.didSendCustdevData = true
+
+                self.hideFeedbackBlock(style)
                 self.presenter?.presentSomething(response:
                     .init(
                         data: self.response.debates,
@@ -139,6 +141,19 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
                     )
                 )
             }).disposed(by: disposeBag)
+    }
+
+    func didClickCloseFeedback(style: CustdevStyle) {
+        hideFeedbackBlock(style)
+    }
+
+    private func hideFeedbackBlock(_ style: CustdevStyle) {
+        switch style {
+        case .contacts:
+             UserDefaultsService.shared.didSendCustdevContacts = true
+        case .text:
+            UserDefaultsService.shared.didSendCustdevFeedback = true
+        }
     }
     
 }

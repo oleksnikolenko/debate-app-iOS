@@ -32,6 +32,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         $0.dataSource = self
         $0.delegate = self
         $0.separatorStyle = .none
+        $0.rowHeight = UITableView.automaticDimension
         $0.es.addPullToRefresh { [weak self] in
             guard let `self` = self else { return }
             self.interactor?.getData(request: self.request)
@@ -311,12 +312,39 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
 
             return cell
 
-        case .custdev:
+        case .custdev(let style):
             let cell = tableView.cell(for: CustdevCell.self)
 
+            cell.custdevView.setup(style: style)
+
             cell.didClickAgree.subscribe(onNext: { [weak self] in
-                self?.askForFeedbackContact()
-            })
+                switch cell.custdevView.style {
+                case .contacts:
+                    self?.askForFeedbackContact()
+                case .text:
+                    guard let text = cell.custdevView.textView.text, !text.isEmpty else { return }
+
+                    self?.interactor?.sendCustdevInfo(text: text, style: .text)
+                    self?.showThankAlert(style: .text)
+                }
+            }).disposed(by: cell.disposeBag)
+
+            cell.didClickClose.subscribe(onNext: { [weak self] in
+                tableView.updateWithoutAnimation {
+                    self?.cells.remove(at: indexPath.row)
+                    self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+                self?.interactor?.didClickCloseFeedback(style: cell.custdevView.style)
+            }).disposed(by: cell.disposeBag)
+
+            cell.textChange.subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+
+                UIView.setAnimationsEnabled(false)
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+                UIView.setAnimationsEnabled(true)
+            }).disposed(by: cell.disposeBag)
 
             return cell
 
@@ -415,7 +443,8 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
             title: "okay".localized,
             style: .default,
             handler: { [weak self] _ in
-                self?.interactor?.sendCustdevInfo(text: alertTextField?.text ?? "")
+                self?.interactor?.sendCustdevInfo(text: alertTextField?.text ?? "", style: .contacts)
+                self?.showThankAlert(style: .contacts)
             }
         )
         let cancelAction = UIAlertAction(
@@ -427,6 +456,21 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
         alert.addAction(cancelAction)
 
         present(alert, animated: true, completion: nil)
+    }
+
+    func showThankAlert(style: CustdevStyle) {
+        let alert = UIAlertController(
+            title: "custdev.alert.thankYou".localized,
+            message: style.thankYouText,
+            preferredStyle: .alert
+        )
+
+        present(alert, animated:true, completion: {
+            Timer.scheduledTimer(
+                withTimeInterval: 3, repeats:false, block: { _ in
+                    self.dismiss(animated: true, completion: nil)
+            })
+        })
     }
 
 }

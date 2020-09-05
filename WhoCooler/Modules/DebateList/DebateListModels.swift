@@ -48,7 +48,7 @@ enum DebateList {
         case debate(Debate)
         case new
         case emptyFavorites
-        case custdev
+        case custdev(style: CustdevStyle)
     }
 
 }

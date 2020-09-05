@@ -139,3 +139,57 @@ public extension DebateType {
     }
 
 }
+
+public enum CustdevStyle {
+    case contacts
+    case text
+}
+
+public extension CustdevStyle {
+
+    var isTextViewHidden: Bool {
+        switch self {
+        case .contacts:
+            return true
+        case .text:
+            return false
+        }
+    }
+
+    var descriptionText: String {
+        switch self {
+        case .contacts:
+            return "custdev.description".localized
+        case .text:
+            return "custdev.text.description".localized
+        }
+    }
+
+    var agreeButtonText: String {
+        switch self {
+        case .contacts:
+            return "custdev.agree".localized
+        case .text:
+            return "custdev.text.send".localized
+        }
+    }
+
+    var thankYouText: String {
+        switch self {
+        case .contacts:
+            return "Спасибо, что поделились контактами, мы с Вами свяжемся в ближайшее время!"
+        case .text:
+            return "Спасибо, что поделились своим мнением, хорошего дня!"
+        }
+    }
+
+    var requestParameter: String {
+        switch self {
+        case .contacts:
+            return "contact"
+        case .text:
+            return "feedback"
+        }
+    }
+
+}
