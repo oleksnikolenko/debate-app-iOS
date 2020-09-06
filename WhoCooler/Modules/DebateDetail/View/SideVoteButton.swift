@@ -134,7 +134,10 @@ class SideVoteButton: UIView {
     }
 
     private func leftVotedLayout() {
-        let votedShadeLength = min(frame.width * CGFloat(leftPercent) / 100, frame.width * 4 / 5)
+        let votedShadeLength = max(
+            frame.width * 0.25,
+            min(frame.width * CGFloat(leftPercent) / 100, frame.width * 0.75)
+        )
 
         UIView.animate(withDuration: 0.5) {
             self.votedShade.pin
@@ -174,7 +177,10 @@ class SideVoteButton: UIView {
     }
 
     private func rightVotedLayout() {
-        let votedShadeLength = min(frame.width * CGFloat(rightPercent) / 100, frame.width * 4 / 5)
+        let votedShadeLength = max(
+            frame.width * 0.25,
+            min(frame.width * CGFloat(rightPercent) / 100, frame.width * 0.75)
+        )
 
         UIView.animate(withDuration: 0.5) {
             self.votedShade.pin
