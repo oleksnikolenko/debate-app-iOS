@@ -6,6 +6,7 @@
 //  Copyright © 2020 Artem Trubacheev. All rights reserved.
 //
 
+import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
 import FirebaseMessaging
@@ -41,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UINavigationController(rootViewController: viewController)
         window?.makeKeyAndVisible()
 
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+
         return true
     }
 
@@ -54,6 +57,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
 
         return true
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        AppEvents.activateApp()
+    }
+
+    func application(
+        _ application: UIApplication,
+        open url: URL,
+        sourceApplication: String?,
+        annotation: Any
+    ) -> Bool {
+        return ApplicationDelegate.shared.application(
+            application,
+            open: url,
+            sourceApplication: sourceApplication,
+            annotation: annotation
+        )
     }
 
 }
