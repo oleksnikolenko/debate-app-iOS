@@ -40,6 +40,7 @@ class DebateListViewController: UIViewController, DebateListDisplayLogic {
         $0.es.addInfiniteScrolling { [weak self] in
             self?.interactor?.getNextPage()
         }
+        $0.keyboardDismissMode = .interactive
     }
     private let addButton = ActionButton()
 

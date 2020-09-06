@@ -39,9 +39,9 @@ class DebateListPresenter: DebateListPresentationLogic {
         { cells.insert(.custdev(style: .contacts), at: 4) }
 
         if
-            cells.count >= 8 &&
+            cells.count >= 10 &&
             UserDefaultsService.shared.didSendCustdevFeedback != true
-        { cells.insert(.custdev(style: .text), at: 7) }
+        { cells.insert(.custdev(style: .text), at: 9) }
 
         viewController?.displayCells(viewModel:
             .init(cells: cells, hasNextPage: response.hasNextPage)
