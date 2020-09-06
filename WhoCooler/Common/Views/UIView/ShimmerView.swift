@@ -41,7 +41,7 @@ class ShimmerView: UIView {
         return animation
     }
 
-    func startAnimating(cornerRadius: CGFloat = 14) {
+    func startAnimating(cornerRadius: CGFloat = 10) {
         let gradientLayer = addGradientLayer(cornerRadius: cornerRadius)
         let animation = addAnimation()
 

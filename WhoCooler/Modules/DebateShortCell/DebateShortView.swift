@@ -46,10 +46,10 @@ class DebateShortView: UIView {
 
         addSubviews(leftImage, middleSeparator, rightImage, debateBottomContainer)
 
-        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowOffset = CGSize(width: 1, height: 1)
         layer.shadowOpacity = 1
-        layer.shadowRadius = 10
+        layer.shadowRadius = 4
     }
 
     required init?(coder: NSCoder) {

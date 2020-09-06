@@ -265,7 +265,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch cells[indexPath.row] {
-        case .debate(let debate):
+        case .debate(var debate):
             let cell = tableView.cell(for: DebateShortCell.self)
 
             cell.setup(debate)
@@ -273,6 +273,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
             cell.didClickLeft.subscribe(onNext: { [weak self] in
                 let completionHandler: ((Debate) -> Void)? = { debate in
                     cell.debateShortView.debateBottomContainer.voteButton.setup(debate)
+                    self?.cells[indexPath.row] = DebateList.CellType.debate(debate)
                 }
 
                 self?.interactor?.vote(
@@ -285,6 +286,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
             cell.didClickRight.subscribe(onNext: { [weak self] in
                 let completionHandler: ((Debate) -> Void)? = { debate in
                     cell.debateShortView.debateBottomContainer.voteButton.setup(debate)
+                    self?.cells[indexPath.row] = DebateList.CellType.debate(debate)
                 }
                 self?.interactor?.vote(
                     debateId: debate.id,
@@ -299,6 +301,8 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
 
                     let completionHandler: (() -> Void)? = {
                         cell.toggleFavorite()
+                        debate.isFavorite = !debate.isFavorite
+                        self.cells[indexPath.row] = DebateList.CellType.debate(debate)
                     }
                     self.interactor?.toggleFavorites(
                         request: DebateList.Favorites.PostRequest(debate: debate, isFavorite: cell.debateShortView.debateBottomContainer.debateInfoView.isFavorite),

@@ -57,10 +57,10 @@ class CustdevView: UIView {
 
         addSubviews(headlineText, invitationText, agreeButton, closeButton, textView)
 
-        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowColor = UIColor.lightGray.cgColor
         layer.shadowOffset = CGSize(width: 1, height: 1)
         layer.shadowOpacity = 1
-        layer.shadowRadius = 10
+        layer.shadowRadius = 4
         layer.masksToBounds = false
         layer.cornerRadius = 10
         backgroundColor = .white
