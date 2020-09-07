@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
 
         UNUserNotificationCenter.current().delegate = self
-        print("TOOOKEN = " + (Messaging.messaging().fcmToken ?? ""))
         UNUserNotificationCenter.current().requestAuthorization(
         options: [.alert, .badge, .sound, .carPlay]) { isSuccess, _ in
             if isSuccess {
@@ -41,6 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let viewController = DebateListViewController()
         window?.rootViewController = UINavigationController(rootViewController: viewController)
         window?.makeKeyAndVisible()
+
+        if
+            let payload = launchOptions?[.remoteNotification] as? [AnyHashable: Any],
+            let debateId = payload["debate-id"] as? String
+        {
+            let debateVC = DebateDetailViewController(debate: Debate.byId(id: debateId))
+            viewController.navigationController?.pushViewController(debateVC, animated: true)
+        }
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 

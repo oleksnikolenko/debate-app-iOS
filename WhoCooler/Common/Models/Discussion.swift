@@ -52,4 +52,20 @@ extension Debate {
         return DebateType(type)
     }
 
+    static func byId(id: String) -> Debate {
+        .init(
+            id: id,
+            leftSide: .init(id: "", name: "", image: nil, ratingCount: 0, isVotedByUser: false),
+            rightSide: .init(id: "", name: "", image: nil, ratingCount: 0, isVotedByUser: false),
+            category: Category(id: "", name: ""),
+            votesCount: 0,
+            messagesList: .init(hasNextPage: false, messages: []),
+            isFavorite: false,
+            messageCount: 0,
+            name: nil,
+            image: nil,
+            type: ""
+        )
+    }
+
 }

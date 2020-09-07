@@ -103,101 +103,103 @@ class DebateDetailHeader: UIView {
 
     private func sidesLayout() {
         rightImage.isHidden = false
-        UIView.animate(withDuration: 0.5) {
-            self.shade.pin
-                .horizontally()
-                .height(150)
-                .top()
+        self.shade.pin
+            .horizontally()
+            .height(150)
+            .top()
 
-            self.middleSeparator.pin
-                .height(150)
-                .hCenter()
-                .top()
-                .width(self.middleSeparatorWidth)
+        self.middleSeparator.pin
+            .height(150)
+            .hCenter()
+            .top()
+            .width(self.middleSeparatorWidth)
 
-            self.leftImage.pin
-                .height(150)
-                .start()
-                .top(to: self.middleSeparator.edge.top)
-                .before(of: self.middleSeparator)
+        self.leftImage.pin
+            .height(150)
+            .start()
+            .top(to: self.middleSeparator.edge.top)
+            .before(of: self.middleSeparator)
 
-            if !self.debateName.isHidden {
-                self.debateName.pin
-                    .horizontally(20)
-                    .sizeToFit(.width)
-                    .below(of: self.leftImage)
-                    .marginTop(24)
-            }
-
-            self.voteButton.pin
+        if !self.debateName.isHidden {
+            self.debateName.pin
                 .horizontally(20)
                 .sizeToFit(.width)
-                .below(of: self.debateName.isHidden ? self.leftImage : self.debateName)
+                .below(of: self.leftImage)
                 .marginTop(24)
-
-            self.rightImage.pin
-                .height(150)
-                .top(to: self.middleSeparator.edge.top)
-                .after(of: self.middleSeparator)
-                .end()
-
-            self.messageLabel.pin
-                .below(of: self.voteButton)
-                .start(20)
-                .sizeToFit()
-                .marginTop(16)
-
-            self.messageCounter.pin
-                .after(of: self.messageLabel, aligned: .center)
-                .marginStart(12)
-                .sizeToFit()
         }
+
+        self.voteButton.pin
+            .horizontally(20)
+            .sizeToFit(.width)
+            .below(of: self.debateName.isHidden ? self.leftImage : self.debateName)
+            .marginTop(24)
+
+        self.rightImage.pin
+            .height(150)
+            .top(to: self.middleSeparator.edge.top)
+            .after(of: self.middleSeparator)
+            .end()
+
+        self.messageLabel.pin
+            .below(of: self.voteButton)
+            .start(20)
+            .sizeToFit()
+            .marginTop(16)
+
+        self.messageCounter.pin
+            .after(of: self.messageLabel, aligned: .center)
+            .marginStart(12)
+            .sizeToFit()
     }
 
     private func statementLayout() {
         rightImage.isHidden = true
-        UIView.animate(withDuration: 0.5) {
-            self.shade.pin
-                .horizontally()
-                .height(225)
-                .top()
+        self.shade.pin
+            .horizontally()
+            .height(225)
+            .top()
 
-            self.leftImage.pin
-                .height(225)
-                .horizontally()
-                .top()
+        self.leftImage.pin
+            .height(225)
+            .horizontally()
+            .top()
 
-            if !self.debateName.isHidden {
-                self.debateName.pin
-                    .horizontally(20)
-                    .sizeToFit(.width)
-                    .below(of: self.leftImage)
-                    .marginTop(24)
-            }
-
-            self.voteButton.pin
+        if !self.debateName.isHidden {
+            self.debateName.pin
                 .horizontally(20)
                 .sizeToFit(.width)
-                .below(of: self.debateName.isHidden ? self.leftImage : self.debateName)
+                .below(of: self.leftImage)
                 .marginTop(24)
-
-            self.rightImage.pin
-                .height(150)
-                .top(to: self.middleSeparator.edge.top)
-                .after(of: self.middleSeparator)
-                .end()
-
-            self.messageLabel.pin
-                .below(of: self.voteButton)
-                .start(20)
-                .sizeToFit()
-                .marginTop(16)
-
-            self.messageCounter.pin
-                .after(of: self.messageLabel, aligned: .center)
-                .marginStart(12)
-                .sizeToFit()
         }
+
+        self.voteButton.pin
+            .horizontally(20)
+            .sizeToFit(.width)
+            .below(of: self.debateName.isHidden ? self.leftImage : self.debateName)
+            .marginTop(24)
+
+        self.rightImage.pin
+            .height(150)
+            .top(to: self.middleSeparator.edge.top)
+            .after(of: self.middleSeparator)
+            .end()
+
+        self.messageLabel.pin
+            .below(of: self.voteButton)
+            .start(20)
+            .sizeToFit()
+            .marginTop(16)
+
+        self.messageCounter.pin
+            .after(of: self.messageLabel, aligned: .center)
+            .marginStart(12)
+            .sizeToFit()
+
+        middleSeparator.pin
+            .height(0)
+            .hCenter()
+            .top()
+            .width(0)
     }
 
     // MARK: - Public methods
