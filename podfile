@@ -9,6 +9,7 @@ target 'WhoCooler' do
   pod 'Firebase/Auth'
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
+  pod 'Firebase/Crashlytics'
   pod 'GoogleSignIn'
   pod 'FBSDKLoginKit'
   pod 'RxSwift'
