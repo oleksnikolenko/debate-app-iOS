@@ -32,7 +32,6 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     private lazy var debateName = UITextView().with {
         $0.textAlignment = .center
         $0.delegate = self
-        $0.returnKeyType = .done
         $0.text = "debate.name.placeholder.required".localized
         $0.textColor = .lightGray
         $0.font = .systemFont(ofSize: 18)
@@ -43,6 +42,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         $0.returnKeyType = .done
         $0.delegate = self
         $0.textAlignment = .left
+        $0.accessibilityIdentifier = "leftSideName"
     }
     private lazy var rightSidePhoto = UIImageView().with {
         $0.image = placeholderImage
@@ -56,6 +56,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         $0.returnKeyType = .done
         $0.delegate = self
         $0.textAlignment = .right
+        $0.accessibilityIdentifier = "rightSideName"
     }
     private let categoryButton = UIButton().with {
         $0.setTitle("debate.categorySelect".localized, for: .normal)
@@ -69,6 +70,15 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         $0.backgroundColor = UIColor.white
         $0.selectedSegmentIndex = 0
     }
+    private let topShadeView = UIView().with {
+        $0.backgroundColor = UIColor.lightGray.withAlphaComponent(0.35)
+        $0.isHidden = true
+    }
+    private let bottomShadeView = UIView().with {
+        $0.backgroundColor = UIColor.lightGray.withAlphaComponent(0.35)
+        $0.isHidden = true
+    }
+    private var activeInputView: UIView?
 
     // MARK: - Properties
     var interactor: CreateDebateBusinessLogic?
@@ -157,7 +167,9 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             leftSideName,
             rightSideName,
             categoryButton,
-            middleSeparator
+            middleSeparator,
+            topShadeView,
+            bottomShadeView
         )
         bindObservables()
 
@@ -281,20 +293,27 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
             .below(of: segmentedControl)
             .width(0.5)
             .marginTop(8)
-    }
 
-    func statementLayout() {
-        segmentedControl.pin
-            .top(8)
-            .horizontally(24)
-            .sizeToFit(.width)
+        guard let activeInputView = activeInputView else { return }
 
-        leftSidePhoto.pin
-            .start()
-            .below(of: segmentedControl)
-            .height(225)
-            .horizontally()
-            .marginTop(8)
+        if !topShadeView.isHidden && !bottomShadeView.isHidden {
+            UIView.animate(
+                withDuration: 0.35,
+                animations: {
+                    self.topShadeView.pin
+                        .horizontally()
+                        .top()
+                        .above(of: activeInputView)
+                        .marginBottom(4)
+
+                    self.bottomShadeView.pin
+                        .horizontally()
+                        .below(of: activeInputView)
+                        .bottom()
+                        .marginTop(4)
+                }
+            )
+        }
     }
 
     func notEnoughData(error: String) {
@@ -448,6 +467,9 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         debateName.resignFirstResponder()
         leftSideName.resignFirstResponder()
         rightSideName.resignFirstResponder()
+
+        topShadeView.isHidden = true
+        bottomShadeView.isHidden = true
     }
 
 }
@@ -456,6 +478,12 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 extension CreateDebateViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
+        activeInputView = debateName
+
+        topShadeView.isHidden = false
+        bottomShadeView.isHidden = false
+
+        view.setNeedsLayout()
         if textView.textColor == .lightGray {
             textView.text = nil
             textView.textColor = .black
@@ -475,7 +503,21 @@ extension CreateDebateViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
+        topShadeView.isHidden = true
+        bottomShadeView.isHidden = true
         return false
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        topShadeView.isHidden = false
+        bottomShadeView.isHidden = false
+
+        if textField.accessibilityIdentifier == "leftSideName" {
+            activeInputView = leftSideName
+        } else if textField.accessibilityIdentifier == "rightSideName" {
+            activeInputView = rightSideName
+        }
+        view.setNeedsLayout()
     }
 
 }
