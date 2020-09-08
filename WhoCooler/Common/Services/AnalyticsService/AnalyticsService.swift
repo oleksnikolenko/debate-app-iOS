@@ -26,11 +26,16 @@ class AnalyticsService {
 
 public enum AnalyticsEvent {
     case didClickNew
+    case didClickNewTable
+    case didClickPhoto
+    case didClickName
+    case didClickCategory
     case loginTry(provider: String)
     case loginSuccess
     case newCreated(id: String)
     case commentSendTry
     case commentSentSuccess
+    case openCreate
 }
 
 public enum AnalyticsScreen: String {
@@ -50,17 +55,22 @@ extension AnalyticsEvent {
         case .newCreated: return "new_created"
         case .commentSendTry: return "comment_send_try"
         case .commentSentSuccess: return "comment_sent_success"
+        case .didClickNewTable: return "new_cell_clicked"
+        case .didClickPhoto: return "did_click_photo"
+        case .didClickName: return "did_click_name"
+        case .didClickCategory: return "did_click_category"
+        case .openCreate: return "did_open_create"
         }
     }
 
     var parameters: [String: Any]? {
         switch self {
-        case .didClickNew, .commentSentSuccess, .commentSendTry, .loginSuccess:
-            return nil
         case .loginTry(let provider):
             return ["provider": provider]
         case .newCreated(let id):
             return ["id": id]
+        default:
+            return nil
         }
     }
 

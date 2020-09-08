@@ -383,6 +383,7 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.cell(for: NewDebateCell.self)
 
             cell.didClickCreate.subscribe(onNext: { [unowned self] in
+                AnalyticsService.shared.trackEvent(.didClickNewTable)
                 if UserDefaultsService.shared.session == nil {
                     self.router?.navigateToProfile()
                 } else {

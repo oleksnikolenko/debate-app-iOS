@@ -160,6 +160,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
         view.addGestureRecognizer(tap)
 
         AnalyticsService.shared.trackScreen(.create)
+        AnalyticsService.shared.trackEvent(.openCreate)
 
         view.addSubviews(
             segmentedControl,
@@ -187,6 +188,8 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
     func bindObservables() {
         leftSidePhoto.didClick
             .subscribe(onNext: { [weak self] in
+                AnalyticsService.shared.trackEvent(.didClickPhoto)
+
                 guard let `self` = self else { return }
                 self.view.endEditing(true)
                 self.dataPicker.tryToFetchImage(vc: self) { [weak self] in
@@ -196,6 +199,8 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
         rightSidePhoto.didClick
             .subscribe(onNext: { [weak self] in
+                AnalyticsService.shared.trackEvent(.didClickPhoto)
+
                 guard let `self` = self else { return }
                 self.view.endEditing(true)
                 self.dataPicker.tryToFetchImage(vc: self) { [weak self] in
@@ -205,6 +210,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 
         categoryButton.rx.tap
             .subscribe(onNext: { [unowned self] in
+                AnalyticsService.shared.trackEvent(.didClickCategory)
                 let pickCategoryViewController = PickCategoryViewController { [weak self] in
                     self?.category = $0
                     self?.categoryButton.setTitle($0.name, for: .normal)
@@ -480,6 +486,7 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
 extension CreateDebateViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
+        AnalyticsService.shared.trackEvent(.didClickName)
         activeInputView = debateName
 
         topShadeView.isHidden = false
