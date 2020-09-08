@@ -384,6 +384,30 @@ extension DebateListViewController: UITableViewDelegate, UITableViewDataSource {
             }).disposed(by: cell.disposeBag)
 
             return cell
+
+        case .rateApp:
+            let cell = tableView.cell(for: RateAppCell.self)
+
+            cell.rateAppView.didAgreeToRateApp.subscribe(onNext: { [weak self] in
+                self?.interactor?.didAgreeToRateApp()
+
+                self?.cells.remove(at: indexPath.row)
+                self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }).disposed(by: cell.disposeBag)
+
+            cell.rateAppView.didAskToClose.subscribe(onNext: { [weak self] in
+                tableView.updateWithoutAnimation {
+                    self?.interactor?.didClickCloseRateApp()
+
+                    self?.cells.remove(at: indexPath.row)
+                    self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+
+                    self?.cells.insert(.custdev(style: .text), at: indexPath.row)
+                    self?.tableView.insertRows(at: [indexPath], with: .automatic)
+                }
+            }).disposed(by: cell.disposeBag)
+
+            return cell
         }
     }
 

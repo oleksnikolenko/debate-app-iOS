@@ -81,6 +81,7 @@
 		39EFACD923DDADB700E1E8BA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD823DDADB700E1E8BA /* TableViewCell.swift */; };
 		39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACDF23DDB11000E1E8BA /* Discussion.swift */; };
 		86072ADC24C8865000D0C1B0 /* UserProfileMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86072ADB24C8865000D0C1B0 /* UserProfileMenuCell.swift */; };
+		860F92B02507609A001E2BF1 /* RateAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F92AF2507609A001E2BF1 /* RateAppView.swift */; };
 		861DE6A32455D94C00B864EB /* DebateInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A22455D94C00B864EB /* DebateInfoView.swift */; };
 		861DE6A72455DCEE00B864EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A62455DCEE00B864EB /* Category.swift */; };
 		861E91E3245B674900A3E4A9 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E91E2245B674900A3E4A9 /* VoteModel.swift */; };
@@ -115,9 +116,10 @@
 		8683CA51245EEB9B00CE31CE /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */; };
 		868C48C524714464009EB515 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C48C424714464009EB515 /* ShimmerView.swift */; };
 		868C48C7247144C2009EB515 /* DebateBackgroundShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868C48C6247144C2009EB515 /* DebateBackgroundShimmerView.swift */; };
-		86974BD8246D290800A4AA0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86974BD7246D290800A4AA0C /* GoogleService-Info.plist */; };
+		86A9073D25063BD5008A44CB /* RateAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A9073C25063BD5008A44CB /* RateAppCell.swift */; };
 		86B4A3B22459A3CA00EFE7C9 /* SideVoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3B12459A3CA00EFE7C9 /* SideVoteButton.swift */; };
 		86B4A3BB2459EE4400EFE7C9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B4A3BA2459EE4400EFE7C9 /* Enums.swift */; };
+		86C961972506AF35002B520F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86C961962506AF35002B520F /* GoogleService-Info.plist */; };
 		86E8D81D245B01D40002DE7A /* VoteMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D81C245B01D40002DE7A /* VoteMessageButton.swift */; };
 		86E8D823245B22580002DE7A /* VoteMessageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D822245B22580002DE7A /* VoteMessageInteractor.swift */; };
 		86E8D825245B230F0002DE7A /* VoteMessagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */; };
@@ -233,6 +235,7 @@
 		603992BE9B1D112A9C4667F1 /* Pods-DiscussionMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker.debug.xcconfig"; sourceTree = "<group>"; };
 		67EF838F0BEBBE23470370C3 /* libPods-WhoCooler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhoCooler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86072ADB24C8865000D0C1B0 /* UserProfileMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileMenuCell.swift; sourceTree = "<group>"; };
+		860F92AF2507609A001E2BF1 /* RateAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppView.swift; sourceTree = "<group>"; };
 		861DE6A22455D94C00B864EB /* DebateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateInfoView.swift; sourceTree = "<group>"; };
 		861DE6A62455DCEE00B864EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		861E91E2245B674900A3E4A9 /* VoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteModel.swift; sourceTree = "<group>"; };
@@ -268,9 +271,10 @@
 		8683CA50245EEB9B00CE31CE /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
 		868C48C424714464009EB515 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		868C48C6247144C2009EB515 /* DebateBackgroundShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateBackgroundShimmerView.swift; sourceTree = "<group>"; };
-		86974BD7246D290800A4AA0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		86A9073C25063BD5008A44CB /* RateAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppCell.swift; sourceTree = "<group>"; };
 		86B4A3B12459A3CA00EFE7C9 /* SideVoteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideVoteButton.swift; sourceTree = "<group>"; };
 		86B4A3BA2459EE4400EFE7C9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		86C961962506AF35002B520F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86E8D81C245B01D40002DE7A /* VoteMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageButton.swift; sourceTree = "<group>"; };
 		86E8D822245B22580002DE7A /* VoteMessageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessageInteractor.swift; sourceTree = "<group>"; };
 		86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteMessagePresenter.swift; sourceTree = "<group>"; };
@@ -527,7 +531,7 @@
 			children = (
 				39D59EAB244D96A900D0A1E8 /* WhoCooler.entitlements */,
 				39D1036523D0ED1000A0C3F7 /* AppDelegate.swift */,
-				86974BD7246D290800A4AA0C /* GoogleService-Info.plist */,
+				86C961962506AF35002B520F /* GoogleService-Info.plist */,
 				8675C142246ACB6D00887115 /* Localizable.strings */,
 				39EFACD723DDADA900E1E8BA /* Common */,
 				39EFAC9F23DDAC3A00E1E8BA /* Helpers */,
@@ -584,6 +588,8 @@
 				861DE6A22455D94C00B864EB /* DebateInfoView.swift */,
 				39A77EC324FFC23700EBFEDA /* CustdevCell.swift */,
 				39A77EC524FFC36100EBFEDA /* CustdevView.swift */,
+				86A9073C25063BD5008A44CB /* RateAppCell.swift */,
+				860F92AF2507609A001E2BF1 /* RateAppView.swift */,
 			);
 			path = DebateShortCell;
 			sourceTree = "<group>";
@@ -857,9 +863,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				39D1037223D0ED1400A0C3F7 /* LaunchScreen.storyboard in Resources */,
+				86C961972506AF35002B520F /* GoogleService-Info.plist in Resources */,
 				8675C140246ACB6D00887115 /* Localizable.strings in Resources */,
 				39D1036F23D0ED1400A0C3F7 /* Assets.xcassets in Resources */,
-				86974BD8246D290800A4AA0C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,6 +1040,7 @@
 				861DE6A72455DCEE00B864EB /* Category.swift in Sources */,
 				39EFACD323DDAD2500E1E8BA /* DebateShortCell.swift in Sources */,
 				865B500324681FB400FAC5EC /* UIColor.swift in Sources */,
+				86A9073D25063BD5008A44CB /* RateAppCell.swift in Sources */,
 				398086F52439D51F00CDA1D2 /* DebatesResponse.swift in Sources */,
 				865B500624681FB400FAC5EC /* AddSubviews.swift in Sources */,
 				39215B8123D35390000B5AA1 /* DebateListRouter.swift in Sources */,
@@ -1075,6 +1082,7 @@
 				39C8AB8F2441D00800D299CE /* DebateDetailHeader.swift in Sources */,
 				399C0EC12443583300EEEC19 /* UserDefaultsService.swift in Sources */,
 				39196CB124DFEFBD002396E7 /* AnalyticsService.swift in Sources */,
+				860F92B02507609A001E2BF1 /* RateAppView.swift in Sources */,
 				399C0EC824436CA800EEEC19 /* Rx.swift in Sources */,
 				398086D52438CED000CDA1D2 /* AuthorizationScreenInteractor.swift in Sources */,
 				8632176F24E59F24006C8C45 /* DebateShortView.swift in Sources */,

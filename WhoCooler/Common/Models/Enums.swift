@@ -177,9 +177,9 @@ public extension CustdevStyle {
     var thankYouText: String {
         switch self {
         case .contacts:
-            return "Спасибо, что поделились контактами, мы с Вами свяжемся в ближайшее время!"
+            return "custdev.thanks.contacts".localized
         case .text:
-            return "Спасибо, что поделились своим мнением, хорошего дня!"
+            return "custdev.thanks.text".localized
         }
     }
 
@@ -189,6 +189,50 @@ public extension CustdevStyle {
             return "contact"
         case .text:
             return "feedback"
+        }
+    }
+
+}
+
+enum RateAppCellState {
+    case initialState
+    case likeChosen
+
+    init(state: String?) {
+        switch state {
+        case "initialState":
+            self = .initialState
+        case "likeChosen":
+            self = .likeChosen
+        default:
+            self = .initialState
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .initialState:
+            return "rateapp.doYouLike".localized
+        case .likeChosen:
+            return "rateapp.thenRateUs".localized
+        }
+    }
+
+    var agreeButtonText: String? {
+        switch self {
+        case .initialState:
+            return "yes".localized
+        case .likeChosen:
+            return "rateapp.agree".localized
+        }
+    }
+
+    var disagreeButtonText: String? {
+        switch self {
+        case .initialState:
+            return "no".localized
+        case .likeChosen:
+            return "rateapp.noThanks".localized
         }
     }
 

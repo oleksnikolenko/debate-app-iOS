@@ -48,6 +48,21 @@ class UserDefaultsService {
         set { userDefaults.set(newValue, forKey: #function) }
     }
 
+    var rateAppState: String? {
+        get { userDefaults.string(forKey: #function) }
+        set { userDefaults.set(newValue, forKey: #function) }
+    }
+
+    var sessionCount: Int {
+        get { userDefaults.integer(forKey: #function) }
+        set { userDefaults.set(newValue, forKey: #function) }
+    }
+
+    var didShowRateApp: Bool? {
+        get { userDefaults.bool(forKey: #function) }
+        set { userDefaults.set(newValue, forKey: #function) }
+    }
+
     var didUpdateUser: Observable<Void> {
         didUpdateUserSubject.asObservable()
     }

@@ -41,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UINavigationController(rootViewController: viewController)
         window?.makeKeyAndVisible()
 
+        UserDefaultsService.shared.sessionCount += 1
+
         if
             let payload = launchOptions?[.remoteNotification] as? [AnyHashable: Any],
             let debateId = payload["debate-id"] as? String

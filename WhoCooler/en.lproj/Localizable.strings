@@ -92,3 +92,11 @@
 "custdev.alert.thankYou" = "Thank you!";
 "custdev.agree" = "AGREE";
 "custdev.askInfo" = "Describe a way for us to contact with you";
+
+"custdev.thanks.contacts" = "Thank you, we will contact you soon!";
+"custdev.thanks.text" = "Thank you for your opinion, have a nice day!";
+
+"rateapp.doYouLike" = "Enjoying Sporno?";
+"rateapp.thenRateUs" = "How about a rating on the AppStore, then?";
+"rateapp.agree" = "Ok, sure";
+"rateapp.noThanks" = "No, thanks";

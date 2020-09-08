@@ -40,8 +40,9 @@ class DebateListPresenter: DebateListPresentationLogic {
 
         if
             cells.count >= 10 &&
-            UserDefaultsService.shared.didSendCustdevFeedback != true
-        { cells.insert(.custdev(style: .text), at: 9) }
+            UserDefaultsService.shared.didShowRateApp != true &&
+            UserDefaultsService.shared.sessionCount > 2
+        { cells.insert(.rateApp, at: 9) }
 
         viewController?.displayCells(viewModel:
             .init(cells: cells, hasNextPage: response.hasNextPage)

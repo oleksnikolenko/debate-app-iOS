@@ -12,6 +12,7 @@
 
 import Foundation
 import RxSwift
+import StoreKit
 
 protocol DebateListBusinessLogic {
     func getData(request: DebateList.Something.Request)
@@ -25,6 +26,8 @@ protocol DebateListBusinessLogic {
     func vote(debateId: String, sideId: String, successCompletion: ((Debate) -> Void)?)
     func sendCustdevInfo(text: String, style: CustdevStyle)
     func didClickCloseFeedback(style: CustdevStyle)
+    func didAgreeToRateApp()
+    func didClickCloseRateApp()
 }
 
 protocol DebateListDataStore {}
@@ -145,6 +148,15 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
 
     func didClickCloseFeedback(style: CustdevStyle) {
         hideFeedbackBlock(style)
+    }
+
+    func didAgreeToRateApp() {
+        UserDefaultsService.shared.didShowRateApp = true
+        SKStoreReviewController.requestReview()
+    }
+
+    func didClickCloseRateApp() {
+        UserDefaultsService.shared.didShowRateApp = true
     }
 
     private func hideFeedbackBlock(_ style: CustdevStyle) {
