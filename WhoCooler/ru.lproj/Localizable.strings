@@ -85,6 +85,7 @@
 
 "category.createNew" = "Создать новую категорию";
 "category.name.placeholder" = "Имя категории";
+"create.screenName" = "Новый дебат";
 
 "custdev.title" = "Твое мнение важно!";
 "custdev.description" = "Мы хотим сделать Sporno интересным для наших пользователей. Оставь контакт для связи и помоги нам стать лучше!";

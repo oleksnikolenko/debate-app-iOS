@@ -84,6 +84,7 @@
 
 "category.createNew" = "Create a new category";
 "category.name.placeholder" = "Category name";
+"create.screenName" = "New debate";
 
 "custdev.title" = "Your opinion is important!";
 "custdev.description" = "We need your help! Leave us a way to contact with you to make our product better!";

@@ -35,7 +35,8 @@ class DebateListPresenter: DebateListPresentationLogic {
 
         if
             cells.count >= 5 &&
-            UserDefaultsService.shared.didSendCustdevContacts != true
+            UserDefaultsService.shared.didSendCustdevContacts != true &&
+            UserDefaultsService.shared.sessionCount > 1
         { cells.insert(.custdev(style: .contacts), at: 4) }
 
         if

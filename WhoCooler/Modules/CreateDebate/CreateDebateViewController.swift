@@ -154,6 +154,8 @@ class CreateDebateViewController: UIViewController, CreateDebateDisplayLogic {
                 action: #selector(createTapped)
         )
 
+        title = "create.screenName".localized
+
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
 
