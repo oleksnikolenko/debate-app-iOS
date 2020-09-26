@@ -21,12 +21,12 @@ class AuthorizationScreenWorker {
         let args: [String: Any]
         switch token {
         case .facebook(let token), .google(let token):
-            args = ["token": token]
+            args = ["token": token, "platform": "ios"]
         case .apple(let token, let name):
             if let name = name {
-                args = ["token": token, "user_name": name]
+                args = ["token": token, "user_name": name, "platform": "ios"]
             } else {
-                args = ["token": token]
+                args = ["token": token, "platform": "ios"]
             }
         }
 

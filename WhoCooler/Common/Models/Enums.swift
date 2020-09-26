@@ -237,3 +237,17 @@ enum RateAppCellState {
     }
 
 }
+
+public enum DebatePromotionType: String {
+    case debateOfDay
+    case none
+
+    init(_ promotionType: String?) {
+        switch promotionType {
+        case "debate_of_day":
+            self = .debateOfDay
+        default:
+            self = .none
+        }
+    }
+}

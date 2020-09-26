@@ -39,6 +39,11 @@ class DebateListPresenter: DebateListPresentationLogic {
             UserDefaultsService.shared.sessionCount > 1
         { cells.insert(.custdev(style: .contacts), at: 4) }
 
+        /// Use this for debate of day logic
+//        if let debateOfDay = response.data.first(where: { $0.debatePromotionType == .debateOfDay }) {
+//            print(debateOfDay)
+//        }
+
         if
             cells.count >= 10 &&
             UserDefaultsService.shared.didShowRateApp != true &&

@@ -18,6 +18,7 @@ struct Debate: Decodable {
     let name: String?
     let image: String?
     let type: String
+    let promotionType: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -31,6 +32,7 @@ struct Debate: Decodable {
         case name
         case image
         case type
+        case promotionType = "promotion_type"
     }
 }
 
@@ -64,8 +66,13 @@ extension Debate {
             messageCount: 0,
             name: nil,
             image: nil,
-            type: ""
+            type: "",
+            promotionType: ""
         )
+    }
+
+    var debatePromotionType: DebatePromotionType {
+        DebatePromotionType(promotionType)
     }
 
 }
