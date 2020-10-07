@@ -77,6 +77,7 @@
 "debate.create" = "Создать";
 
 "debate.image" = "Фото дебата";
+"debate.daily" = "Дебат дня";
 
 "debate.type.sides" = "Левая/Правая сторона";
 "debate.type.statement" = "Утверждение Да/Нет";

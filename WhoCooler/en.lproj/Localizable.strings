@@ -74,6 +74,7 @@
 "debate.somethingNotFilled" = "%@ is empty";
 "debate.name.placeholder.required" = "Debate name";
 "debate.image" = "Debate image";
+"debate.daily" = "Debate of the day";
 
 "debate.create" = "Create";
 

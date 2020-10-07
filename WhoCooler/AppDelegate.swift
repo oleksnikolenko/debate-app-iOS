@@ -21,7 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        ApplicationDelegate.shared.application( application, didFinishLaunchingWithOptions: launchOptions)
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
 
         UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(
@@ -33,8 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        FirebaseApp.configure()
-        Messaging.messaging().delegate = self
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
 
         let viewController = DebateListViewController()
@@ -47,11 +47,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let payload = launchOptions?[.remoteNotification] as? [AnyHashable: Any],
             let debateId = payload["debate-id"] as? String
         {
+            AnalyticsService.shared.trackEvent(.openPush(id: debateId))
             let debateVC = DebateDetailViewController(debate: Debate.byId(id: debateId))
             viewController.navigationController?.pushViewController(debateVC, animated: true)
         }
 
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+
+        InstanceID.instanceID().instanceID { (result, _) in
+            if result != nil {
+                // Receive notifications from the "all" topic
+                #if DEBUG
+                Messaging.messaging().subscribe(toTopic: "test_devices")
+                #endif
+            }
+        }
 
         return true
     }

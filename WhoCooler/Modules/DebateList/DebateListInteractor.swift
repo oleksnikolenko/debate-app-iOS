@@ -80,8 +80,11 @@ class DebateListInteractor: DebateListBusinessLogic, DebateListDataStore {
     func vote(debateId: String, sideId: String, successCompletion: ((Debate) -> Void)?) {
         guard userDefaults.session != nil else { presenter?.presentAuthScreen(); return }
         worker.vote(debateId: debateId, sideId: sideId)
-            .subscribe(onNext: {
-                successCompletion?($0.debate)
+            .subscribe(onNext: { [unowned self] response in
+                successCompletion?(response.debate)
+                if let index = self.response.debates.firstIndex(where: { $0.id == response.debate.id }) {
+                    self.response.debates[index] = response.debate
+                }
             }, onError: { [weak self] in
                 self?.handleError($0)
             }).disposed(by: disposeBag)

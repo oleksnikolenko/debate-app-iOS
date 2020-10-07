@@ -36,6 +36,7 @@ public enum AnalyticsEvent {
     case commentSendTry
     case commentSentSuccess
     case openCreate
+    case openPush(id: String)
 }
 
 public enum AnalyticsScreen: String {
@@ -60,6 +61,7 @@ extension AnalyticsEvent {
         case .didClickName: return "did_click_name"
         case .didClickCategory: return "did_click_category"
         case .openCreate: return "did_open_create"
+        case .openPush: return "open_push"
         }
     }
 
@@ -67,7 +69,7 @@ extension AnalyticsEvent {
         switch self {
         case .loginTry(let provider):
             return ["provider": provider]
-        case .newCreated(let id):
+        case .newCreated(let id), .openPush(let id):
             return ["id": id]
         default:
             return nil

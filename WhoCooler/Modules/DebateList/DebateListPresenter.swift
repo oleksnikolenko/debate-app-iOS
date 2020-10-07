@@ -40,9 +40,9 @@ class DebateListPresenter: DebateListPresentationLogic {
         { cells.insert(.custdev(style: .contacts), at: 4) }
 
         /// Use this for debate of day logic
-//        if let debateOfDay = response.data.first(where: { $0.debatePromotionType == .debateOfDay }) {
-//            print(debateOfDay)
-//        }
+        if let debateOfDay = response.data.first(where: { $0.debatePromotionType == .debateOfDay }) {
+            print(debateOfDay)
+        }
 
         if
             cells.count >= 10 &&

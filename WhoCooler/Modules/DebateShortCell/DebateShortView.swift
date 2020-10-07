@@ -131,8 +131,11 @@ class DebateShortView: UIView {
         debateBottomContainer.debateName.text = debate.name
         debateBottomContainer.debateName.isHidden = debate.name == nil
         debateBottomContainer.style = style
+        debateBottomContainer.backgroundColor = debate.debatePromotionType.backgroundColor
 
-        debateBottomContainer.category.text = debate.category.name.uppercased()
+        debateBottomContainer.category.text = debate.debatePromotionType.shouldShowDebateOfDayText
+            ? "debate.daily".localized.uppercased()
+            : debate.category.name.uppercased()
         middleSeparator.isHidden = true
 
         switch debate.debateType {
@@ -169,6 +172,28 @@ class DebateShortView: UIView {
 
     func toggleFavorite() {
         debateBottomContainer.debateInfoView.toggleFavorite()
+    }
+
+}
+
+private extension DebatePromotionType {
+
+    var backgroundColor: UIColor {
+        switch self {
+        case .debateOfDay:
+            return .init(white: 0.9, alpha: 1)
+        case .none:
+            return .white
+        }
+    }
+
+    var shouldShowDebateOfDayText: Bool {
+        switch self {
+        case .debateOfDay:
+            return true
+        case .none:
+            return false
+        }
     }
 
 }

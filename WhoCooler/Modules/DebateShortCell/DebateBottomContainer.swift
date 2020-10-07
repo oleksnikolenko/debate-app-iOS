@@ -15,6 +15,7 @@ class DebateBottomContainer: UIView {
         $0.numberOfLines = 0
         $0.textAlignment = .left
         $0.font = .systemFont(ofSize: 24, weight: .bold)
+        $0.backgroundColor = .clear
     }
     let voteButton = SideVoteButton()
     let debateInfoView = DebateInfoView()
@@ -22,7 +23,7 @@ class DebateBottomContainer: UIView {
         $0.font = .boldSystemFont(ofSize: 14)
         $0.textAlignment = .left
         $0.textColor = .gray
-        $0.backgroundColor = .white
+        $0.backgroundColor = .clear
     }
 
     // MARK: - Properties

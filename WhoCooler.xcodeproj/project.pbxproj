@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0554ADD12FA57B26501F840C /* libPods-WhoCooler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67EF838F0BEBBE23470370C3 /* libPods-WhoCooler.a */; };
+		02DFF01C43A8832B3263617E /* Pods_WhoCooler_WhoCoolerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128A594D2230075B5BFD841D /* Pods_WhoCooler_WhoCoolerUITests.framework */; };
+		21C5DBA75B287C62A5517ECE /* Pods_WhoCooler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34A9410C1482C255ECB4C5A /* Pods_WhoCooler.framework */; };
 		39196CB124DFEFBD002396E7 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39196CB024DFEFBD002396E7 /* AnalyticsService.swift */; };
 		391F7A1F248B2F5300337D23 /* PickCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A19248B2F5300337D23 /* PickCategoryPresenter.swift */; };
 		391F7A20248B2F5300337D23 /* PickCategoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 391F7A1A248B2F5300337D23 /* PickCategoryWorker.swift */; };
@@ -80,6 +81,7 @@
 		39EFACD323DDAD2500E1E8BA /* DebateShortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD223DDAD2500E1E8BA /* DebateShortCell.swift */; };
 		39EFACD923DDADB700E1E8BA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACD823DDADB700E1E8BA /* TableViewCell.swift */; };
 		39EFACE023DDB11000E1E8BA /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EFACDF23DDB11000E1E8BA /* Discussion.swift */; };
+		78FAD0DF6D43C3344C1D735B /* Pods_WhoCoolerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A017B1781BC9E63E8DE0964 /* Pods_WhoCoolerTests.framework */; };
 		86072ADC24C8865000D0C1B0 /* UserProfileMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86072ADB24C8865000D0C1B0 /* UserProfileMenuCell.swift */; };
 		860F92B02507609A001E2BF1 /* RateAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860F92AF2507609A001E2BF1 /* RateAppView.swift */; };
 		861DE6A32455D94C00B864EB /* DebateInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DE6A22455D94C00B864EB /* DebateInfoView.swift */; };
@@ -125,8 +127,6 @@
 		86E8D825245B230F0002DE7A /* VoteMessagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D824245B230F0002DE7A /* VoteMessagePresenter.swift */; };
 		86E8D827245B23C40002DE7A /* VoteMessageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E8D826245B23C40002DE7A /* VoteMessageWorker.swift */; };
 		86F7EA7524C3558600F858AF /* AuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F7EA7424C3558600F858AF /* AuthContainerView.swift */; };
-		A2BA3766B7E55C7A3F66ABED /* libPods-WhoCoolerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E3959D075EBDC1457C20928 /* libPods-WhoCoolerTests.a */; };
-		B517F606F090B0D8F5937EC5 /* libPods-WhoCooler-WhoCoolerUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 104AEDC43F37E71DA6E71A76 /* libPods-WhoCooler-WhoCoolerUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,7 +148,7 @@
 
 /* Begin PBXFileReference section */
 		00A01725C3A4B8D6ED573AA5 /* Pods-DiscussionMakerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMakerTests.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMakerTests/Pods-DiscussionMakerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		104AEDC43F37E71DA6E71A76 /* libPods-WhoCooler-WhoCoolerUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhoCooler-WhoCoolerUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		128A594D2230075B5BFD841D /* Pods_WhoCooler_WhoCoolerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoCooler_WhoCoolerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AACB45F9AA7F28D412DD4D3 /* Pods-DiscussionMakerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMakerTests.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMakerTests/Pods-DiscussionMakerTests.release.xcconfig"; sourceTree = "<group>"; };
 		39196CB024DFEFBD002396E7 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		391F7A19248B2F5300337D23 /* PickCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickCategoryPresenter.swift; sourceTree = "<group>"; };
@@ -230,10 +230,9 @@
 		39EFACD823DDADB700E1E8BA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		39EFACDF23DDB11000E1E8BA /* Discussion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discussion.swift; sourceTree = "<group>"; };
 		4784EF150D11D3D62744CD2D /* Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker-DiscussionMakerUITests/Pods-DiscussionMaker-DiscussionMakerUITests.release.xcconfig"; sourceTree = "<group>"; };
-		4E3959D075EBDC1457C20928 /* libPods-WhoCoolerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhoCoolerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F188B59484FFB42C92E94F8 /* Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig"; path = "Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		603992BE9B1D112A9C4667F1 /* Pods-DiscussionMaker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker.debug.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker.debug.xcconfig"; sourceTree = "<group>"; };
-		67EF838F0BEBBE23470370C3 /* libPods-WhoCooler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WhoCooler.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A017B1781BC9E63E8DE0964 /* Pods_WhoCoolerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoCoolerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86072ADB24C8865000D0C1B0 /* UserProfileMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileMenuCell.swift; sourceTree = "<group>"; };
 		860F92AF2507609A001E2BF1 /* RateAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppView.swift; sourceTree = "<group>"; };
 		861DE6A22455D94C00B864EB /* DebateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebateInfoView.swift; sourceTree = "<group>"; };
@@ -286,6 +285,7 @@
 		9F1E5D689700E4B38B6D4D0E /* Pods-WhoCoolerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCoolerTests.debug.xcconfig"; path = "Target Support Files/Pods-WhoCoolerTests/Pods-WhoCoolerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B080ED73F031732B083157A1 /* Pods-DiscussionMaker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiscussionMaker.release.xcconfig"; path = "Target Support Files/Pods-DiscussionMaker/Pods-DiscussionMaker.release.xcconfig"; sourceTree = "<group>"; };
 		B7A9A48801613C4E6854D5F5 /* Pods-WhoCooler-WhoCoolerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler-WhoCoolerUITests.release.xcconfig"; path = "Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D34A9410C1482C255ECB4C5A /* Pods_WhoCooler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhoCooler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1689751B398E1AEDDF0D4E /* Pods-WhoCooler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhoCooler.debug.xcconfig"; path = "Target Support Files/Pods-WhoCooler/Pods-WhoCooler.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -294,7 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0554ADD12FA57B26501F840C /* libPods-WhoCooler.a in Frameworks */,
+				21C5DBA75B287C62A5517ECE /* Pods_WhoCooler.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +302,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2BA3766B7E55C7A3F66ABED /* libPods-WhoCoolerTests.a in Frameworks */,
+				78FAD0DF6D43C3344C1D735B /* Pods_WhoCoolerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +310,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B517F606F090B0D8F5937EC5 /* libPods-WhoCooler-WhoCoolerUITests.a in Frameworks */,
+				02DFF01C43A8832B3263617E /* Pods_WhoCooler_WhoCoolerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,9 +744,9 @@
 		CA1E839BD6E22E2B1D2EF7D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				67EF838F0BEBBE23470370C3 /* libPods-WhoCooler.a */,
-				104AEDC43F37E71DA6E71A76 /* libPods-WhoCooler-WhoCoolerUITests.a */,
-				4E3959D075EBDC1457C20928 /* libPods-WhoCoolerTests.a */,
+				D34A9410C1482C255ECB4C5A /* Pods_WhoCooler.framework */,
+				128A594D2230075B5BFD841D /* Pods_WhoCooler_WhoCoolerUITests.framework */,
+				6A017B1781BC9E63E8DE0964 /* Pods_WhoCoolerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -764,6 +764,7 @@
 				39D1036023D0ED1000A0C3F7 /* Resources */,
 				189E8A440BF099890AF5EDBD /* [CP] Copy Pods Resources */,
 				391651CB250633AB00C83B2D /* Crashlytics */,
+				D674D4662484B5CAAF7BAC17 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -802,6 +803,7 @@
 				39D1038023D0ED1400A0C3F7 /* Frameworks */,
 				39D1038123D0ED1400A0C3F7 /* Resources */,
 				419B6A13C61CA7D53F647E48 /* [CP] Copy Pods Resources */,
+				59902F0382A0DEE4966D4803 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -962,6 +964,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		59902F0382A0DEE4966D4803 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhoCooler-WhoCoolerUITests/Pods-WhoCooler-WhoCoolerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CCADA9F418E7D8FFB988901A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1004,6 +1023,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D674D4662484B5CAAF7BAC17 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhoCooler/Pods-WhoCooler-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1304,14 +1340,14 @@
 				CODE_SIGN_ENTITLEMENTS = WhoCooler/WhoCooler.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6.0.0;
+				CURRENT_PROJECT_VERSION = 1.7.0.0;
 				DEVELOPMENT_TEAM = VZB2Q96A5B;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
 				PRODUCT_NAME = Sporno;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1328,14 +1364,14 @@
 				CODE_SIGN_ENTITLEMENTS = WhoCooler/WhoCooler.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.6.0.0;
+				CURRENT_PROJECT_VERSION = 1.7.0.0;
 				DEVELOPMENT_TEAM = VZB2Q96A5B;
 				INFOPLIST_FILE = WhoCooler/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.whoCooler.Main;
 				PRODUCT_NAME = Sporno;
 				PROVISIONING_PROFILE_SPECIFIER = "";
